@@ -1,0 +1,255 @@
+---
+title: "Multi_moderator"
+---
+
+
+
+```{r}
+#| label: setup
+#| include: false
+pacman::p_load(
+               DT,
+               dtplyr,
+               here, 
+               knitr,
+               tidyverse,
+               patchwork,
+               metafor,
+               orchaRd, GoodmanKruskal
+               )
+
+#| label: load_and_clean_data
+db <- readr::read_csv(here("data","db_effect_sizes.csv")) %>%
+mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD), as.numeric))%>%
+  mutate(across(where(is.character), as.factor))
+
+
+
+
+```
+
+
+
+
+
+
+```{r}
+
+
+
+moderators_to_check <- c(
+  "Outcome_type", 
+  "Lifestage_exposure", 
+  "Sex", 
+  "Meta_genre", 
+  "Music_exposure_duration", 
+  "Experimental_design", 
+  "Induced behaviour", 
+  "Relative_timing", 
+  "Experimental_procedures"
+)
+
+
+
+dat_mods <- db %>% 
+  dplyr::select(all_of(moderators_to_check))
+
+
+corr_cat <- GKtauDataframe(dat_mods)
+
+plot(corr_cat)
+```
+
+
+
+
+
+
+
+
+
+```{r}
+VCV <- metafor::vcalc(
+  vi = lnRR_var,
+  cluster = Cohort_ID, # The clustering variable (Study_ID + Ex_ID)
+  obs = ES_ID,         # The unique observation/effect size ID
+  rho = 0.5,           # Assumed correlation between outcomes from the same cohort
+  data = db 
+)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+library(dplyr)
+# Ensure db (full data) and VCV (full VCV matrix) are loaded
+
+# List all nine moderator columns (Mind the backticks for 'Induced behaviour')
+moderators <- c(
+  "Outcome_type", "Lifestage_exposure", "Sex", "Meta_genre", 
+  "Music_exposure_duration", "Experimental_design", 
+  "Induced behaviour", "Relative_timing", "Experimental_procedures"
+)
+
+# Initialize the filtered dataset to the full data
+db_final <- db
+
+# Store the original row indices (to correctly subset the VCV matrix later)
+original_indices <- 1:nrow(db)
+
+# --- Apply Sequential Filtering ---
+for (mod in moderators) {
+  
+  # Ensure the column name is correctly quoted for use with dplyr/summarise
+  mod_sym <- sym(mod) 
+  
+  # Calculate k_es for the CURRENT filtered dataset
+  k_counts <- db_final %>%
+    group_by(!!mod_sym) %>%
+    summarise(k_es = n(), .groups = 'drop')
+
+  # Identify levels to keep (where k_es >= 5)
+  levels_to_keep_mod <- k_counts %>%
+    filter(k_es >= 5) %>%
+    pull(!!mod_sym)
+
+  # Filter the dataset
+  rows_before <- nrow(db_final)
+  db_final <- db_final %>%
+    filter(!!mod_sym %in% levels_to_keep_mod)
+    
+  rows_after <- nrow(db_final)
+  
+  # Optional: Print filtering status
+  # print(paste("Moderator:", mod, "Filtered out:", rows_before - rows_after, "ESs"))
+}
+
+# --- Final Output Preparation ---
+
+# 1. Drop unused factor levels from the final data frame
+db_final <- db_final %>% mutate(across(all_of(moderators), droplevels))
+
+# 2. Get the row indices from the *original* 'db' data frame that are still present in db_final
+# Use a unique identifier like ES_ID or a combination of identifiers for matching
+indices_to_keep <- which(db$ES_ID %in% db_final$ES_ID) 
+
+# 3. Final VCV Matrix
+VCV_final <- VCV[indices_to_keep, indices_to_keep]
+
+print("--- Final Filtered Data ---")
+print(paste("Original dataset size:", nrow(db)))
+print(paste("Final dataset size:", nrow(db_final), "ES_IDs"))
+print(paste("Number of moderators included:", length(moderators)))
+```
+
+```{r}
+
+
+mMULTI<- rma.mv(yi = lnRR,
+                 V = VCV_final, 
+                 mods = ~  Outcome_type+ Lifestage_exposure+ Sex+ Meta_genre+ 
+  Music_exposure_duration+ Experimental_design+ 
+  `Induced behaviour`+ Relative_timing+ Experimental_procedures,
+                 random = list(~1 | Study_ID, 
+                               ~1 | ES_ID, 
+                               ~1 | Strain),
+                 test = "t",      
+                 method = "REML",
+                 sparse = TRUE,
+                 data = db_final)
+
+summary(mMULTI)
+```
+
+```{r}
+r2MULTI <- round(r2_ml(mMULTI), 4)
+r2MULTI
+```
+
+
+
+```{r}
+# Assuming db_final and VCV_final are ready from the universal filtering step.
+# List all nine moderator columns
+moderators_global <- c(
+  "Outcome_type", "Lifestage_exposure", "Sex", "Meta_genre", 
+  "Music_exposure_duration", "Experimental_design", 
+  "`Induced behaviour`", "Relative_timing", "Experimental_procedures"
+)
+
+# Formula: lnRR ~ 1 + M1 + M2 + ... (Global Model)
+global_formula <- as.formula(paste("lnRR ~ 1 +", paste(moderators_global, collapse = " + ")))
+
+m_Global <- rma.mv(yi = lnRR,
+                   V = VCV_final, 
+                   mods = global_formula,
+                   random = list(~1 | Study_ID, ~1 | ES_ID, ~1 | Strain),
+                   test = "t",        
+                   method = "REML",
+                   sparse = TRUE,
+                   data = db_final)
+```
+
+
+https://osf.io/fb38q/files/m8vc4
+
+
+
+
+https://ayumi-495.github.io/eyespot/#meta-regressions-multi-moderator
+
+```{r}
+library(MuMIn)
+
+# 1. Perform model selection (dredging)
+# This fits 2^9 = 512 sub-models and ranks them by AICc.
+# We use REML=FALSE because MuMIn recommends using ML for comparing models with different fixed effects.
+options(na.action = "na.fail") # Required for MuMIn to work properly
+model_selection <- dredge(m_Global, rank = "AICc", REML = FALSE)
+
+# 2. Select the top set of models (Delta AICc < 6, as per your reference)
+top_model_set <- subset(model_selection, delta < 6)
+
+# 3. Model Averaging (to get importance of each moderator)
+# This calculates the averaged coefficients and relative importance (Akaike weights).
+avg_model <- model.avg(top_model_set)
+
+# 4. Report Results
+summary(avg_model)
+
+# 5. Extract the importance (sum of Akaike weights where the variable appears)
+importance_weights <- sw(model_selection) 
+print(importance_weights)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

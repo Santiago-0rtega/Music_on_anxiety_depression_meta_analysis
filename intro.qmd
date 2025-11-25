@@ -1,0 +1,293 @@
+# Estimating effect sizes
+
+```{r}
+#| label: setup
+#| include: true
+pacman::p_load(
+               DT,
+               dtplyr,
+               here, 
+               knitr,
+               tidyverse,
+               patchwork,
+               metafor,
+               orchaRd
+               )
+```
+
+## lnRR Effect Size Calculation Function
+
+This function, `calculate_lnRR()`, is designed to calculate the Log Response Ratio ($\text{lnRR}$) and its variance ($\text{lnRR_var}$) for both continuous and percentage data, accounting for dependent (correlated) and independent comparison structures.
+
+:::: callout-note
+## Variable definitions
+
+| Variable Name | Definition                              |
+|:--------------|:----------------------------------------|
+| **`ES_ID`**   | Unique identifier for each effect size. |
+
+\|**`Study_ID`**\| Identifier for the study from which the data is drawn.
+
+::: callout-note
+\|**`C_n`, `Ex_n`**\| Sample sizes for Control and Experimental groups, respectively.
+
+\|**`C_mean`, `Ex_mean*`**\| Mean values for Control and Experimental groups, respectively.
+
+\|**`C_SE`, `Ex_SE`**\|Standard errors for Control and Experimental groups, respectively.
+
+\|**`C_SD`, `Ex_SD`**\| Standard deviations for Control and Experimental groups, respectively.
+:::
+
+\|**`Data_type`**\| Type of data (e.g., "time", "distance", "count", "latency", "percentage", "index").
+
+\|**`Comparison_structure`**\| Indicates whether the comparison is "Independent" (separate animals) or "Dependent" (same animals).
+
+\|**`Higher_better`**\| Indicates whether higher values are better ("Yes") or not ("No") for standardization purposes.
+::::
+
+```{r}
+#| label: calculate_lnRR_final
+calculate_lnRR <- function(dt) {
+
+  ## 1. Data Cleaning and Imputation (Handling Extreme Values)
+  # This section adjusts extreme boundary values (0, 100) and 0 standard deviations (SDs)
+  # to prevent mathematical errors (division by zero, log(0), or Inf values) 
+  # during the lnRR and variance calculations.
+  dt <- dt %>%
+    mutate(
+      # Adjust means that are exactly 0 to a small, non-zero value (0.005) 
+      C_mean = ifelse(C_mean == 0, 0.005, C_mean),
+      Ex_mean = ifelse(Ex_mean == 0, 0.005, Ex_mean),
+      
+      # Adjust means that are exactly 100 to a value just below 100 (99.5) 
+      # (This is critical for percentages reported 0-100)
+      C_mean = ifelse(C_mean == 100, 99.5, C_mean), 
+      Ex_mean = ifelse(Ex_mean == 100, 99.5, Ex_mean),
+
+      # Adjust SDs that are 0 to a small, non-zero value (0.01/0.05) to allow 
+      # variance calculation (which relies on SDs).
+      Ex_SD = ifelse(Ex_SD == 0, 0.01, Ex_SD),
+      C_SD = ifelse(C_SD == 0, 0.05, C_SD),
+      
+      # Standardize the 'Data_type' variable to lowercase to ensure reliable matching 
+      # in the subsequent 'if/else if' blocks, regardless of how it was typed in the source data.
+      Data_type = tolower(Data_type)
+    )
+
+  ## 2. Setup
+  dt1 <- dt %>%
+    mutate(
+      # Initialize the final effect size columns with numeric NA values.
+      lnRR = NA_real_, 
+      lnRR_var = NA_real_
+    )
+    
+  # Define the arcsine square root transformation function: asin(sqrt(p)).
+  # This transformation is necessary for proportional data (percentages) to stabilize their variance.
+  asin_trans <- function(proportion) {
+    trans <- asin(sqrt(proportion))
+    return(trans)
+  }
+  
+  ## 3. Calculation Loop (Iterating through each row/effect size)
+  for (i in seq_len(nrow(dt1))) {
+    # Extract row-specific variables for the current row 'i'
+    Ex_n <- dt1$Ex_n[i]
+    C_n <- dt1$C_n[i]
+    Ex_mean <- dt1$Ex_mean[i]
+    C_mean <- dt1$C_mean[i]
+    Ex_SD <- dt1$Ex_SD[i]
+    C_SD <- dt1$C_SD[i]
+    Data_type <- dt1$Data_type[i]
+    Comparison_structure <- dt1$Comparison_structure[i]
+    Higher_better <- dt1$Higher_better[i]
+    current_es_id <- dt1$ES_ID[i] # Used for conditional scaling check below.
+    
+    
+    # --- A. Continuous Data (Time, Distance, Count, Latency, Index, etc.) ---
+    if (Data_type %in% c("time", "distance", "count", "latency", "index")) {
+
+      # Calculate the Log Response Ratio (lnRR) using the metafor::escalc function.
+      if (Comparison_structure == "Independent") {
+        # 'ROM' (Ratio of Means) for independent groups.
+        effect <- metafor::escalc(measure = "ROM", n1i = Ex_n, n2i = C_n,
+                                 m1i = Ex_mean, m2i = C_mean, sd1i = Ex_SD, sd2i = C_SD,
+                                 var.names = c("lnRR", "lnRR_var"))
+      } else if (Comparison_structure == "Dependent") {
+        # 'ROMC' (Ratio of Means, Correlated) for dependent/repeated groups, 
+        # using an assumed correlation (ri = 0.5).
+        effect <- metafor::escalc(measure = "ROMC", ni = (Ex_n + C_n) / 2, 
+                                 m1i = Ex_mean, m2i = C_mean, sd1i = Ex_SD, sd2i = C_SD,
+                                 ri = 0.5, var.names = c("lnRR", "lnRR_var"))
+      }
+      
+      # Assign the calculated lnRR and its variance to the new columns.
+      dt1$lnRR[i] <- effect$lnRR
+      dt1$lnRR_var[i] <- effect$lnRR_var
+      
+      # 2. Outcome Direction Standardization (Sign Flip)
+      # If 'Higher_better' is "No" (e.g., lower anxiety is better), we flip the sign 
+      # of lnRR so that a positive value always indicates a beneficial outcome.
+      if (Higher_better == "No") {
+        dt1$lnRR[i] <- dt1$lnRR[i] * -1
+      }
+    }
+
+    # --- B. Proportion Data (Data_type is Percentage) ---
+    else if (Data_type %in% c("percentage")) {
+      
+      # *** CRITICAL FIX: CONDITIONAL RESCALING ***
+      # Only rescale if the study is NOT "es018," as "es018" reports 0-1 proportions.
+      # All other studies report 0-100 percentages and must be divided by 100.
+      if (current_es_id != "es018") {
+          Ex_mean <- Ex_mean / 100
+          C_mean <- C_mean / 100
+          Ex_SD <- Ex_SD / 100 
+          C_SD <- C_SD / 100
+      }
+
+      # 1. Standardization: Adjust means if "Higher_better" is "No"
+      # Flips the proportion (e.g., 80% success becomes 20% failure) to standardize direction.
+      if (Higher_better == "No") {
+        Ex_mean <- 1 - Ex_mean
+        C_mean <- 1 - C_mean
+      }
+
+      # 2. Transform SDs 
+      # Calculate the standard deviation of the arcsin-transformed data (SD') based on the formula: 
+      # SD' = sqrt(SD^2 / (4 * p * (1 - p)))
+      Ex_SD_trans <- sqrt(Ex_SD^2 / (4 * Ex_mean * (1 - Ex_mean)))
+      C_SD_trans  <- sqrt(C_SD^2 / (4 * C_mean * (1 - C_mean)))
+      
+      # 3. Transform Means (M') using the arcsin(sqrt(p)) function
+      Ex_mean_trans <- asin_trans(Ex_mean)
+      C_mean_trans <- asin_trans(C_mean)
+
+      # 4. lnRR Calculation (Using transformed means)
+      # lnRR = ln(M'ex / M'control)
+      lnRR_pro_calc <- log(Ex_mean_trans / C_mean_trans)
+      
+      # 5. Variance Calculation (Using transformed SDs)
+      # Calculate the independent variance components (V_Ex, V_C) using the transformed values.
+      V_Ex <- (Ex_SD_trans)^2 * (1 / (Ex_mean_trans^2 * Ex_n))
+      V_C  <- (C_SD_trans)^2 * (1 / (C_mean_trans^2 * C_n))
+      
+      if (Comparison_structure == "Independent") {
+        # Variance for independent groups is simply the sum of individual variances.
+        lnRR_var_pro <- V_Ex + V_C
+      } else if (Comparison_structure == "Dependent") {
+        # Variance for dependent groups includes a covariance term based on rho = 0.5.
+        # V_dep = V_Ex + V_C - 2 * rho * sqrt(V_Ex * V_C)
+        lnRR_var_pro <- V_Ex + V_C - 2 * 0.5 * sqrt(V_Ex) * sqrt(V_C)
+      }
+      
+      # Final assignment of results for proportional data.
+      dt1$lnRR[i] <- lnRR_pro_calc
+      dt1$lnRR_var[i] <- lnRR_var_pro
+    }
+  }
+  return(dt1)
+}
+```
+
+After defining the function, we proceed to load and clean the dataset.
+
+```{r}
+#| label: load_and_clean_data
+db <- readr::read_csv(here("data","db251124.csv")) %>%
+  
+  # Convert all columns required for lnRR calculation to numeric.
+  mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD), as.numeric)) %>%
+  mutate(
+    # Calculate C_SD where it is missing but C_SE is present
+    C_SD = ifelse(
+      is.na(C_SD) & !is.na(C_SE),
+      C_SE * sqrt(C_n), 
+      C_SD
+    ),
+    # Calculate Ex_SD where it is missing but Ex_SE is present
+    Ex_SD = ifelse(
+      is.na(Ex_SD) & !is.na(Ex_SE),
+      Ex_SE * sqrt(Ex_n), 
+      Ex_SD
+    )
+  ) %>%
+  
+  #
+  # This combines Study_ID and Ex_ID to uniquely identify the source cohort.
+  mutate(
+    Cohort_ID = paste(Study_ID, "Ex-ID", sep = "_")
+  ) %>%
+  
+  
+  # Convert all remaining character columns to factors (for meta-regression)
+  mutate(across(where(is.character), as.factor))
+
+
+
+```
+
+## Calculate InRR Effect Sizes
+
+Now, we apply the `calculate_lnRR()` function to the cleaned dataset to compute the effect sizes and their variances.
+
+The resulting dataset, `db_effect_sizes`, is then saved as a CSV file for further analysis.
+
+```{r}
+#| label: calculate_effect_sizes
+db_effect_sizes<-calculate_lnRR(db)
+readr::write_csv(
+  db_effect_sizes, 
+  file = here("data", "db_effect_sizes.csv"),
+  na = "" 
+)
+
+```
+
+::: panel-tabset
+## Effect Size Table
+
+```{r}
+#| label: effect_size_table
+#| echo: false
+# Define all columns to display (IDs first, then numerical data)
+display_cols <- c("ES_ID", "Study_ID",  
+                  "C_n", "C_mean", "C_SE", "C_SD", 
+                  "Ex_n", "Ex_mean", "Ex_SE", "Ex_SD", 
+                  "lnRR", "lnRR_var", "Cohort_ID")
+
+# Define columns that require numerical rounding (excluding the ID columns)
+round_cols <- c("C_n", "C_mean", "C_SE", "C_SD", 
+                "Ex_n", "Ex_mean", "Ex_SE", "Ex_SD", 
+                "lnRR", "lnRR_var")
+
+DT::datatable(
+  db_effect_sizes %>% 
+    # Select only the desired columns for display
+    dplyr::select(all_of(display_cols)),
+  options = list(
+    pageLength = 10,
+    scrollX = TRUE,
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv')
+  ),
+  extensions = 'Buttons',
+  rownames = FALSE
+) %>%
+  # Apply rounding ONLY to the numerical statistical columns
+  formatRound(columns = round_cols, digits = 3) %>%
+  # Apply general styling to all displayed columns
+  formatStyle(columns = display_cols, `text-align` = 'center')
+```
+
+## Effect Size Distributions
+
+```{r}
+#| label: lnRR_histogram
+
+hist(db_effect_sizes$lnRR,xlim=c(-6.5,9),breaks = seq(-6.5,9,0.5))
+
+
+hist(db_effect_sizes$lnRR_var, xlim=c(0,13),breaks = seq(0,13,0.1))
+```
+:::

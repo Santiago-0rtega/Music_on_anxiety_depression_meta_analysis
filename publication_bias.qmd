@@ -1,0 +1,154 @@
+---
+title: "Publication bias"
+---
+
+
+
+```{r}
+#| label: setup
+#| include: false
+pacman::p_load(
+               DT,
+               dtplyr,
+               here, 
+               knitr,
+               tidyverse,
+               patchwork,
+               metafor,
+               orchaRd, emmeans
+               )
+
+#| label: load_and_clean_data
+db <- readr::read_csv(here("data","db_effect_sizes.csv")) %>%
+mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD), as.numeric))%>%
+  mutate(across(where(is.character), as.factor))
+
+
+
+
+```
+
+
+
+
+
+
+
+
+```{r}
+VCV <- metafor::vcalc(
+  vi = lnRR_var,
+  cluster = Cohort_ID, # The clustering variable (Study_ID + Ex_ID)
+  obs = ES_ID,         # The unique observation/effect size ID
+  rho = 0.5,           # Assumed correlation between outcomes from the same cohort
+  data = db 
+)
+
+ma_all <- rma.mv(yi = lnRR,
+                  V = VCV, 
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID,
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db)
+
+summary(ma_all)
+```
+
+
+```{r}
+# funnel plot - standard error
+funnel(ma_all, yaxis = "sei",
+      xlab = "Standarised residuals",
+      ylab = "Precision (inverse of SE)" )
+
+
+```
+
+
+
+```{r}
+# funnel plot - inverse of standard error
+funnel(ma_all, yaxis = "seinv",
+      xlab = "Standarised residuals",
+      ylab = "Precision (inverse of SE)",  col = c(alpha("orange", 0.5)))
+```
+
+```{r}
+# 1. Calculate the effective sample size term (sqrt_inv_e_n) using the full data
+
+dt_egger_full <- db %>%
+  mutate(
+    # Formula: sqrt(2/Ex_n + 2/C_n)
+    sqrt_inv_e_n = sqrt(
+      (2 / Ex_n) + (2 / C_n)
+    )
+  )
+```
+
+
+```{r}
+egger_model_full <- rma.mv(yi = lnRR,
+                           V = VCV,  # Use the FULL VCV matrix
+                           mods = ~ 1 + sqrt_inv_e_n, # Egger's predictor
+                           random = list(~1 | Study_ID,
+                                         ~1 | ES_ID), # Adjusted random effects
+                           test = "z",      # Use Z-test for stability
+                           method = "REML",
+                           sparse = TRUE,
+                           data = dt_egger_full)
+
+summary(egger_model_full)
+```
+
+
+
+```{r}
+bubble_plot(egger_model_full,
+            mod = "sqrt_inv_e_n",
+            group = "Study_ID",
+            xlab = "Square root of inverse of effective sample size")
+```
+
+
+
+```{r}
+# Calculate the mean-centered Publication Year
+db_decline <- dt_egger_full %>%
+  mutate(
+    Year_c = Year - mean(Year, na.rm = TRUE) # Center Year around the mean
+  )
+```
+
+
+
+```{r}
+year_lag_model <- rma.mv(yi = lnRR,
+                         V = VCV, 
+                         mods = ~ 1 + Year_c + sqrt_inv_e_n, # Include BOTH predictors
+                         random = list(~1 | Study_ID,
+                                       ~1 | ES_ID), 
+                         test = "t", 
+                         method = "REML",
+                         sparse = TRUE,
+                         data = db_decline)
+
+summary(year_lag_model)
+```
+
+
+
+```{r}
+bubble_plot(year_lag_model,
+            mod = "Year_c",
+            group = "Study_ID",
+            xlab = "Year of publication")
+```
+
+
+
+
+
+

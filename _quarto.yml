@@ -1,0 +1,29 @@
+project:
+  type: book
+
+book:
+  title: "Music_meta_book"
+  author: "Norah Jones"
+  date: "24/11/2025"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - overall_effect.qmd
+    - uni_moderators.qmd
+    - multi_moderator.qmd
+    - publication_bias.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
+

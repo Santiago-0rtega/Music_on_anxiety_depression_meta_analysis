@@ -1,0 +1,129 @@
+---
+title: "Overall effect"
+---
+
+After estimating our effect sizes, we now run a **multilevel, intercept-only meta-analysis** using the $\text{rma.mv}$ function in the `metafor` package to estimate the **overall mean effect** of the experimental treatment (music exposure) across all independent cohorts and studies in the dataset.
+
+```{r}
+#| label: setup
+#| include: false
+pacman::p_load(
+               DT,
+               dtplyr,
+               here, 
+               knitr,
+               tidyverse,
+               patchwork,
+               metafor,
+               orchaRd
+               )
+```
+
+```{r}
+#| label: load_and_clean_data
+db <- readr::read_csv(here("data","db_effect_sizes.csv")) %>%
+mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD), as.numeric))%>%
+  mutate(across(where(is.character), as.factor))
+```
+
+::: callout-note
+Variable definitions:
+
+| Variable Name | Definition |
+|:---|:---|
+| **`ES_ID`** | Unique row identifier for each $\text{lnRR}$ effect size. |
+| **`Study_ID`** | Identifier for the primary research paper. |
+| **`Cohort_ID`** | Identifier for specific experimental groups within a study (combination of Study_ID and Experiment_ID). |
+:::
+
+## Variance-covariance matrix
+
+After loading the data containing our calculated effect sizes (lnRR and lnRR_var), we create a variance-covariance matrix to account for dependencies among effect sizes from the same cohort (i.e., correlated outcomes).
+
+::: callout-tip
+when multiple effect sizes originate from the same source (e.g., several different outcomes measured on the same animals within one study cohort), they are inherently correlated. If we treat them as fully independent, our model would underestimate the true standard errors and potentially inflate the statistical significance of our findings. The $\text{VCV}$ matrix resolves this by explicitly modeling the covariance between these related effect sizes.
+:::
+
+```{r}
+VCV <- metafor::vcalc(
+  vi = lnRR_var,
+  cluster = Cohort_ID, # The clustering variable (Study_ID + Ex_ID)
+  obs = ES_ID,         # The unique observation/effect size ID
+  rho = 0.5,           # Assumed correlation between outcomes from the same cohort
+  data = db 
+)
+```
+
+## Multilevel "Intercept only" meta-analytic model
+
+We then fit a multilevel meta-analytic model with random effects for Study_ID, Cohort_ID, and ES_ID to estimate the overall mean effect size.
+
+```{r}
+#| label: multilevel_meta_analysis
+ma_all <- rma.mv(yi = lnRR,
+                  V = VCV, 
+                  random = list(~1 | Study_ID,
+                                ~1 | Cohort_ID,
+                                ~1 | ES_ID,
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db)
+
+summary(ma_all)
+```
+
+We can extract the $I^2$ statistic to quantify the proportion of total variability in effect sizes that is due to heterogeneity rather than sampling error.
+
+```{r}
+#| label: i2_extraction
+orchaRd::i2_ml(ma_all)
+```
+
+We can also extract the model's $R^2$ value to assess the proportion of variance explained by the model.
+
+```{r}
+#| label: r2_extraction
+r2 <- round(r2_ml(ma_all), 4)
+r2
+```
+
+Interestingly, `Study_ID` and `Cohort_ID` are accounting for a similar portion of the total variance. So, we drop `Cohort_ID` from the random effects structure and refit the model to see if it improves parsimony without sacrificing model fit. \## Model simplification
+
+```{r}
+#| label: refit_model
+
+ma_all <- rma.mv(yi = lnRR,
+                  V = VCV, 
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID,
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db)
+
+summary(ma_all)
+```
+
+```{r}
+#| label: i2_extraction2
+orchaRd::i2_ml(ma_all)
+```
+
+As we can see, we achieve a similar fit with a more parsimonious model.
+
+Finally, we can visualize the overall effect size estimate using an orchard plot from the `orchaRd` package.
+
+```{r}
+#| label: orchard_plot
+#| fig-width: 6
+#| fig-height: 4
+#| warning: false
+orchard_plot(ma_all,
+              group = "Study_ID",
+              xlab = "log response ratio (lnRR)", 
+              angle = 45) + 
+              scale_x_discrete(labels = c("Overall effect")) 
+```
