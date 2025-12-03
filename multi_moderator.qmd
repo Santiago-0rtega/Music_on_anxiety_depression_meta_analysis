@@ -2,8 +2,6 @@
 title: "Multi_moderator"
 ---
 
-
-
 ```{r}
 #| label: setup
 #| include: false
@@ -19,7 +17,7 @@ pacman::p_load(
                )
 
 #| label: load_and_clean_data
-db <- readr::read_csv(here("data","db_effect_sizes.csv")) %>%
+db <- readr::read_csv(here("data","db_lnRR.csv")) %>%
 mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD), as.numeric))%>%
   mutate(across(where(is.character), as.factor))
 
@@ -28,10 +26,10 @@ mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD), as.numeri
 
 ```
 
+| **`Control_condition`**\| Description of the control group condition. Levels: **white noise**, **ambient noise** \|
+| **`Assay_type`** \| Type of behavioral test used. \|
 
-
-
-
+\|\*\*`Overall_rob`
 
 ```{r}
 
@@ -46,7 +44,7 @@ moderators_to_check <- c(
   "Experimental_design", 
   "Induced behaviour", 
   "Relative_timing", 
-  "Experimental_procedures"
+  "Experimental_procedures", "Control_conditions", "Assay_type"
 )
 
 
@@ -60,14 +58,6 @@ corr_cat <- GKtauDataframe(dat_mods)
 plot(corr_cat)
 ```
 
-
-
-
-
-
-
-
-
 ```{r}
 VCV <- metafor::vcalc(
   vi = lnRR_var,
@@ -78,29 +68,13 @@ VCV <- metafor::vcalc(
 )
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ```{r}
-library(dplyr)
-# Ensure db (full data) and VCV (full VCV matrix) are loaded
 
-# List all nine moderator columns (Mind the backticks for 'Induced behaviour')
-moderators <- c(
-  "Outcome_type", "Lifestage_exposure", "Sex", "Meta_genre", 
+
+moderators <- c( "Lifestage_exposure", "Sex", "Meta_genre", 
   "Music_exposure_duration", "Experimental_design", 
-  "Induced behaviour", "Relative_timing", "Experimental_procedures"
-)
+  "Induced behaviour", "Relative_timing", "Experimental_procedures", "Control_conditions", "Assay_type")
+
 
 # Initialize the filtered dataset to the full data
 db_final <- db
@@ -152,15 +126,30 @@ print(paste("Original dataset size:", nrow(db)))
 print(paste("Final dataset size:", nrow(db_final), "ES_IDs"))
 print(paste("Number of moderators included:", length(moderators)))
 ```
-
+"Lifestage_exposure", "Sex", "Meta_genre", 
+  "Music_exposure_duration", "Experimental_design", 
+  "Induced behaviour", "Relative_timing", "Experimental_procedures", "Control_conditions", "Assay_type"
+  
+  
+  
+  
+  
 ```{r}
 
 
 mMULTI<- rma.mv(yi = lnRR,
                  V = VCV_final, 
-                 mods = ~  Outcome_type+ Lifestage_exposure+ Sex+ Meta_genre+ 
-  Music_exposure_duration+ Experimental_design+ 
-  `Induced behaviour`+ Relative_timing+ Experimental_procedures,
+                 mods = ~   Lifestage_exposure + 
+                            Assay_type+
+                            `Induced behaviour` +
+                            Sex +  
+                  Meta_genre + 
+                  Music_exposure_duration +
+                  Experimental_design +
+                  Relative_timing +
+                  Experimental_procedures +
+                  Control_conditions
+                  ,
                  random = list(~1 | Study_ID, 
                                ~1 | ES_ID, 
                                ~1 | Strain),
@@ -178,78 +167,635 @@ r2MULTI
 ```
 
 
+## Sex
 
 ```{r}
-# Assuming db_final and VCV_final are ready from the universal filtering step.
-# List all nine moderator columns
-moderators_global <- c(
-  "Outcome_type", "Lifestage_exposure", "Sex", "Meta_genre", 
-  "Music_exposure_duration", "Experimental_design", 
-  "`Induced behaviour`", "Relative_timing", "Experimental_procedures"
-)
 
-# Formula: lnRR ~ 1 + M1 + M2 + ... (Global Model)
-global_formula <- as.formula(paste("lnRR ~ 1 +", paste(moderators_global, collapse = " + ")))
 
-m_Global <- rma.mv(yi = lnRR,
-                   V = VCV_final, 
-                   mods = global_formula,
-                   random = list(~1 | Study_ID, ~1 | ES_ID, ~1 | Strain),
-                   test = "t",        
-                   method = "REML",
-                   sparse = TRUE,
-                   data = db_final)
+mMULTI<- rma.mv(yi = lnRR,
+                 V = VCV_final, 
+                 mods = ~   Lifestage_exposure + 
+                            Assay_type+
+                            `Induced behaviour` +
+                  Meta_genre + 
+                  Music_exposure_duration +
+                  Experimental_design +
+                  Relative_timing +
+                  Experimental_procedures +
+                  Control_conditions
+                  ,
+                 random = list(~1 | Study_ID, 
+                               ~1 | ES_ID, 
+                               ~1 | Strain),
+                 test = "t",      
+                 method = "REML",
+                 sparse = TRUE,
+                 data = db_final)
+
+
+r2MULTI <- round(r2_ml(mMULTI), 4)
+r2MULTI
 ```
+## Meta_genre
+```{r}
+
+
+mMULTI<- rma.mv(yi = lnRR,
+                 V = VCV_final, 
+                 mods = ~   Lifestage_exposure + 
+                            Assay_type+
+                            `Induced behaviour` +
+                            Sex +  
+                 
+                  Music_exposure_duration +
+                  Experimental_design +
+                  Relative_timing +
+                  Experimental_procedures +
+                  Control_conditions
+                  ,
+                 random = list(~1 | Study_ID, 
+                               ~1 | ES_ID, 
+                               ~1 | Strain),
+                 test = "t",      
+                 method = "REML",
+                 sparse = TRUE,
+                 data = db_final)
+
+
+r2MULTI <- round(r2_ml(mMULTI), 4)
+r2MULTI
+```
+
+## Music_exposure_duration
+
+
+  
+```{r}
+
+
+mMULTI<- rma.mv(yi = lnRR,
+                 V = VCV_final, 
+                 mods = ~   Lifestage_exposure + 
+                            Assay_type+
+                            `Induced behaviour` +
+                            Sex +  
+                  Meta_genre + 
+                  Experimental_design +
+                  Relative_timing +
+                  Experimental_procedures +
+                  Control_conditions
+                  ,
+                 random = list(~1 | Study_ID, 
+                               ~1 | ES_ID, 
+                               ~1 | Strain),
+                 test = "t",      
+                 method = "REML",
+                 sparse = TRUE,
+                 data = db_final)
+
+
+r2MULTI <- round(r2_ml(mMULTI), 4)
+r2MULTI
+```
+## Experimental_design
+  
+```{r}
+
+
+mMULTI<- rma.mv(yi = lnRR,
+                 V = VCV_final, 
+                 mods = ~   Lifestage_exposure + 
+                            Assay_type+
+                            `Induced behaviour` +
+                            Sex +  
+                  Meta_genre + 
+                  Music_exposure_duration +
+                  Relative_timing +
+                  Experimental_procedures +
+                  Control_conditions
+                  ,
+                 random = list(~1 | Study_ID, 
+                               ~1 | ES_ID, 
+                               ~1 | Strain),
+                 test = "t",      
+                 method = "REML",
+                 sparse = TRUE,
+                 data = db_final)
+
+
+r2MULTI <- round(r2_ml(mMULTI), 4)
+r2MULTI
+```
+
+## relative_timing
+```{r}
+
+
+mMULTI<- rma.mv(yi = lnRR,
+                 V = VCV_final, 
+                 mods = ~   Lifestage_exposure + 
+                            Assay_type+
+                            `Induced behaviour` +
+                            Sex +  
+                  Meta_genre + 
+                  Music_exposure_duration +
+                  Experimental_design +
+                  Experimental_procedures +
+                  Control_conditions
+                  ,
+                 random = list(~1 | Study_ID, 
+                               ~1 | ES_ID, 
+                               ~1 | Strain),
+                 test = "t",      
+                 method = "REML",
+                 sparse = TRUE,
+                 data = db_final)
+
+
+r2MULTI <- round(r2_ml(mMULTI), 4)
+r2MULTI
+```
+
+
+## Experimental_procedures
+```{r}
+
+
+mMULTI<- rma.mv(yi = lnRR,
+                 V = VCV_final, 
+                 mods = ~   Lifestage_exposure + 
+                            Assay_type+
+                            `Induced behaviour` +
+                            Sex +  
+                  Meta_genre + 
+                  Music_exposure_duration +
+                  Experimental_design +
+                  Relative_timing +
+                  Control_conditions
+                  ,
+                 random = list(~1 | Study_ID, 
+                               ~1 | ES_ID, 
+                               ~1 | Strain),
+                 test = "t",      
+                 method = "REML",
+                 sparse = TRUE,
+                 data = db_final)
+
+
+r2MULTI <- round(r2_ml(mMULTI), 4)
+r2MULTI
+```
+
+## control_conditions
+
+```{r}
+
+
+mMULTI<- rma.mv(yi = lnRR,
+                 V = VCV_final, 
+                 mods = ~   Lifestage_exposure + 
+                            Assay_type+
+                            `Induced behaviour` +
+                            Sex +  
+                  Meta_genre + 
+                  Music_exposure_duration +
+                  Experimental_design +
+                  Relative_timing +
+                  Experimental_procedures 
+                  ,
+                 random = list(~1 | Study_ID, 
+                               ~1 | ES_ID, 
+                               ~1 | Strain),
+                 test = "t",      
+                 method = "REML",
+                 sparse = TRUE,
+                 data = db_final)
+
+
+r2MULTI <- round(r2_ml(mMULTI), 4)
+r2MULTI
+```
+
+
+
+## Best so far
+
+```{r}
+
+
+mMULTI<- rma.mv(yi = lnRR,
+                 V = VCV_final, 
+                 mods = ~   Lifestage_exposure + 
+                            Assay_type+
+                            `Induced behaviour` +
+                            Sex +  
+                  Meta_genre + 
+                  Experimental_design +
+                  Relative_timing +
+                  Experimental_procedures +
+                  Control_conditions
+                  ,
+                 random = list(~1 | Study_ID, 
+                               ~1 | ES_ID, 
+                               ~1 | Strain),
+                 test = "t",      
+                 method = "REML",
+                 sparse = TRUE,
+                 data = db_final)
+
+
+summary(mMULTI)
+```
+
+```{r}
+r2MULTI <- round(r2_ml(mMULTI), 4)
+r2MULTI
+```
+
+
+
+## Sex
+
+
+```{r}
+
+
+mMULTI<- rma.mv(yi = lnRR,
+                 V = VCV_final, 
+                 mods = ~   Lifestage_exposure + 
+                            Assay_type+
+                            `Induced behaviour` +
+                  Meta_genre + 
+                  Experimental_design +
+                  Relative_timing +
+                  Experimental_procedures +
+                  Control_conditions
+                  ,
+                 random = list(~1 | Study_ID, 
+                               ~1 | ES_ID, 
+                               ~1 | Strain),
+                 test = "t",      
+                 method = "REML",
+                 sparse = TRUE,
+                 data = db_final)
+
+
+
+r2MULTI <- round(r2_ml(mMULTI), 4)
+r2MULTI
+```
+## Meta_genre
+```{r}
+mMULTI<- rma.mv(yi = lnRR,
+                 V = VCV_final, 
+                 mods = ~   Lifestage_exposure + 
+                            Assay_type+
+                            `Induced behaviour` +
+                            Sex +  
+                  Experimental_design +
+                  Relative_timing +
+                  Experimental_procedures +
+                  Control_conditions
+                  ,
+                 random = list(~1 | Study_ID, 
+                               ~1 | ES_ID, 
+                               ~1 | Strain),
+                 test = "t",      
+                 method = "REML",
+                 sparse = TRUE,
+                 data = db_final)
+
+
+
+r2MULTI <- round(r2_ml(mMULTI), 4)
+r2MULTI
+```
+## experimental_design
+```{r}
+mMULTI<- rma.mv(yi = lnRR,
+                 V = VCV_final, 
+                 mods = ~   Lifestage_exposure + 
+                            Assay_type+
+                            `Induced behaviour` +
+                            Sex +  
+                  Meta_genre + 
+                  Relative_timing +
+                  Experimental_procedures +
+                  Control_conditions
+                  ,
+                 random = list(~1 | Study_ID, 
+                               ~1 | ES_ID, 
+                               ~1 | Strain),
+                 test = "t",      
+                 method = "REML",
+                 sparse = TRUE,
+                 data = db_final)
+
+
+
+r2MULTI <- round(r2_ml(mMULTI), 4)
+r2MULTI
+```
+
+## relative_timing
+
+```{r}
+mMULTI<- rma.mv(yi = lnRR,
+                 V = VCV_final, 
+                 mods = ~   Lifestage_exposure + 
+                            Assay_type+
+                            `Induced behaviour` +
+                            Sex +  
+                  Meta_genre + 
+                  Experimental_design +
+                  Experimental_procedures +
+                  Control_conditions
+                  ,
+                 random = list(~1 | Study_ID, 
+                               ~1 | ES_ID, 
+                               ~1 | Strain),
+                 test = "t",      
+                 method = "REML",
+                 sparse = TRUE,
+                 data = db_final)
+
+
+
+r2MULTI <- round(r2_ml(mMULTI), 4)
+r2MULTI
+```
+
+
+
+## experimental_procedures
+```{r}
+mMULTI<- rma.mv(yi = lnRR,
+                 V = VCV_final, 
+                 mods = ~   Lifestage_exposure + 
+                            Assay_type+
+                            `Induced behaviour` +
+                            Sex +  
+                  Meta_genre + 
+                  Experimental_design +
+                  Relative_timing +
+                  Control_conditions
+                  ,
+                 random = list(~1 | Study_ID, 
+                               ~1 | ES_ID, 
+                               ~1 | Strain),
+                 test = "t",      
+                 method = "REML",
+                 sparse = TRUE,
+                 data = db_final)
+
+
+
+r2MULTI <- round(r2_ml(mMULTI), 4)
+r2MULTI
+```
+## control_conditions
+
+```{r}
+mMULTI<- rma.mv(yi = lnRR,
+                 V = VCV_final, 
+                 mods = ~   Lifestage_exposure + 
+                            Assay_type+
+                            `Induced behaviour` +
+                            Sex +  
+                  Meta_genre + 
+                  Experimental_design +
+                  Relative_timing +
+                  Experimental_procedures 
+                  ,
+                 random = list(~1 | Study_ID, 
+                               ~1 | ES_ID, 
+                               ~1 | Strain),
+                 test = "t",      
+                 method = "REML",
+                 sparse = TRUE,
+                 data = db_final)
+
+
+
+r2MULTI <- round(r2_ml(mMULTI), 4)
+r2MULTI
+```
+
+
+## new best 
+
+```{r}
+mMULTI<- rma.mv(yi = lnRR,
+                 V = VCV_final, 
+                 mods = ~   Lifestage_exposure + 
+                            Assay_type+
+                            `Induced behaviour` +
+                            Sex +  
+                  Meta_genre + 
+                  Experimental_design +
+                  Relative_timing +
+                  Control_conditions
+                  ,
+                 random = list(~1 | Study_ID, 
+                               ~1 | ES_ID, 
+                               ~1 | Strain),
+                 test = "t",      
+                 method = "REML",
+                 sparse = TRUE,
+                 data = db_final)
+
+
+
+r2MULTI <- round(r2_ml(mMULTI), 4)
+r2MULTI
+```
+## meta_genre
+
+
+
+```{r}
+mMULTI<- rma.mv(yi = lnRR,
+                 V = VCV_final, 
+                 mods = ~   Lifestage_exposure + 
+                            Assay_type+
+                            `Induced behaviour` +
+                            Sex +  
+                  Experimental_design +
+                  Relative_timing +
+                  Control_conditions
+                  ,
+                 random = list(~1 | Study_ID, 
+                               ~1 | ES_ID, 
+                               ~1 | Strain),
+                 test = "t",      
+                 method = "REML",
+                 sparse = TRUE,
+                 data = db_final)
+
+
+
+r2MULTI <- round(r2_ml(mMULTI), 4)
+r2MULTI
+```
+
+```{r}
+summary(mMULTI)
+```
+
+
+## experimental_design
+```{r}
+mMULTI<- rma.mv(yi = lnRR,
+                 V = VCV_final, 
+                 mods = ~   Lifestage_exposure + 
+                            Assay_type+
+                            `Induced behaviour` +
+                            Sex +  
+                  Meta_genre + 
+                  Relative_timing +
+                  Control_conditions
+                  ,
+                 random = list(~1 | Study_ID, 
+                               ~1 | ES_ID, 
+                               ~1 | Strain),
+                 test = "t",      
+                 method = "REML",
+                 sparse = TRUE,
+                 data = db_final)
+
+
+
+r2MULTI <- round(r2_ml(mMULTI), 4)
+r2MULTI
+```
+
+## relative_timing
+
+```{r}
+mMULTI<- rma.mv(yi = lnRR,
+                 V = VCV_final, 
+                 mods = ~   Lifestage_exposure + 
+                            Assay_type+
+                            `Induced behaviour` +
+                            Sex +  
+                  Meta_genre + 
+                  Experimental_design +
+                  Control_conditions
+                  ,
+                 random = list(~1 | Study_ID, 
+                               ~1 | ES_ID, 
+                               ~1 | Strain),
+                 test = "t",      
+                 method = "REML",
+                 sparse = TRUE,
+                 data = db_final)
+
+
+
+r2MULTI <- round(r2_ml(mMULTI), 4)
+r2MULTI
+```
+
+
+
+
+```{r}
+summary(mMULTI)
+```
+
+
+
+## control_conditions
+
+```{r}
+mMULTI<- rma.mv(yi = lnRR,
+                 V = VCV_final, 
+                 mods = ~   Lifestage_exposure + 
+                            Assay_type+
+                            `Induced behaviour` +
+                            Sex +  
+                  Meta_genre + 
+                  Experimental_design +
+                  Relative_timing 
+                  ,
+                 random = list(~1 | Study_ID, 
+                               ~1 | ES_ID, 
+                               ~1 | Strain),
+                 test = "t",      
+                 method = "REML",
+                 sparse = TRUE,
+                 data = db_final)
+
+
+
+r2MULTI <- round(r2_ml(mMULTI), 4)
+r2MULTI
+```
+
+
+
+
+
+# the best
+
+```{r}
+mMULTI<- rma.mv(yi = lnRR,
+                 V = VCV_final, 
+                 mods = ~   Lifestage_exposure + 
+                            Assay_type+
+                            `Induced behaviour` +
+                            Sex +  
+                  Meta_genre + 
+                  Experimental_design +
+                  Relative_timing +
+                  Control_conditions-1
+                  ,
+                 random = list(~1 | Study_ID, 
+                               ~1 | ES_ID, 
+                               ~1 | Strain),
+                 test = "t",      
+                 method = "REML",
+                 sparse = TRUE,
+                 data = db_final)
+
+summary(mMULTI)
+
+
+```
+
+
+
+
+
+
+
+```{r}
+
+r2MULTI <- round(r2_ml(mMULTI), 4)
+r2MULTI
+
+```
+
+
+```{r}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 https://osf.io/fb38q/files/m8vc4
 
-
-
-
 https://ayumi-495.github.io/eyespot/#meta-regressions-multi-moderator
-
-```{r}
-library(MuMIn)
-
-# 1. Perform model selection (dredging)
-# This fits 2^9 = 512 sub-models and ranks them by AICc.
-# We use REML=FALSE because MuMIn recommends using ML for comparing models with different fixed effects.
-options(na.action = "na.fail") # Required for MuMIn to work properly
-model_selection <- dredge(m_Global, rank = "AICc", REML = FALSE)
-
-# 2. Select the top set of models (Delta AICc < 6, as per your reference)
-top_model_set <- subset(model_selection, delta < 6)
-
-# 3. Model Averaging (to get importance of each moderator)
-# This calculates the averaged coefficients and relative importance (Akaike weights).
-avg_model <- model.avg(top_model_set)
-
-# 4. Report Results
-summary(avg_model)
-
-# 5. Extract the importance (sum of Akaike weights where the variable appears)
-importance_weights <- sw(model_selection) 
-print(importance_weights)
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

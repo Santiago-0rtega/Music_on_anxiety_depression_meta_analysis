@@ -13,13 +13,13 @@ pacman::p_load(
                tidyverse,
                patchwork,
                metafor,
-               orchaRd, emmeans
+               orchaRd, 
                )
 
 #| label: load_and_clean_data
-db <- readr::read_csv(here("data","db_effect_sizes.csv")) %>%
+db <- readr::read_csv(here("data","db_lnRR.csv")) %>%
 mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD), as.numeric))%>%
-  mutate(across(where(is.character), as.factor))
+  mutate(across(where(is.character), as.factor)) 
 
 
 
@@ -50,13 +50,232 @@ Variable definitions:
 | **`Induced behaviour`** | Whether the tested behavior was innate or experimentally induced. |
 | **`Relative_timing`** | When music was administered relative to the behavioral test. Levels: **before**, **concurrent**, **both**, **not specified**. |
 | **`Experimental_procedures`** | Identifies non-treatment controls for interventions. Levels: **sham**, **none**. |
+| **`Control_condition`** | Description of the control group condition. Levels: **white noise**, **ambient noise** |
+| **`Assay_type`** | Type of behavioral test used. |
+| **`Overall_rob`** | Overall risk of bias assessment for each study. Levels: **2 (low)**, **1 (moderate)**, **0 (high)**. |
+:::
+
+## Functions for pairwise contrasts 
+
+::: panel-tabset
+
+## 1. Function to generate all pairwise contrasts
+
+```{r}
+
+contrast_fun <- function(data, response, moderator, VCV){
+    # Get names of moderator and response for deparsing
+    mod <- deparse(substitute(moderator))
+    resp <- deparse(substitute(response))
+    
+    # Get names of different levels of a categorical variable
+    names <- levels(as.factor(data[[mod]]))
+    moderator <- as.factor(data[[mod]])
+    
+    # function for running a meta-regression (re-leveling the moderator)
+    run_rma <- function(name) {
+        # The formula dynamically changes the reference level
+        rma.mv(yi = data[[resp]],
+               V = VCV,
+               mods = ~ relevel(moderator, ref = name),
+               random = list(~1|Study_ID, ~1|ES_ID,~1|Strain),
+               test = "t",
+               data = data,
+               sparse = TRUE)
+    }
+    
+    # Running all models, excluding the last level which is the default reference
+    # This generates n-1 models.
+    contra <- purrr::map(names[-length(names)], run_rma)
+    
+    return(contra)
+}
+
+
+```
+
+
+## 2. Function to extract estimates from base and contrast models
+
+```{r}
+get_estimate <- function(model, contra, moderator) {
+    
+    mod <- deparse(substitute(moderator))
+    
+    # Custom function to capitalize the first letter
+    capitalize_first <- function(x) {
+      paste0(toupper(substring(x, 1, 1)), substring(x, 2))
+    }
+    
+    # Helper 1: Get Level Estimates from the base model
+    get_pred1 <- function (model, mod = mod) {
+        # Requires stringr
+        name_raw <- as.character(stringr::str_replace(row.names(model$beta), mod, ""))
+        name <- capitalize_first(name_raw)
+        len <- length(name)
+        
+        newdata <- matrix(NA, ncol = len, nrow = len)
+        for (i in 1:len) {
+            pos <- which(model$X[, i] == 1)[[1]] 
+            newdata[i, ] <- model$X[pos, ]       
+        }
+        
+        pred <- metafor::predict.rma(model, newmods = newdata)
+        
+        table <- tibble::tibble(
+            name = factor(name, levels = name, labels = name),
+            estimate = pred$pred,
+            lowerCL = pred$ci.lb,
+            upperCL = pred$ci.ub,
+            pval = model$pval, 
+            lowerPR = pred$cr.lb,
+            upperPR = pred$cr.ub
+        )
+        return(table)
+    }
+    
+    # Helper 2: Get Estimates from contrast models (ensuring column names)
+    get_pred2 <- function (model) {
+        name <- row.names(model$beta) 
+        len <- length(name)
+        newdata <- diag(len)
+        
+        # Predict the Intercept (Reference Level Estimate)
+        pred1 <- data.frame(metafor::predict.rma(model, newmods = newdata[1,-1]))
+        names(pred1) <- c("pred", "se", "ci.lb", "ci.ub", "cr.lb", "cr.ub") 
+        
+        # Predict the Contrasts (Differences)
+        pred2 <- data.frame(metafor::predict.rma(model, intercept = FALSE, newmods = newdata[-1,-1]))
+        names(pred2) <- c("pred", "se", "ci.lb", "ci.ub", "cr.lb", "cr.ub") 
+
+        pred <- rbind(pred1, pred2)
+        
+        table <- tibble::tibble(
+            name = factor(name, levels = name, labels = name),
+            estimate = pred$pred,
+            lowerCL = pred$ci.lb,
+            upperCL = pred$ci.ub,
+            pval = model$pval,
+            lowerPR = pred$cr.lb, 
+            upperPR = pred$cr.ub
+        )
+        return(table)
+    }
+    
+    # Helper 3: Generates the list of ALL level names (not just contrasts)
+    get_level_names <- function(res1) {
+        return(as.character(res1$name))
+    }
+    
+    # Helper 4: MODIFIED to relabel all 25 rows
+    mr_results <- function(res1, res2) {
+    
+    # Helper to generate the 25 simple contrast names in the exact order they appear in res2
+    get_ordered_contrast_names <- function(level_names) {
+        
+        # 1. Levels used as the reference in contrast_fun (L1, L2, L3, L4, L5)
+        reference_levels <- level_names[-length(level_names)] 
+        
+        ordered_names <- c()
+        
+        # Iterate through the 5 models generated by contrast_fun
+        for (ref in reference_levels) {
+            
+            # 2. Levels that appear as coefficients in the current model (all levels except the reference)
+            coefficient_levels <- level_names[level_names != ref]
+            
+            # The order in res2 is always: Coefficient - Reference
+            # Example: Model 1 (Ref=Adolescent) lists coefficients: Adult, Juvenile, Mixed, Unclear, Young adult
+            # The generated names will be: Adult-Adolescent, Juvenile-Adolescent, ...
+            ordered_names <- c(ordered_names, paste(coefficient_levels, ref, sep="-"))
+        }
+        return(ordered_names)
+    }
+
+    # 1. Get the list of all moderator level names (n=6)
+    level_names <- as.character(res1$name)
+
+    # 2. Generate the 25 simple contrast names in the exact sequence of res2
+    new_contrast_names <- get_ordered_contrast_names(level_names)
+    
+    # 3. Create the final tibble (31 rows)
+    restuls <- tibble::tibble(
+        Levels = c(level_names, new_contrast_names),
+        Estimate = c(res1$estimate, res2$estimate),
+        Lower_CI = c(res1$lowerCL, res2$lowerCL),
+        Upper_CI = c(res1$upperCL, res2$upperCL),
+        P_value = c(res1$pval, res2$pval),
+        Lower_PI = c(res1$lowerPR, res2$lowerPR),
+        Upper_PI = c(res1$upperPR, res2$upperPR)
+    )
+    return(restuls)
+}
+    
+    # --- MAIN EXECUTION ---
+    
+    # 1. Get level estimates from the base model (n=6 rows)
+    res1 <- get_pred1(model, mod = mod)
+    
+    # 2. Get contrast estimates from all re-leveled models
+    estiamtes <- purrr::map(contra, ~ get_pred2(.x))
+    
+    # 3. Extract all non-intercept rows (25 total contrasts) and combine them
+    res2 <- purrr::map_dfr(estiamtes, ~.x[-1, ]) 
+    
+    # 4. Put all results together with simplified names
+    results <- mr_results(res1, res2)
+    
+    return(results)
+}
+```
+
+## 3. Function to clean and retain only unique pairwise contrasts
+
+```{r}
+clean_unique_contrasts <- function(full_results_table, level_count = 6) {
+  
+  # 1. Separate the Level Estimates (first 6 rows) from the Contrasts (remaining rows)
+  level_estimates <- full_results_table[1:level_count, ]
+  contrast_estimates <- full_results_table[-(1:level_count), ]
+  
+  # 2. Extract the names of the two levels being compared
+  # We assume names are in the format "LevelA-LevelB"
+  contrast_estimates <- contrast_estimates %>%
+    mutate(
+      # Extract the first level (before the hyphen)
+      Level1 = str_extract(Levels, "^(.*?)-"),
+      # Extract the second level (after the hyphen)
+      Level2 = str_extract(Levels, "-(.*?)$")
+    ) %>%
+    # Clean up the extracted strings (remove hyphens)
+    mutate(
+      Level1 = str_replace_all(Level1, "-", ""),
+      Level2 = str_replace_all(Level2, "-", "")
+    )
+  
+  # 3. Create a unique identifier key for each pair, ignoring order (e.g., 'A_B' is the same as 'B_A')
+  # This uses pmin/pmax to sort the two levels alphabetically for a consistent key.
+  contrast_estimates <- contrast_estimates %>%
+    mutate(
+      Unique_Pair_Key = paste(pmin(Level1, Level2), pmax(Level1, Level2), sep = "_")
+    )
+  
+  # 4. Filter for only the unique contrasts (keep the first occurrence of each unique key)
+  # This reduces the 25 rows to the 15 unique pairs.
+  unique_contrasts <- contrast_estimates %>%
+    distinct(Unique_Pair_Key, .keep_all = TRUE) %>%
+    # Remove the temporary columns used for filtering
+    select(-Level1, -Level2, -Unique_Pair_Key)
+  
+  # 5. Combine the original level estimates with the cleaned unique contrasts
+  final_table <- bind_rows(level_estimates, unique_contrasts)
+  
+  return(final_table)
+}
+```
 :::
 
 ## Meta-regressions
-
-
-
-
 
 ::: panel-tabset
 ## 1. Outcome type: Anxiety and Depression
@@ -112,14 +331,37 @@ r2OT
 #| fig-width: 6
 #| fig-height: 4
 #| warning: false
-orchard_plot(mOT,
+orchard_outcome<-orchard_plot(mOT,
              mod = "Outcome_type",
               group = "Study_ID",
-              xlab = "log response ratio (lnRR)", 
-              angle = 45) 
+              xlab = "lnRR", 
+             flip = FALSE) +
+            scale_colour_brewer(palette = "Set1") +
+            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(breaks = seq(-8, 10, by = 2),
+                                                                    minor_breaks = seq(-8, 10, by = 1 ))
+orchard_outcome
 ```
 
+```{r}
+ggsave(filename = here("Plots", "orchard_outcome.pdf"),
+       plot = orchard_outcome,
+       dpi = 300, device = cairo_pdf)
+```
 
+```{r}
+mOT <- rma.mv(yi = lnRR,
+                  V = VCV_filtered, 
+              mods = ~ Outcome_type,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID,
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db_filtered)
+
+summary(mOT)
+```
 
 ## 2. Lifestage of exposure
 
@@ -147,15 +389,58 @@ r2LE
 ```
 
 ```{r}
+contra_LE <- contrast_fun(data = db, 
+                          response = lnRR, 
+                          moderator = Lifestage_exposure, 
+                          VCV = VCV)
+
+
+
+
+t1<-get_estimate(model = mLE, contra = contra_LE, moderator = Lifestage_exposure)
+
+t2 <- clean_unique_contrasts(full_results_table = t1, level_count = 6)
+
+
+t2
+```
+
+```{r}
 #| label: orchard_lifestage_exp
 #| fig-width: 6
 #| fig-height: 4
 #| warning: false
-orchard_plot(mLE,
+orchard_lifestage<-orchard_plot(mLE,
              mod = "Lifestage_exposure",
               group = "Study_ID",
-              xlab = "log response ratio (lnRR)", 
-              angle = 45) 
+               xlab = "lnRR", 
+             flip = FALSE) +
+            scale_colour_brewer(palette = "Set1") +
+            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(breaks = seq(-8, 10, by = 2),
+                                                                    minor_breaks = seq(-8, 10, by = 1 ))
+orchard_lifestage
+```
+
+```{r}
+ggsave(filename = here("Plots", "orchard_lifestage.pdf"),
+       plot = orchard_lifestage,
+       dpi = 300, device = cairo_pdf)
+```
+
+```{r}
+mLE <- rma.mv(yi = lnRR,
+                  V = VCV, 
+              mods = ~ Lifestage_exposure,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID,
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db)
+
+summary(mLE)
+
 ```
 
 ## 3. Sex
@@ -211,11 +496,36 @@ r2SX
 #| fig-width: 6
 #| fig-height: 4
 #| warning: false
-orchard_plot(mSX,
+orchard_sex<-orchard_plot(mSX,
              mod = "Sex",
               group = "Study_ID",
-              xlab = "log response ratio (lnRR)", 
-              angle = 45) 
+             xlab = "lnRR", 
+             flip = FALSE) +
+            scale_colour_brewer(palette = "Dark2") +
+            scale_fill_brewer(palette = "Set1")+scale_y_continuous(breaks = seq(-5, 10, by = 2),
+                                                                    minor_breaks = seq(-5, 10, by = 1 ))
+orchard_sex
+```
+
+```{r}
+ggsave(filename = here("Plots", "orchard_sex.pdf"),
+       plot = orchard_sex,
+       dpi = 300, device = cairo_pdf)
+```
+
+```{r}
+mSX <- rma.mv(yi = lnRR,
+                  V = VCV_filtered, 
+              mods = ~ Sex,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID,
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db_filtered)
+
+summary(mSX)
 ```
 
 ## 4. Music genre
@@ -246,15 +556,57 @@ r2MG
 ```
 
 ```{r}
+contra_mMG <- contrast_fun(data = db, 
+                          response = lnRR, 
+                          moderator = Meta_genre, 
+                          VCV = VCV)
+
+
+
+
+t1<-get_estimate(model = mMG, contra = contra_mMG, moderator = Meta_genre)
+
+t2 <- clean_unique_contrasts(full_results_table = t1, level_count = 4)
+
+
+t2
+```
+
+```{r}
 #| label: orchard_music_genre
 #| fig-width: 6
 #| fig-height: 4
 #| warning: false
-orchard_plot(mMG,
+orchard_genre<-orchard_plot(mMG,
              mod = "Meta_genre",
               group = "Study_ID",
-              xlab = "log response ratio (lnRR)", 
-              angle = 30) 
+             xlab = "lnRR", 
+             flip = FALSE) +
+            scale_colour_brewer(palette = "Dark2") +
+            scale_fill_brewer(palette = "Set1")+scale_y_continuous(breaks = seq(-5, 10, by = 2),
+                                                                    minor_breaks = seq(-5, 10, by = 1 ))
+orchard_genre
+```
+
+```{r}
+ggsave(filename = here("Plots", "orchard_genre.pdf"),
+       plot = orchard_genre,
+       dpi = 300, device = cairo_pdf)
+```
+
+```{r}
+mMG <- rma.mv(yi = lnRR,
+                  V = VCV, 
+              mods = ~ Meta_genre,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID,
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db)
+
+summary(mMG)
 ```
 
 ## 5. Music exposure duration
@@ -308,7 +660,48 @@ r2MED
 ```
 
 ```{r}
-#| label: orchard_music_genre
+LEVELS <- c("Acute", "Medium", "Short")
+MOD_NAME <- "Music_exposure_duration"
+```
+
+```{r}
+# Model A: Reference = Acute (A vs B, A vs C)
+db_filtered$moderator_relevel_A <- relevel(db_filtered$Music_exposure_duration, ref = LEVELS[1])
+model_A <- rma.mv(yi = lnRR,
+                  V = VCV_filtered, 
+                  mods = ~ moderator_relevel_A,
+                  random = list(~1 | Study_ID, ~1 | ES_ID, ~1 | Strain),
+                  test = "t", method = "REML", sparse = TRUE,
+                  data = db_filtered)
+model_A
+```
+
+```{r}
+# Model B: Reference = Medium (B vs C)
+db_filtered$moderator_relevel_B <- relevel(db_filtered$Music_exposure_duration, ref = LEVELS[2])
+model_B <- rma.mv(yi = lnRR,
+                  V = VCV_filtered, 
+                  mods = ~ moderator_relevel_B,
+                  random = list(~1 | Study_ID, ~1 | ES_ID, ~1 | Strain),
+                  test = "t", method = "REML", sparse = TRUE,
+                  data = db_filtered)
+model_B
+```
+
+```{r}
+# Model C: Reference = Short (C estimate)
+db_filtered$moderator_relevel_C <- relevel(db_filtered$Music_exposure_duration, ref = LEVELS[3])
+model_C <- rma.mv(yi = lnRR,
+                  V = VCV_filtered, 
+                  mods = ~ moderator_relevel_C,
+                  random = list(~1 | Study_ID, ~1 | ES_ID, ~1 | Strain),
+                  test = "t", method = "REML", sparse = TRUE,
+                  data = db_filtered)
+model_C
+```
+
+```{r}
+#| label: orchard_music_exposure
 #| fig-width: 6
 #| fig-height: 4
 #| warning: false
@@ -319,9 +712,22 @@ orchard_plot(mMED,
               angle = 30) 
 ```
 
+```{r}
+mMED <- rma.mv(yi = lnRR,
+                  V = VCV_filtered, 
+              mods = ~ Music_exposure_duration,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID, 
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db_filtered)
+
+summary(mMED)
+```
 
 ## 6. Experimental design
-
 
 ```{r}
 #| label: model_experimental_design
@@ -358,6 +764,20 @@ orchard_plot(mEXD,
               angle = 30) 
 ```
 
+```{r}
+mEXD <- rma.mv(yi = lnRR,
+                  V = VCV, 
+              mods = ~ Experimental_design,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID, 
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db)
+
+summary(mEXD)
+```
 
 ## 7. Induced behaviour
 
@@ -395,8 +815,23 @@ orchard_plot(mIB,
               xlab = "log response ratio (lnRR)", 
               angle = 30) 
 ```
-## 8. Relative timing
 
+```{r}
+mIB <- rma.mv(yi = lnRR,
+                  V = VCV, 
+              mods = ~ `Induced behaviour`,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID, 
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db)
+
+summary(mIB)
+```
+
+## 8. Relative timing
 
 ```{r}
 #| label: model+_relative_timing
@@ -433,13 +868,25 @@ orchard_plot(mRT,
               angle = 30) 
 ```
 
+```{r}
+mRT <- rma.mv(yi = lnRR,
+                  V = VCV, 
+              mods = ~ Relative_timing,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID, 
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db)
 
-
+summary(mRT)
+```
 
 ## 9. Experimental procedures
 
 ```{r}
-#| label: model+_relative_timing
+#| label: model_Experimental_procedures
 
 mEXP <- rma.mv(yi = lnRR,
                   V = VCV, 
@@ -473,5 +920,145 @@ orchard_plot(mEXP,
               angle = 30) 
 ```
 
+```{r}
+mEXP <- rma.mv(yi = lnRR,
+                  V = VCV, 
+              mods = ~ Experimental_procedures,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID, 
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db)
 
+summary(mEXP)
+```
+
+## 10. Control condition
+
+```{r}
+#| label: model_control_condition
+
+mCC <- rma.mv(yi = lnRR,
+                  V = VCV, 
+              mods = ~ Control_conditions-1,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID, 
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db)
+
+summary(mCC)
+
+```
+
+```{r}
+r2CC <- round(r2_ml(mCC), 4)
+r2CC
+```
+
+```{r}
+#| label: orchard_control_condition
+#| fig-width: 6
+#| fig-height: 4
+#| warning: false
+orchard_plot(mCC,
+             mod = "Control_conditions",
+              group = "Study_ID",
+              xlab = "log response ratio (lnRR)", 
+              angle = 30) 
+```
+
+```{r}
+mCC <- rma.mv(yi = lnRR,
+                  V = VCV, 
+              mods = ~ Control_conditions,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID, 
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db)
+
+summary(mCC)
+```
+
+## 11. Assay type
+
+```{r}
+# 1. Identify and Filter Low-K Levels
+
+
+k_counts <- db %>%
+  group_by(Assay_type) %>%
+  summarise(k_es = n())
+
+# Identify the levels to keep (where k_es >= 5)
+levels_to_keep <- k_counts %>%
+  filter(k_es >= 5) %>%
+  pull(Assay_type)
+
+# 2. Create the Filtered Data Frame
+db_filtered <- db %>%
+  filter(Assay_type %in% levels_to_keep)
+
+# 3. Subset the VCV Matrix (CRITICAL STEP)
+# Assumes VCV matrix rows/columns match the original 'db' data frame indices.
+indices_to_keep <- which(db$Assay_type %in% levels_to_keep)
+VCV_filtered <- VCV[indices_to_keep, indices_to_keep]
+```
+
+```{r}
+#| label: model_assay_type
+
+mAT <- rma.mv(yi = lnRR,
+                  V = VCV_filtered, 
+              mods = ~ Assay_type-1,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID, 
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db_filtered)
+
+summary(mAT)
+
+```
+
+```{r}
+r2AT <- round(r2_ml(mAT), 4)
+r2AT
+```
+
+```{r}
+#| label: orchard_assay_type
+#| fig-width: 6
+#| fig-height: 4
+#| warning: false
+orchard_plot(mAT,
+             mod = "Assay_type",
+              group = "Study_ID",
+              xlab = "log response ratio (lnRR)", 
+              angle = 30) 
+```
+
+```{r}
+mAT <- rma.mv(yi = lnRR,
+                  V = VCV_filtered, 
+              mods = ~ Assay_type,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID, 
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db_filtered)
+
+summary(mAT)
+```
 :::

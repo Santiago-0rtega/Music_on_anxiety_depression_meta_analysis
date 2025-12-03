@@ -28,7 +28,7 @@ This function, `calculate_lnRR()`, is designed to calculate the Log Response Rat
 
 \|**`Study_ID`**\| Identifier for the study from which the data is drawn.
 
-::: callout-note
+
 \|**`C_n`, `Ex_n`**\| Sample sizes for Control and Experimental groups, respectively.
 
 \|**`C_mean`, `Ex_mean*`**\| Mean values for Control and Experimental groups, respectively.
@@ -36,7 +36,6 @@ This function, `calculate_lnRR()`, is designed to calculate the Log Response Rat
 \|**`C_SE`, `Ex_SE`**\|Standard errors for Control and Experimental groups, respectively.
 
 \|**`C_SD`, `Ex_SD`**\| Standard deviations for Control and Experimental groups, respectively.
-:::
 
 \|**`Data_type`**\| Type of data (e.g., "time", "distance", "count", "latency", "percentage", "index").
 
@@ -227,6 +226,15 @@ db <- readr::read_csv(here("data","db251124.csv")) %>%
 
 ```
 
+
+
+
+
+
+
+
+
+
 ## Calculate InRR Effect Sizes
 
 Now, we apply the `calculate_lnRR()` function to the cleaned dataset to compute the effect sizes and their variances.
@@ -235,10 +243,11 @@ The resulting dataset, `db_effect_sizes`, is then saved as a CSV file for furthe
 
 ```{r}
 #| label: calculate_effect_sizes
+#| eval: false
 db_effect_sizes<-calculate_lnRR(db)
 readr::write_csv(
   db_effect_sizes, 
-  file = here("data", "db_effect_sizes.csv"),
+  file = here("data", "db_lnRR.csv"),
   na = "" 
 )
 
@@ -250,6 +259,11 @@ readr::write_csv(
 ```{r}
 #| label: effect_size_table
 #| echo: false
+
+db_effect_sizes <- readr::read_csv(here("data","db_lnRR.csv")) %>%
+mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD), as.numeric))%>%
+  mutate(across(where(is.character), as.factor))
+
 # Define all columns to display (IDs first, then numerical data)
 display_cols <- c("ES_ID", "Study_ID",  
                   "C_n", "C_mean", "C_SE", "C_SD", 

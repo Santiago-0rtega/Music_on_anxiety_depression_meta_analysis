@@ -21,7 +21,7 @@ pacman::p_load(
 
 ```{r}
 #| label: load_and_clean_data
-db <- readr::read_csv(here("data","db_effect_sizes.csv")) %>%
+db <- readr::read_csv(here("data","db_lnRR.csv")) %>%
 mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD), as.numeric))%>%
   mutate(across(where(is.character), as.factor))
 ```
@@ -30,7 +30,7 @@ mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD), as.numeri
 Variable definitions:
 
 | Variable Name | Definition |
-|:---|:---|
+|:-----------------------------------|:-----------------------------------|
 | **`ES_ID`** | Unique row identifier for each $\text{lnRR}$ effect size. |
 | **`Study_ID`** | Identifier for the primary research paper. |
 | **`Cohort_ID`** | Identifier for specific experimental groups within a study (combination of Study_ID and Experiment_ID). |
@@ -89,7 +89,9 @@ r2 <- round(r2_ml(ma_all), 4)
 r2
 ```
 
-Interestingly, `Study_ID` and `Cohort_ID` are accounting for a similar portion of the total variance. So, we drop `Cohort_ID` from the random effects structure and refit the model to see if it improves parsimony without sacrificing model fit. \## Model simplification
+Interestingly, `Study_ID` and `Cohort_ID` are accounting for a similar portion of the total variance. So, we drop `Cohort_ID` from the random effects structure and refit the model to see if it improves parsimony without sacrificing model fit. 
+
+## Model simplification
 
 ```{r}
 #| label: refit_model

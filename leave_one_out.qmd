@@ -1,0 +1,228 @@
+---
+title: "leave-one-out"
+---
+
+```{r}
+#| label: setup
+#| include: false
+pacman::p_load(
+               DT,
+               dtplyr,
+               here, 
+               knitr,
+               tidyverse,
+               patchwork,
+               metafor,
+               orchaRd
+               )
+```
+
+```{r}
+#| label: load_and_clean_data
+db <- readr::read_csv(here("data","db_lnRR.csv")) %>%
+mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD), as.numeric))%>%
+  mutate(across(where(is.character), as.factor))
+```
+
+```{r}
+VCV <- metafor::vcalc(
+  vi = lnRR_var,
+  cluster = Cohort_ID, # The clustering variable (Study_ID + Ex_ID)
+  obs = ES_ID,         # The unique observation/effect size ID
+  rho = 0.5,           # Assumed correlation between outcomes from the same cohort
+  data = db 
+)
+```
+
+```{r}
+#| label: refit_model
+
+ma_all <- rma.mv(yi = lnRR,
+                  V = VCV, 
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID,
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db)
+
+summary(ma_all)
+```
+
+## Randomisation
+
+```{r}
+ma_all <- rma.mv(yi = lnRR,
+                  V = VCV, 
+                 mods= ~ROB_randomization -1,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID,
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db)
+
+summary(ma_all)
+```
+
+```{r}
+ma_all <- rma.mv(yi = lnRR,
+                  V = VCV, 
+                 mods= ~ROB_randomization,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID,
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db)
+
+summary(ma_all)
+```
+
+## Blinding
+
+```{r}
+ma_all <- rma.mv(yi = lnRR,
+                  V = VCV, 
+                 mods= ~ROB_blinding -1,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID,
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db)
+
+summary(ma_all)
+```
+
+```{r}
+ma_all <- rma.mv(yi = lnRR,
+                  V = VCV, 
+                 mods= ~ROB_blinding ,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID,
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db)
+
+summary(ma_all)
+```
+
+```{r}
+# Get the list of unique studies to leave out
+studies_to_exclude <- unique(db$Study_ID)
+
+# Create an empty data frame to store the results
+l1o_results_mv <- data.frame(
+  Study_Excluded = character(),
+  lnRR = numeric(),
+  ci.lb = numeric(),
+  ci.ub = numeric(),
+  stringsAsFactors = FALSE
+)
+
+# Loop through each unique study, exclude it, and refit the model
+for (s in studies_to_exclude) {
+  
+  # Create a subset of the data excluding the current study 's'
+  db_subset <- subset(db, Study_ID != s)
+  
+  # Recalculate VCV for the subsetted data
+  # NOTE: VCV must be recalculated to match the subsetted data structure
+  VCV_subset <- metafor::vcalc(
+      vi = lnRR_var,
+      cluster = Cohort_ID,
+      obs = ES_ID,
+      rho = 0.5,
+      data = db_subset
+  )
+  
+  # Refit the rma.mv model on the subsetted data
+  # Note: Use tryCatch for robust execution in case a subset fails to converge
+  ma_subset <- tryCatch({
+    metafor::rma.mv(yi = lnRR,
+                    V = VCV_subset,
+                    random = list(~1 | Study_ID,
+                                  ~1 | ES_ID,
+                                  ~1 | Strain),
+                    test = "t",
+                    method = "REML",
+                    sparse = TRUE,
+                    data = db_subset)
+  }, error = function(e) {
+    # If the model fails to fit (e.g., due to low degrees of freedom), return NA
+    warning(paste("Model failed for study:", s, "\n", e$message))
+    return(NULL)
+  })
+
+  # Store the results if the model successfully fitted
+  if (!is.null(ma_subset)) {
+    new_row <- data.frame(
+      Study_Excluded = s,
+      lnRR = ma_subset$b[1,1],
+      ci.lb = ma_subset$ci.lb,
+      ci.ub = ma_subset$ci.ub
+    )
+    l1o_results_mv <- rbind(l1o_results_mv, new_row)
+  } else {
+     # Add a row of NAs if the model failed
+     new_row_failed <- data.frame(
+        Study_Excluded = s,
+        lnRR = NA,
+        ci.lb = NA,
+        ci.ub = NA
+     )
+     l1o_results_mv <- rbind(l1o_results_mv, new_row_failed)
+  }
+}
+
+# Print the results table
+print(l1o_results_mv)
+```
+
+```{r}
+# --- Plotting the Results ---
+
+# 1. Get the original (overall) meta-analytic mean and confidence interval
+overall_mean <- ma_all$b[1,1]
+
+# 2. Reorder the results to match the aesthetic of the original plot (top to bottom)
+# The order from the loop is usually alphabetical or insertion order. 
+# We'll reverse it so the first study (Zubedat_2015 from your image) is at the top.
+l1o_results_mv_ordered <- l1o_results_mv[order(l1o_results_mv$Study_Excluded, decreasing = TRUE), ]
+
+# Remove rows with NA (where the model failed to converge) before plotting
+l1o_results_mv_ordered <- na.omit(l1o_results_mv_ordered)
+
+# 3. Define the y-axis rows and study names
+study_names <- l1o_results_mv_ordered$Study_Excluded
+rows_for_plot <- 1:length(study_names)
+
+# 4. Create the plot using the forest function
+metafor::forest(
+  x = l1o_results_mv_ordered$lnRR,     # The estimated mean lnRR after leaving one out
+  ci.lb = l1o_results_mv_ordered$ci.lb, # The lower bound of the CI
+  ci.ub = l1o_results_mv_ordered$ci.ub, # The upper bound of the CI
+  rows = rows_for_plot,                 # Position on the y-axis
+  slab = study_names,                   # Study names on the left
+  xlim = c(-0.6, 0.6),                # Adjust limits based on your original image scale
+  header = "Study left out",            # Label for the study name column
+  xlab = "lnRR, 95% CI",                # Label for the x-axis
+  showweights = FALSE,                  # Do not show weights, as per your example
+  cex = 0.8                             # Adjust text size for better fit
+)
+
+# 5. Add a vertical dashed line for the line of no effect (lnRR = 0)
+# This corresponds to the rightmost thick dashed line in your example plot.
+abline(v = 0, lty = "dashed", lwd = 2)
+
+# 6. Add a vertical dotted line for the overall meta-analytic mean
+# This corresponds to the vertical line running through the cluster of dots.
+abline(v = overall_mean, lty = "dotted", lwd = 1.5)
+```

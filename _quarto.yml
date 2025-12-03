@@ -3,16 +3,15 @@ project:
 
 book:
   title: "Music_meta_book"
-  author: "Norah Jones"
-  date: "24/11/2025"
+  author: "Santiago Ortega"
+  date: last-modified
   chapters:
     - index.qmd
-    - intro.qmd
+    - lnRR.qmd
     - overall_effect.qmd
     - uni_moderators.qmd
     - multi_moderator.qmd
     - publication_bias.qmd
-    - summary.qmd
     - references.qmd
 
 bibliography: references.bib
@@ -20,10 +19,18 @@ bibliography: references.bib
 format:
   html:
     theme:
-      - cosmo
-      - brand
-  pdf:
-    documentclass: scrreprt
+      light: litera
+      dark: darkly
+    mainfont: "Atkinson Hyperlegible"
+    code-tools: true
+    toc: true
+    toc-depth: 3
+    toc-location: left
+
+execute:
+  freeze: auto # Automatically caches results to speed up rendering
+  warning: false
+  message: false
 
 editor: visual
 
