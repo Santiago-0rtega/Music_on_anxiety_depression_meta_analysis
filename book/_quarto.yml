@@ -1,9 +1,10 @@
 project:
   type: book
+  output-dir: ../docsoutput-dir: ../docs
 
 book:
   title: "Music_meta_book"
-  author: "Santiago Ortega"
+  author: "TBA"
   date: last-modified
   chapters:
     - index.qmd
@@ -14,7 +15,9 @@ book:
     - publication_bias.qmd
     - references.qmd
 
+number-sections: false 
 bibliography: references.bib
+biblio-style: apalike
 
 format:
   html:
@@ -26,6 +29,7 @@ format:
     toc: true
     toc-depth: 3
     toc-location: left
+    code-copy: true
 
 execute:
   freeze: auto # Automatically caches results to speed up rendering

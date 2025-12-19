@@ -17,7 +17,7 @@ pacman::p_load(
                )
 
 #| label: load_and_clean_data
-db <- readr::read_csv(here("data","db_lnRR.csv")) %>%
+db <- readr::read_csv(here("..","data","db_lnRR.csv")) %>%
 mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD), as.numeric))%>%
   mutate(across(where(is.character), as.factor)) 
 
@@ -55,219 +55,214 @@ Variable definitions:
 | **`Overall_rob`** | Overall risk of bias assessment for each study. Levels: **2 (low)**, **1 (moderate)**, **0 (high)**. |
 :::
 
-## Functions for pairwise contrasts 
+## Functions for pairwise contrasts
+
+General Explanation This set of functions automates a common but tedious task in meta-analysis: calculating all pairwise comparisons between groups.
+
+-   Function 1 (The Generator): Standard meta-regression usually compares all groups against a single "Reference" group. This function "hacks" that by re-running the model multiple times, rotating the reference group each time so that every group gets a turn as the baseline.
+
+-   Function 2 (The Harvester): This extracts the statistical results (estimates, confidence intervals, p-values) from all those models and organizes them into a single, readable table.
+
+-   Function 3 (The Cleaner): Because the first two steps calculate both "Group A vs B" and "Group B vs A" (which are mathematically identical), this function filters out the duplicates to leave you with a clean, unique list of comparisons.
 
 ::: panel-tabset
-
-## 1. Function to generate all pairwise contrasts
+## 1. The Generator
 
 ```{r}
+#| label: contrast_function
+#| fold: TRUE
 
 contrast_fun <- function(data, response, moderator, VCV){
-    # Get names of moderator and response for deparsing
-    mod <- deparse(substitute(moderator))
+    
+    # --- 1. Setup Dynamic Names ---
+    # We grab the actual names of the columns so we can use them in the formulas below
+    mod  <- deparse(substitute(moderator))
     resp <- deparse(substitute(response))
     
-    # Get names of different levels of a categorical variable
+    # --- 2. Identify Groups ---
+    # Find all unique categories in the moderator and ensure it's a factor
     names <- levels(as.factor(data[[mod]]))
     moderator <- as.factor(data[[mod]])
     
-    # function for running a meta-regression (re-leveling the moderator)
+    # --- 3. The Model Runner ---
+    # This internal function fits the meta-regression repeatedly.
+    # It changes the 'ref' (reference level) dynamically each time.
     run_rma <- function(name) {
-        # The formula dynamically changes the reference level
-        rma.mv(yi = data[[resp]],
-               V = VCV,
-               mods = ~ relevel(moderator, ref = name),
-               random = list(~1|Study_ID, ~1|ES_ID,~1|Strain),
-               test = "t",
-               data = data,
+        rma.mv(yi = data[[resp]], 
+               V = VCV, 
+               # Here is the magic: we force the model to use 'name' as the baseline
+               mods = ~ relevel(moderator, ref = name), 
+               random = list(~1|Study_ID, ~1|ES_ID, ~1|Strain), 
+               test = "t", 
+               data = data, 
                sparse = TRUE)
     }
     
-    # Running all models, excluding the last level which is the default reference
-    # This generates n-1 models.
+    # --- 4. Loop Through Groups ---
+    # We run the model n-1 times (we don't need the last one as it's covered by previous runs).
+    # map() iterates through the names and applies run_rma() to each.
     contra <- purrr::map(names[-length(names)], run_rma)
     
     return(contra)
 }
-
-
 ```
 
-
-## 2. Function to extract estimates from base and contrast models
+## 2. The Harvester
 
 ```{r}
+#| label: the harvester_function
+#| fold: TRUE
+
+
 get_estimate <- function(model, contra, moderator) {
     
     mod <- deparse(substitute(moderator))
     
-    # Custom function to capitalize the first letter
+    # Utility: Make text look nice (e.g., "control" -> "Control")
     capitalize_first <- function(x) {
-      paste0(toupper(substring(x, 1, 1)), substring(x, 2))
+        paste0(toupper(substring(x, 1, 1)), substring(x, 2))
     }
     
-    # Helper 1: Get Level Estimates from the base model
+    # --- Helper A: Get Group Means ---
+    # Extracts the estimated mean effect size for each group from the base model
     get_pred1 <- function (model, mod = mod) {
-        # Requires stringr
+        # Clean up row names to just get the group name
         name_raw <- as.character(stringr::str_replace(row.names(model$beta), mod, ""))
         name <- capitalize_first(name_raw)
         len <- length(name)
         
+        # Create a dummy matrix to predict the mean for each group individually
         newdata <- matrix(NA, ncol = len, nrow = len)
         for (i in 1:len) {
             pos <- which(model$X[, i] == 1)[[1]] 
             newdata[i, ] <- model$X[pos, ]       
         }
         
+        # Predict values
         pred <- metafor::predict.rma(model, newmods = newdata)
         
-        table <- tibble::tibble(
+        # Format into a tibble
+        tibble::tibble(
             name = factor(name, levels = name, labels = name),
             estimate = pred$pred,
-            lowerCL = pred$ci.lb,
-            upperCL = pred$ci.ub,
+            lowerCL = pred$ci.lb, upperCL = pred$ci.ub,
             pval = model$pval, 
-            lowerPR = pred$cr.lb,
-            upperPR = pred$cr.ub
+            lowerPR = pred$cr.lb, upperPR = pred$cr.ub
         )
-        return(table)
     }
     
-    # Helper 2: Get Estimates from contrast models (ensuring column names)
+    # --- Helper B: Get Pairwise Differences ---
+    # Extracts the "contrasts" (differences between groups) from the re-leveled models
     get_pred2 <- function (model) {
         name <- row.names(model$beta) 
         len <- length(name)
         newdata <- diag(len)
         
-        # Predict the Intercept (Reference Level Estimate)
+        # 1. Get the Intercept (The Reference Group Mean)
         pred1 <- data.frame(metafor::predict.rma(model, newmods = newdata[1,-1]))
         names(pred1) <- c("pred", "se", "ci.lb", "ci.ub", "cr.lb", "cr.ub") 
         
-        # Predict the Contrasts (Differences)
+        # 2. Get the Contrasts (Difference from Reference)
         pred2 <- data.frame(metafor::predict.rma(model, intercept = FALSE, newmods = newdata[-1,-1]))
         names(pred2) <- c("pred", "se", "ci.lb", "ci.ub", "cr.lb", "cr.ub") 
 
         pred <- rbind(pred1, pred2)
         
-        table <- tibble::tibble(
+        tibble::tibble(
             name = factor(name, levels = name, labels = name),
             estimate = pred$pred,
-            lowerCL = pred$ci.lb,
-            upperCL = pred$ci.ub,
+            lowerCL = pred$ci.lb, upperCL = pred$ci.ub,
             pval = model$pval,
-            lowerPR = pred$cr.lb, 
-            upperPR = pred$cr.ub
+            lowerPR = pred$cr.lb, upperPR = pred$cr.ub
         )
-        return(table)
     }
     
-    # Helper 3: Generates the list of ALL level names (not just contrasts)
-    get_level_names <- function(res1) {
-        return(as.character(res1$name))
-    }
-    
-    # Helper 4: MODIFIED to relabel all 25 rows
+    # --- Helper C: Combine Everything ---
+    # Stitches the group means and the pairwise differences into one big table
     mr_results <- function(res1, res2) {
     
-    # Helper to generate the 25 simple contrast names in the exact order they appear in res2
-    get_ordered_contrast_names <- function(level_names) {
-        
-        # 1. Levels used as the reference in contrast_fun (L1, L2, L3, L4, L5)
-        reference_levels <- level_names[-length(level_names)] 
-        
-        ordered_names <- c()
-        
-        # Iterate through the 5 models generated by contrast_fun
-        for (ref in reference_levels) {
+        # Logic to name the comparisons (e.g., "Treatment-Control") based on order
+        get_ordered_contrast_names <- function(level_names) {
+            reference_levels <- level_names[-length(level_names)] 
+            ordered_names <- c()
             
-            # 2. Levels that appear as coefficients in the current model (all levels except the reference)
-            coefficient_levels <- level_names[level_names != ref]
-            
-            # The order in res2 is always: Coefficient - Reference
-            # Example: Model 1 (Ref=Adolescent) lists coefficients: Adult, Juvenile, Mixed, Unclear, Young adult
-            # The generated names will be: Adult-Adolescent, Juvenile-Adolescent, ...
-            ordered_names <- c(ordered_names, paste(coefficient_levels, ref, sep="-"))
+            for (ref in reference_levels) {
+                coefficient_levels <- level_names[level_names != ref]
+                # Format: "ComparisonGroup - ReferenceGroup"
+                ordered_names <- c(ordered_names, paste(coefficient_levels, ref, sep="-"))
+            }
+            return(ordered_names)
         }
-        return(ordered_names)
+
+        level_names <- as.character(res1$name)
+        new_contrast_names <- get_ordered_contrast_names(level_names)
+        
+        tibble::tibble(
+            Levels = c(level_names, new_contrast_names),
+            Estimate = c(res1$estimate, res2$estimate),
+            Lower_CI = c(res1$lowerCL, res2$lowerCL),
+            Upper_CI = c(res1$upperCL, res2$upperCL),
+            P_value = c(res1$pval, res2$pval),
+            Lower_PI = c(res1$lowerPR, res2$lowerPR),
+            Upper_PI = c(res1$upperPR, res2$upperPR)
+        )
     }
-
-    # 1. Get the list of all moderator level names (n=6)
-    level_names <- as.character(res1$name)
-
-    # 2. Generate the 25 simple contrast names in the exact sequence of res2
-    new_contrast_names <- get_ordered_contrast_names(level_names)
     
-    # 3. Create the final tibble (31 rows)
-    restuls <- tibble::tibble(
-        Levels = c(level_names, new_contrast_names),
-        Estimate = c(res1$estimate, res2$estimate),
-        Lower_CI = c(res1$lowerCL, res2$lowerCL),
-        Upper_CI = c(res1$upperCL, res2$upperCL),
-        P_value = c(res1$pval, res2$pval),
-        Lower_PI = c(res1$lowerPR, res2$lowerPR),
-        Upper_PI = c(res1$upperPR, res2$upperPR)
-    )
-    return(restuls)
-}
+    # --- MAIN EXECUTION FLOW ---
     
-    # --- MAIN EXECUTION ---
-    
-    # 1. Get level estimates from the base model (n=6 rows)
+    # 1. Calculate Group Means (Base Model)
     res1 <- get_pred1(model, mod = mod)
     
-    # 2. Get contrast estimates from all re-leveled models
-    estiamtes <- purrr::map(contra, ~ get_pred2(.x))
+    # 2. Calculate Contrasts (Re-leveled Models)
+    estimates <- purrr::map(contra, ~ get_pred2(.x))
     
-    # 3. Extract all non-intercept rows (25 total contrasts) and combine them
-    res2 <- purrr::map_dfr(estiamtes, ~.x[-1, ]) 
+    # 3. Drop intercepts from contrast models (we only want the differences)
+    res2 <- purrr::map_dfr(estimates, ~.x[-1, ]) 
     
-    # 4. Put all results together with simplified names
+    # 4. Final Polish
     results <- mr_results(res1, res2)
     
     return(results)
 }
 ```
 
-## 3. Function to clean and retain only unique pairwise contrasts
+## 3. The cleaner
 
 ```{r}
+#| label: clean_unique_contrasts_function
+#| fold: TRUE
+
 clean_unique_contrasts <- function(full_results_table, level_count = 6) {
   
-  # 1. Separate the Level Estimates (first 6 rows) from the Contrasts (remaining rows)
+  # --- 1. Split Data ---
+  # Keep the single group means safe at the top
   level_estimates <- full_results_table[1:level_count, ]
+  # Isolate the pairwise comparisons
   contrast_estimates <- full_results_table[-(1:level_count), ]
   
-  # 2. Extract the names of the two levels being compared
-  # We assume names are in the format "LevelA-LevelB"
+  # --- 2. Clean Names ---
+  # Parse "GroupA-GroupB" into separate columns
   contrast_estimates <- contrast_estimates %>%
     mutate(
-      # Extract the first level (before the hyphen)
       Level1 = str_extract(Levels, "^(.*?)-"),
-      # Extract the second level (after the hyphen)
       Level2 = str_extract(Levels, "-(.*?)$")
     ) %>%
-    # Clean up the extracted strings (remove hyphens)
     mutate(
       Level1 = str_replace_all(Level1, "-", ""),
       Level2 = str_replace_all(Level2, "-", "")
     )
   
-  # 3. Create a unique identifier key for each pair, ignoring order (e.g., 'A_B' is the same as 'B_A')
-  # This uses pmin/pmax to sort the two levels alphabetically for a consistent key.
+  # --- 3. Deduplicate ---
+  # Create a sorted key so "A_B" and "B_A" are treated as identical
   contrast_estimates <- contrast_estimates %>%
     mutate(
       Unique_Pair_Key = paste(pmin(Level1, Level2), pmax(Level1, Level2), sep = "_")
-    )
-  
-  # 4. Filter for only the unique contrasts (keep the first occurrence of each unique key)
-  # This reduces the 25 rows to the 15 unique pairs.
-  unique_contrasts <- contrast_estimates %>%
+    ) %>%
+    # Keep only the first instance of each unique pair
     distinct(Unique_Pair_Key, .keep_all = TRUE) %>%
-    # Remove the temporary columns used for filtering
     select(-Level1, -Level2, -Unique_Pair_Key)
   
-  # 5. Combine the original level estimates with the cleaned unique contrasts
+  # --- 4. Recombine ---
   final_table <- bind_rows(level_estimates, unique_contrasts)
   
   return(final_table)
@@ -277,8 +272,56 @@ clean_unique_contrasts <- function(full_results_table, level_count = 6) {
 
 ## Meta-regressions
 
-::: panel-tabset
+::: {.callout-note icon="true"}
+#️# Data Filtering & Matrix Alignment
+
+This snippet performs quality control before running your meta-analysis. It serves two critical functions:
+
+Ensures Reliability: It removes specific levels of your moderator (groups) that have too little data to be trusted (in this case, fewer than 5 effect sizes).
+
+Prevents Errors: Crucially, it subsets the Variance-Covariance (VCV) matrix to match your filtered data. Since the VCV matrix is a square grid where every row/column corresponds to a row in your data, filtering the data without "cropping" the matrix correspondingly will cause your model to crash due to a dimension mismatch.
+:::
+
+:::: panel-tabset
 ## 1. Outcome type: Anxiety and Depression
+
+::: {.callout-note icon="true"}
+#️# Data Filtering & Matrix Alignment
+
+This snippet performs quality control before running your meta-analysis. It serves two critical functions:
+
+Ensures Reliability: It removes specific levels of your moderator (groups) that have too little data to be trusted (in this case, fewer than 5 effect sizes).
+
+Prevents Errors: Crucially, it subsets the Variance-Covariance (VCV) matrix to match your filtered data. Since the VCV matrix is a square grid where every row/column corresponds to a row in your data, filtering the data without "cropping" the matrix correspondingly will cause your model to crash due to a dimension mismatch.
+
+```{r}
+#| label: filter_low_k
+#| eval: FALSE
+
+# 1. Identify and Filter Low-K Levels
+# (Replace 'Outcome_type' with your specific moderator column name)
+
+# Calculate the count of ES_ID (k) for each level of the moderator
+k_counts <- db %>%
+  group_by(Outcome_type) %>%
+  summarise(k_es = n())
+
+# Identify the levels to keep (where k_es >= 5)
+levels_to_keep <- k_counts %>%
+  filter(k_es >= 5) %>%
+  pull(Outcome_type)
+
+# 2. Create the Filtered Data Frame
+db_filtered <- db %>%
+  filter(Outcome_type %in% levels_to_keep)
+
+# 3. Subset the VCV Matrix (CRITICAL STEP)
+# Assumes VCV matrix rows/columns match the original 'db' data frame indices.
+indices_to_keep <- which(db$Outcome_type %in% levels_to_keep)
+VCV_filtered <- VCV[indices_to_keep, indices_to_keep]
+```
+
+:::
 
 ```{r}
 # 1. Identify and Filter Low-K Levels
@@ -1061,4 +1104,4 @@ mAT <- rma.mv(yi = lnRR,
 
 summary(mAT)
 ```
-:::
+::::
