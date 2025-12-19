@@ -254,7 +254,7 @@ clean_unique_contrasts <- function(full_results_table, level_count = 6) {
   
   # --- 3. Deduplicate ---
   # Create a sorted key so "A_B" and "B_A" are treated as identical
-  contrast_estimates <- contrast_estimates %>%
+  unique_contrasts <- contrast_estimates %>%
     mutate(
       Unique_Pair_Key = paste(pmin(Level1, Level2), pmax(Level1, Level2), sep = "_")
     ) %>%
@@ -272,21 +272,11 @@ clean_unique_contrasts <- function(full_results_table, level_count = 6) {
 
 ## Meta-regressions
 
-::: {.callout-note icon="true"}
-#️# Data Filtering & Matrix Alignment
 
-This snippet performs quality control before running your meta-analysis. It serves two critical functions:
 
-Ensures Reliability: It removes specific levels of your moderator (groups) that have too little data to be trusted (in this case, fewer than 5 effect sizes).
-
-Prevents Errors: Crucially, it subsets the Variance-Covariance (VCV) matrix to match your filtered data. Since the VCV matrix is a square grid where every row/column corresponds to a row in your data, filtering the data without "cropping" the matrix correspondingly will cause your model to crash due to a dimension mismatch.
-:::
-
-:::: panel-tabset
-## 1. Outcome type: Anxiety and Depression
 
 ::: {.callout-note icon="true"}
-#️# Data Filtering & Matrix Alignment
+## Data Filtering & Matrix Alignment
 
 This snippet performs quality control before running your meta-analysis. It serves two critical functions:
 
@@ -299,7 +289,7 @@ Prevents Errors: Crucially, it subsets the Variance-Covariance (VCV) matrix to m
 #| eval: FALSE
 
 # 1. Identify and Filter Low-K Levels
-# (Replace 'Outcome_type' with your specific moderator column name)
+# (Replace 'Outcome_type' with the specific moderator column name)
 
 # Calculate the count of ES_ID (k) for each level of the moderator
 k_counts <- db %>%
@@ -323,25 +313,89 @@ VCV_filtered <- VCV[indices_to_keep, indices_to_keep]
 
 :::
 
-```{r}
-# 1. Identify and Filter Low-K Levels
 
-# Calculate the count of ES_ID (k) for each level of Outcome_type
+
+::: {.callout-tip}
+
+Manual Reference Rotation for SubsetsThe automated contrast functions are designed for full datasets. When you filter for data availability (e.g., keeping only levels with $k \ge 5$) and are left with more than 2 levels, it is often safer to manually "rotate" the reference level.
+How it works:In meta-regression with an intercept, the Intercept represents the mean of the Reference Level. 
+The other coefficients represent the difference between the reference and the other groups.By manually changing the reference (ref = ...) and re-running the model for each level, you mathematically force the model to calculate every possible pairwise comparison (e.g., A vs B, B vs C, A vs C) and their specific p-values.
+
+- 2 Levels remaining? You only need one model (Intercept = Group A, Coefficient = Difference).
+- 3+ Levels remaining? Use the rotation method below.
+
+```{r}
+#| label: manual_contrasts
+#| eval: FALSE
+
+# 0. Define your levels of interest
+LEVELS <- c("Acute", "Medium", "Short")
+# (Optional) Store moderator name for clarity
+MOD_NAME <- "Music_exposure_duration"
+
+# --- Model A: Reference = Acute ---
+# Intercept = Acute Mean
+# Coefficients = (Medium - Acute) and (Short - Acute)
+db_filtered$moderator_relevel_A <- relevel(db_filtered$Music_exposure_duration, ref = LEVELS[1])
+model_A <- rma.mv(yi = lnRR,
+                  V = VCV_filtered, 
+                  mods = ~ moderator_relevel_A,
+                  random = list(~1 | Study_ID, ~1 | ES_ID, ~1 | Strain),
+                  test = "t", method = "REML", sparse = TRUE,
+                  data = db_filtered)
+model_A
+
+# --- Model B: Reference = Medium ---
+# Intercept = Medium Mean
+# Coefficients = (Acute - Medium) and (Short - Medium)
+# *Key Gain: This gives us the specific P-value for Short vs Medium*
+db_filtered$moderator_relevel_B <- relevel(db_filtered$Music_exposure_duration, ref = LEVELS[2])
+model_B <- rma.mv(yi = lnRR,
+                  V = VCV_filtered, 
+                  mods = ~ moderator_relevel_B,
+                  random = list(~1 | Study_ID, ~1 | ES_ID, ~1 | Strain),
+                  test = "t", method = "REML", sparse = TRUE,
+                  data = db_filtered)
+model_B
+
+# --- Model C: Reference = Short ---
+# Intercept = Short Mean
+# Coefficients = (Acute - Short) and (Medium - Short)
+# *Useful for: Getting the direct estimate/CI for the "Short" group mean*
+db_filtered$moderator_relevel_C <- relevel(db_filtered$Music_exposure_duration, ref = LEVELS[3])
+model_C <- rma.mv(yi = lnRR,
+                  V = VCV_filtered, 
+                  mods = ~ moderator_relevel_C,
+                  random = list(~1 | Study_ID, ~1 | ES_ID, ~1 | Strain),
+                  test = "t", method = "REML", sparse = TRUE,
+                  data = db_filtered)
+model_C
+```
+
+:::
+
+
+
+
+:::: panel-tabset
+## 1. Outcome type: Anxiety and Depression
+```{r}
+#| label: filter_outcome_type
+#| fold: TRUE
+
 k_counts <- db %>%
   group_by(Outcome_type) %>%
   summarise(k_es = n())
 
-# Identify the levels to keep (where k_es >= 5)
+
 levels_to_keep <- k_counts %>%
   filter(k_es >= 5) %>%
   pull(Outcome_type)
 
-# 2. Create the Filtered Data Frame
+
 db_filtered <- db %>%
   filter(Outcome_type %in% levels_to_keep)
 
-# 3. Subset the VCV Matrix (CRITICAL STEP)
-# Assumes VCV matrix rows/columns match the original 'db' data frame indices.
 indices_to_keep <- which(db$Outcome_type %in% levels_to_keep)
 VCV_filtered <- VCV[indices_to_keep, indices_to_keep]
 ```
@@ -384,13 +438,22 @@ orchard_outcome<-orchard_plot(mOT,
                                                                     minor_breaks = seq(-8, 10, by = 1 ))
 orchard_outcome
 ```
-
 ```{r}
-ggsave(filename = here("Plots", "orchard_outcome.pdf"),
+#| label: save-figure
+#| eval: false
+
+ggsave(filename = here("..","Plots", "orchard_outcome_lnRR.pdf"),
        plot = orchard_outcome,
        dpi = 300, device = cairo_pdf)
-```
 
+ggsave(filename = here("..","Plots", "orchard_outcome_lnRR.jpg"),
+       plot = orchard_outcome,
+       width = 7,  
+       height = 9,  
+       dpi = 300)
+
+```
+Contrast between levels (Anxiety as reference level)
 ```{r}
 mOT <- rma.mv(yi = lnRR,
                   V = VCV_filtered, 
@@ -431,22 +494,7 @@ r2LE <- round(r2_ml(mLE), 4)
 r2LE
 ```
 
-```{r}
-contra_LE <- contrast_fun(data = db, 
-                          response = lnRR, 
-                          moderator = Lifestage_exposure, 
-                          VCV = VCV)
 
-
-
-
-t1<-get_estimate(model = mLE, contra = contra_LE, moderator = Lifestage_exposure)
-
-t2 <- clean_unique_contrasts(full_results_table = t1, level_count = 6)
-
-
-t2
-```
 
 ```{r}
 #| label: orchard_lifestage_exp
@@ -463,50 +511,60 @@ orchard_lifestage<-orchard_plot(mLE,
                                                                     minor_breaks = seq(-8, 10, by = 1 ))
 orchard_lifestage
 ```
-
 ```{r}
-ggsave(filename = here("Plots", "orchard_lifestage.pdf"),
+#| label: save-figure_lifestage
+#| eval: false
+
+ggsave(filename = here("..","Plots", "orchard_lifestage_lnRR.pdf"),
        plot = orchard_lifestage,
        dpi = 300, device = cairo_pdf)
-```
 
+ggsave(filename = here("..","Plots", "orchard_lifestage_lnRR.jpg"),
+       plot = orchard_lifestage,
+       width = 9,  
+       height = 7,  
+       dpi = 300)
+
+```
+Contrasts between levels (Adolescent as reference level)
 ```{r}
-mLE <- rma.mv(yi = lnRR,
-                  V = VCV, 
-              mods = ~ Lifestage_exposure,
-                  random = list(~1 | Study_ID,
-                                ~1 | ES_ID,
-                                ~1 | Strain),
-                  test = "t",
-                  method = "REML", 
-                  sparse = TRUE,
-                  data = db)
+#| label: lifestage_contrasts
 
-summary(mLE)
+# Here we apply our custum functions
+# The Generator
+contra_LE <- contrast_fun(data = db, 
+                          response = lnRR, 
+                          moderator = Lifestage_exposure, 
+                          VCV = VCV)
 
+#The Harvester
+t1<-get_estimate(model = mLE, contra = contra_LE, moderator = Lifestage_exposure)
+
+#The Cleaner
+t2 <- clean_unique_contrasts(full_results_table = t1, level_count = 6)
+
+
+t2
 ```
+
 
 ## 3. Sex
 
 ```{r}
-# 1. Identify and Filter Low-K Levels
-
-# Calculate the count of ES_ID (k) for each level of Sex
+#| label: filter_sex
+#| fold: TRUE
 k_counts <- db %>%
   group_by(Sex) %>%
   summarise(k_es = n())
 
-# Identify the levels to keep (where k_es >= 5)
 levels_to_keep <- k_counts %>%
   filter(k_es >= 5) %>%
   pull(Sex)
 
-# 2. Create the Filtered Data Frame
 db_filtered <- db %>%
   filter(Sex %in% levels_to_keep)
 
-# 3. Subset the VCV Matrix (CRITICAL STEP)
-# Assumes VCV matrix rows/columns match the original 'db' data frame indices.
+
 indices_to_keep <- which(db$Sex %in% levels_to_keep)
 VCV_filtered <- VCV[indices_to_keep, indices_to_keep]
 ```
@@ -549,13 +607,23 @@ orchard_sex<-orchard_plot(mSX,
                                                                     minor_breaks = seq(-5, 10, by = 1 ))
 orchard_sex
 ```
-
 ```{r}
-ggsave(filename = here("Plots", "orchard_sex.pdf"),
+#| label: save-figure_sex
+#| eval: false
+
+ggsave(filename = here("..","Plots", "orchard_sex_lnRR.pdf"),
        plot = orchard_sex,
        dpi = 300, device = cairo_pdf)
+
+ggsave(filename = here("..","Plots", "orchard_sex_lnRR.jpg"),
+       plot = orchard_sex,
+       width = 7,  
+       height = 9,  
+       dpi = 300)
+
 ```
 
+Contrast between levels (Female as reference level)
 ```{r}
 mSX <- rma.mv(yi = lnRR,
                   V = VCV_filtered, 
@@ -597,24 +665,6 @@ summary(mMG)
 r2MG <- round(r2_ml(mMG), 4)
 r2MG
 ```
-
-```{r}
-contra_mMG <- contrast_fun(data = db, 
-                          response = lnRR, 
-                          moderator = Meta_genre, 
-                          VCV = VCV)
-
-
-
-
-t1<-get_estimate(model = mMG, contra = contra_mMG, moderator = Meta_genre)
-
-t2 <- clean_unique_contrasts(full_results_table = t1, level_count = 4)
-
-
-t2
-```
-
 ```{r}
 #| label: orchard_music_genre
 #| fig-width: 6
@@ -630,51 +680,64 @@ orchard_genre<-orchard_plot(mMG,
                                                                     minor_breaks = seq(-5, 10, by = 1 ))
 orchard_genre
 ```
-
 ```{r}
-ggsave(filename = here("Plots", "orchard_genre.pdf"),
+#| label: save-figure_genre
+#| eval: false
+
+ggsave(filename = here("..","Plots", "orchard_genre_lnRR.pdf"),
        plot = orchard_genre,
        dpi = 300, device = cairo_pdf)
+
+ggsave(filename = here("..","Plots", "orchard_genre_lnRR.jpg"),
+       plot = orchard_genre,
+       width = 9,  
+       height = 7,  
+       dpi = 300)
+
 ```
 
+
+Contrasts between levels 
 ```{r}
-mMG <- rma.mv(yi = lnRR,
-                  V = VCV, 
-              mods = ~ Meta_genre,
-                  random = list(~1 | Study_ID,
-                                ~1 | ES_ID,
-                                ~1 | Strain),
-                  test = "t",
-                  method = "REML", 
-                  sparse = TRUE,
-                  data = db)
+#| label: music_genre_contrasts
 
-summary(mMG)
+# The Generator
+contra_mMG <- contrast_fun(data = db, 
+                          response = lnRR, 
+                          moderator = Meta_genre, 
+                          VCV = VCV)
+# The Harvester
+t1<-get_estimate(model = mMG, contra = contra_mMG, moderator = Meta_genre)
+# The Cleaner
+t2 <- clean_unique_contrasts(full_results_table = t1, level_count = 4)
+
+
+t2
 ```
+
+
+
+
 
 ## 5. Music exposure duration
 
 Music_exposure_duration
 
 ```{r}
-# 1. Identify and Filter Low-K Levels
+#| label: filter_music_exposure
+#| fold: TRUE
 
-# Calculate the count of ES_ID (k) for each level of Music_exposure_duration
 k_counts <- db %>%
   group_by(Music_exposure_duration) %>%
   summarise(k_es = n())
 
-# Identify the levels to keep (where k_es >= 5)
 levels_to_keep <- k_counts %>%
   filter(k_es >= 5) %>%
   pull(Music_exposure_duration)
 
-# 2. Create the Filtered Data Frame
 db_filtered <- db %>%
   filter(Music_exposure_duration %in% levels_to_keep)
 
-# 3. Subset the VCV Matrix (CRITICAL STEP)
-# Assumes VCV matrix rows/columns match the original 'db' data frame indices.
 indices_to_keep <- which(db$Music_exposure_duration %in% levels_to_keep)
 VCV_filtered <- VCV[indices_to_keep, indices_to_keep]
 ```
@@ -701,7 +764,42 @@ summary(mMED)
 r2MED <- round(r2_ml(mMED), 4)
 r2MED
 ```
+```{r}
+#| label: orchard_music_exposure
+#| fig-width: 6
+#| fig-height: 4
+#| warning: false
+orchard_exposure<-orchard_plot(mMED,
+             mod = "Music_exposure_duration",
+              group = "Study_ID",
+              xlab = "log response ratio (lnRR)", 
+              flip = FALSE)  +
+            scale_colour_brewer(palette = "Dark2") +
+            scale_fill_brewer(palette = "Set1")+scale_y_continuous(breaks = seq(-5, 10, by = 2),
+                                                                   minor_breaks = seq(-5, 10, by = 1 ))
+orchard_exposure
+```
 
+```{r}
+#| label: save-figure_exposure
+#| eval: false
+
+ggsave(filename = here("..","Plots", "orchard_exposure_lnRR.pdf"),
+       plot = orchard_exposure,
+       dpi = 300, device = cairo_pdf)
+
+ggsave(filename = here("..","Plots", "orchard_exposure_lnRR.jpg"),
+       plot = orchard_exposure,
+       width = 9,  
+       height = 7,  
+       dpi = 300)
+
+```
+
+
+
+
+Contrasts between levels
 ```{r}
 LEVELS <- c("Acute", "Medium", "Short")
 MOD_NAME <- "Music_exposure_duration"
@@ -743,32 +841,9 @@ model_C <- rma.mv(yi = lnRR,
 model_C
 ```
 
-```{r}
-#| label: orchard_music_exposure
-#| fig-width: 6
-#| fig-height: 4
-#| warning: false
-orchard_plot(mMED,
-             mod = "Music_exposure_duration",
-              group = "Study_ID",
-              xlab = "log response ratio (lnRR)", 
-              angle = 30) 
-```
 
-```{r}
-mMED <- rma.mv(yi = lnRR,
-                  V = VCV_filtered, 
-              mods = ~ Music_exposure_duration,
-                  random = list(~1 | Study_ID,
-                                ~1 | ES_ID, 
-                                ~1 | Strain),
-                  test = "t",
-                  method = "REML", 
-                  sparse = TRUE,
-                  data = db_filtered)
 
-summary(mMED)
-```
+
 
 ## 6. Experimental design
 
@@ -800,27 +875,57 @@ r2EXD
 #| fig-width: 6
 #| fig-height: 4
 #| warning: false
-orchard_plot(mEXD,
+orchard_design<-orchard_plot(mEXD,
              mod = "Experimental_design",
               group = "Study_ID",
               xlab = "log response ratio (lnRR)", 
-              angle = 30) 
+              flip=FALSE) +scale_y_continuous(breaks = seq(-5, 10, by = 2),
+                                                                  minor_breaks = seq(-5, 10, by = 1 ))
+orchard_design
 ```
+
+
 
 ```{r}
-mEXD <- rma.mv(yi = lnRR,
-                  V = VCV, 
-              mods = ~ Experimental_design,
-                  random = list(~1 | Study_ID,
-                                ~1 | ES_ID, 
-                                ~1 | Strain),
-                  test = "t",
-                  method = "REML", 
-                  sparse = TRUE,
-                  data = db)
+#| label: save-figure_design
+#| eval: false
 
-summary(mEXD)
+ggsave(filename = here("..","Plots", "orchard_design_lnRR.pdf"),
+       plot = orchard_design,
+       dpi = 300, device = cairo_pdf)
+
+ggsave(filename = here("..","Plots", "orchard_design_lnRR.jpg"),
+       plot = orchard_design,
+       width = 9,  
+       height = 7,  
+       dpi = 300)
+
 ```
+
+
+
+
+
+
+Contrasts between levels 
+```{r}
+#| label: music_genre_contrasts
+
+# The Generator
+contra_mEXD <- contrast_fun(data = db, 
+                          response = lnRR, 
+                          moderator = Experimental_design, 
+                          VCV = VCV)
+# The Harvester
+t1<-get_estimate(model = mEXD, contra = contra_mEXD, moderator = Experimental_design)
+# The Cleaner
+t2 <- clean_unique_contrasts(full_results_table = t1, level_count = 3)
+
+
+t2
+```
+
+
 
 ## 7. Induced behaviour
 
@@ -852,12 +957,34 @@ r2IB
 #| fig-width: 6
 #| fig-height: 4
 #| warning: false
-orchard_plot(mIB,
+orchard_behaviour<-orchard_plot(mIB,
              mod = "Induced behaviour",
               group = "Study_ID",
               xlab = "log response ratio (lnRR)", 
-              angle = 30) 
+              flip = FALSE) +scale_y_continuous(breaks = seq(-5, 10, by = 2),
+                                                                 minor_breaks = seq(-5, 10, by = 1 ))
+orchard_behaviour
 ```
+
+
+
+```{r}
+#| label: save-figure_behaviour
+#| eval: false
+
+ggsave(filename = here("..","Plots", "orchard_behaviour_lnRR.pdf"),
+       plot = orchard_behaviour,
+       dpi = 300, device = cairo_pdf)
+
+ggsave(filename = here("..","Plots", "orchard_behaviour_lnRR.jpg"),
+       plot = orchard_behaviour,
+       width = 9,  
+       height = 7,  
+       dpi = 300)
+
+```
+
+
 
 ```{r}
 mIB <- rma.mv(yi = lnRR,

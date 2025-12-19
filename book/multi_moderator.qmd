@@ -126,14 +126,9 @@ print(paste("Original dataset size:", nrow(db)))
 print(paste("Final dataset size:", nrow(db_final), "ES_IDs"))
 print(paste("Number of moderators included:", length(moderators)))
 ```
-"Lifestage_exposure", "Sex", "Meta_genre", 
-  "Music_exposure_duration", "Experimental_design", 
-  "Induced behaviour", "Relative_timing", "Experimental_procedures", "Control_conditions", "Assay_type"
-  
-  
-  
-  
-  
+
+"Lifestage_exposure", "Sex", "Meta_genre", "Music_exposure_duration", "Experimental_design", "Induced behaviour", "Relative_timing", "Experimental_procedures", "Control_conditions", "Assay_type"
+
 ```{r}
 
 
@@ -166,7 +161,6 @@ r2MULTI <- round(r2_ml(mMULTI), 4)
 r2MULTI
 ```
 
-
 ## Sex
 
 ```{r}
@@ -196,7 +190,9 @@ mMULTI<- rma.mv(yi = lnRR,
 r2MULTI <- round(r2_ml(mMULTI), 4)
 r2MULTI
 ```
+
 ## Meta_genre
+
 ```{r}
 
 
@@ -228,8 +224,6 @@ r2MULTI
 
 ## Music_exposure_duration
 
-
-  
 ```{r}
 
 
@@ -257,8 +251,9 @@ mMULTI<- rma.mv(yi = lnRR,
 r2MULTI <- round(r2_ml(mMULTI), 4)
 r2MULTI
 ```
+
 ## Experimental_design
-  
+
 ```{r}
 
 
@@ -288,6 +283,7 @@ r2MULTI
 ```
 
 ## relative_timing
+
 ```{r}
 
 
@@ -316,8 +312,8 @@ r2MULTI <- round(r2_ml(mMULTI), 4)
 r2MULTI
 ```
 
-
 ## Experimental_procedures
+
 ```{r}
 
 
@@ -375,8 +371,6 @@ mMULTI<- rma.mv(yi = lnRR,
 r2MULTI <- round(r2_ml(mMULTI), 4)
 r2MULTI
 ```
-
-
 
 ## Best so far
 
@@ -412,10 +406,7 @@ r2MULTI <- round(r2_ml(mMULTI), 4)
 r2MULTI
 ```
 
-
-
 ## Sex
-
 
 ```{r}
 
@@ -444,7 +435,9 @@ mMULTI<- rma.mv(yi = lnRR,
 r2MULTI <- round(r2_ml(mMULTI), 4)
 r2MULTI
 ```
+
 ## Meta_genre
+
 ```{r}
 mMULTI<- rma.mv(yi = lnRR,
                  V = VCV_final, 
@@ -470,7 +463,9 @@ mMULTI<- rma.mv(yi = lnRR,
 r2MULTI <- round(r2_ml(mMULTI), 4)
 r2MULTI
 ```
+
 ## experimental_design
+
 ```{r}
 mMULTI<- rma.mv(yi = lnRR,
                  V = VCV_final, 
@@ -525,9 +520,8 @@ r2MULTI <- round(r2_ml(mMULTI), 4)
 r2MULTI
 ```
 
-
-
 ## experimental_procedures
+
 ```{r}
 mMULTI<- rma.mv(yi = lnRR,
                  V = VCV_final, 
@@ -553,6 +547,7 @@ mMULTI<- rma.mv(yi = lnRR,
 r2MULTI <- round(r2_ml(mMULTI), 4)
 r2MULTI
 ```
+
 ## control_conditions
 
 ```{r}
@@ -581,8 +576,7 @@ r2MULTI <- round(r2_ml(mMULTI), 4)
 r2MULTI
 ```
 
-
-## new best 
+## new best
 
 ```{r}
 mMULTI<- rma.mv(yi = lnRR,
@@ -609,9 +603,8 @@ mMULTI<- rma.mv(yi = lnRR,
 r2MULTI <- round(r2_ml(mMULTI), 4)
 r2MULTI
 ```
+
 ## meta_genre
-
-
 
 ```{r}
 mMULTI<- rma.mv(yi = lnRR,
@@ -642,8 +635,8 @@ r2MULTI
 summary(mMULTI)
 ```
 
-
 ## experimental_design
+
 ```{r}
 mMULTI<- rma.mv(yi = lnRR,
                  V = VCV_final, 
@@ -696,14 +689,9 @@ r2MULTI <- round(r2_ml(mMULTI), 4)
 r2MULTI
 ```
 
-
-
-
 ```{r}
 summary(mMULTI)
 ```
-
-
 
 ## control_conditions
 
@@ -732,10 +720,6 @@ r2MULTI <- round(r2_ml(mMULTI), 4)
 r2MULTI
 ```
 
-
-
-
-
 # the best
 
 ```{r}
@@ -763,12 +747,6 @@ summary(mMULTI)
 
 ```
 
-
-
-
-
-
-
 ```{r}
 
 r2MULTI <- round(r2_ml(mMULTI), 4)
@@ -776,25 +754,9 @@ r2MULTI
 
 ```
 
-
 ```{r}
 
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 https://osf.io/fb38q/files/m8vc4
 

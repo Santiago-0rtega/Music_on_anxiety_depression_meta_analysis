@@ -7,13 +7,18 @@ book:
   author: "TBA"
   date: last-modified
   chapters:
-    - index.qmd
-    - lnRR.qmd
-    - overall_effect.qmd
-    - uni_moderators.qmd
-    - multi_moderator.qmd
-    - publication_bias.qmd
-    - references.qmd
+    - index.qmd  
+  - part: "lnRR"
+      chapters:
+        - lnRR.qmd
+        - overall_effect.qmd
+        - uni_moderators.qmd
+        - multi_moderator.qmd
+        - publication_bias.qmd
+  - part: "lVR"
+      chapters:
+  - part: "lCVR"
+      chapters:
 
 number-sections: false 
 bibliography: references.bib
