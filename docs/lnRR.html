@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Estimating effect sizes – Music_meta_book</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./overall_effect.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-2a9c7f2eac7477c13d2e63a94091d553.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-01bf8df9ada13ca47d1832082656cd9b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-2a9c7f2eac7477c13d2e63a94091d553.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+
+<script src="site_libs/datatables-binding-0.34.0/datatables.js"></script>
+
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+
+<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+
+<link href="site_libs/dt-ext-buttons-1.13.6/css/buttons.dataTables.min.css" rel="stylesheet">
+
+<script src="site_libs/dt-ext-buttons-1.13.6/js/dataTables.buttons.min.js"></script>
+
+<script src="site_libs/dt-ext-buttons-1.13.6/js/buttons.html5.min.js"></script>
+
+<script src="site_libs/dt-ext-buttons-1.13.6/js/buttons.colVis.min.js"></script>
+
+<script src="site_libs/dt-ext-buttons-1.13.6/js/buttons.print.min.js"></script>
+
+<link href="site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+
+<script src="site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lnRR.html">lnRR</a></li><li class="breadcrumb-item"><a href="./lnRR.html"><span class="chapter-title">Estimating effect sizes</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Music_meta_book</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">lnRR</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lnRR.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Estimating effect sizes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./overall_effect.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Overall effect</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./uni_moderators.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Uni-moderators</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multi_moderator.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Multi_moderator</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./publication_bias.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Publication bias</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#lnrr-effect-size-calculation-function" id="toc-lnrr-effect-size-calculation-function" class="nav-link active" data-scroll-target="#lnrr-effect-size-calculation-function">lnRR Effect Size Calculation Function</a></li>
+  <li><a href="#calculate-inrr-effect-sizes" id="toc-calculate-inrr-effect-sizes" class="nav-link" data-scroll-target="#calculate-inrr-effect-sizes">Calculate InRR Effect Sizes</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lnRR.html">lnRR</a></li><li class="breadcrumb-item"><a href="./lnRR.html"><span class="chapter-title">Estimating effect sizes</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-title">Estimating effect sizes</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>               DT,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>               dtplyr,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>               here, </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>               knitr,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>               tidyverse,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>               patchwork,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>               metafor,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>               orchaRd</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>               )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="lnrr-effect-size-calculation-function" class="level2">
+<h2 class="anchored" data-anchor-id="lnrr-effect-size-calculation-function">lnRR Effect Size Calculation Function</h2>
+<p>This function, <code>calculate_lnRR()</code>, is designed to calculate the Log Response Ratio (<span class="math inline">\(\text{lnRR}\)</span>) and its variance (<span class="math inline">\(\text{lnRR_var}\)</span>) for both continuous and percentage data, accounting for dependent (correlated) and independent comparison structures.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Variable definitions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable Name</th>
+<th style="text-align: left;">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong><code>ES_ID</code></strong></td>
+<td style="text-align: left;">Unique identifier for each effect size.</td>
+</tr>
+</tbody>
+</table>
+<p>|<strong><code>Study_ID</code></strong>| Identifier for the study from which the data is drawn.</p>
+<p>|<strong><code>C_n</code>, <code>Ex_n</code></strong>| Sample sizes for Control and Experimental groups, respectively.</p>
+<p>|<strong><code>C_mean</code>, <code>Ex_mean*</code></strong>| Mean values for Control and Experimental groups, respectively.</p>
+<p>|<strong><code>C_SE</code>, <code>Ex_SE</code></strong>|Standard errors for Control and Experimental groups, respectively.</p>
+<p>|<strong><code>C_SD</code>, <code>Ex_SD</code></strong>| Standard deviations for Control and Experimental groups, respectively.</p>
+<p>|<strong><code>Data_type</code></strong>| Type of data (e.g., “time”, “distance”, “count”, “latency”, “percentage”, “index”).</p>
+<p>|<strong><code>Comparison_structure</code></strong>| Indicates whether the comparison is “Independent” (separate animals) or “Dependent” (same animals).</p>
+<p>|<strong><code>Higher_better</code></strong>| Indicates whether higher values are better (“Yes”) or not (“No”) for standardization purposes.</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>calculate_lnRR <span class="ot">&lt;-</span> <span class="cf">function</span>(dt) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 1. Data Cleaning and Imputation (Handling Extreme Values)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This section adjusts extreme boundary values (0, 100) and 0 standard deviations (SDs)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># to prevent mathematical errors (division by zero, log(0), or Inf values) </span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># during the lnRR and variance calculations.</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  dt <span class="ot">&lt;-</span> dt <span class="sc">%&gt;%</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Adjust means that are exactly 0 to a small, non-zero value (0.005) </span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">C_mean =</span> <span class="fu">ifelse</span>(C_mean <span class="sc">==</span> <span class="dv">0</span>, <span class="fl">0.005</span>, C_mean),</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">Ex_mean =</span> <span class="fu">ifelse</span>(Ex_mean <span class="sc">==</span> <span class="dv">0</span>, <span class="fl">0.005</span>, Ex_mean),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Adjust means that are exactly 100 to a value just below 100 (99.5) </span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      <span class="co"># (This is critical for percentages reported 0-100)</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">C_mean =</span> <span class="fu">ifelse</span>(C_mean <span class="sc">==</span> <span class="dv">100</span>, <span class="fl">99.5</span>, C_mean), </span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">Ex_mean =</span> <span class="fu">ifelse</span>(Ex_mean <span class="sc">==</span> <span class="dv">100</span>, <span class="fl">99.5</span>, Ex_mean),</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Adjust SDs that are 0 to a small, non-zero value (0.01/0.05) to allow </span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>      <span class="co"># variance calculation (which relies on SDs).</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">Ex_SD =</span> <span class="fu">ifelse</span>(Ex_SD <span class="sc">==</span> <span class="dv">0</span>, <span class="fl">0.01</span>, Ex_SD),</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">C_SD =</span> <span class="fu">ifelse</span>(C_SD <span class="sc">==</span> <span class="dv">0</span>, <span class="fl">0.05</span>, C_SD),</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Standardize the 'Data_type' variable to lowercase to ensure reliable matching </span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>      <span class="co"># in the subsequent 'if/else if' blocks, regardless of how it was typed in the source data.</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">Data_type =</span> <span class="fu">tolower</span>(Data_type)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 2. Setup</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  dt1 <span class="ot">&lt;-</span> dt <span class="sc">%&gt;%</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Initialize the final effect size columns with numeric NA values.</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">lnRR =</span> <span class="cn">NA_real_</span>, </span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">lnRR_var =</span> <span class="cn">NA_real_</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Define the arcsine square root transformation function: asin(sqrt(p)).</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This transformation is necessary for proportional data (percentages) to stabilize their variance.</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  asin_trans <span class="ot">&lt;-</span> <span class="cf">function</span>(proportion) {</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    trans <span class="ot">&lt;-</span> <span class="fu">asin</span>(<span class="fu">sqrt</span>(proportion))</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(trans)</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 3. Calculation Loop (Iterating through each row/effect size)</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(dt1))) {</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract row-specific variables for the current row 'i'</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    Ex_n <span class="ot">&lt;-</span> dt1<span class="sc">$</span>Ex_n[i]</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    C_n <span class="ot">&lt;-</span> dt1<span class="sc">$</span>C_n[i]</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    Ex_mean <span class="ot">&lt;-</span> dt1<span class="sc">$</span>Ex_mean[i]</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    C_mean <span class="ot">&lt;-</span> dt1<span class="sc">$</span>C_mean[i]</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    Ex_SD <span class="ot">&lt;-</span> dt1<span class="sc">$</span>Ex_SD[i]</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    C_SD <span class="ot">&lt;-</span> dt1<span class="sc">$</span>C_SD[i]</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    Data_type <span class="ot">&lt;-</span> dt1<span class="sc">$</span>Data_type[i]</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    Comparison_structure <span class="ot">&lt;-</span> dt1<span class="sc">$</span>Comparison_structure[i]</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    Higher_better <span class="ot">&lt;-</span> dt1<span class="sc">$</span>Higher_better[i]</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    current_es_id <span class="ot">&lt;-</span> dt1<span class="sc">$</span>ES_ID[i] <span class="co"># Used for conditional scaling check below.</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    <span class="co"># --- A. Continuous Data (Time, Distance, Count, Latency, Index, etc.) ---</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (Data_type <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"time"</span>, <span class="st">"distance"</span>, <span class="st">"count"</span>, <span class="st">"latency"</span>, <span class="st">"index"</span>)) {</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Calculate the Log Response Ratio (lnRR) using the metafor::escalc function.</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (Comparison_structure <span class="sc">==</span> <span class="st">"Independent"</span>) {</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 'ROM' (Ratio of Means) for independent groups.</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>        effect <span class="ot">&lt;-</span> metafor<span class="sc">::</span><span class="fu">escalc</span>(<span class="at">measure =</span> <span class="st">"ROM"</span>, <span class="at">n1i =</span> Ex_n, <span class="at">n2i =</span> C_n,</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">m1i =</span> Ex_mean, <span class="at">m2i =</span> C_mean, <span class="at">sd1i =</span> Ex_SD, <span class="at">sd2i =</span> C_SD,</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">var.names =</span> <span class="fu">c</span>(<span class="st">"lnRR"</span>, <span class="st">"lnRR_var"</span>))</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> <span class="cf">if</span> (Comparison_structure <span class="sc">==</span> <span class="st">"Dependent"</span>) {</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 'ROMC' (Ratio of Means, Correlated) for dependent/repeated groups, </span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>        <span class="co"># using an assumed correlation (ri = 0.5).</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>        effect <span class="ot">&lt;-</span> metafor<span class="sc">::</span><span class="fu">escalc</span>(<span class="at">measure =</span> <span class="st">"ROMC"</span>, <span class="at">ni =</span> (Ex_n <span class="sc">+</span> C_n) <span class="sc">/</span> <span class="dv">2</span>, </span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">m1i =</span> Ex_mean, <span class="at">m2i =</span> C_mean, <span class="at">sd1i =</span> Ex_SD, <span class="at">sd2i =</span> C_SD,</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">ri =</span> <span class="fl">0.5</span>, <span class="at">var.names =</span> <span class="fu">c</span>(<span class="st">"lnRR"</span>, <span class="st">"lnRR_var"</span>))</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Assign the calculated lnRR and its variance to the new columns.</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>      dt1<span class="sc">$</span>lnRR[i] <span class="ot">&lt;-</span> effect<span class="sc">$</span>lnRR</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>      dt1<span class="sc">$</span>lnRR_var[i] <span class="ot">&lt;-</span> effect<span class="sc">$</span>lnRR_var</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 2. Outcome Direction Standardization (Sign Flip)</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>      <span class="co"># If 'Higher_better' is "No" (e.g., lower anxiety is better), we flip the sign </span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>      <span class="co"># of lnRR so that a positive value always indicates a beneficial outcome.</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (Higher_better <span class="sc">==</span> <span class="st">"No"</span>) {</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>        dt1<span class="sc">$</span>lnRR[i] <span class="ot">&lt;-</span> dt1<span class="sc">$</span>lnRR[i] <span class="sc">*</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>    <span class="co"># --- B. Proportion Data (Data_type is Percentage) ---</span></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="cf">if</span> (Data_type <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"percentage"</span>)) {</span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>      <span class="co"># *** CRITICAL FIX: CONDITIONAL RESCALING ***</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Only rescale if the study is NOT "es018," as "es018" reports 0-1 proportions.</span></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>      <span class="co"># All other studies report 0-100 percentages and must be divided by 100.</span></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (current_es_id <span class="sc">!=</span> <span class="st">"es018"</span>) {</span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>          Ex_mean <span class="ot">&lt;-</span> Ex_mean <span class="sc">/</span> <span class="dv">100</span></span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>          C_mean <span class="ot">&lt;-</span> C_mean <span class="sc">/</span> <span class="dv">100</span></span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>          Ex_SD <span class="ot">&lt;-</span> Ex_SD <span class="sc">/</span> <span class="dv">100</span> </span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>          C_SD <span class="ot">&lt;-</span> C_SD <span class="sc">/</span> <span class="dv">100</span></span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 1. Standardization: Adjust means if "Higher_better" is "No"</span></span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Flips the proportion (e.g., 80% success becomes 20% failure) to standardize direction.</span></span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (Higher_better <span class="sc">==</span> <span class="st">"No"</span>) {</span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>        Ex_mean <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> Ex_mean</span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>        C_mean <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> C_mean</span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 2. Transform SDs </span></span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Calculate the standard deviation of the arcsin-transformed data (SD') based on the formula: </span></span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>      <span class="co"># SD' = sqrt(SD^2 / (4 * p * (1 - p)))</span></span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>      Ex_SD_trans <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(Ex_SD<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> (<span class="dv">4</span> <span class="sc">*</span> Ex_mean <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> Ex_mean)))</span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>      C_SD_trans  <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(C_SD<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> (<span class="dv">4</span> <span class="sc">*</span> C_mean <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> C_mean)))</span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 3. Transform Means (M') using the arcsin(sqrt(p)) function</span></span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a>      Ex_mean_trans <span class="ot">&lt;-</span> <span class="fu">asin_trans</span>(Ex_mean)</span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>      C_mean_trans <span class="ot">&lt;-</span> <span class="fu">asin_trans</span>(C_mean)</span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 4. lnRR Calculation (Using transformed means)</span></span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a>      <span class="co"># lnRR = ln(M'ex / M'control)</span></span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a>      lnRR_pro_calc <span class="ot">&lt;-</span> <span class="fu">log</span>(Ex_mean_trans <span class="sc">/</span> C_mean_trans)</span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 5. Variance Calculation (Using transformed SDs)</span></span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Calculate the independent variance components (V_Ex, V_C) using the transformed values.</span></span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>      V_Ex <span class="ot">&lt;-</span> (Ex_SD_trans)<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">/</span> (Ex_mean_trans<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> Ex_n))</span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>      V_C  <span class="ot">&lt;-</span> (C_SD_trans)<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">/</span> (C_mean_trans<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> C_n))</span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (Comparison_structure <span class="sc">==</span> <span class="st">"Independent"</span>) {</span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Variance for independent groups is simply the sum of individual variances.</span></span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a>        lnRR_var_pro <span class="ot">&lt;-</span> V_Ex <span class="sc">+</span> V_C</span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> <span class="cf">if</span> (Comparison_structure <span class="sc">==</span> <span class="st">"Dependent"</span>) {</span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Variance for dependent groups includes a covariance term based on rho = 0.5.</span></span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a>        <span class="co"># V_dep = V_Ex + V_C - 2 * rho * sqrt(V_Ex * V_C)</span></span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a>        lnRR_var_pro <span class="ot">&lt;-</span> V_Ex <span class="sc">+</span> V_C <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">sqrt</span>(V_Ex) <span class="sc">*</span> <span class="fu">sqrt</span>(V_C)</span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Final assignment of results for proportional data.</span></span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a>      dt1<span class="sc">$</span>lnRR[i] <span class="ot">&lt;-</span> lnRR_pro_calc</span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a>      dt1<span class="sc">$</span>lnRR_var[i] <span class="ot">&lt;-</span> lnRR_var_pro</span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(dt1)</span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>After defining the function, we proceed to load and clean the dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">".."</span>,<span class="st">"data"</span>,<span class="st">"db251124.csv"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convert all columns required for lnRR calculation to numeric.</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD), as.numeric)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate C_SD where it is missing but C_SE is present</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">C_SD =</span> <span class="fu">ifelse</span>(</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">is.na</span>(C_SD) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(C_SE),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>      C_SE <span class="sc">*</span> <span class="fu">sqrt</span>(C_n), </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>      C_SD</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate Ex_SD where it is missing but Ex_SE is present</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">Ex_SD =</span> <span class="fu">ifelse</span>(</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">is.na</span>(Ex_SD) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(Ex_SE),</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>      Ex_SE <span class="sc">*</span> <span class="fu">sqrt</span>(Ex_n), </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>      Ex_SD</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This combines Study_ID and Ex_ID to uniquely identify the source cohort.</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">Cohort_ID =</span> <span class="fu">paste</span>(Study_ID, <span class="st">"Ex-ID"</span>, <span class="at">sep =</span> <span class="st">"_"</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convert all remaining character columns to factors (for meta-regression)</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), as.factor))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="calculate-inrr-effect-sizes" class="level2">
+<h2 class="anchored" data-anchor-id="calculate-inrr-effect-sizes">Calculate InRR Effect Sizes</h2>
+<p>Now, we apply the <code>calculate_lnRR()</code> function to the cleaned dataset to compute the effect sizes and their variances.</p>
+<p>The resulting dataset, <code>db_effect_sizes</code>, is then saved as a CSV file for further analysis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>db_effect_sizes<span class="ot">&lt;-</span><span class="fu">calculate_lnRR</span>(db)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">write_csv</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  db_effect_sizes, </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="fu">here</span>(<span class="st">".."</span>,<span class="st">"data"</span>, <span class="st">"db_lnRR.csv"</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="st">""</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Effect Size Table</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Effect Size Distributions</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-d4a0a2f289546fd492b0" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-d4a0a2f289546fd492b0">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["es001","es002","es003","es004","es005","es006","es007","es008","es009","es010","es011","es012","es013","es014","es015","es016","es017","es018","es019","es020","es021","es023","es024","es025","es026","es027","es028","es029","es030","es031","es032","es033","es034","es035","es036","es037","es038","es039","es040","es041","es042","es043","es044","es045","es046","es047","es048","es049","es050","es051","es052","es053","es054","es055","es056","es057","es058","es059","es060","es061","es062","es063","es064","es065","es066","es067","es068","es069","es070","es071","es072","es073","es074","es075","es076","es077","es078","es079","es080","es081","es082","es083","es084","es085","es086","es087","es088","es089","es090","es091","es092","es093","es094","es095","es096","es097","es098","es099","es100","es101","es102","es103","es104","es105","es106","es107","es108","es109","es110","es111","es112","es113","es114","es115","es116","es117","es118","es127","es128","es129","es130","es131","es132","es133","es134","es135","es136","es137","es138","es139","es140","es141","es142","es143","es144","es145","es146","es147","es148","es149","es150","es151","es152","es153","es154","es155","es156","es157","es158","es159","es160","es161","es162","es163","es164","es165","es166","es167","es168","es169","es170","es171","es172","es173","es174","es175","es176","es177","es178","es179","es180","es181","es182","es183","es184","es185","es186","es187","es188","es189","es190","es191","es192","es193","es194","es195","es196","es197","es198","es199","es200","es201","es202","es203","es204","es205","es206","es207","es208","es209","es210","es211","es212","es213","es214","es215","es216","es217","es218","es219","es220","es221","es222","es223","es224","es225","es226","es227","es228","es229","es230","es231","es233","es234","es235","es236","es237","es238","es239","es240","es241","es242","es243","es244","es245","es246","es247","es248","es249","es250","es251","es252","es253","es254","es255","es256","es257","es258","es259","es260","es261","es262","es263","es264","es265","es266","es267","es268","es269","es270","es271","es272","es273","es274","es275","es276","es277","es278","es279","es280","es281","es282","es283","es284","es285","es286","es287","es288","es289","es290","es291","es292","es293","es294","es295","es296","es297","es298","es299","es300","es301","es302","es303","es304","es305","es306","es307","es308","es309"],["Krishnamurthy_2025_INDIANJTRADITKNOW","Krishnamurthy_2025_INDIANJTRADITKNOW","Krishnamurthy_2025_INDIANJTRADITKNOW","Krishnamurthy_2025_INDIANJTRADITKNOW","Krishnamurthy_2025_INDIANJTRADITKNOW","Krishnamurthy_2025_INDIANJTRADITKNOW","Krishnamurthy_2025_INDIANJTRADITKNOW","Krishnamurthy_2025_INDIANJTRADITKNOW","Krishnamurthy_2025_INDIANJTRADITKNOW","Krishnamurthy_2025_INDIANJTRADITKNOW","Freitas_2020_ECNE","Freitas_2020_ECNE","Freitas_2020_ECNE","Freitas_2020_ECNE","Freitas_2020_ECNE","Freitas_2020_ECNE","Freitas_2020_ECNE","Freitas_2020_ECNE","Freitas_2020_ECNE","Freitas_2020_ECNE","Freitas_2020_ECNE","Freitas_2020_ECNE","Freitas_2020_ECNE","Saghari_2021_BIOINTERFACE","Saghari_2021_BIOINTERFACE","Saghari_2021_BIOINTERFACE","Saghari_2021_BIOINTERFACE","Saghari_2021_BIOINTERFACE","Saghari_2021_BIOINTERFACE","Saghari_2021_BIOINTERFACE","Saghari_2021_BIOINTERFACE","Escribano_2014_APPANBSC","Escribano_2014_APPANBSC","Escribano_2014_APPANBSC","Escribano_2014_APPANBSC","Escribano_2014_APPANBSC","Escribano_2014_APPANBSC","Escribano_2014_APPANBSC","Escribano_2014_APPANBSC","Escribano_2014_APPANBSC","Escribano_2014_APPANBSC","Escribano_2014_APPANBSC","Escribano_2014_APPANBSC","Escribano_2014_APPANBSC","Escribano_2014_APPANBSC","Escribano_2014_APPANBSC","Escribano_2014_APPANBSC","Escribano_2014_APPANBSC","Escribano_2014_APPANBSC","Escribano_2014_APPANBSC","Escribano_2014_APPANBSC","Escribano_2014_APPANBSC","Escribano_2014_APPANBSC","Escribano_2014_APPANBSC","Escribano_2014_APPANBSC","Papadakakis_2019_BBR","Papadakakis_2019_BBR","Papadakakis_2019_BBR","Papadakakis_2019_BBR","Papadakakis_2019_BBR","Papadakakis_2019_BBR","Papadakakis_2019_BBR","Papadakakis_2019_BBR","Papadakakis_2019_BBR","Papadakakis_2019_BBR","Papadakakis_2019_BBR","Papadakakis_2019_BBR","Papadakakis_2019_BBR","Papadakakis_2019_BBR","Papadakakis_2019_BBR","Papadakakis_2019_BBR","Papadakakis_2019_BBR","Papadakakis_2019_BBR","Fu_2023_TRANSPSY","Fu_2023_TRANSPSY","Fu_2023_TRANSPSY","Fu_2023_TRANSPSY","Fu_2023_TRANSPSY","Fu_2023_TRANSPSY","Fu_2023_TRANSPSY","Fu_2023_TRANSPSY","Fu_2023_TRANSPSY","Fu_2023_TRANSPSY","Fu_2023_TRANSPSY","Fu_2023_TRANSPSY","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Sampaio_2017_PSYNEURO","Fu_2025_TRANSPSY","Fu_2025_TRANSPSY","Fu_2025_TRANSPSY","Fu_2025_TRANSPSY","Fu_2025_TRANSPSY","Fu_2025_TRANSPSY","Fu_2025_TRANSPSY","Niehues_2011_BCNEURO","Niehues_2011_BCNEURO","Niehues_2011_BCNEURO","Niehues_2011_BCNEURO","Niehues_2011_BCNEURO","Niehues_2011_BCNEURO","Niehues_2011_BCNEURO","Niehues_2011_BCNEURO","Niehues_2011_BCNEURO","Pangemanan_2024_PHJ","Chen_2019_BIOMEDRI","Chen_2019_BIOMEDRI","Chen_2019_BIOMEDRI","Chen_2019_BIOMEDRI","Chen_2019_BIOMEDRI","Chen_2019_BIOMEDRI","Chen_2019_BIOMEDRI","Chen_2019_BIOMEDRI","Chen_2019_BIOMEDRI","Chen_2019_BIOMEDRI","Chen_2019_BIOMEDRI","Chen_2019_BIOMEDRI","Ren_2024_ASEAN","Ren_2024_ASEAN","Ren_2024_ASEAN","Ren_2024_ASEAN","Ren_2024_ASEAN","Ren_2024_ASEAN","Ren_2024_ASEAN","Ren_2024_ASEAN","Ren_2024_ASEAN","Ren_2024_ASEAN","Ren_2024_ASEAN","Ren_2024_ASEAN","Ren_2024_ASEAN","Ren_2024_ASEAN","Ren_2024_ASEAN","Ren_2024_ASEAN","Milbratz_2017_ALN","Milbratz_2017_ALN","Milbratz_2017_ALN","Milbratz_2017_ALN","Milbratz_2017_ALN","Milbratz_2017_ALN","Milbratz_2017_ALN","Milbratz_2017_ALN","Milbratz_2017_ALN","Milbratz_2017_ALN","Milbratz_2017_ALN","Milbratz_2017_ALN","Milbratz_2017_ALN","Milbratz_2017_ALN","Milbratz_2017_ALN","Milbratz_2017_ALN","Milbratz_2017_ALN","Milbratz_2017_ALN","Flores_2018_NP","Flores_2018_NP","Flores_2018_NP","Flores_2018_NP","Flores_2018_NP","Flores_2018_NP","Flores_2018_NP","Flores_2018_NP","Flores_2018_NP","Flores_2018_NP","Flores_2018_NP","Flores_2018_NP","Flores_2018_NP","Flores_2018_NP","Flores_2018_NP","Flores_2018_NP","Flores_2018_NP","Flores_2018_NP","Cheng_2024_HLYN","Cheng_2024_HLYN","Cheng_2024_HLYN","Cheng_2024_HLYN","Cheng_2024_HLYN","Cheng_2024_HLYN","Cheng_2024_HLYN","Cheng_2024_HLYN","Cheng_2024_HLYN","Cheng_2024_HLYN","Cheng_2024_HLYN","Cheng_2024_HLYN","Cheng_2024_HLYN","Cheng_2024_HLYN","Cheng_2024_HLYN","Cheng_2024_HLYN","Rizzolo_2021_CC","Rizzolo_2021_CC","Camargo_2013_PSYN","Camargo_2013_PSYN","Camargo_2013_PSYN","Camargo_2013_PSYN","Camargo_2013_PSYN","Camargo_2013_PSYN","Camargo_2013_PSYN","Camargo_2013_PSYN","Camargo_2013_PSYN","Camargo_2013_PSYN","Terzioglu_2020_CMJ","Terzioglu_2020_CMJ","Terzioglu_2020_CMJ","Li_2010_BR","Li_2010_BR","Li_2010_BR","Li_2010_BR","Li_2010_BR","Li_2010_BR","Li_2010_BR","Li_2010_BR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR","Chikahisa_2007_BBR"],[8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,14,14,14,14,14,14,14,14,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,10,10,11,11,10,10,10,11,11,11,10,10,10,10,11,11,11,11,6,6,10,10,6,10,6,10,6,10,6,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,8,9,9,6,6,9,9,6,6,9,9,6,6,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,14,14,10,10,10,10,10,10,10,10,10,10,12,12,12,7.5,7.5,7.5,7.5,7.5,7.5,7.5,7.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13,13,13,13,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,12.5,12.5,12.5,12.5,12.5,12.5,12.5,12.5,14.5,14.5,14.5,14.5,14,14,13,13,13,13,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5],[0.005,5.018,0.005,299.892,0.005,7.835,20.423,36.504,36.471,191.061,8.295999999999999,114.329,76.54000000000001,0.414,11.076,146.908,71.041,0.293,0.41,68.31399999999999,59.665,82.849,51.75,13.5,2567.568,14.617,4.289,9.253,2198.198,7.776,5.573,38.051,13.921,5.987,3.039,150.917,281.498,28.295,6.271,56.131,15.259,6.022,3.011,121.49,280.802,21.384,4.569,55.335,12.159,6.027,4.053,22.04,12.343,22.131,12.131,214.925,57.84,249.552,37.631,64.161,51.029,9.427,54.196,61.618,5.666,135.532,165.051,93.255,69.851,204.498,94.56699999999999,60.411,34.627,2.383,21252.336,1.202,15196.262,44.706,98.824,68.27800000000001,26.626,136.774,209.032,93.095,53.91,78.607,56.385,38.308,25.373,41.176,41.83,61.307,42.484,36.328,22.259,24.24,12.88,26.455,11.243,8.795999999999999,3.836,6.961,6.064,4.767,3.172,33.534,19.411,12.584,6.292,9.564,2.542,4.903,4.479,6.512,9.922000000000001,9.012,6.395,21.398,103.138,132.454,90.3,130.724,124.742,67.134,119.867,1304.762,14.862,48.289,63.904,99.80800000000001,16.571,60.11,5.829,21.609,74.751,78.03700000000001,4.62,78.91200000000001,2.499,17.406,2.086,49.476,4.94,4.29,4.66,1.51,18.51,15.42,15.13,10.44,6.22,4.36,5.39,3.4,56.583,56.583,160.174,160.174,128.593,128.593,1.71,1.71,2.741,2.741,18.237,18.237,34.112,34.112,3855.422,3855.422,81,91,170.16,185.33,3.33,2.16,3,2.83,4.24,2.36,1.73,1.53,84.33,93.16,173.16,188.16,54.751,36.432,117.333,117.333,117.333,15.546,15.546,15.546,58.892,58.892,58.892,104.667,104.667,104.667,11.261,11.261,11.261,79.173,79.173,79.173,51.613,51.613,51.613,51.613,128.417,128.417,128.417,128.417,44.668,44.668,44.668,44.668,10.08,10.08,10.08,10.08,9.145,10.945,34.841,169.29,3.287,11.398,74.858,121.61,4.3,110.891,56.201,20.698,62.205,62.205,62.205,41.531,18.144,39.169,17.642,26.594,27.409,24.028,25.355,1519.174,178.475,11.591,6.545,1480.826,163.229,10.625,6.837,4160.156,6.376,2882.813,3.49,1380.531,182.063,10.568,6.947,1477.876,240.359,11.136,6.837,1027.228,130.293,9.271000000000001,6.247,844.059,132.248,9.081,7.028,38.58,25.624,69.464,125.408,9.095000000000001,9.221,4532.143,4725,8.321,7.433,1041.311,172.213,11.866,8.553000000000001,1266.885,238.765,14.641,10.252,46.783,75.696,10.085,45.524,44.249,11.017,7.833,8.721],[0,1.598,0,0.753,0,0.979,3.169,7.848,8.627000000000001,23.743,0.605,8.747999999999999,8.358000000000001,0.036,0.471,6.033,7.038,0.04,0.099,13.808,4.992,7.994,7.184,1.037,117.117,0.505,0.276,0.506,175.676,0.252,0.371,3.712,1.16,0.414,0.184,11.774,19.266,2.131,0.474,0.545,4.36,0.602,0.188,8.023,17.192,2.924,0.914,3.97,3.226,0.427,1.227,1.763,3.174,1.803,3.443,2.388,4.878,4.179,4.181,2.273,1.618,0.279,2.273,1.912,0.5570000000000001,4.798,4.699,3.519,2.985,5.997,5.874,2.346,4.179,0.606,1626.168,0.314,672.897,14.118,9.076000000000001,10.545,2.636,13.548,14.839,1.997,3.245,6.302,7.96,4.312,3.98,4.967,6.667,4.967,7.712,3.104,5.68,6.341,5.416,5.093,3.638,4.563,1.852,0.8179999999999999,0.918,0.499,0.539,4.752,2.811,2.209,2.677,2.663,1.029,2.119,2.906,0.581,0.795,1.26,1.26,6.633,13.267,9.414999999999999,11.555,8.198,10.635,3.545,15.953,119.048,1.547,7.605,5.882,3.173,1.143,4.136,1.685,3.896,4.153,3.827,1.195,2.721,0.902,2.184,1.306,7.813,0.31,1.57,0.42,0.12,5.65,4.76,2.64,1.04,3.13,2.22,1.93,1.1,4.818,4.818,18.261,18.261,12.444,12.444,0.588,0.588,1.566,1.566,0,0,4.05,4.05,406.627,406.627,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,13.445,14.957,11.333,11.333,11.333,1.261,1.261,1.261,8.19,8.19,8.19,15,15,15,2.059,2.059,2.059,10.14,10.14,10.14,3.506,3.506,3.506,3.506,16.187,16.187,16.187,16.187,7.197,7.197,7.197,7.197,2.573,2.573,2.573,2.573,1.799,8.996,6.968,17.274,0.577,1.209,7.372,11.017,0.377,15.05,10.914,9.097,12.441,12.441,12.441,1.466,2.09,3.746,1.923,2.022,2.133,2.955,2.607,194.69,53.812,3.011,1.316,147.493,34.081,2.045,1.243,292.969,0.738,328.125,0.973,129.794,43.049,2.273,0.914,159.292,61.883,2.102,0.951,96.535,18.241,1.331,0.911,116.337,45.603,2.9,1.79,9.212999999999999,7.774,22.378,28.904,0.979,0.884,342.857,267.857,1.091,1.091,104.918,38.422,1.914,1.258,97.04900000000001,39.108,2.344,1.447,8.182,29.777,1.907,6.503,17.811,1.61,1.078,1.015],[0.05,4.52,0.05,2.131,0.05,2.77,8.962999999999999,22.197,24.402,67.155,1.712,24.743,23.639,0.102,1.332,17.064,19.907,0.114,0.28,39.055,14.121,22.611,20.32,3.878,438.212,1.889,1.032,1.892,657.318,0.945,1.388,9.093,2.842,1.015,0.451,28.84,47.192,5.221,1.16,1.335,10.679,1.475,0.461,19.652,42.112,7.163,2.238,9.725,7.902,1.045,3.005,4.319,7.774,4.417,8.433,7.552,15.426,13.861,13.867,7.187,5.115,0.881,7.538,6.341,1.848,15.171,14.859,11.128,9.44,19.89,19.481,7.781,13.861,1.486,3983.282,0.993,2127.888,34.581,28.7,25.829,8.336,33.187,46.924,4.891,10.26,19.928,25.172,13.635,12.586,15.708,21.082,15.708,24.389,9.817,17.963,20.051,17.127,16.104,11.503,14.431,5.856,2.586,2.902,1.577,1.703,15.028,8.890000000000001,6.985,8.467000000000001,8.423,3.254,6.7,9.188000000000001,1.839,2.513,3.983,3.983,20.977,41.953,29.773,36.54,25.924,33.631,11.21,50.447,376.462,4.892,24.048,18.602,10.034,3.614,13.079,5.328,12.319,13.132,12.102,3.78,8.605,2.852,6.905,4.13,22.098,0.93,4.71,1.028785692,0.293938769,16.95,14.28,6.466652921,2.547469332,9.390000000000001,6.66,4.727515204,2.694438717,15.236,15.236,57.746,57.746,39.353,39.353,1.858,1.858,4.952,4.952,0.05,0.05,12.807,12.807,1285.866,1285.866,29.81,32.7,28.54,17.52,2.25,1.47,2.68,1.72,2.85,1.19,1.47,0.98,29.34,33.6,28.58,16.92,32.933,36.638,32.056,32.056,32.056,3.565,3.565,3.565,23.166,23.166,23.166,42.426,42.426,42.426,5.823,5.823,5.823,28.681,28.681,28.681,11.629,11.629,11.629,11.629,53.686,53.686,53.686,53.686,23.869,23.869,23.869,23.869,8.532999999999999,8.532999999999999,8.532999999999999,8.532999999999999,6.732,33.658,22.035,54.627,1.824,3.823,23.314,34.839,1.192,47.591,34.513,28.768,43.097,43.097,43.097,5.285,7.537,13.506,6.934,7.29,7.69,10.654,9.398,701.966,194.021,10.858,4.746,531.792,122.88,7.375,4.482,1056.314,2.662,1183.072,3.509,467.977,155.217,8.194000000000001,3.296,574.336,223.124,7.58,3.428,348.061,65.76900000000001,4.8,3.285,419.458,164.423,10.457,6.452,33.218,28.028,80.684,104.216,3.53,3.188,1282.854,1002.23,4.082,4.082,378.287,138.532,6.901,4.535,349.916,141.006,8.452999999999999,5.216,29.5,107.364,6.875,23.449,64.218,5.806,3.888,3.659],[8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,14,14,14,14,14,14,14,14,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,10,10,11,11,10,10,10,11,11,11,10,10,10,10,11,11,11,11,6,6,14,14,6,14,6,14,6,14,6,14,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,8,9,9,6,6,9,9,6,6,9,9,6,6,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,8,8,8,8,8,8,8,8,8,8,8,7,8,8,7,8,8,7,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,13,13,10,10,10,10,10,10,10,10,10,10,11.333,11.333,11.333,7.5,7.5,7.5,7.5,7.5,7.5,7.5,7.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13,13,13,13,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,12.5,12.5,12.5,12.5,12.5,12.5,12.5,12.5,14.5,14.5,14.5,14.5,14,14,13,13,13,13,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5],[2.002,2.625,31.378,256.189,3.256,16.431,72.41800000000001,73.60299999999999,73.595,7.542,9.17,107.391,103.372,0.517,9.552,134.842,85.777,0.347,0.395,207.485,45.297,122.093,37.504,15.447,2549.55,15.475,3.985,12.565,2572.072,10.022,4.86,74.94199999999999,74.94199999999999,12.066,12.066,55.657,55.657,62.16,62.16,85.286,85.286,12.043,12.043,50.43,50.43,54.648,54.648,82.38200000000001,82.38200000000001,16.053,16.053,56.071,56.071,56.066,56.066,216.119,50.174,212.537,61.324,60.14,50.588,10.449,63.811,55,8.452,124.738,176.211,103.226,72.836,148.126,152.129,89.736,61.493,2.48,21364.486,3.249,18056.075,35.966,48.067,79.086,77.241,110.323,94.194,91.59699999999999,87.105,74.295,44.279,30.846,24.544,41.83,33.595,59.869,55.163,29.855,17.834,14.201,3.303,13.029,8.135,5.291,0.331,6.044,4.887,4.289,2.194,29.384,23.628,21.017,11.981,25.726,18.886,14.286,7.324,7.926,11.899,7.519,7.403,71.255,88.16,115.549,108.488,39.882,103.028,80.20699999999999,99.926,1747.619,16.961,44.867,70.053,99.23099999999999,16.816,63.695,3.415,7.365,83.223,83.694,13.279,73.98,1.501,22.023,2.281,90.664,5.08,7.79,7.26,8.779999999999999,15.66,21.33,17.91,29.44,6.26,6.95,5.69,8.029999999999999,54.118,25.21,107.478,78.783,115.852,117.63,1.21,2.098,11.354,29.755,194.529,489.362,39.875,49.688,3900.602,4698.795,117.33,119.16,182.5,205,5.5,5.16,10.33,12.83,4.46,4.12,5.43,6.2,122.83,124.33,192.83,217.83,11.115,8.233000000000001,137.333,97.667,123,14.202,13.95,14.79,35.101,62.012,62.793,94.667,99.5,33,19.706,7.983,5.504,31.201,49.922,148.986,79.383,76.157,63.114,63.534,56.475,55.755,93.16500000000001,111.511,38.488,40.756,47.405,36.532,13.793,13.581,13.263,12.599,10.945,13.643,76.114,164.683,8.304,11.521,86.767,153.814,4.887,128.317,38.763,7.717,103.937,75.59099999999999,53.701,40.635,20.318,40.635,20.318,28.46,30.569,28.46,30.569,1787.611,467.265,29.659,13.382,1787.611,467.265,29.659,13.382,3984.375,5.403,3984.375,5.403,1427.729,320.179,14.886,6.764,1427.729,320.179,14.886,6.764,990.099,237.785,19.588,7.907,990.099,237.785,19.588,7.907,73.992,73.992,17.249,17.249,5.874,5.874,4478.571,4478.571,7.687,7.687,1088.525,221.612,14.928,7.767,1088.525,221.612,14.928,7.767,86.224,33.952,13.008,86.224,33.952,13.008,4.186,4.186],[0.372,0.446,8.288,7.158,0.461,1.061,4.812,4.043,6.144,0.838,0.964,11.463,9.897,0.056,0.359,5.43,6.378,0.027,0.073,12.718,5.845,10.538,3.896,0.834,99.099,0.505,0.228,0.708,297.297,0.732,0.247,5.8,5.8,0.829,0.829,3.211,3.211,3.552,3.552,4.36,4.36,0.753,0.753,3.438,3.438,9.504,9.504,5.955,5.955,0.427,0.427,2.116,2.116,2.131,2.131,6.567,2.787,6.567,2.091,2.273,2.353,0.789,1.923,1.912,0.604,1.799,2.349,3.519,2.985,4.198,4.112,1.76,4.179,0.726,1401.869,0.303,336.449,8.739000000000001,4.706,7.645,3.954,18.065,13.548,2.246,1.498,2.819,3.814,3.483,0.829,2.484,9.02,4.444,6.797,3.236,4.491,4.491,3.303,3.836,3.704,2.315,0.661,0.638,0.798,0.878,0.359,2.677,2.544,4.953,4.083,3.329,2.542,3.39,3.571,0.659,0.659,1.182,0.795,8.131,5.991,9.414999999999999,9.414999999999999,9.970000000000001,8.198,10.414,11.521,128.571,1.768,4.943,7.219,3.173,1.633,4.688,1.639,3.591,3.987,2.662,1.68,1.19,0.998,3.182,1.014,1.428,0.61,2.34,1.51,3.35,3.44,6.31,4.34,8.869999999999999,3.47,2.46,2.58,2.25,2.017,3.922,8.348000000000001,13.565,17.778,10.667,0.482,0.364,3.393,7.178,69.90900000000001,151.976,4.829,7.165,451.807,572.289,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,5.378,2.605,22.333,13.333,11.667,1.639,1.176,1.218,4.29,8.970000000000001,5.07,14.333,23,8,1.597,1.471,1.134,8.58,14.821,41.732,1.683,2.244,4.628,5.61,11.151,12.95,11.151,16.906,6.258,5.867,7.275,7.353,2.308,1.565,2.759,1.883,14.993,1.649,14.204,18.042,0.857,1.431,10.208,16.525,0.503,23.762,6.9,2.658,7.559,10.709,7.087,1.629,1.505,1.629,1.505,2.022,1.106,2.022,1.106,76.696,74.43899999999999,4.545,1.463,76.696,74.43899999999999,4.545,1.463,375,1.141,375,1.141,156.342,68.161,2.443,0.914,156.342,68.161,2.443,0.914,81.68300000000001,28.664,2.472,1.269,81.68300000000001,28.664,2.472,1.269,11.228,11.228,5.128,5.128,0.821,0.821,332.143,332.143,1.116,1.116,115.41,40.48,2.679,1.478,115.41,40.48,2.679,1.478,11.119,22.263,1.737,11.119,22.263,1.737,0.666,0.666],[1.051,1.263,23.443,20.247,1.305,3.001,13.611,11.435,17.377,2.37,2.727,32.422,27.994,0.159,1.015,15.358,18.041,0.076,0.206,35.972,16.531,29.805,11.021,3.122,370.795,1.889,0.854,2.649,1112.385,2.739,0.925,14.208,14.208,2.03,2.03,7.865,7.865,8.701000000000001,8.701000000000001,10.679,10.679,1.844,1.844,8.422000000000001,8.422000000000001,23.28,23.28,14.588,14.588,1.045,1.045,5.183,5.183,5.22,5.22,20.767,8.815,21.781,6.934,7.187,7.441,2.497,6.378,6.341,2.002,5.689,7.43,11.128,9.44,13.923,13.637,5.836,13.861,1.777,3433.864,1.135,1258.875,21.407,17.608,18.726,14.796,44.249,50.693,5.502,5.603,8.914999999999999,12.062,11.013,2.622,7.854,28.523,14.055,21.495,10.235,14.203,14.203,10.443,12.13,11.712,7.32,2.091,2.018,2.523,2.775,1.135,8.467000000000001,8.042999999999999,15.663,12.912,10.528,8.039999999999999,10.72,11.294,2.084,2.084,3.738,2.513,25.713,18.947,29.773,29.773,31.529,25.924,32.931,36.434,406.579,5.591,15.631,22.829,10.034,5.163,14.823,5.184,11.357,12.607,8.419,5.313,3.765,3.157,10.062,3.205,4.038,1.83,7.02,3.698729512,8.205790638,10.32,18.93,10.63078548,21.72697402,10.41,7.38,6.319683536,5.511351921,6.378,12.401,26.398,42.897,56.218,33.731,1.524,1.152,10.73,22.698,221.071,480.589,15.27,22.658,1428.74,1809.737,16.86,16.37,19.8,33.32,2.25,2.85,5.39,7.88,1.75,2.16,2.75,4.07,17.5,17.35,18.14,27.94,13.173,6.381,63.168,37.712,32.998,4.635,3.328,3.446,12.134,25.372,14.341,40.541,65.054,21.166,4.516,4.159,3.001,24.269,41.919,110.412,5.582,7.443,15.35,18.607,36.984,42.949,36.984,56.072,20.756,19.459,24.129,24.388,7.654,5.19,9.148999999999999,6.246,54.056,5.946,44.918,57.055,2.709,4.525,32.28,52.258,1.589,75.143,21.819,8.404,25.071,35.517,23.504,5.872,5.426,5.872,5.426,7.29,3.987,7.29,3.987,276.532,268.395,16.389,5.273,276.532,268.395,16.389,5.273,1352.082,4.114,1352.082,4.114,563.7,245.76,8.808999999999999,3.296,563.7,245.76,8.808999999999999,3.296,294.513,103.351,8.914,4.575,294.513,103.351,8.914,4.575,40.485,40.485,18.49,18.49,2.96,2.96,1242.765,1242.765,4.177,4.177,416.116,145.954,9.661,5.329,416.116,145.954,9.661,5.329,40.09,80.27200000000001,6.264,40.09,80.27200000000001,6.264,2.401,2.401],[5.992464047,0.647950552,8.744424377,0.157506957,-6.478816815,-0.740568919,0.775040402,0.463452374,0.463892848,3.23210535,0.100163815,-0.062603877,-0.300520652,-0.222176901,-0.148030049,-0.085702818,-0.18849373,-0.059745852,0.037271395,-1.110944324,0.275504779,-0.387763376,0.321976838,0.134725124,-0.007042274,0.057040584,-0.073516293,0.305967348,0.157073866,0.253740609,-0.136895071,0.677787116,1.68331599,0.7008011280000001,1.378863066,0.997522161,1.620917487,0.7870265950000001,2.293775874,0.41832207,1.720840822,0.693064148,1.386211329,0.879245719,1.717063559,0.938269639,2.481618255,0.397961347,1.91329733,0.979646373,1.3764384,-0.933759761,-1.513529644,0.929550228,1.530765408,-0.005540052,-0.142183614,0.160551219,0.488343105,-0.064720372,0.005674168,0.102928368,0.163318484,0.095790824,0.399919698,0.082992237,0.065427624,0.101583083,0.041845936,0.322494933,0.475420267,0.395700819,0.574289623,0.039898362,0.005263192,0.994360421,0.172432717,0.217533673,0.720744619,0.146948262,1.065042222,0.214917502,0.797130865,-0.021851639,0.378163489,-0.056417099,-0.241692642,-0.216651669,-0.033218191,0.015758223,-0.219236539,-0.023735187,0.261164904,-0.112542263,-0.119498355,-0.286901516,-0.697408501,-0.380425792,-0.167365582,-0.26030747,-1.230966401,0.141257098,0.21579103,0.105663571,0.368635942,-0.075142811,0.106678205,0.272529582,0.332192634,0.525831005,1.03237391,0.551559371,0.250836069,-0.196501866,-0.181699849,0.181123872,-0.146368888,-1.202967532,0.156914552,0.136540733,-0.183502107,1.187163136,0.191246808,-0.177920171,0.181952883,0.292233641,0.132108971,0.073501234,0.091870141,-0.029220844,-0.014676634,-0.05792985,-0.271499251,-0.564830221,-0.221157591,-0.1599185,0.543356404,-0.054668915,0.025123028,0.12666439,0.045013093,0.479594001,0.014215243,0.304382821,0.226214939,0.892781287,-0.08904503,0.173645185,0.089624421,0.555681077,0.003275023,0.237639455,0.027603723,0.43776168,-0.029554389,-0.481565617,0.398974549,0.709563487,-0.104338864,-0.089108273,-0.345873011,0.204491139,1.421247287,2.384674368,2.367128755,3.289650004,0.156100333,0.376114227,0.011650431,0.197825624,0.370541323,0.269607621,-0.070011002,-0.100871959,0.501775788,0.870828358,1.236439994,1.511509467,0.025671549,0.281600773,0.578242841,0.707652964,0.376063612,0.288620876,0.107592949,0.146422277,1.594500086,1.487297041,-0.157392587,0.183452313,-0.047168309,0.09042057100000001,0.108323863,0.049852094,-0.517475638,0.051622657,0.064138344,0.100418411,0.050626238,1.15427632,-0.559577729,0.344031148,0.7158703279999999,-0.931185186,-0.461173544,0.63221701,0.316069039,0.280126572,0.135772089,0.140507218,0.821484719,0.834315689,0.320910667,0.141159541,-0.148910857,-0.091654293,0.059470347,-0.201068773,0.313607954,0.298118494,0.274424941,0.223064183,0.09307890000000001,0.115120395,0.781437362,0.027590807,0.926762032,-0.010733556,0.147633379,0.234924877,0.127963596,-0.145956028,-0.371468367,-0.98661139,-0.513349564,-0.194901846,0.147003759,-0.021810372,0.060815832,0.036744147,0.075810298,0.037833422,0.061304661,0.093850736,0.10452628,0.162713325,0.962448013,0.505475841,0.715209121,0.188280051,1.051742426,0.55073995,0.671561481,-0.043172112,-0.08448860399999999,0.323613908,0.22182265,0.033616862,0.564527433,0.179244148,-0.026695481,-0.034520852,0.286746575,0.152038406,-0.010734608,-0.036814253,0.601581144,0.393289828,0.235647095,0.159582541,0.586687956,0.403983026,0.117846273,0.651222972,1.060427567,1.393054462,1.983818251,0.437188979,0.450947659,-0.011890874,-0.053563539,-0.040749029,0.017248896,0.044343073,0.252196022,0.120448711,-0.096398109,-0.151737563,-0.0745517,0.010243892,-0.277588819,0.611428672,0.801777556,0.254515381,0.638708902,0.26488501,0.166125018,0.626599954,0.733988286],[12.53444985,0.130357764,12.56977275,0.000787,12.52007993,0.019793764,0.009822821000000001,0.017761378,0.023669853,0.027786046,0.016377853,0.017248076,0.021090303,0.019410569,0.00321922,0.003308023,0.015344845,0.002864979,0.09229638900000001,0.044612086,0.02364995,0.016759693,0.030066799,0.008811894000000001,0.003591458,0.002257268,0.007415849,0.006161168,0.019747182,0.006390086,0.00701822,0.015508191,0.012936854,0.00950782,0.008388153000000001,0.009414613,0.008012373,0.008940235,0.008968455,0.002707367,0.08424458999999999,0.013906398,0.007814391,0.009009326999999999,0.008396898999999999,0.0489467,0.070233591,0.010373951,0.075618687,0.005716743,0.09232504499999999,0.007824256999999999,0.067538527,0.008083725,0.081986249,0.001046807,0.010199604,0.001235221,0.013506997,0.00268287,0.001346983,0.006584061,0.002666881,0.00154841,0.014771248,0.001460987,0.0009879999999999999,0.002586068,0.00350619,0.001663176,0.004588398,0.001892663,0.019185855,0.150379188,0.010160437,0.076964886,0.002307967,0.158766327,0.018019233,0.033194912,0.012422735,0.036624104,0.025727375,0.001916026,0.001902478,0.004824786,0.015189535,0.012707982,0.020447599,0.010915663,0.054694982,0.006061093,0.025770361,0.003179411,0.018718081,0.024448734,0.192740831,0.018735012,0.043768821,0.061603396,0.815157575,0.012545244,0.02484878,0.031401409,0.027812426,0.00509213,0.004951954,0.013002201,0.040244348,0.015558269,0.032147187,0.036438365,0.088655133,0.007463155,0.005046392,0.022276357,0.029172456,0.07374976799999999,0.012422676,0.005899952,0.012800682,0.050753169,0.006816153,0.012789647,0.015661287,0.013737394,0.021700897,0.036937788,0.019093404,0.071331256,0.014183087,0.010150085,0.08070593199999999,0.07215450599999999,0.024220473,0.016494226,0.021678245,0.001101686,0.001222382,0.01065337,0.149508548,0.010408953,0.00475109,0.05829716,0.013471675,0.040303814,0.040279538,0.052407926,0.02527455,0.031459069,0.146301215,0.099645421,0.086718582,0.047540549,0.00385812,0.010628131,0.019030076,0.042645049,0.032912726,0.017588133,0.276694093,0.14820949,0.415705101,0.384585704,0.12915088,0.096447406,0.028760317,0.034889598,0.024540277,0.025957645,0.02601518,0.024666418,0.006650378,0.005892472,0.103982165,0.128036569,0.178383348,0.124435481,0.02599251,0.022543508,0.041529922,0.036012878,0.023557701,0.024926059,0.006015171,0.004089697,0.294400183,0.268674288,0.035775806,0.027967034,0.018326673,0.019887485,0.013687661,0.013359275,0.034279455,0.040267036,0.025861899,0.04346243,0.073971117,0.079307289,0.039988118,0.067351119,0.075892822,0.09203077599999999,0.104538692,0.094862946,0.002273526,0.00253193,0.004644611,0.005906966,0.054875803,0.069832882,0.030214704,0.038874585,0.052397623,0.046682291,0.049511224,0.066473404,0.093140414,0.078422643,0.108404756,0.087489176,0.517395775,0.186579873,0.074825261,0.022415432,0.041435368,0.026676092,0.023540369,0.019750029,0.018256645,0.05271187,0.069395436,0.311777562,0.045134234,0.059480142,0.056903602,0.004943419,0.009357088,0.01863711,0.008642673999999999,0.005838886,0.003990742,0.010645174,0.006313807,0.017588116,0.11197977,0.024841683,0.050450655,0.011325645,0.06641847400000001,0.016809798,0.043334198,0.013817471,0.015074965,0.021813393,0.031479426,0.020058871,0.09748137799999999,0.019229122,0.034262927,0.022734265,0.107473766,0.016517181,0.036210275,0.01626325,0.035497033,0.010522689,0.048904012,0.026835523,0.138775171,0.033069159,0.09420645800000001,0.0717742,0.103159702,0.172289876,0.126872795,0.028898012,0.02667585,0.012086358,0.009384081000000001,0.010896498,0.012098817,0.020600466,0.080063067,0.01546754,0.055694874,0.016475683,0.057964573,0.015516429,0.054044436,0.045466655,0.563078037,0.051600935,0.035666579,0.570077716,0.037749863,0.042619792,0.037409234],["Krishnamurthy_2025_INDIANJTRADITKNOW_Ex-ID","Krishnamurthy_2025_INDIANJTRADITKNOW_Ex-ID","Krishnamurthy_2025_INDIANJTRADITKNOW_Ex-ID","Krishnamurthy_2025_INDIANJTRADITKNOW_Ex-ID","Krishnamurthy_2025_INDIANJTRADITKNOW_Ex-ID","Krishnamurthy_2025_INDIANJTRADITKNOW_Ex-ID","Krishnamurthy_2025_INDIANJTRADITKNOW_Ex-ID","Krishnamurthy_2025_INDIANJTRADITKNOW_Ex-ID","Krishnamurthy_2025_INDIANJTRADITKNOW_Ex-ID","Krishnamurthy_2025_INDIANJTRADITKNOW_Ex-ID","Freitas_2020_ECNE_Ex-ID","Freitas_2020_ECNE_Ex-ID","Freitas_2020_ECNE_Ex-ID","Freitas_2020_ECNE_Ex-ID","Freitas_2020_ECNE_Ex-ID","Freitas_2020_ECNE_Ex-ID","Freitas_2020_ECNE_Ex-ID","Freitas_2020_ECNE_Ex-ID","Freitas_2020_ECNE_Ex-ID","Freitas_2020_ECNE_Ex-ID","Freitas_2020_ECNE_Ex-ID","Freitas_2020_ECNE_Ex-ID","Freitas_2020_ECNE_Ex-ID","Saghari_2021_BIOINTERFACE_Ex-ID","Saghari_2021_BIOINTERFACE_Ex-ID","Saghari_2021_BIOINTERFACE_Ex-ID","Saghari_2021_BIOINTERFACE_Ex-ID","Saghari_2021_BIOINTERFACE_Ex-ID","Saghari_2021_BIOINTERFACE_Ex-ID","Saghari_2021_BIOINTERFACE_Ex-ID","Saghari_2021_BIOINTERFACE_Ex-ID","Escribano_2014_APPANBSC_Ex-ID","Escribano_2014_APPANBSC_Ex-ID","Escribano_2014_APPANBSC_Ex-ID","Escribano_2014_APPANBSC_Ex-ID","Escribano_2014_APPANBSC_Ex-ID","Escribano_2014_APPANBSC_Ex-ID","Escribano_2014_APPANBSC_Ex-ID","Escribano_2014_APPANBSC_Ex-ID","Escribano_2014_APPANBSC_Ex-ID","Escribano_2014_APPANBSC_Ex-ID","Escribano_2014_APPANBSC_Ex-ID","Escribano_2014_APPANBSC_Ex-ID","Escribano_2014_APPANBSC_Ex-ID","Escribano_2014_APPANBSC_Ex-ID","Escribano_2014_APPANBSC_Ex-ID","Escribano_2014_APPANBSC_Ex-ID","Escribano_2014_APPANBSC_Ex-ID","Escribano_2014_APPANBSC_Ex-ID","Escribano_2014_APPANBSC_Ex-ID","Escribano_2014_APPANBSC_Ex-ID","Escribano_2014_APPANBSC_Ex-ID","Escribano_2014_APPANBSC_Ex-ID","Escribano_2014_APPANBSC_Ex-ID","Escribano_2014_APPANBSC_Ex-ID","Papadakakis_2019_BBR_Ex-ID","Papadakakis_2019_BBR_Ex-ID","Papadakakis_2019_BBR_Ex-ID","Papadakakis_2019_BBR_Ex-ID","Papadakakis_2019_BBR_Ex-ID","Papadakakis_2019_BBR_Ex-ID","Papadakakis_2019_BBR_Ex-ID","Papadakakis_2019_BBR_Ex-ID","Papadakakis_2019_BBR_Ex-ID","Papadakakis_2019_BBR_Ex-ID","Papadakakis_2019_BBR_Ex-ID","Papadakakis_2019_BBR_Ex-ID","Papadakakis_2019_BBR_Ex-ID","Papadakakis_2019_BBR_Ex-ID","Papadakakis_2019_BBR_Ex-ID","Papadakakis_2019_BBR_Ex-ID","Papadakakis_2019_BBR_Ex-ID","Papadakakis_2019_BBR_Ex-ID","Fu_2023_TRANSPSY_Ex-ID","Fu_2023_TRANSPSY_Ex-ID","Fu_2023_TRANSPSY_Ex-ID","Fu_2023_TRANSPSY_Ex-ID","Fu_2023_TRANSPSY_Ex-ID","Fu_2023_TRANSPSY_Ex-ID","Fu_2023_TRANSPSY_Ex-ID","Fu_2023_TRANSPSY_Ex-ID","Fu_2023_TRANSPSY_Ex-ID","Fu_2023_TRANSPSY_Ex-ID","Fu_2023_TRANSPSY_Ex-ID","Fu_2023_TRANSPSY_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Sampaio_2017_PSYNEURO_Ex-ID","Fu_2025_TRANSPSY_Ex-ID","Fu_2025_TRANSPSY_Ex-ID","Fu_2025_TRANSPSY_Ex-ID","Fu_2025_TRANSPSY_Ex-ID","Fu_2025_TRANSPSY_Ex-ID","Fu_2025_TRANSPSY_Ex-ID","Fu_2025_TRANSPSY_Ex-ID","Niehues_2011_BCNEURO_Ex-ID","Niehues_2011_BCNEURO_Ex-ID","Niehues_2011_BCNEURO_Ex-ID","Niehues_2011_BCNEURO_Ex-ID","Niehues_2011_BCNEURO_Ex-ID","Niehues_2011_BCNEURO_Ex-ID","Niehues_2011_BCNEURO_Ex-ID","Niehues_2011_BCNEURO_Ex-ID","Niehues_2011_BCNEURO_Ex-ID","Pangemanan_2024_PHJ_Ex-ID","Chen_2019_BIOMEDRI_Ex-ID","Chen_2019_BIOMEDRI_Ex-ID","Chen_2019_BIOMEDRI_Ex-ID","Chen_2019_BIOMEDRI_Ex-ID","Chen_2019_BIOMEDRI_Ex-ID","Chen_2019_BIOMEDRI_Ex-ID","Chen_2019_BIOMEDRI_Ex-ID","Chen_2019_BIOMEDRI_Ex-ID","Chen_2019_BIOMEDRI_Ex-ID","Chen_2019_BIOMEDRI_Ex-ID","Chen_2019_BIOMEDRI_Ex-ID","Chen_2019_BIOMEDRI_Ex-ID","Ren_2024_ASEAN_Ex-ID","Ren_2024_ASEAN_Ex-ID","Ren_2024_ASEAN_Ex-ID","Ren_2024_ASEAN_Ex-ID","Ren_2024_ASEAN_Ex-ID","Ren_2024_ASEAN_Ex-ID","Ren_2024_ASEAN_Ex-ID","Ren_2024_ASEAN_Ex-ID","Ren_2024_ASEAN_Ex-ID","Ren_2024_ASEAN_Ex-ID","Ren_2024_ASEAN_Ex-ID","Ren_2024_ASEAN_Ex-ID","Ren_2024_ASEAN_Ex-ID","Ren_2024_ASEAN_Ex-ID","Ren_2024_ASEAN_Ex-ID","Ren_2024_ASEAN_Ex-ID","Milbratz_2017_ALN_Ex-ID","Milbratz_2017_ALN_Ex-ID","Milbratz_2017_ALN_Ex-ID","Milbratz_2017_ALN_Ex-ID","Milbratz_2017_ALN_Ex-ID","Milbratz_2017_ALN_Ex-ID","Milbratz_2017_ALN_Ex-ID","Milbratz_2017_ALN_Ex-ID","Milbratz_2017_ALN_Ex-ID","Milbratz_2017_ALN_Ex-ID","Milbratz_2017_ALN_Ex-ID","Milbratz_2017_ALN_Ex-ID","Milbratz_2017_ALN_Ex-ID","Milbratz_2017_ALN_Ex-ID","Milbratz_2017_ALN_Ex-ID","Milbratz_2017_ALN_Ex-ID","Milbratz_2017_ALN_Ex-ID","Milbratz_2017_ALN_Ex-ID","Flores_2018_NP_Ex-ID","Flores_2018_NP_Ex-ID","Flores_2018_NP_Ex-ID","Flores_2018_NP_Ex-ID","Flores_2018_NP_Ex-ID","Flores_2018_NP_Ex-ID","Flores_2018_NP_Ex-ID","Flores_2018_NP_Ex-ID","Flores_2018_NP_Ex-ID","Flores_2018_NP_Ex-ID","Flores_2018_NP_Ex-ID","Flores_2018_NP_Ex-ID","Flores_2018_NP_Ex-ID","Flores_2018_NP_Ex-ID","Flores_2018_NP_Ex-ID","Flores_2018_NP_Ex-ID","Flores_2018_NP_Ex-ID","Flores_2018_NP_Ex-ID","Cheng_2024_HLYN_Ex-ID","Cheng_2024_HLYN_Ex-ID","Cheng_2024_HLYN_Ex-ID","Cheng_2024_HLYN_Ex-ID","Cheng_2024_HLYN_Ex-ID","Cheng_2024_HLYN_Ex-ID","Cheng_2024_HLYN_Ex-ID","Cheng_2024_HLYN_Ex-ID","Cheng_2024_HLYN_Ex-ID","Cheng_2024_HLYN_Ex-ID","Cheng_2024_HLYN_Ex-ID","Cheng_2024_HLYN_Ex-ID","Cheng_2024_HLYN_Ex-ID","Cheng_2024_HLYN_Ex-ID","Cheng_2024_HLYN_Ex-ID","Cheng_2024_HLYN_Ex-ID","Rizzolo_2021_CC_Ex-ID","Rizzolo_2021_CC_Ex-ID","Camargo_2013_PSYN_Ex-ID","Camargo_2013_PSYN_Ex-ID","Camargo_2013_PSYN_Ex-ID","Camargo_2013_PSYN_Ex-ID","Camargo_2013_PSYN_Ex-ID","Camargo_2013_PSYN_Ex-ID","Camargo_2013_PSYN_Ex-ID","Camargo_2013_PSYN_Ex-ID","Camargo_2013_PSYN_Ex-ID","Camargo_2013_PSYN_Ex-ID","Terzioglu_2020_CMJ_Ex-ID","Terzioglu_2020_CMJ_Ex-ID","Terzioglu_2020_CMJ_Ex-ID","Li_2010_BR_Ex-ID","Li_2010_BR_Ex-ID","Li_2010_BR_Ex-ID","Li_2010_BR_Ex-ID","Li_2010_BR_Ex-ID","Li_2010_BR_Ex-ID","Li_2010_BR_Ex-ID","Li_2010_BR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID","Chikahisa_2007_BBR_Ex-ID"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>ES_ID<\/th>\n      <th>Study_ID<\/th>\n      <th>C_n<\/th>\n      <th>C_mean<\/th>\n      <th>C_SE<\/th>\n      <th>C_SD<\/th>\n      <th>Ex_n<\/th>\n      <th>Ex_mean<\/th>\n      <th>Ex_SE<\/th>\n      <th>Ex_SD<\/th>\n      <th>lnRR<\/th>\n      <th>lnRR_var<\/th>\n      <th>Cohort_ID<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"scrollX":true,"dom":"Bfrtip","buttons":["copy","csv"],"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":9,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":10,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":11,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[2,3,4,5,6,7,8,9,10,11]},{"name":"ES_ID","targets":0},{"name":"Study_ID","targets":1},{"name":"C_n","targets":2},{"name":"C_mean","targets":3},{"name":"C_SE","targets":4},{"name":"C_SD","targets":5},{"name":"Ex_n","targets":6},{"name":"Ex_mean","targets":7},{"name":"Ex_SE","targets":8},{"name":"Ex_SD","targets":9},{"name":"lnRR","targets":10},{"name":"lnRR_var","targets":11},{"name":"Cohort_ID","targets":12}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'text-align':'center'});\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'text-align':'center'});\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'text-align':'center'});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'text-align':'center'});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'text-align':'center'});\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'text-align':'center'});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'text-align':'center'});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'text-align':'center'});\nvar value=data[8]; $(this.api().cell(row, 8).node()).css({'text-align':'center'});\nvar value=data[9]; $(this.api().cell(row, 9).node()).css({'text-align':'center'});\nvar value=data[10]; $(this.api().cell(row, 10).node()).css({'text-align':'center'});\nvar value=data[11]; $(this.api().cell(row, 11).node()).css({'text-align':'center'});\nvar value=data[12]; $(this.api().cell(row, 12).node()).css({'text-align':'center'});\n}"}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render","options.columnDefs.7.render","options.columnDefs.8.render","options.columnDefs.9.render","options.rowCallback"],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(db_effect_sizes<span class="sc">$</span>lnRR,<span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="fl">6.5</span>,<span class="dv">9</span>),<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">6.5</span>,<span class="dv">9</span>,<span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lnRR_files/figure-html/lnRR_histogram-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(db_effect_sizes<span class="sc">$</span>lnRR_var, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">13</span>),<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">13</span>,<span class="fl">0.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lnRR_files/figure-html/lnRR_histogram-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Index">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Index</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./overall_effect.html" class="pagination-link" aria-label="Overall effect">
+        <span class="nav-page-text"><span class="chapter-title">Overall effect</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb7" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Estimating effect sizes</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: true</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>               DT,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>               dtplyr,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>               here, </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>               knitr,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>               tidyverse,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>               patchwork,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>               metafor,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>               orchaRd</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>               )</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## lnRR Effect Size Calculation Function</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>This function, <span class="in">`calculate_lnRR()`</span>, is designed to calculate the Log Response Ratio ($\text{lnRR}$) and its variance ($\text{lnRR_var}$) for both continuous and percentage data, accounting for dependent (correlated) and independent comparison structures.</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Variable definitions</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Variable Name <span class="pp">|</span> Definition                              <span class="pp">|</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="pp">|:--------------|:----------------------------------------|</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **`ES_ID`**   <span class="pp">|</span> Unique identifier for each effect size. <span class="pp">|</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="sc">\|</span>**`Study_ID`**<span class="sc">\|</span> Identifier for the study from which the data is drawn.</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="sc">\|</span>**`C_n`, `Ex_n`**<span class="sc">\|</span> Sample sizes for Control and Experimental groups, respectively.</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="sc">\|</span>**`C_mean`, `Ex_mean*`**<span class="sc">\|</span> Mean values for Control and Experimental groups, respectively.</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="sc">\|</span>**`C_SE`, `Ex_SE`**<span class="sc">\|</span>Standard errors for Control and Experimental groups, respectively.</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="sc">\|</span>**`C_SD`, `Ex_SD`**<span class="sc">\|</span> Standard deviations for Control and Experimental groups, respectively.</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="sc">\|</span>**`Data_type`**<span class="sc">\|</span> Type of data (e.g., "time", "distance", "count", "latency", "percentage", "index").</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="sc">\|</span>**`Comparison_structure`**<span class="sc">\|</span> Indicates whether the comparison is "Independent" (separate animals) or "Dependent" (same animals).</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="sc">\|</span>**`Higher_better`**<span class="sc">\|</span> Indicates whether higher values are better ("Yes") or not ("No") for standardization purposes.</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: calculate_lnRR_final</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>calculate_lnRR <span class="ot">&lt;-</span> <span class="cf">function</span>(dt) {</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 1. Data Cleaning and Imputation (Handling Extreme Values)</span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This section adjusts extreme boundary values (0, 100) and 0 standard deviations (SDs)</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>  <span class="co"># to prevent mathematical errors (division by zero, log(0), or Inf values) </span></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>  <span class="co"># during the lnRR and variance calculations.</span></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>  dt <span class="ot">&lt;-</span> dt <span class="sc">%&gt;%</span></span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Adjust means that are exactly 0 to a small, non-zero value (0.005) </span></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>      <span class="at">C_mean =</span> <span class="fu">ifelse</span>(C_mean <span class="sc">==</span> <span class="dv">0</span>, <span class="fl">0.005</span>, C_mean),</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>      <span class="at">Ex_mean =</span> <span class="fu">ifelse</span>(Ex_mean <span class="sc">==</span> <span class="dv">0</span>, <span class="fl">0.005</span>, Ex_mean),</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Adjust means that are exactly 100 to a value just below 100 (99.5) </span></span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>      <span class="co"># (This is critical for percentages reported 0-100)</span></span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>      <span class="at">C_mean =</span> <span class="fu">ifelse</span>(C_mean <span class="sc">==</span> <span class="dv">100</span>, <span class="fl">99.5</span>, C_mean), </span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>      <span class="at">Ex_mean =</span> <span class="fu">ifelse</span>(Ex_mean <span class="sc">==</span> <span class="dv">100</span>, <span class="fl">99.5</span>, Ex_mean),</span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Adjust SDs that are 0 to a small, non-zero value (0.01/0.05) to allow </span></span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>      <span class="co"># variance calculation (which relies on SDs).</span></span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>      <span class="at">Ex_SD =</span> <span class="fu">ifelse</span>(Ex_SD <span class="sc">==</span> <span class="dv">0</span>, <span class="fl">0.01</span>, Ex_SD),</span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>      <span class="at">C_SD =</span> <span class="fu">ifelse</span>(C_SD <span class="sc">==</span> <span class="dv">0</span>, <span class="fl">0.05</span>, C_SD),</span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Standardize the 'Data_type' variable to lowercase to ensure reliable matching </span></span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>      <span class="co"># in the subsequent 'if/else if' blocks, regardless of how it was typed in the source data.</span></span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>      <span class="at">Data_type =</span> <span class="fu">tolower</span>(Data_type)</span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 2. Setup</span></span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>  dt1 <span class="ot">&lt;-</span> dt <span class="sc">%&gt;%</span></span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Initialize the final effect size columns with numeric NA values.</span></span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>      <span class="at">lnRR =</span> <span class="cn">NA_real_</span>, </span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>      <span class="at">lnRR_var =</span> <span class="cn">NA_real_</span></span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Define the arcsine square root transformation function: asin(sqrt(p)).</span></span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This transformation is necessary for proportional data (percentages) to stabilize their variance.</span></span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>  asin_trans <span class="ot">&lt;-</span> <span class="cf">function</span>(proportion) {</span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>    trans <span class="ot">&lt;-</span> <span class="fu">asin</span>(<span class="fu">sqrt</span>(proportion))</span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(trans)</span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 3. Calculation Loop (Iterating through each row/effect size)</span></span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(dt1))) {</span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract row-specific variables for the current row 'i'</span></span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a>    Ex_n <span class="ot">&lt;-</span> dt1<span class="sc">$</span>Ex_n[i]</span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a>    C_n <span class="ot">&lt;-</span> dt1<span class="sc">$</span>C_n[i]</span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a>    Ex_mean <span class="ot">&lt;-</span> dt1<span class="sc">$</span>Ex_mean[i]</span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a>    C_mean <span class="ot">&lt;-</span> dt1<span class="sc">$</span>C_mean[i]</span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a>    Ex_SD <span class="ot">&lt;-</span> dt1<span class="sc">$</span>Ex_SD[i]</span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a>    C_SD <span class="ot">&lt;-</span> dt1<span class="sc">$</span>C_SD[i]</span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a>    Data_type <span class="ot">&lt;-</span> dt1<span class="sc">$</span>Data_type[i]</span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a>    Comparison_structure <span class="ot">&lt;-</span> dt1<span class="sc">$</span>Comparison_structure[i]</span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>    Higher_better <span class="ot">&lt;-</span> dt1<span class="sc">$</span>Higher_better[i]</span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a>    current_es_id <span class="ot">&lt;-</span> dt1<span class="sc">$</span>ES_ID[i] <span class="co"># Used for conditional scaling check below.</span></span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a>    <span class="co"># --- A. Continuous Data (Time, Distance, Count, Latency, Index, etc.) ---</span></span>
+<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (Data_type <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"time"</span>, <span class="st">"distance"</span>, <span class="st">"count"</span>, <span class="st">"latency"</span>, <span class="st">"index"</span>)) {</span>
+<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Calculate the Log Response Ratio (lnRR) using the metafor::escalc function.</span></span>
+<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (Comparison_structure <span class="sc">==</span> <span class="st">"Independent"</span>) {</span>
+<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 'ROM' (Ratio of Means) for independent groups.</span></span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a>        effect <span class="ot">&lt;-</span> metafor<span class="sc">::</span><span class="fu">escalc</span>(<span class="at">measure =</span> <span class="st">"ROM"</span>, <span class="at">n1i =</span> Ex_n, <span class="at">n2i =</span> C_n,</span>
+<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">m1i =</span> Ex_mean, <span class="at">m2i =</span> C_mean, <span class="at">sd1i =</span> Ex_SD, <span class="at">sd2i =</span> C_SD,</span>
+<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">var.names =</span> <span class="fu">c</span>(<span class="st">"lnRR"</span>, <span class="st">"lnRR_var"</span>))</span>
+<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> <span class="cf">if</span> (Comparison_structure <span class="sc">==</span> <span class="st">"Dependent"</span>) {</span>
+<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 'ROMC' (Ratio of Means, Correlated) for dependent/repeated groups, </span></span>
+<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a>        <span class="co"># using an assumed correlation (ri = 0.5).</span></span>
+<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a>        effect <span class="ot">&lt;-</span> metafor<span class="sc">::</span><span class="fu">escalc</span>(<span class="at">measure =</span> <span class="st">"ROMC"</span>, <span class="at">ni =</span> (Ex_n <span class="sc">+</span> C_n) <span class="sc">/</span> <span class="dv">2</span>, </span>
+<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">m1i =</span> Ex_mean, <span class="at">m2i =</span> C_mean, <span class="at">sd1i =</span> Ex_SD, <span class="at">sd2i =</span> C_SD,</span>
+<span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">ri =</span> <span class="fl">0.5</span>, <span class="at">var.names =</span> <span class="fu">c</span>(<span class="st">"lnRR"</span>, <span class="st">"lnRR_var"</span>))</span>
+<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Assign the calculated lnRR and its variance to the new columns.</span></span>
+<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a>      dt1<span class="sc">$</span>lnRR[i] <span class="ot">&lt;-</span> effect<span class="sc">$</span>lnRR</span>
+<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a>      dt1<span class="sc">$</span>lnRR_var[i] <span class="ot">&lt;-</span> effect<span class="sc">$</span>lnRR_var</span>
+<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 2. Outcome Direction Standardization (Sign Flip)</span></span>
+<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a>      <span class="co"># If 'Higher_better' is "No" (e.g., lower anxiety is better), we flip the sign </span></span>
+<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a>      <span class="co"># of lnRR so that a positive value always indicates a beneficial outcome.</span></span>
+<span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (Higher_better <span class="sc">==</span> <span class="st">"No"</span>) {</span>
+<span id="cb7-134"><a href="#cb7-134" aria-hidden="true" tabindex="-1"></a>        dt1<span class="sc">$</span>lnRR[i] <span class="ot">&lt;-</span> dt1<span class="sc">$</span>lnRR[i] <span class="sc">*</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb7-135"><a href="#cb7-135" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-136"><a href="#cb7-136" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-137"><a href="#cb7-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-138"><a href="#cb7-138" aria-hidden="true" tabindex="-1"></a>    <span class="co"># --- B. Proportion Data (Data_type is Percentage) ---</span></span>
+<span id="cb7-139"><a href="#cb7-139" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="cf">if</span> (Data_type <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"percentage"</span>)) {</span>
+<span id="cb7-140"><a href="#cb7-140" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-141"><a href="#cb7-141" aria-hidden="true" tabindex="-1"></a>      <span class="co"># *** CRITICAL FIX: CONDITIONAL RESCALING ***</span></span>
+<span id="cb7-142"><a href="#cb7-142" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Only rescale if the study is NOT "es018," as "es018" reports 0-1 proportions.</span></span>
+<span id="cb7-143"><a href="#cb7-143" aria-hidden="true" tabindex="-1"></a>      <span class="co"># All other studies report 0-100 percentages and must be divided by 100.</span></span>
+<span id="cb7-144"><a href="#cb7-144" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (current_es_id <span class="sc">!=</span> <span class="st">"es018"</span>) {</span>
+<span id="cb7-145"><a href="#cb7-145" aria-hidden="true" tabindex="-1"></a>          Ex_mean <span class="ot">&lt;-</span> Ex_mean <span class="sc">/</span> <span class="dv">100</span></span>
+<span id="cb7-146"><a href="#cb7-146" aria-hidden="true" tabindex="-1"></a>          C_mean <span class="ot">&lt;-</span> C_mean <span class="sc">/</span> <span class="dv">100</span></span>
+<span id="cb7-147"><a href="#cb7-147" aria-hidden="true" tabindex="-1"></a>          Ex_SD <span class="ot">&lt;-</span> Ex_SD <span class="sc">/</span> <span class="dv">100</span> </span>
+<span id="cb7-148"><a href="#cb7-148" aria-hidden="true" tabindex="-1"></a>          C_SD <span class="ot">&lt;-</span> C_SD <span class="sc">/</span> <span class="dv">100</span></span>
+<span id="cb7-149"><a href="#cb7-149" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-150"><a href="#cb7-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-151"><a href="#cb7-151" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 1. Standardization: Adjust means if "Higher_better" is "No"</span></span>
+<span id="cb7-152"><a href="#cb7-152" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Flips the proportion (e.g., 80% success becomes 20% failure) to standardize direction.</span></span>
+<span id="cb7-153"><a href="#cb7-153" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (Higher_better <span class="sc">==</span> <span class="st">"No"</span>) {</span>
+<span id="cb7-154"><a href="#cb7-154" aria-hidden="true" tabindex="-1"></a>        Ex_mean <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> Ex_mean</span>
+<span id="cb7-155"><a href="#cb7-155" aria-hidden="true" tabindex="-1"></a>        C_mean <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> C_mean</span>
+<span id="cb7-156"><a href="#cb7-156" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-157"><a href="#cb7-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-158"><a href="#cb7-158" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 2. Transform SDs </span></span>
+<span id="cb7-159"><a href="#cb7-159" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Calculate the standard deviation of the arcsin-transformed data (SD') based on the formula: </span></span>
+<span id="cb7-160"><a href="#cb7-160" aria-hidden="true" tabindex="-1"></a>      <span class="co"># SD' = sqrt(SD^2 / (4 * p * (1 - p)))</span></span>
+<span id="cb7-161"><a href="#cb7-161" aria-hidden="true" tabindex="-1"></a>      Ex_SD_trans <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(Ex_SD<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> (<span class="dv">4</span> <span class="sc">*</span> Ex_mean <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> Ex_mean)))</span>
+<span id="cb7-162"><a href="#cb7-162" aria-hidden="true" tabindex="-1"></a>      C_SD_trans  <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(C_SD<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> (<span class="dv">4</span> <span class="sc">*</span> C_mean <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> C_mean)))</span>
+<span id="cb7-163"><a href="#cb7-163" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-164"><a href="#cb7-164" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 3. Transform Means (M') using the arcsin(sqrt(p)) function</span></span>
+<span id="cb7-165"><a href="#cb7-165" aria-hidden="true" tabindex="-1"></a>      Ex_mean_trans <span class="ot">&lt;-</span> <span class="fu">asin_trans</span>(Ex_mean)</span>
+<span id="cb7-166"><a href="#cb7-166" aria-hidden="true" tabindex="-1"></a>      C_mean_trans <span class="ot">&lt;-</span> <span class="fu">asin_trans</span>(C_mean)</span>
+<span id="cb7-167"><a href="#cb7-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-168"><a href="#cb7-168" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 4. lnRR Calculation (Using transformed means)</span></span>
+<span id="cb7-169"><a href="#cb7-169" aria-hidden="true" tabindex="-1"></a>      <span class="co"># lnRR = ln(M'ex / M'control)</span></span>
+<span id="cb7-170"><a href="#cb7-170" aria-hidden="true" tabindex="-1"></a>      lnRR_pro_calc <span class="ot">&lt;-</span> <span class="fu">log</span>(Ex_mean_trans <span class="sc">/</span> C_mean_trans)</span>
+<span id="cb7-171"><a href="#cb7-171" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-172"><a href="#cb7-172" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 5. Variance Calculation (Using transformed SDs)</span></span>
+<span id="cb7-173"><a href="#cb7-173" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Calculate the independent variance components (V_Ex, V_C) using the transformed values.</span></span>
+<span id="cb7-174"><a href="#cb7-174" aria-hidden="true" tabindex="-1"></a>      V_Ex <span class="ot">&lt;-</span> (Ex_SD_trans)<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">/</span> (Ex_mean_trans<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> Ex_n))</span>
+<span id="cb7-175"><a href="#cb7-175" aria-hidden="true" tabindex="-1"></a>      V_C  <span class="ot">&lt;-</span> (C_SD_trans)<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">/</span> (C_mean_trans<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> C_n))</span>
+<span id="cb7-176"><a href="#cb7-176" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-177"><a href="#cb7-177" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (Comparison_structure <span class="sc">==</span> <span class="st">"Independent"</span>) {</span>
+<span id="cb7-178"><a href="#cb7-178" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Variance for independent groups is simply the sum of individual variances.</span></span>
+<span id="cb7-179"><a href="#cb7-179" aria-hidden="true" tabindex="-1"></a>        lnRR_var_pro <span class="ot">&lt;-</span> V_Ex <span class="sc">+</span> V_C</span>
+<span id="cb7-180"><a href="#cb7-180" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> <span class="cf">if</span> (Comparison_structure <span class="sc">==</span> <span class="st">"Dependent"</span>) {</span>
+<span id="cb7-181"><a href="#cb7-181" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Variance for dependent groups includes a covariance term based on rho = 0.5.</span></span>
+<span id="cb7-182"><a href="#cb7-182" aria-hidden="true" tabindex="-1"></a>        <span class="co"># V_dep = V_Ex + V_C - 2 * rho * sqrt(V_Ex * V_C)</span></span>
+<span id="cb7-183"><a href="#cb7-183" aria-hidden="true" tabindex="-1"></a>        lnRR_var_pro <span class="ot">&lt;-</span> V_Ex <span class="sc">+</span> V_C <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">sqrt</span>(V_Ex) <span class="sc">*</span> <span class="fu">sqrt</span>(V_C)</span>
+<span id="cb7-184"><a href="#cb7-184" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-185"><a href="#cb7-185" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-186"><a href="#cb7-186" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Final assignment of results for proportional data.</span></span>
+<span id="cb7-187"><a href="#cb7-187" aria-hidden="true" tabindex="-1"></a>      dt1<span class="sc">$</span>lnRR[i] <span class="ot">&lt;-</span> lnRR_pro_calc</span>
+<span id="cb7-188"><a href="#cb7-188" aria-hidden="true" tabindex="-1"></a>      dt1<span class="sc">$</span>lnRR_var[i] <span class="ot">&lt;-</span> lnRR_var_pro</span>
+<span id="cb7-189"><a href="#cb7-189" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-190"><a href="#cb7-190" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-191"><a href="#cb7-191" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(dt1)</span>
+<span id="cb7-192"><a href="#cb7-192" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-193"><a href="#cb7-193" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-194"><a href="#cb7-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-195"><a href="#cb7-195" aria-hidden="true" tabindex="-1"></a>After defining the function, we proceed to load and clean the dataset.</span>
+<span id="cb7-196"><a href="#cb7-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-199"><a href="#cb7-199" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-200"><a href="#cb7-200" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: load_and_clean_data</span></span>
+<span id="cb7-201"><a href="#cb7-201" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">".."</span>,<span class="st">"data"</span>,<span class="st">"db251124.csv"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-202"><a href="#cb7-202" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-203"><a href="#cb7-203" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convert all columns required for lnRR calculation to numeric.</span></span>
+<span id="cb7-204"><a href="#cb7-204" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD), as.numeric)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-205"><a href="#cb7-205" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-206"><a href="#cb7-206" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate C_SD where it is missing but C_SE is present</span></span>
+<span id="cb7-207"><a href="#cb7-207" aria-hidden="true" tabindex="-1"></a>    <span class="at">C_SD =</span> <span class="fu">ifelse</span>(</span>
+<span id="cb7-208"><a href="#cb7-208" aria-hidden="true" tabindex="-1"></a>      <span class="fu">is.na</span>(C_SD) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(C_SE),</span>
+<span id="cb7-209"><a href="#cb7-209" aria-hidden="true" tabindex="-1"></a>      C_SE <span class="sc">*</span> <span class="fu">sqrt</span>(C_n), </span>
+<span id="cb7-210"><a href="#cb7-210" aria-hidden="true" tabindex="-1"></a>      C_SD</span>
+<span id="cb7-211"><a href="#cb7-211" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb7-212"><a href="#cb7-212" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate Ex_SD where it is missing but Ex_SE is present</span></span>
+<span id="cb7-213"><a href="#cb7-213" aria-hidden="true" tabindex="-1"></a>    <span class="at">Ex_SD =</span> <span class="fu">ifelse</span>(</span>
+<span id="cb7-214"><a href="#cb7-214" aria-hidden="true" tabindex="-1"></a>      <span class="fu">is.na</span>(Ex_SD) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(Ex_SE),</span>
+<span id="cb7-215"><a href="#cb7-215" aria-hidden="true" tabindex="-1"></a>      Ex_SE <span class="sc">*</span> <span class="fu">sqrt</span>(Ex_n), </span>
+<span id="cb7-216"><a href="#cb7-216" aria-hidden="true" tabindex="-1"></a>      Ex_SD</span>
+<span id="cb7-217"><a href="#cb7-217" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-218"><a href="#cb7-218" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-219"><a href="#cb7-219" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-220"><a href="#cb7-220" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
+<span id="cb7-221"><a href="#cb7-221" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This combines Study_ID and Ex_ID to uniquely identify the source cohort.</span></span>
+<span id="cb7-222"><a href="#cb7-222" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-223"><a href="#cb7-223" aria-hidden="true" tabindex="-1"></a>    <span class="at">Cohort_ID =</span> <span class="fu">paste</span>(Study_ID, <span class="st">"Ex-ID"</span>, <span class="at">sep =</span> <span class="st">"_"</span>)</span>
+<span id="cb7-224"><a href="#cb7-224" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-225"><a href="#cb7-225" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-226"><a href="#cb7-226" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-227"><a href="#cb7-227" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convert all remaining character columns to factors (for meta-regression)</span></span>
+<span id="cb7-228"><a href="#cb7-228" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), as.factor))</span>
+<span id="cb7-229"><a href="#cb7-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-230"><a href="#cb7-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-231"><a href="#cb7-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-232"><a href="#cb7-232" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-233"><a href="#cb7-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-234"><a href="#cb7-234" aria-hidden="true" tabindex="-1"></a><span class="fu">## Calculate InRR Effect Sizes</span></span>
+<span id="cb7-235"><a href="#cb7-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-236"><a href="#cb7-236" aria-hidden="true" tabindex="-1"></a>Now, we apply the <span class="in">`calculate_lnRR()`</span> function to the cleaned dataset to compute the effect sizes and their variances.</span>
+<span id="cb7-237"><a href="#cb7-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-238"><a href="#cb7-238" aria-hidden="true" tabindex="-1"></a>The resulting dataset, <span class="in">`db_effect_sizes`</span>, is then saved as a CSV file for further analysis.</span>
+<span id="cb7-239"><a href="#cb7-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-242"><a href="#cb7-242" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-243"><a href="#cb7-243" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: calculate_effect_sizes</span></span>
+<span id="cb7-244"><a href="#cb7-244" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb7-245"><a href="#cb7-245" aria-hidden="true" tabindex="-1"></a>db_effect_sizes<span class="ot">&lt;-</span><span class="fu">calculate_lnRR</span>(db)</span>
+<span id="cb7-246"><a href="#cb7-246" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">write_csv</span>(</span>
+<span id="cb7-247"><a href="#cb7-247" aria-hidden="true" tabindex="-1"></a>  db_effect_sizes, </span>
+<span id="cb7-248"><a href="#cb7-248" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="fu">here</span>(<span class="st">".."</span>,<span class="st">"data"</span>, <span class="st">"db_lnRR.csv"</span>),</span>
+<span id="cb7-249"><a href="#cb7-249" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="st">""</span> </span>
+<span id="cb7-250"><a href="#cb7-250" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-251"><a href="#cb7-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-252"><a href="#cb7-252" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-253"><a href="#cb7-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-254"><a href="#cb7-254" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb7-255"><a href="#cb7-255" aria-hidden="true" tabindex="-1"></a><span class="fu">## Effect Size Table</span></span>
+<span id="cb7-256"><a href="#cb7-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-259"><a href="#cb7-259" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-260"><a href="#cb7-260" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: effect_size_table</span></span>
+<span id="cb7-261"><a href="#cb7-261" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb7-262"><a href="#cb7-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-263"><a href="#cb7-263" aria-hidden="true" tabindex="-1"></a>db_effect_sizes <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">".."</span>,<span class="st">"data"</span>,<span class="st">"db_lnRR.csv"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-264"><a href="#cb7-264" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD), as.numeric))<span class="sc">%&gt;%</span></span>
+<span id="cb7-265"><a href="#cb7-265" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), as.factor))</span>
+<span id="cb7-266"><a href="#cb7-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-267"><a href="#cb7-267" aria-hidden="true" tabindex="-1"></a><span class="co"># Define all columns to display (IDs first, then numerical data)</span></span>
+<span id="cb7-268"><a href="#cb7-268" aria-hidden="true" tabindex="-1"></a>display_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ES_ID"</span>, <span class="st">"Study_ID"</span>,  </span>
+<span id="cb7-269"><a href="#cb7-269" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"C_n"</span>, <span class="st">"C_mean"</span>, <span class="st">"C_SE"</span>, <span class="st">"C_SD"</span>, </span>
+<span id="cb7-270"><a href="#cb7-270" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Ex_n"</span>, <span class="st">"Ex_mean"</span>, <span class="st">"Ex_SE"</span>, <span class="st">"Ex_SD"</span>, </span>
+<span id="cb7-271"><a href="#cb7-271" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"lnRR"</span>, <span class="st">"lnRR_var"</span>, <span class="st">"Cohort_ID"</span>)</span>
+<span id="cb7-272"><a href="#cb7-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-273"><a href="#cb7-273" aria-hidden="true" tabindex="-1"></a><span class="co"># Define columns that require numerical rounding (excluding the ID columns)</span></span>
+<span id="cb7-274"><a href="#cb7-274" aria-hidden="true" tabindex="-1"></a>round_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"C_n"</span>, <span class="st">"C_mean"</span>, <span class="st">"C_SE"</span>, <span class="st">"C_SD"</span>, </span>
+<span id="cb7-275"><a href="#cb7-275" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Ex_n"</span>, <span class="st">"Ex_mean"</span>, <span class="st">"Ex_SE"</span>, <span class="st">"Ex_SD"</span>, </span>
+<span id="cb7-276"><a href="#cb7-276" aria-hidden="true" tabindex="-1"></a>                <span class="st">"lnRR"</span>, <span class="st">"lnRR_var"</span>)</span>
+<span id="cb7-277"><a href="#cb7-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-278"><a href="#cb7-278" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(</span>
+<span id="cb7-279"><a href="#cb7-279" aria-hidden="true" tabindex="-1"></a>  db_effect_sizes <span class="sc">%&gt;%</span> </span>
+<span id="cb7-280"><a href="#cb7-280" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Select only the desired columns for display</span></span>
+<span id="cb7-281"><a href="#cb7-281" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">all_of</span>(display_cols)),</span>
+<span id="cb7-282"><a href="#cb7-282" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb7-283"><a href="#cb7-283" aria-hidden="true" tabindex="-1"></a>    <span class="at">pageLength =</span> <span class="dv">10</span>,</span>
+<span id="cb7-284"><a href="#cb7-284" aria-hidden="true" tabindex="-1"></a>    <span class="at">scrollX =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-285"><a href="#cb7-285" aria-hidden="true" tabindex="-1"></a>    <span class="at">dom =</span> <span class="st">'Bfrtip'</span>,</span>
+<span id="cb7-286"><a href="#cb7-286" aria-hidden="true" tabindex="-1"></a>    <span class="at">buttons =</span> <span class="fu">c</span>(<span class="st">'copy'</span>, <span class="st">'csv'</span>)</span>
+<span id="cb7-287"><a href="#cb7-287" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb7-288"><a href="#cb7-288" aria-hidden="true" tabindex="-1"></a>  <span class="at">extensions =</span> <span class="st">'Buttons'</span>,</span>
+<span id="cb7-289"><a href="#cb7-289" aria-hidden="true" tabindex="-1"></a>  <span class="at">rownames =</span> <span class="cn">FALSE</span></span>
+<span id="cb7-290"><a href="#cb7-290" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-291"><a href="#cb7-291" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply rounding ONLY to the numerical statistical columns</span></span>
+<span id="cb7-292"><a href="#cb7-292" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formatRound</span>(<span class="at">columns =</span> round_cols, <span class="at">digits =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-293"><a href="#cb7-293" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply general styling to all displayed columns</span></span>
+<span id="cb7-294"><a href="#cb7-294" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formatStyle</span>(<span class="at">columns =</span> display_cols, <span class="st">`</span><span class="at">text-align</span><span class="st">`</span> <span class="ot">=</span> <span class="st">'center'</span>)</span>
+<span id="cb7-295"><a href="#cb7-295" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-296"><a href="#cb7-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-297"><a href="#cb7-297" aria-hidden="true" tabindex="-1"></a><span class="fu">## Effect Size Distributions</span></span>
+<span id="cb7-298"><a href="#cb7-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-301"><a href="#cb7-301" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-302"><a href="#cb7-302" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: lnRR_histogram</span></span>
+<span id="cb7-303"><a href="#cb7-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-304"><a href="#cb7-304" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(db_effect_sizes<span class="sc">$</span>lnRR,<span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="fl">6.5</span>,<span class="dv">9</span>),<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">6.5</span>,<span class="dv">9</span>,<span class="fl">0.5</span>))</span>
+<span id="cb7-305"><a href="#cb7-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-306"><a href="#cb7-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-307"><a href="#cb7-307" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(db_effect_sizes<span class="sc">$</span>lnRR_var, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">13</span>),<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">13</span>,<span class="fl">0.1</span>))</span>
+<span id="cb7-308"><a href="#cb7-308" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-309"><a href="#cb7-309" aria-hidden="true" tabindex="-1"></a>:::</span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

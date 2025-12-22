@@ -1,24 +1,27 @@
 project:
   type: book
-  output-dir: ../docsoutput-dir: ../docs
+  output-dir: ../docs
 
 book:
   title: "Music_meta_book"
   author: "TBA"
   date: last-modified
   chapters:
-    - index.qmd  
-  - part: "lnRR"
+    - index.qmd
+    - part: "lnRR"
       chapters:
         - lnRR.qmd
         - overall_effect.qmd
         - uni_moderators.qmd
         - multi_moderator.qmd
         - publication_bias.qmd
-  - part: "lVR"
-      chapters:
-  - part: "lCVR"
-      chapters:
+    # Commented out empty parts to prevent build errors
+    # - part: "lnVR"
+    #   chapters: 
+    #     - placeholder.qmd
+    # - part: "lnCVR"
+    #   chapters:
+    #     - placeholder.qmd
 
 number-sections: false 
 bibliography: references.bib
@@ -29,7 +32,8 @@ format:
     theme:
       light: litera
       dark: darkly
-    mainfont: "Atkinson Hyperlegible"
+    # Note: Ensure you are importing this font in a CSS file or header
+    mainfont: "Atkinson Hyperlegible" 
     code-tools: true
     toc: true
     toc-depth: 3
@@ -37,9 +41,8 @@ format:
     code-copy: true
 
 execute:
-  freeze: auto # Automatically caches results to speed up rendering
+  freeze: auto
   warning: false
   message: false
 
 editor: visual
-

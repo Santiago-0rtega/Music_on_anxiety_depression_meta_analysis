@@ -2,9 +2,11 @@
 title: "Publication bias"
 ---
 
+First, we reload the data and run a simple intercept-only model (ma_all) to establish the overall mean effect size, which acts as the centerline for our funnel plots.
+
 ```{r}
 #| label: setup
-#| include: false
+#| 
 pacman::p_load(
                DT,
                dtplyr,
@@ -15,18 +17,12 @@ pacman::p_load(
                metafor,
                orchaRd, emmeans
                )
-
-#| label: load_and_clean_data
-db <- readr::read_csv(here("data","db_lnRR.csv")) %>%
+db <- readr::read_csv(here("..","data","db_lnRR.csv")) %>%
 mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD), as.numeric))%>%
   mutate(across(where(is.character), as.factor))
 
 
 
-
-```
-
-```{r}
 VCV <- metafor::vcalc(
   vi = lnRR_var,
   cluster = Cohort_ID, # The clustering variable (Study_ID + Ex_ID)
@@ -47,7 +43,7 @@ ma_all <- rma.mv(yi = lnRR,
 
 summary(ma_all)
 ```
-
+## Visual inspection: funnel plots
 ```{r}
 # funnel plot - standard error
 funnel(ma_all, yaxis = "sei",
@@ -63,26 +59,24 @@ funnel(ma_all, yaxis = "seinv",
       xlab = "Standarised residuals",
       ylab = "Precision (inverse of SE)",  col = c(alpha("orange", 0.5)))
 ```
+## Egger's Regression (Testing Small-Study Effects)
 
+Visual inspection is subjective. Egger's Regression formally tests if the effect size depends on the sample size (or precision). If the slope is significant, it means small studies are systematically different from large ones (often due to bias).
 ```{r}
-# 1. Calculate the effective sample size term (sqrt_inv_e_n) using the full data
+#| label: eggers_test
 
+# 1. Calculate the effective sample size term (sqrt_inv_e_n)
+# Formula: sqrt(2/Ex_n + 2/C_n) approximates the standard error based on N
 dt_egger_full <- db %>%
-  mutate(
-    # Formula: sqrt(2/Ex_n + 2/C_n)
-    sqrt_inv_e_n = sqrt(
-      (2 / Ex_n) + (2 / C_n)
-    )
-  )
-```
+  mutate(sqrt_inv_e_n = sqrt((2 / Ex_n) + (2 / C_n)))
 
-```{r}
+# 2. Run the Meta-Regression
+# If 'sqrt_inv_e_n' is significant (p < 0.05), we have evidence of small-study effects.
 egger_model_full <- rma.mv(yi = lnRR,
-                           V = VCV,  # Use the FULL VCV matrix
-                           mods = ~ 1 + sqrt_inv_e_n, # Egger's predictor
-                           random = list(~1 | Study_ID,
-                                         ~1 | ES_ID), # Adjusted random effects
-                           test = "z",      # Use Z-test for stability
+                           V = VCV, 
+                           mods = ~ 1 + sqrt_inv_e_n, # The 'Egger' predictor
+                           random = list(~1 | Study_ID, ~1 | ES_ID), 
+                           test = "z",       
                            method = "REML",
                            sparse = TRUE,
                            data = dt_egger_full)
@@ -90,67 +84,82 @@ egger_model_full <- rma.mv(yi = lnRR,
 summary(egger_model_full)
 ```
 
+
+
 ```{r}
+#| label: egger_bubble_plot
 bubble_plot(egger_model_full,
             mod = "sqrt_inv_e_n",
             group = "Study_ID",
             xlab = "Square root of inverse of effective sample size")
 ```
 
-```{r}
-# Calculate the mean-centered Publication Year
-db_decline <- dt_egger_full %>%
-  mutate(
-    Year_c = Year - mean(Year, na.rm = TRUE) # Center Year around the mean
-  )
-```
+## Decline Effect (Time-Lag Bias)
+
+Often in science, early studies show large effects (novelty bias), but as time goes on and methods improve (or replication attempts increase), the effect size shrinks. This is called the Decline Effect or Time-Lag Bias.
+
+We test this by adding Publication Year to the model. A significant negative slope indicates the effect is shrinking over time.
 
 ```{r}
+#| label: time_lag_analysis
+
+# 1. Mean-Center the Year (Interpretation: Intercept = Effect in average year)
+db_decline <- dt_egger_full %>%
+  mutate(Year_c = Year - mean(Year, na.rm = TRUE))
+
+# 2. Run model: Controlling for Precision (Egger) AND Year simultaneously
 year_lag_model <- rma.mv(yi = lnRR,
                          V = VCV, 
-                         mods = ~ 1 + Year_c + sqrt_inv_e_n, # Include BOTH predictors
-                         random = list(~1 | Study_ID,
-                                       ~1 | ES_ID), 
+                         mods = ~ 1 + Year_c + sqrt_inv_e_n, 
+                         random = list(~1 | Study_ID, ~1 | ES_ID), 
                          test = "t", 
                          method = "REML",
                          sparse = TRUE,
                          data = db_decline)
 
 summary(year_lag_model)
+
+
 ```
 
 ```{r}
+#| label: time_lag_bubble_plot
 bubble_plot(year_lag_model,
             mod = "Year_c",
             group = "Study_ID",
             xlab = "Year of publication")
 ```
 
-```{r}
-db_decline <- dt_egger_full %>%
-  mutate(
-    Year_c = Year - mean(Year, na.rm = TRUE),
-    quality_c =Reporting_quality - mean(Reporting_quality, na.rm = TRUE) # Center Year around the mean
-  )
 
 
-```
+
+## Reporting Quality as a Moderator of Decline Effect
+
+
 
 ```{r}
+#| label: quality_analysis
+
+# 1. Center the Quality Score
+db_decline <- db_decline %>%
+  mutate(quality_c = Reporting_quality - mean(Reporting_quality, na.rm = TRUE))
+
+# 2. Run the comprehensive bias model
+# Controls for: Precision (Egger), Time (Year), and Quality all at once.
 reporting_model <- rma.mv(yi = lnRR,
-                         V = VCV, 
-                         mods = ~ 1 + quality_c  + sqrt_inv_e_n+Year_c, 
-                         random = list(~1 | Study_ID,
-                                       ~1 | ES_ID), 
-                         test = "t", 
-                         method = "REML",
-                         sparse = TRUE,
-                         data = db_decline)
+                          V = VCV, 
+                          mods = ~ 1 + quality_c + sqrt_inv_e_n + Year_c, 
+                          random = list(~1 | Study_ID, ~1 | ES_ID), 
+                          test = "t", 
+                          method = "REML",
+                          sparse = TRUE,
+                          data = db_decline)
 
 summary(reporting_model)
 ```
 
 ```{r}
+#| label: quality_bubble_plot
 bubble_plot(reporting_model,
             mod = "quality_c",
             group = "Study_ID",

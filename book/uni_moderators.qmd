@@ -272,9 +272,6 @@ clean_unique_contrasts <- function(full_results_table, level_count = 6) {
 
 ## Meta-regressions
 
-
-
-
 ::: {.callout-note icon="true"}
 ## Data Filtering & Matrix Alignment
 
@@ -310,19 +307,13 @@ db_filtered <- db %>%
 indices_to_keep <- which(db$Outcome_type %in% levels_to_keep)
 VCV_filtered <- VCV[indices_to_keep, indices_to_keep]
 ```
-
 :::
 
+::: callout-tip
+Manual Reference Rotation for SubsetsThe automated contrast functions are designed for full datasets. When you filter for data availability (e.g., keeping only levels with $k \ge 5$) and are left with more than 2 levels, it is often safer to manually "rotate" the reference level. How it works:In meta-regression with an intercept, the Intercept represents the mean of the Reference Level. The other coefficients represent the difference between the reference and the other groups.By manually changing the reference (ref = ...) and re-running the model for each level, you mathematically force the model to calculate every possible pairwise comparison (e.g., A vs B, B vs C, A vs C) and their specific p-values.
 
-
-::: {.callout-tip}
-
-Manual Reference Rotation for SubsetsThe automated contrast functions are designed for full datasets. When you filter for data availability (e.g., keeping only levels with $k \ge 5$) and are left with more than 2 levels, it is often safer to manually "rotate" the reference level.
-How it works:In meta-regression with an intercept, the Intercept represents the mean of the Reference Level. 
-The other coefficients represent the difference between the reference and the other groups.By manually changing the reference (ref = ...) and re-running the model for each level, you mathematically force the model to calculate every possible pairwise comparison (e.g., A vs B, B vs C, A vs C) and their specific p-values.
-
-- 2 Levels remaining? You only need one model (Intercept = Group A, Coefficient = Difference).
-- 3+ Levels remaining? Use the rotation method below.
+-   2 Levels remaining? You only need one model (Intercept = Group A, Coefficient = Difference).
+-   3+ Levels remaining? Use the rotation method below.
 
 ```{r}
 #| label: manual_contrasts
@@ -371,14 +362,11 @@ model_C <- rma.mv(yi = lnRR,
                   data = db_filtered)
 model_C
 ```
-
 :::
 
-
-
-
-:::: panel-tabset
+::: panel-tabset
 ## 1. Outcome type: Anxiety and Depression
+
 ```{r}
 #| label: filter_outcome_type
 #| fold: TRUE
@@ -438,6 +426,7 @@ orchard_outcome<-orchard_plot(mOT,
                                                                     minor_breaks = seq(-8, 10, by = 1 ))
 orchard_outcome
 ```
+
 ```{r}
 #| label: save-figure
 #| eval: false
@@ -453,7 +442,9 @@ ggsave(filename = here("..","Plots", "orchard_outcome_lnRR.jpg"),
        dpi = 300)
 
 ```
+
 Contrast between levels (Anxiety as reference level)
+
 ```{r}
 mOT <- rma.mv(yi = lnRR,
                   V = VCV_filtered, 
@@ -494,8 +485,6 @@ r2LE <- round(r2_ml(mLE), 4)
 r2LE
 ```
 
-
-
 ```{r}
 #| label: orchard_lifestage_exp
 #| fig-width: 6
@@ -511,6 +500,7 @@ orchard_lifestage<-orchard_plot(mLE,
                                                                     minor_breaks = seq(-8, 10, by = 1 ))
 orchard_lifestage
 ```
+
 ```{r}
 #| label: save-figure_lifestage
 #| eval: false
@@ -526,7 +516,9 @@ ggsave(filename = here("..","Plots", "orchard_lifestage_lnRR.jpg"),
        dpi = 300)
 
 ```
+
 Contrasts between levels (Adolescent as reference level)
+
 ```{r}
 #| label: lifestage_contrasts
 
@@ -546,7 +538,6 @@ t2 <- clean_unique_contrasts(full_results_table = t1, level_count = 6)
 
 t2
 ```
-
 
 ## 3. Sex
 
@@ -607,6 +598,7 @@ orchard_sex<-orchard_plot(mSX,
                                                                     minor_breaks = seq(-5, 10, by = 1 ))
 orchard_sex
 ```
+
 ```{r}
 #| label: save-figure_sex
 #| eval: false
@@ -624,6 +616,7 @@ ggsave(filename = here("..","Plots", "orchard_sex_lnRR.jpg"),
 ```
 
 Contrast between levels (Female as reference level)
+
 ```{r}
 mSX <- rma.mv(yi = lnRR,
                   V = VCV_filtered, 
@@ -665,6 +658,7 @@ summary(mMG)
 r2MG <- round(r2_ml(mMG), 4)
 r2MG
 ```
+
 ```{r}
 #| label: orchard_music_genre
 #| fig-width: 6
@@ -680,6 +674,7 @@ orchard_genre<-orchard_plot(mMG,
                                                                     minor_breaks = seq(-5, 10, by = 1 ))
 orchard_genre
 ```
+
 ```{r}
 #| label: save-figure_genre
 #| eval: false
@@ -696,10 +691,10 @@ ggsave(filename = here("..","Plots", "orchard_genre_lnRR.jpg"),
 
 ```
 
+Contrasts between levels
 
-Contrasts between levels 
 ```{r}
-#| label: music_genre_contrasts
+#| label: music_genre_contrasts1
 
 # The Generator
 contra_mMG <- contrast_fun(data = db, 
@@ -714,10 +709,6 @@ t2 <- clean_unique_contrasts(full_results_table = t1, level_count = 4)
 
 t2
 ```
-
-
-
-
 
 ## 5. Music exposure duration
 
@@ -764,6 +755,7 @@ summary(mMED)
 r2MED <- round(r2_ml(mMED), 4)
 r2MED
 ```
+
 ```{r}
 #| label: orchard_music_exposure
 #| fig-width: 6
@@ -796,10 +788,8 @@ ggsave(filename = here("..","Plots", "orchard_exposure_lnRR.jpg"),
 
 ```
 
-
-
-
 Contrasts between levels
+
 ```{r}
 LEVELS <- c("Acute", "Medium", "Short")
 MOD_NAME <- "Music_exposure_duration"
@@ -841,10 +831,6 @@ model_C <- rma.mv(yi = lnRR,
 model_C
 ```
 
-
-
-
-
 ## 6. Experimental design
 
 ```{r}
@@ -884,8 +870,6 @@ orchard_design<-orchard_plot(mEXD,
 orchard_design
 ```
 
-
-
 ```{r}
 #| label: save-figure_design
 #| eval: false
@@ -902,12 +886,8 @@ ggsave(filename = here("..","Plots", "orchard_design_lnRR.jpg"),
 
 ```
 
+Contrasts between levels
 
-
-
-
-
-Contrasts between levels 
 ```{r}
 #| label: music_genre_contrasts
 
@@ -924,8 +904,6 @@ t2 <- clean_unique_contrasts(full_results_table = t1, level_count = 3)
 
 t2
 ```
-
-
 
 ## 7. Induced behaviour
 
@@ -966,8 +944,6 @@ orchard_behaviour<-orchard_plot(mIB,
 orchard_behaviour
 ```
 
-
-
 ```{r}
 #| label: save-figure_behaviour
 #| eval: false
@@ -983,8 +959,6 @@ ggsave(filename = here("..","Plots", "orchard_behaviour_lnRR.jpg"),
        dpi = 300)
 
 ```
-
-
 
 ```{r}
 mIB <- rma.mv(yi = lnRR,
@@ -1231,4 +1205,4 @@ mAT <- rma.mv(yi = lnRR,
 
 summary(mAT)
 ```
-::::
+:::

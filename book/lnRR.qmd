@@ -192,7 +192,7 @@ After defining the function, we proceed to load and clean the dataset.
 
 ```{r}
 #| label: load_and_clean_data
-db <- readr::read_csv(here("data","db251124.csv")) %>%
+db <- readr::read_csv(here("..","data","db251124.csv")) %>%
   
   # Convert all columns required for lnRR calculation to numeric.
   mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD), as.numeric)) %>%
