@@ -15,10 +15,9 @@ book:
         - uni_moderators.qmd
         - multi_moderator.qmd
         - publication_bias.qmd
-    # Commented out empty parts to prevent build errors
-    # - part: "lnVR"
-    #   chapters: 
-    #     - placeholder.qmd
+     - part: "lnVR"
+       chapters: 
+         - lnVR.qmd
     # - part: "lnCVR"
     #   chapters:
     #     - placeholder.qmd

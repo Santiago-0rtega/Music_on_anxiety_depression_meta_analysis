@@ -1,0 +1,201 @@
+---
+title: "lnVR"
+---
+```{r}
+#| label: setup
+#| include: false
+
+# Load necessary packages for data manipulation, meta-analysis, and table formatting
+pacman::p_load(
+               DT,
+               dtplyr,
+               here, 
+               knitr,
+               tidyverse,
+               patchwork,
+               metafor,
+               orchaRd
+               )
+```
+
+
+
+```{r}
+#| label: load_and_clean_data
+#| message: false
+#| warning: false
+
+db <- readr::read_csv(here("..","data","db251124.csv")) %>%
+  
+  # Convert all columns required for calculation to numeric.
+  mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD), as.numeric)) %>%
+  
+  # Calculate SD where it is missing but SE is present
+  # Formula: SD = SE * sqrt(n)
+  mutate(
+    C_SD = ifelse(
+      is.na(C_SD) & !is.na(C_SE),
+      C_SE * sqrt(C_n), 
+      C_SD
+    ),
+    Ex_SD = ifelse(
+      is.na(Ex_SD) & !is.na(Ex_SE),
+      Ex_SE * sqrt(Ex_n), 
+      Ex_SD
+    )
+  ) %>%
+  
+  # Create Cohort_ID to uniquely identify the source cohort
+  mutate(
+    Cohort_ID = paste(Study_ID, "Ex-ID", sep = "_")
+  ) %>%
+  
+  # Convert all remaining character columns to factors
+  mutate(across(where(is.character), as.factor))
+```
+
+
+
+
+
+```{r}
+#| label: calculate_lnVR_final
+
+calculate_lnVR <- function(dt) {
+
+  ## 1. Filter out Proportional Data
+  dt <- dt %>%
+    mutate(Data_type = tolower(Data_type)) %>% 
+    filter(!Data_type %in% c("percentage")) 
+  
+  if (nrow(dt) == 0) {
+    message("No non-percentage data remaining for lnVR calculation.")
+    return(dt)
+  }
+
+  ## 2. Data Cleaning and Imputation
+  dt <- dt %>%
+    mutate(
+      # Adjust means (for consistency)
+      C_mean = ifelse(C_mean == 0, 0.005, C_mean),
+      Ex_mean = ifelse(Ex_mean == 0, 0.005, Ex_mean),
+      C_mean = ifelse(C_mean == 100, 99.5, C_mean), 
+      Ex_mean = ifelse(Ex_mean == 100, 99.5, Ex_mean),
+
+      # Adjust SDs that are 0 (Critical for lnVR)
+      Ex_SD = ifelse(Ex_SD == 0, 0.01, Ex_SD),
+      C_SD = ifelse(C_SD == 0, 0.05, C_SD)
+    )
+
+  ## 3. Setup
+  dt$lnVR <- NA_real_
+  dt$lnVR_var <- NA_real_
+
+  ## 4. Calculation Loop
+  for (i in seq_len(nrow(dt))) {
+    
+    # Extract variables
+    Ex_n <- dt$Ex_n[i]
+    C_n <- dt$C_n[i]
+    Ex_SD <- dt$Ex_SD[i]
+    C_SD <- dt$C_SD[i]
+    Data_type <- dt$Data_type[i]
+    Comparison_structure <- dt$Comparison_structure[i]
+    
+    # --- Continuous Data ---
+    if (Data_type %in% c("time", "distance", "count", "latency", "index")) {
+      
+      # A. INDEPENDENT GROUPS
+      if (Comparison_structure == "Independent") {
+        
+        # measure = "VR" (Variability Ratio for independent groups)
+        # Requires n1i, n2i, sd1i, sd2i
+        effect <- metafor::escalc(
+          measure = "VR", 
+          n1i = Ex_n, n2i = C_n,
+          sd1i = Ex_SD, sd2i = C_SD,
+          var.names = c("lnVR", "lnVR_var")
+        )
+        
+      # B. DEPENDENT GROUPS
+      } else if (Comparison_structure == "Dependent") {
+        
+        # measure = "VRC" (Variability Ratio for Correlated/Dependent groups)
+        # Requires 'ni' (sample size of pairs) and 'ri' (correlation)
+        # We assume ri = 0.5 (consistent with your lnRR approach)
+        effect <- metafor::escalc(
+          measure = "VRC", 
+          ni = (Ex_n + C_n) / 2, # Use average N for the pair
+          sd1i = Ex_SD, sd2i = C_SD,
+          ri = 0.5, 
+          var.names = c("lnVR", "lnVR_var")
+        )
+      }
+      
+      # Assign results
+      dt$lnVR[i] <- effect$lnVR
+      dt$lnVR_var[i] <- effect$lnVR_var
+      
+      # Note: Sign flip (Higher_better == "No") removed as discussed.
+      # lnVR is interpreted strictly as variance expansion (+) or compression (-).
+    }
+  }
+  
+  return(dt)
+}
+```
+
+
+```{r}
+#| label: apply_lnVR_calculation
+#| eval: false
+
+db_lnVR <- calculate_lnVR(db)
+
+readr::write_csv(
+  db_lnVR, 
+  file = here("..","data", "db_lnVR.csv"),
+  na = "" 
+)
+```
+
+
+
+
+
+```{r}
+#| label: effect_size_table
+#| echo: false
+#| message: false
+
+db_lnVR <- readr::read_csv(here("..","data","db_lnVR.csv")) %>%
+  mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD), as.numeric)) %>%
+  mutate(across(where(is.character), as.factor))
+
+display_cols <- c("ES_ID", "Study_ID",  
+                  "C_n", "C_mean", "C_SD", 
+                  "Ex_n", "Ex_mean", "Ex_SD", 
+                  "lnVR", "lnVR_var", "Cohort_ID")
+
+round_cols <- c("C_n", "C_mean", "C_SD", 
+                "Ex_n", "Ex_mean", "Ex_SD", 
+                "lnVR", "lnVR_var")
+
+DT::datatable(
+ db_lnVR %>% dplyr::select(all_of(display_cols)),
+ options = list(pageLength = 10, scrollX = TRUE, dom = 'Bfrtip', buttons = c('copy', 'csv')),
+ extensions = 'Buttons', rownames = FALSE
+) %>%
+  formatRound(columns = round_cols, digits = 3) %>%
+  formatStyle(columns = display_cols, `text-align` = 'center')
+```
+
+
+
+
+
+
+
+
+
+
