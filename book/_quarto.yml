@@ -15,9 +15,11 @@ book:
         - uni_moderators.qmd
         - multi_moderator.qmd
         - publication_bias.qmd
-     - part: "lnVR"
-       chapters: 
-         - lnVR.qmd
+    - part: "lnVR"
+      chapters: 
+        - lnVR.qmd
+        - overall_effect_lnVR.qmd
+        - uni_moderators_lnVR.qmd
     # - part: "lnCVR"
     #   chapters:
     #     - placeholder.qmd
@@ -31,7 +33,6 @@ format:
     theme:
       light: litera
       dark: darkly
-    # Note: Ensure you are importing this font in a CSS file or header
     mainfont: "Atkinson Hyperlegible" 
     code-tools: true
     toc: true

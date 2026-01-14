@@ -243,7 +243,9 @@ clean_unique_contrasts <- function(full_results_table, level_count = 6) {
 
 
 # Meta-regressions
-::: {.callout-note icon="true"}
+
+
+::: panel-tabset
 
 ## Outcome type: Anxiety and Depression
 
@@ -318,7 +320,7 @@ ggsave(filename = here("..","Plots", "orchard_outcome_lnVR.jpg"),
        height = 9,  
        dpi = 300)
 ```
-### Contrast between levels (Anxiety as reference level)
+ Contrast between levels (Anxiety as reference level)
 ```{r}
 mOT <- rma.mv(yi = lnVR, # Changed to lnVR
                   V = VCV_filtered, 
@@ -387,7 +389,9 @@ ggsave(filename = here("..","Plots", "orchard_lifestage_lnVR.jpg"),
        height = 7,  
        dpi = 300)
 ```
-### Contrasts between levels
+
+Contrasts between levels
+
 ```{r}
 #| label: lifestage_contrasts
 
@@ -407,7 +411,7 @@ t2 <- clean_unique_contrasts(full_results_table = t1, level_count = 6)
 
 t2
 ```
-
+:::
 
 
 
