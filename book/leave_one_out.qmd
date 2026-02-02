@@ -223,6 +223,5 @@ metafor::forest(
 abline(v = 0, lty = "dashed", lwd = 2)
 
 # 6. Add a vertical dotted line for the overall meta-analytic mean
-# This corresponds to the vertical line running through the cluster of dots.
-abline(v = overall_mean, lty = "dotted", lwd = 1.5)
+# This corresponds to the vertical line running through 
 ```

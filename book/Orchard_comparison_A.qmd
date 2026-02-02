@@ -60,7 +60,8 @@ ma_all <- rma.mv(yi = lnRR,
 overall_lnRR<-orchard_plot(ma_all,
               group = "Study_ID",
               xlab = "lnRR", 
-              flip=T) +
+              flip=T,trunk.size = 0.3,     
+              branch.size = 2,alpha = 0.3) +
               scale_x_discrete(labels = c("Overall effect")) +
             scale_colour_brewer(palette = "Paired") +
             scale_fill_brewer(palette = "Dark2")+
@@ -124,7 +125,8 @@ orchard_outcome<-orchard_plot(mOT,
              mod = "Outcome_type",
               group = "Study_ID",
               xlab = "lnRR", 
-             flip = T) +
+             flip = T,trunk.size = 0.3,     
+              branch.size = 2, alpha = 0.3) +
             scale_colour_brewer(palette = "Set1") +
             scale_fill_brewer(palette = "Dark2")+scale_y_continuous(breaks = seq(-8, 10, by = 2),
                                                                     minor_breaks = seq(-8, 10, by = 1 ))
@@ -192,7 +194,8 @@ summary(mOV)
 orchard_overall_lnVR<-orchard_plot(mOV,
                group = "Study_ID",
                xlab = "lnVR", 
-              flip = T) + 
+              flip = T,trunk.size = 0.3,     
+              branch.size = 2, alpha = 0.3) + 
               scale_x_discrete(labels = c("Overall effect"))+
             scale_colour_brewer(palette = "Dark2") +
             scale_fill_brewer(palette = "Paired")+scale_y_continuous(limits = c(-6,11),breaks = seq(-6, 10, by = 2),
@@ -228,7 +231,7 @@ VCV_filtered2 <- VCV2[indices_to_keep, indices_to_keep]
 ```{r}
 #| label: model_outcome_type_lnVR
 
-mOT <- rma.mv(yi = lnVR, 
+mOT2 <- rma.mv(yi = lnVR, 
                   V = VCV_filtered2, 
               mods = ~ Outcome_type,
                   random = list(~1 | Study_ID,
@@ -242,7 +245,7 @@ mOT <- rma.mv(yi = lnVR,
 
 ```
 ```{r}
-summary(mOT)
+summary(mOT2)
 ```
 
 ```{r}
@@ -250,11 +253,12 @@ summary(mOT)
 #| fig-width: 6
 #| fig-height: 4
 #| warning: false
-orchard_outcome_lnVR<-orchard_plot(mOT,
+orchard_outcome_lnVR<-orchard_plot(mOT2,
               mod = "Outcome_type",
                group = "Study_ID",
                xlab = "lnVR", 
-              flip = T) +
+              flip = T,trunk.size = 0.3,alpha = 0.3,     
+              branch.size = 2) +
             scale_colour_brewer(palette = "Dark2") +
             scale_fill_brewer(palette = "Set1")+scale_y_continuous(limits = c(-6,11),breaks = seq(-6, 10, by = 2),
                                                                     minor_breaks = seq(-6, 11, by = 1 ))
@@ -307,6 +311,8 @@ p_VR_mod <- orchard_outcome_lnVR +
   ggtitle("")
 
 
+
+```
 # 4. Patch Together ---------------------------------------------
 
 # Construct columns: Overall on top of Moderator
@@ -323,10 +329,8 @@ comparison<-final_patch +
     tag_levels = 'A'
   )
 comparison
-```
-
 ```{r}
-fig<-(p_RR_all/p_VR_all)
+fig2<-(p_RR_all/p_VR_all)
 
 fig2<-fig2+ 
   plot_annotation(

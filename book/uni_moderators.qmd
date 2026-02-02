@@ -150,14 +150,15 @@ r2OT
 #| fig-width: 6
 #| fig-height: 4
 #| warning: false
-orchard_outcome<-orchard_plot(mOT,
+orchard_outcome<-orchard_plot(mOT,legend.pos = "top.left",
              mod = "Outcome_type",
               group = "Study_ID",
               xlab = "lnRR", 
-             flip = T) +
+             flip = T,trunk.size = 0.3,     
+              branch.size = 1) +
             scale_colour_brewer(palette = "Set1") +
-            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(breaks = seq(-8, 10, by = 2),
-                                                                    minor_breaks = seq(-8, 10, by = 1 ))
+            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(limits = c(-8,10.5),breaks = seq(-8, 10, by = 2),
+                                                                    minor_breaks = seq(-8, 10, by = 1 ))+  theme(legend.direction = "vertical")
 orchard_outcome
 ```
 
@@ -226,15 +227,16 @@ lifestage_labels <- c(
 )
 
 
-orchard_lifestage<-orchard_plot(mLE,
+orchard_lifestage<-orchard_plot(mLE,legend.pos = "top.left",
              mod = "Lifestage_exposure",
               group = "Study_ID",
-               xlab = expression(lnRR), 
+               xlab = expression(lnRR),trunk.size = 0.3,     
+              branch.size = 1 ,
              flip = T) +
   scale_x_discrete(labels = lifestage_labels)+
             scale_colour_brewer(palette = "Set1") +
-            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(breaks = seq(-8, 10, by = 2),
-                                                                    minor_breaks = seq(-8, 10, by = 1 ))
+            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(limits = c(-8,10.5),breaks = seq(-8, 10, by = 2),
+                                                                    minor_breaks = seq(-8, 10, by = 1 ))+  theme(legend.direction = "vertical")
 orchard_lifestage
 ```
 
@@ -306,13 +308,14 @@ r2SX
 #| fig-height: 4
 #| warning: false
 orchard_sex<-orchard_plot(mSX,
-             mod = "Sex",
+             mod = "Sex",legend.pos = "top.left",
               group = "Study_ID",
              xlab = "lnRR", 
-             flip = T) +
+             flip = T,trunk.size = 0.3,     
+              branch.size = 1) +
             scale_colour_brewer(palette = "Set1") +
-            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(breaks = seq(-8, 10, by = 2),
-                                                                    minor_breaks = seq(-8, 10, by = 1 ))
+            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(limits = c(-8,10.5),breaks = seq(-8, 10, by = 2),
+                                                                    minor_breaks = seq(-8, 10, by = 1 ))+  theme(legend.direction = "vertical")
 orchard_sex
 ```
 
@@ -366,14 +369,27 @@ r2MG
 #| fig-width: 6
 #| fig-height: 4
 #| warning: false
+
+
+
+
+genre_labels <- c(
+  "Mixed"  = "Mixed",
+  "Popular Contemporary Music"       = "Contemporary",
+  "Traditional Music / Folk / World"    = "World",
+  "Western Art Music / Orchestral" = "Orchestral"
+)
+
+
 orchard_genre<-orchard_plot(mMG,
-             mod = "Meta_genre",
+             mod = "Meta_genre",legend.pos = "top.left",
               group = "Study_ID",
-             xlab = "lnRR", 
-             flip = T) +
+             xlab = expression(lnRR),trunk.size = 0.3,     
+              branch.size = 1, 
+             flip = T) +scale_x_discrete(labels = genre_labels)+
             scale_colour_brewer(palette = "Set1") +
-            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(breaks = seq(-8, 10, by = 2),
-                                                                    minor_breaks = seq(-8, 10, by = 1 ))
+            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(limits = c(-8,10.5),breaks = seq(-8, 10, by = 2),
+                                                                    minor_breaks = seq(-8, 10, by = 1 ))+  theme(legend.direction = "vertical")
 orchard_genre
 ```
 
@@ -453,13 +469,14 @@ r2MED
 #| fig-height: 4
 #| warning: false
 orchard_exposure<-orchard_plot(mMED,
-             mod = "Music_exposure_duration",
+             mod = "Music_exposure_duration",legend.pos = "top.left",
               group = "Study_ID",
-              xlab = "log response ratio (lnRR)", 
+              xlab = expression(lnRR), trunk.size = 0.3,     
+              branch.size = 1,
               flip = T)  +
             scale_colour_brewer(palette = "Set1") +
-            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(breaks = seq(-8, 10, by = 2),
-                                                                    minor_breaks = seq(-8, 10, by = 1 ))
+            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(limits = c(-8,10.5),breaks = seq(-8, 10, by = 2),
+                                                                    minor_breaks = seq(-8, 10, by = 1 ))+  theme(legend.direction = "vertical")
 orchard_exposure
 ```
 
@@ -517,13 +534,14 @@ r2EXD
 #| fig-height: 4
 #| warning: false
 orchard_design<-orchard_plot(mEXD,
-             mod = "Experimental_design",
+             mod = "Experimental_design",legend.pos = "top.left",
               group = "Study_ID",
-              xlab = "log response ratio (lnRR)", 
+              xlab = expression(lnRR), trunk.size = 0.3,     
+              branch.size = 1,
               flip=T) +
             scale_colour_brewer(palette = "Set1") +
-            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(breaks = seq(-8, 10, by = 2),
-                                                                    minor_breaks = seq(-8, 10, by = 1 ))
+            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(limits = c(-8,10.5),breaks = seq(-8, 10, by = 2),
+                                                                    minor_breaks = seq(-8, 10, by = 1 ))+  theme(legend.direction = "vertical")
 orchard_design
 ```
 
@@ -583,13 +601,14 @@ r2IB
 #| fig-height: 4
 #| warning: false
 orchard_behaviour<-orchard_plot(mIB,
-             mod = "Induced behaviour",
+             mod = "Induced behaviour",legend.pos = "top.left",
               group = "Study_ID",
-              xlab = "log response ratio (lnRR)", 
+              xlab = expression(lnRR), trunk.size = 0.3,     
+              branch.size = 1,
               flip = T)+
             scale_colour_brewer(palette = "Set1") +
-            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(breaks = seq(-8, 10, by = 2),
-                                                                    minor_breaks = seq(-8, 10, by = 1 ))
+            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(limits = c(-8,10.5),breaks = seq(-8, 10, by = 2),
+                                                                    minor_breaks = seq(-8, 10, by = 1 ))+  theme(legend.direction = "vertical")
 orchard_behaviour
 ```
 
@@ -642,12 +661,13 @@ r2RT
 #| fig-height: 4
 #| warning: false
 orchard_timing<-orchard_plot(mRT,
-             mod = "Relative_timing",
+             mod = "Relative_timing",legend.pos = "top.left",
               group = "Study_ID",
-              xlab = "log response ratio (lnRR)") +
+              xlab = expression(lnRR),trunk.size = 0.3,     
+              branch.size = 1) +
             scale_colour_brewer(palette = "Set1") +
-            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(breaks = seq(-8, 10, by = 2),
-                                                                    minor_breaks = seq(-8, 10, by = 1 ))
+            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(limits = c(-8,10.5),breaks = seq(-8, 10, by = 2),
+                                                                    minor_breaks = seq(-8, 10, by = 1 ))+  theme(legend.direction = "vertical")
 orchard_timing
 
 ```
@@ -687,12 +707,13 @@ r2EXP
 #| fig-height: 4
 #| warning: false
 orchard_exp<-orchard_plot(mEXP,
-             mod = "Experimental_procedures",
+             mod = "Experimental_procedures",legend.pos = "top.left",
               group = "Study_ID",
-              xlab = "log response ratio (lnRR)") +
+              xlab = expression(lnRR),trunk.size = 0.3,     
+              branch.size = 1) +
             scale_colour_brewer(palette = "Set1") +
-            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(breaks = seq(-8, 10, by = 2),
-                                                                    minor_breaks = seq(-8, 10, by = 1 ))
+            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(limits = c(-8,10.5),breaks = seq(-8, 10, by = 2),
+                                                                    minor_breaks = seq(-8, 10, by = 1 ))+  theme(legend.direction = "vertical")
 orchard_exp
 ```
 
@@ -735,13 +756,14 @@ control_labels <- c(
   "White noise"   = "White noise"
 )
 orchard_control<-orchard_plot(mCC,
-             mod = "Control_conditions",
+             mod = "Control_conditions",legend.pos = "top.left",
               group = "Study_ID",
-              xlab = expression(lnRR)) +
+              xlab = expression(lnRR),trunk.size = 0.3,     
+              branch.size = 1) +
   scale_x_discrete(labels = control_labels) +
             scale_colour_brewer(palette = "Set1") +
-            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(breaks = seq(-8, 10, by = 2),
-                                                                    minor_breaks = seq(-8, 10, by = 1 ))
+            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(limits = c(-8,10.5),breaks = seq(-8, 10, by = 2),
+                                                                    minor_breaks = seq(-8, 10, by = 1 ))+  theme(legend.direction = "vertical")
 orchard_control
 ```
 
@@ -823,18 +845,16 @@ assay_labels <- c(
 )
 
 orchard_assay <- orchard_plot(
-  mAT,
+  mAT,legend.pos = "top.left",
   mod   = "Assay_type",
   group = "Study_ID",
-  xlab  = expression(lnRR)   # REQUIRED
+  xlab  = expression(lnRR),trunk.size = 0.3,     
+              branch.size = 1
 ) +
   scale_colour_brewer(palette = "Set1") +
   scale_fill_brewer(palette = "Dark2") +
-  scale_x_discrete(labels = assay_labels) +
-  scale_y_continuous(
-    breaks = seq(-2, 2, by = 0.5),
-    minor_breaks = seq(-2, 2, by = 0.25)
-  ) +
+  scale_x_discrete(labels = assay_labels) +scale_y_continuous(limits = c(-8,10.5),breaks = seq(-8, 10, by = 2),
+                                                                    minor_breaks = seq(-8, 10, by = 1 ))+
   labs(
     x = NULL,
     y = expression(lnRR),
@@ -842,7 +862,7 @@ orchard_assay <- orchard_plot(
   ) +
   theme(
     plot.subtitle = element_text(size = 10, face = "bold"),
-    axis.title.y = element_text(face = "bold")
+    axis.title.y = element_text(face = "bold"),legend.direction = "vertical"
   )
 
 orchard_assay
@@ -857,17 +877,7 @@ summary(glht(mAT, linfct=cbind(contrMat(rep(1,6), type="Tukey"))), test=adjusted
 
 
 # Patched figure
-```{r}
-assay_labels <- c(
-  "Elevated Plus Maze" = "EPM",
-  "Open Field Test" = "OFT",
-  "Light-Dark Box" = "LDB",
-  "Forced Swim Test (FST)" = "FST",
-  "Tail Suspension Test (TST)" = "TST",
-  "Sucrose Preference Test (SPT)" = "SPT"
-)
 
-```
 
 ```{r}
 #| label: patched_figure
@@ -895,7 +905,7 @@ patched_figure <- (orchard_lifestage + orchard_assay) /
 # 4) Enforce identical lnRR scale and a single y-axis label across ALL panels
 patched_figure <- patched_figure &
   scale_y_continuous(
-    limits = c(-8, 10),                       # <-- adjust to data range
+    limits = c(-8, 10),                       
     breaks = seq(-8, 10, by = 2),
     minor_breaks = seq(-8, 10, by = 1)
   ) &

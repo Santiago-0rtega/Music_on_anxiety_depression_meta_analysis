@@ -13,11 +13,9 @@ pacman::p_load(
                tidyverse,
                patchwork,
                metafor,
-               orchaRd 
+               orchaRd ,multcomp
                )
 
-#| label: load_and_clean_data
-# LOAD THE lnVR DATASET HERE
 db <- readr::read_csv(here("..","data","db_lnVR.csv")) %>%
   mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD, lnVR, lnVR_var), as.numeric)) %>%
   mutate(across(where(is.character), as.factor)) 
@@ -33,213 +31,6 @@ VCV <- metafor::vcalc(
 )
 ```
 
-::: panel-tabset
-
-1. The Generator
-```{r}
-
-#| label: contrast_function
-#| fold: TRUE
-
-contrast_fun <- function(data, response, moderator, VCV){
-    
-    # --- 1. Setup Dynamic Names ---
-    # We grab the actual names of the columns so we can use them in the formulas below
-    mod  <- deparse(substitute(moderator))
-    resp <- deparse(substitute(response))
-    
-    # --- 2. Identify Groups ---
-    # Find all unique categories in the moderator and ensure it's a factor
-    names <- levels(as.factor(data[[mod]]))
-    moderator <- as.factor(data[[mod]])
-    
-    # --- 3. The Model Runner ---
-    # This internal function fits the meta-regression repeatedly.
-    # It changes the 'ref' (reference level) dynamically each time.
-    run_rma <- function(name) {
-        rma.mv(yi = data[[resp]], 
-               V = VCV, 
-               # Here is the magic: we force the model to use 'name' as the baseline
-               mods = ~ relevel(moderator, ref = name), 
-               random = list(~1|Study_ID, ~1|ES_ID, ~1|Strain), 
-               test = "t", 
-               data = data, 
-               sparse = TRUE)
-    }
-    
-    # --- 4. Loop Through Groups ---
-    # We run the model n-1 times (we don't need the last one as it's covered by previous runs).
-    # map() iterates through the names and applies run_rma() to each.
-    contra <- purrr::map(names[-length(names)], run_rma)
-    
-    return(contra)
-}
-```
-
-2. The Harvester
-```{r}
-
-#| label: the harvester_function
-#| fold: TRUE
-
-
-get_estimate <- function(model, contra, moderator) {
-    
-    mod <- deparse(substitute(moderator))
-    
-    # Utility: Make text look nice (e.g., "control" -> "Control")
-    capitalize_first <- function(x) {
-        paste0(toupper(substring(x, 1, 1)), substring(x, 2))
-    }
-    
-    # --- Helper A: Get Group Means ---
-    # Extracts the estimated mean effect size for each group from the base model
-    get_pred1 <- function (model, mod = mod) {
-        # Clean up row names to just get the group name
-        name_raw <- as.character(stringr::str_replace(row.names(model$beta), mod, ""))
-        name <- capitalize_first(name_raw)
-        len <- length(name)
-        
-        # Create a dummy matrix to predict the mean for each group individually
-        newdata <- matrix(NA, ncol = len, nrow = len)
-        for (i in 1:len) {
-            pos <- which(model$X[, i] == 1)[[1]] 
-            newdata[i, ] <- model$X[pos, ]       
-        }
-        
-        # Predict values
-        pred <- metafor::predict.rma(model, newmods = newdata)
-        
-        # Format into a tibble
-        tibble::tibble(
-            name = factor(name, levels = name, labels = name),
-            estimate = pred$pred,
-            lowerCL = pred$ci.lb, upperCL = pred$ci.ub,
-            pval = model$pval, 
-            lowerPR = pred$cr.lb, upperPR = pred$cr.ub
-        )
-    }
-    
-    # --- Helper B: Get Pairwise Differences ---
-    # Extracts the "contrasts" (differences between groups) from the re-leveled models
-    get_pred2 <- function (model) {
-        name <- row.names(model$beta) 
-        len <- length(name)
-        newdata <- diag(len)
-        
-        # 1. Get the Intercept (The Reference Group Mean)
-        pred1 <- data.frame(metafor::predict.rma(model, newmods = newdata[1,-1]))
-        names(pred1) <- c("pred", "se", "ci.lb", "ci.ub", "cr.lb", "cr.ub") 
-        
-        # 2. Get the Contrasts (Difference from Reference)
-        pred2 <- data.frame(metafor::predict.rma(model, intercept = FALSE, newmods = newdata[-1,-1]))
-        names(pred2) <- c("pred", "se", "ci.lb", "ci.ub", "cr.lb", "cr.ub") 
-
-        pred <- rbind(pred1, pred2)
-        
-        tibble::tibble(
-            name = factor(name, levels = name, labels = name),
-            estimate = pred$pred,
-            lowerCL = pred$ci.lb, upperCL = pred$ci.ub,
-            pval = model$pval,
-            lowerPR = pred$cr.lb, upperPR = pred$cr.ub
-        )
-    }
-    
-    # --- Helper C: Combine Everything ---
-    # Stitches the group means and the pairwise differences into one big table
-    mr_results <- function(res1, res2) {
-    
-        # Logic to name the comparisons (e.g., "Treatment-Control") based on order
-        get_ordered_contrast_names <- function(level_names) {
-            reference_levels <- level_names[-length(level_names)] 
-            ordered_names <- c()
-            
-            for (ref in reference_levels) {
-                coefficient_levels <- level_names[level_names != ref]
-                # Format: "ComparisonGroup - ReferenceGroup"
-                ordered_names <- c(ordered_names, paste(coefficient_levels, ref, sep="-"))
-            }
-            return(ordered_names)
-        }
-
-        level_names <- as.character(res1$name)
-        new_contrast_names <- get_ordered_contrast_names(level_names)
-        
-        tibble::tibble(
-            Levels = c(level_names, new_contrast_names),
-            Estimate = c(res1$estimate, res2$estimate),
-            Lower_CI = c(res1$lowerCL, res2$lowerCL),
-            Upper_CI = c(res1$upperCL, res2$upperCL),
-            P_value = c(res1$pval, res2$pval),
-            Lower_PI = c(res1$lowerPR, res2$lowerPR),
-            Upper_PI = c(res1$upperPR, res2$upperPR)
-        )
-    }
-    
-    # --- MAIN EXECUTION FLOW ---
-    
-    # 1. Calculate Group Means (Base Model)
-    res1 <- get_pred1(model, mod = mod)
-    
-    # 2. Calculate Contrasts (Re-leveled Models)
-    estimates <- purrr::map(contra, ~ get_pred2(.x))
-    
-    # 3. Drop intercepts from contrast models (we only want the differences)
-    res2 <- purrr::map_dfr(estimates, ~.x[-1, ]) 
-    
-    # 4. Final Polish
-    results <- mr_results(res1, res2)
-    
-    return(results)
-}
-```
-
-
-3. The cleaner
-```{r}
-#| label: clean_unique_contrasts_function
-#| fold: TRUE
-
-clean_unique_contrasts <- function(full_results_table, level_count = 6) {
-  
-  # --- 1. Split Data ---
-  # Keep the single group means safe at the top
-  level_estimates <- full_results_table[1:level_count, ]
-  # Isolate the pairwise comparisons
-  contrast_estimates <- full_results_table[-(1:level_count), ]
-  
-  # --- 2. Clean Names ---
-  # Parse "GroupA-GroupB" into separate columns
-  contrast_estimates <- contrast_estimates %>%
-    mutate(
-      Level1 = str_extract(Levels, "^(.*?)-"),
-      Level2 = str_extract(Levels, "-(.*?)$")
-    ) %>%
-    mutate(
-      Level1 = str_replace_all(Level1, "-", ""),
-      Level2 = str_replace_all(Level2, "-", "")
-    )
-  
-  # --- 3. Deduplicate ---
-  # Create a sorted key so "A_B" and "B_A" are treated as identical
-  unique_contrasts <- contrast_estimates %>%
-    mutate(
-      Unique_Pair_Key = paste(pmin(Level1, Level2), pmax(Level1, Level2), sep = "_")
-    ) %>%
-    # Keep only the first instance of each unique pair
-    distinct(Unique_Pair_Key, .keep_all = TRUE) %>%
-    select(-Level1, -Level2, -Unique_Pair_Key)
-  
-  # --- 4. Recombine ---
-  final_table <- bind_rows(level_estimates, unique_contrasts)
-  
-  return(final_table)
-}
-```
-
-
-:::
 
 
 # Meta-regressions
@@ -247,7 +38,7 @@ clean_unique_contrasts <- function(full_results_table, level_count = 6) {
 
 ::: panel-tabset
 
-## Outcome type: Anxiety and Depression
+## 1. Outcome type: Anxiety and Depression
 
 ```{r}
 #| label: filter_outcome_type
@@ -276,7 +67,7 @@ VCV_filtered <- VCV[indices_to_keep, indices_to_keep]
 
 mOT <- rma.mv(yi = lnVR, 
                   V = VCV_filtered, 
-              mods = ~ Outcome_type-1,
+              mods = ~ Outcome_type,
                   random = list(~1 | Study_ID,
                                 ~1 | ES_ID,
                                 ~1 | Strain),
@@ -291,6 +82,9 @@ summary(mOT)
 r2OT <- round(r2_ml(mOT), 4)
 r2OT
 ```
+
+
+
 ```{r}
 #| label: orchard_outcome_type
 #| fig-width: 6
@@ -299,32 +93,26 @@ r2OT
 orchard_outcome<-orchard_plot(mOT,
               mod = "Outcome_type",
                group = "Study_ID",
-               xlab = "log variability ratio (lnVR)", # Changed Label
-              flip = FALSE) +
+               xlab = expression(lnVR),trunk.size = 0.3,     
+              branch.size = 1  
+              ) +
             scale_colour_brewer(palette = "Set1") +
             scale_fill_brewer(palette = "Dark2")+scale_y_continuous(limits = c(-6,11),breaks = seq(-6, 10, by = 2),
                                                                     minor_breaks = seq(-6, 11, by = 1 ))
 orchard_outcome
 ```
-```{r}
-#| label: save-figure
-#| eval: false
 
-ggsave(filename = here("..","Plots", "orchard_outcome_lnVR.pdf"),
-       plot = orchard_outcome,
-       dpi = 300, device = cairo_pdf)
 
-ggsave(filename = here("..","Plots", "orchard_outcome_lnVR.jpg"), 
-       plot = orchard_outcome,
-       width = 7,  
-       height = 9,  
-       dpi = 300)
-```
- Contrast between levels (Anxiety as reference level)
+
+
+
+## 2. Lifestage of exposure
 ```{r}
-mOT <- rma.mv(yi = lnVR, # Changed to lnVR
+#| label: model_lifestage_exp
+
+mLE <- rma.mv(yi = lnVR, # Changed to lnVR
                   V = VCV_filtered, 
-              mods = ~ Outcome_type,
+              mods = ~ Outcome_type+Lifestage_exposure,
                   random = list(~1 | Study_ID,
                                 ~1 | ES_ID,
                                 ~1 | Strain),
@@ -332,25 +120,6 @@ mOT <- rma.mv(yi = lnVR, # Changed to lnVR
                   method = "REML", 
                   sparse = TRUE,
                   data = db_filtered)
-
-summary(mOT)
-```
-
-
-## Lifestage of exposure
-```{r}
-#| label: model_lifestage_exp
-
-mLE <- rma.mv(yi = lnVR, # Changed to lnVR
-                  V = VCV, 
-              mods = ~ Lifestage_exposure-1,
-                  random = list(~1 | Study_ID,
-                                ~1 | ES_ID,
-                                ~1 | Strain),
-                  test = "t",
-                  method = "REML", 
-                  sparse = TRUE,
-                  data = db)
 
 summary(mLE)
 ```
@@ -360,19 +129,43 @@ summary(mLE)
 r2LE <- round(r2_ml(mLE), 4)
 r2LE
 ```
+
+
+
+```{r}
+summary(glht(mLE, linfct=cbind(contrMat(rep(1,7), type="Tukey"))), test=adjusted("none"))
+```
+
+
 ```{r}
 #| label: orchard_lifestage_exp
 #| fig-width: 6
 #| fig-height: 4
 #| warning: false
-orchard_lifestage<-orchard_plot(mLE,
+
+
+lifestage_labels <- c(
+  "Adolescent"  = "Adol.",
+  "Adult"       = "Adult",
+  "Juvenile"    = "Juv.",
+  "Young adult" = "Y. adult",
+  "Mixed"       = "Mixed",
+  "Unclear"     = "Unclear"
+)
+
+
+#cond_means<-orchaRd::mod_results(mLE,group="Study_ID",mod="Lifestage_exposure",by="Outcome_type", weights="prop")
+
+orchard_lifestage<-orchard_plot(mLE,legend.pos = "top.left",
               mod = "Lifestage_exposure",
                group = "Study_ID",
-                xlab = "log variability ratio (lnVR)", # Changed Label
-              flip = FALSE) +
+                xlab = expression(lnVR), trunk.size = 0.3,     
+              branch.size = 1 
+              ) + scale_x_discrete(labels = lifestage_labels)+
             scale_colour_brewer(palette = "Set1") +
-            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(limits=c(-6,11),breaks = seq(-6, 10, by = 2),
-                                                                    minor_breaks = seq(-6, 10, by = 1 ))
+            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(limits=c(-6,10.5),breaks = seq(-6, 10, by = 2),
+                                                                    minor_breaks = seq(-6, 10, by = 1 ))+ 
+  theme(legend.direction = "vertical")
 orchard_lifestage
 ```
 ```{r}
@@ -390,27 +183,656 @@ ggsave(filename = here("..","Plots", "orchard_lifestage_lnVR.jpg"),
        dpi = 300)
 ```
 
-Contrasts between levels
+
+
+
+
+
+## 3. Sex
 
 ```{r}
-#| label: lifestage_contrasts
+#| label: filter_sex
+#| fold: TRUE
+k_counts <- db_filtered %>%
+  group_by(Sex) %>%
+  summarise(k_es = n())
 
-# Here we apply our custum functions
-# The Generator
-contra_LE <- contrast_fun(data = db, 
-                          response = lnVR, 
-                          moderator = Lifestage_exposure, 
-                          VCV = VCV)
+levels_to_keep <- k_counts %>%
+  filter(k_es >= 5) %>%
+  pull(Sex)
 
-#The Harvester
-t1<-get_estimate(model = mLE, contra = contra_LE, moderator = Lifestage_exposure)
-
-#The Cleaner
-t2 <- clean_unique_contrasts(full_results_table = t1, level_count = 6)
+db_filtered2 <- db_filtered %>%
+  filter(Sex %in% levels_to_keep)
 
 
-t2
+indices_to_keep <- which(db_filtered2$Sex %in% levels_to_keep)
+VCV_filtered2 <- VCV_filtered[indices_to_keep, indices_to_keep]
 ```
+
+```{r}
+#| label: model_sex
+
+mSX <- rma.mv(yi = lnVR,
+                  V = VCV_filtered2, 
+              mods = ~ Sex+ Outcome_type,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID,
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db_filtered2)
+
+summary(mSX)
+
+```
+
+```{r}
+r2SX <- round(r2_ml(mSX), 4)
+r2SX
+```
+
+```{r}
+#| label: orchard_sex
+#| fig-width: 6
+#| fig-height: 4
+#| warning: false
+
+
+
+#cond_means<-orchaRd::mod_results(mSX,group="Study_ID",mod="Sex",by="Outcome_type", weights="prop")
+
+
+
+
+orchard_sex<-orchard_plot(mSX, legend.pos = "top.left",
+             mod = "Sex",
+              group = "Study_ID",
+             xlab = expression(lnVR), 
+             flip = T,trunk.size = 0.3,     
+              branch.size = 1 ) +
+            scale_colour_brewer(palette = "Set1") +
+            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(limits=c(-6,10.5),breaks = seq(-8, 10, by = 2),
+                                                                    minor_breaks = seq(-8, 10, by = 1 ))+ 
+  theme(legend.direction = "vertical")
+orchard_sex
+```
+
+```{r}
+#| label: save-figure_sex
+#| eval: false
+
+ggsave(filename = here("..","Plots", "orchard_sex_lnVR.pdf"),
+       plot = orchard_sex,
+       dpi = 300, device = cairo_pdf)
+
+ggsave(filename = here("..","Plots", "orchard_sex_lnVR.jpg"),
+       plot = orchard_sex,
+       width = 7,  
+       height = 9,  
+       dpi = 300)
+
+```
+
+
+
+## 4. Music genre
+
+Meta_genre
+
+```{r}
+#| label: model_music_genre
+
+mMG <- rma.mv(yi = lnVR,
+                  V = VCV_filtered, 
+              mods = ~ Meta_genre + Outcome_type,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID,
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db_filtered)
+
+summary(mMG)
+
+```
+
+```{r}
+r2MG <- round(r2_ml(mMG), 4)
+r2MG
+```
+```{r}
+summary(glht(mMG, linfct=cbind(contrMat(rep(1,5), type="Tukey"))), test=adjusted("none"))
+```
+Meta_genre	0.1273	0.3021	0.4215	214	0.6738	-0.4681	0.7227	
+Meta_genrePopular Contemporary Music	1.2294	0.3296	3.7301	214	0.0002	0.5798	1.8791	***
+Meta_genre	1.2961	0.4610	2.8114	214	0.0054	0.3874	2.2049	**
+Meta_genreWestern Art Music / Orchestral
+```{r}
+#| label: orchard_music_genre
+#| fig-width: 6
+#| fig-height: 4
+#| warning: false
+
+
+
+genre_labels <- c(
+  "Mixed"  = "Mixed",
+  "Popular Contemporary Music"       = "Contemporary",
+  "Traditional Music / Folk / World"    = "World",
+  "Western Art Music / Orchestral" = "Orchestral"
+)
+
+
+
+#cond_means<-orchaRd::mod_results(mMG,group="Study_ID",mod="Meta_genre",by="Outcome_type", weights="prop")
+
+
+orchard_genre<-orchard_plot(mMG,legend.pos = "top.left",
+             mod = "Meta_genre",
+              group = "Study_ID",
+             xlab = "lnVR", 
+             flip = T,trunk.size = 0.3,     
+              branch.size = 1) +  
+  scale_x_discrete(labels = genre_labels)+
+            scale_colour_brewer(palette = "Set1") +
+            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(limits=c(-6,11),breaks = seq(-8, 10, by = 2),
+                                                                    minor_breaks = seq(-8, 10, by = 1 ))+ 
+  theme(legend.direction = "vertical")
+orchard_genre
+```
+
+```{r}
+#| label: save-figure_genre
+#| eval: false
+
+ggsave(filename = here("..","Plots", "orchard_genre_lnVR.pdf"),
+       plot = orchard_genre,
+       dpi = 300, device = cairo_pdf)
+
+ggsave(filename = here("..","Plots", "orchard_genre_lnVR.jpg"),
+       plot = orchard_genre,
+       width = 9,  
+       height = 7,  
+       dpi = 300)
+
+```
+
+
+
+## 5. Music exposure duration
+
+Music_exposure_duration
+
+```{r}
+#| label: filter_music_exposure
+#| fold: TRUE
+
+k_counts <- db_filtered %>%
+  group_by(Music_exposure_duration) %>%
+  summarise(k_es = n())
+
+levels_to_keep <- k_counts %>%
+  filter(k_es >= 5) %>%
+  pull(Music_exposure_duration)
+
+db_filtered2<- db_filtered %>%
+  filter(Music_exposure_duration %in% levels_to_keep)
+
+indices_to_keep <- which(db_filtered2$Music_exposure_duration %in% levels_to_keep)
+VCV_filtered2 <- VCV_filtered[indices_to_keep, indices_to_keep]
+```
+
+```{r}
+#| label: model_music_exposure
+
+mMED <- rma.mv(yi = lnVR,
+                  V = VCV_filtered2, 
+              mods = ~ Music_exposure_duration + Outcome_type,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID, 
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db_filtered2)
+
+summary(mMED)
+
+```
+
+```{r}
+r2MED <- round(r2_ml(mMED), 4)
+r2MED
+```
+```{r}
+summary(glht(mMED, linfct=cbind(contrMat(rep(1,4), type="Tukey"))), test=adjusted("none"))
+```
+
+
+
+```{r}
+#| label: orchard_music_exposure
+#| fig-width: 6
+#| fig-height: 4
+#| warning: false
+
+
+
+#cond_means<-orchaRd::mod_results(mMED,group="Study_ID",mod="Music_exposure_duration",by="Outcome_type", weights="prop")
+
+
+orchard_exposure<-orchard_plot( mMED,legend.pos = "top.left",
+             mod = "Music_exposure_duration",
+              group = "Study_ID",
+              xlab = "lnVR", 
+              flip = T,trunk.size = 0.3,     
+              branch.size = 1)  +
+            scale_colour_brewer(palette = "Set1") +
+            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(limits = c(-6,11),breaks = seq(-8, 11, by = 2),
+                                                                    minor_breaks = seq(-8, 11, by = 1 ))+ 
+  theme(legend.direction = "vertical")
+orchard_exposure
+```
+
+```{r}
+#| label: save-figure_exposure
+#| eval: false
+
+ggsave(filename = here("..","Plots", "orchard_exposure_lnVR.pdf"),
+       plot = orchard_exposure,
+       dpi = 300, device = cairo_pdf)
+
+ggsave(filename = here("..","Plots", "orchard_exposure_lnVR.jpg"),
+       plot = orchard_exposure,
+       width = 9,  
+       height = 7,  
+       dpi = 300)
+
+```
+
+
+
+## 6. Experimental design
+
+```{r}
+#| label: model_experimental_design
+
+mEXD <- rma.mv(yi = lnVR,
+                  V = VCV_filtered, 
+              mods = ~ Experimental_design + Outcome_type,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID, 
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db_filtered)
+
+summary(mEXD)
+
+```
+
+```{r}
+r2EXD <- round(r2_ml(mEXD), 4)
+r2EXD
+```
+
+```{r}
+summary(glht(mEXD, linfct=cbind(contrMat(rep(1,4), type="Tukey"))), test=adjusted("none"))
+```
+
+
+
+
+
+```{r}
+#| label: orchard_experimental_design
+#| fig-width: 6
+#| fig-height: 4
+#| warning: false
+
+
+# cond_means<-orchaRd::mod_results(mEXD,group="Study_ID",mod="Experimental_design",by="Outcome_type", weights="prop")
+
+
+orchard_design<-orchard_plot(mEXD,legend.pos = "top.left",
+             mod = "Experimental_design",
+              group = "Study_ID",
+              xlab = "lnVR", 
+              flip=T,
+             trunk.size = 0.3,     
+              branch.size = 1 ) +
+            scale_colour_brewer(palette = "Set1") +
+            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(limits = c(-6,10.5),breaks = seq(-8, 10, by = 2),
+                                                                    minor_breaks = seq(-8, 10, by = 1 ))+ 
+  theme(legend.direction = "vertical")
+orchard_design
+```
+
+```{r}
+#| label: save-figure_design
+#| eval: false
+
+ggsave(filename = here("..","Plots", "orchard_design_lnRR.pdf"),
+       plot = orchard_design,
+       dpi = 300, device = cairo_pdf)
+
+ggsave(filename = here("..","Plots", "orchard_design_lnRR.jpg"),
+       plot = orchard_design,
+       width = 9,  
+       height = 7,  
+       dpi = 300)
+
+```
+
+
+
+## 7. Induced behaviour
+
+```{r}
+#| label: model_induced_behaviour
+
+mIB <- rma.mv(yi = lnVR,
+                  V = VCV_filtered, 
+              mods = ~ `Induced behaviour` + Outcome_type,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID, 
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db_filtered)
+
+summary(mIB)
+
+```
+
+```{r}
+r2IB <- round(r2_ml(mIB), 4)
+r2IB
+```
+
+```{r}
+#| label: orchard_INDUCED_BEHAVIOUR
+#| fig-width: 6
+#| fig-height: 4
+#| warning: false
+orchard_behaviour<-orchard_plot(mIB,
+             mod = "Induced behaviour",legend.pos = "top.left",
+              group = "Study_ID",
+              xlab = expression(lnVR), 
+              flip = T,trunk.size = 0.3,     
+              branch.size = 1)+
+            scale_colour_brewer(palette = "Set1") +
+            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(limits = c(-6,10.5),breaks = seq(-8, 10, by = 2),
+                                                                    minor_breaks = seq(-8, 10, by = 1 ))+  theme(legend.direction = "vertical")
+orchard_behaviour
+```
+
+```{r}
+#| label: save-figure_behaviour
+#| eval: false
+
+ggsave(filename = here("..","Plots", "orchard_behaviour_lnVR.pdf"),
+       plot = orchard_behaviour,
+       dpi = 300, device = cairo_pdf)
+
+ggsave(filename = here("..","Plots", "orchard_behaviour_lnVR.jpg"),
+       plot = orchard_behaviour,
+       width = 9,  
+       height = 7,  
+       dpi = 300)
+
+```
+
+
+
+## 8. Relative timing
+
+```{r}
+#| label: model+_relative_timing
+
+mRT <- rma.mv(yi = lnVR,
+                  V = VCV_filtered, 
+              mods = ~ Relative_timing + Outcome_type,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID, 
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db_filtered)
+
+summary(mRT)
+
+```
+
+```{r}
+r2RT <- round(r2_ml(mRT), 4)
+r2RT
+```
+```{r}
+summary(glht(mRT, linfct=cbind(contrMat(rep(1,4), type="Tukey"))), test=adjusted("none"))
+```
+```{r}
+#| label: orchard_relative_timing
+#| fig-width: 6
+#| fig-height: 4
+#| warning: false
+orchard_timing<-orchard_plot(mRT,,legend.pos = "top.left",
+             mod = "Relative_timing",
+              group = "Study_ID",
+              xlab = expression(lnVR),trunk.size = 0.3,     
+              branch.size = 1) +
+            scale_colour_brewer(palette = "Set1") +
+            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(limits = c(-6,10.5),breaks = seq(-8, 10, by = 2),
+                                                                    minor_breaks = seq(-8, 10, by = 1 ))+  theme(legend.direction = "vertical")
+orchard_timing
+
+```
+
+
+
+## 9. Experimental procedures
+
+```{r}
+#| label: model_Experimental_procedures
+
+mEXP <- rma.mv(yi = lnVR,
+                  V = VCV_filtered, 
+              mods = ~ Experimental_procedures + Outcome_type,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID, 
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db_filtered)
+
+summary(mEXP)
+
+```
+
+```{r}
+r2EXP <- round(r2_ml(mEXP), 4)
+r2EXP
+```
+```{r}
+summary(glht(mEXP, linfct=cbind(contrMat(rep(1,3), type="Tukey"))), test=adjusted("none"))
+```
+```{r}
+#| label: orchard_experimental_procedures
+#| fig-width: 6
+#| fig-height: 4
+#| warning: false
+orchard_exp<-orchard_plot(mEXP,legend.pos = "top.left",
+             mod = "Experimental_procedures",
+              group = "Study_ID",
+              xlab = expression(lnVR),trunk.size = 0.3,     
+              branch.size = 1)  +
+            scale_colour_brewer(palette = "Set1") +
+            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(limits = c(-6,10.5),breaks = seq(-8, 10, by = 2),
+                                                                    minor_breaks = seq(-8, 10, by = 1 ))+  theme(legend.direction = "vertical")
+orchard_exp
+```
+
+
+
+## 10. Control condition
+
+```{r}
+#| label: model_control_condition
+
+mCC <- rma.mv(yi = lnVR,
+                  V = VCV_filtered, 
+              mods = ~ Control_conditions + Outcome_type,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID, 
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db_filtered)
+
+summary(mCC)
+
+```
+
+```{r}
+r2CC <- round(r2_ml(mCC), 4)
+r2CC
+```
+```{r}
+summary(glht(mCC, linfct=cbind(contrMat(rep(1,3), type="Tukey"))), test=adjusted("none"))
+```
+
+
+```{r}
+#| label: orchard_control_condition
+#| fig-width: 6
+#| fig-height: 4
+#| warning: false
+
+control_labels <- c(
+  "ambiet sound" = "Ambient sound",
+  "Ambiet sound" = "Ambient sound",  # optional safeguard if both exist
+  "White noise"   = "White noise"
+)
+orchard_control<-orchard_plot(mCC,legend.pos = "top.left",
+             mod = "Control_conditions",
+              group = "Study_ID",
+              xlab = expression(lnVR),trunk.size = 0.3,     
+              branch.size = 1) +
+  scale_x_discrete(labels = control_labels) +
+            scale_colour_brewer(palette = "Set1") +
+            scale_fill_brewer(palette = "Dark2")+scale_y_continuous(limits = c(-6,10.5),breaks = seq(-8, 10, by = 2),
+                                                                    minor_breaks = seq(-8, 10, by = 1 ))+  theme(legend.direction = "vertical")
+orchard_control
+```
+
+
+
+## 11. Assay type
+
+```{r}
+# 1. Identify and Filter Low-K Levels
+
+
+k_counts <- db %>%
+  group_by(Assay_type) %>%
+  summarise(k_es = n())
+
+# Identify the levels to keep (where k_es >= 5)
+levels_to_keep <- k_counts %>%
+  filter(k_es >= 5) %>%
+  pull(Assay_type)
+
+# 2. Create the Filtered Data Frame
+db_filtered <- db %>%
+  filter(Assay_type %in% levels_to_keep)
+
+# 3. Subset the VCV Matrix (CRITICAL STEP)
+# Assumes VCV matrix rows/columns match the original 'db' data frame indices.
+indices_to_keep <- which(db$Assay_type %in% levels_to_keep)
+VCV_filtered <- VCV[indices_to_keep, indices_to_keep]
+```
+
+```{r}
+#| label: model_assay_type
+
+mAT <- rma.mv(yi = lnVR,
+                  V = VCV_filtered, 
+              mods = ~ Assay_type,
+                  random = list(~1 | Study_ID,
+                                ~1 | ES_ID, 
+                                ~1 | Strain),
+                  test = "t",
+                  method = "REML", 
+                  sparse = TRUE,
+                  data = db_filtered)
+
+summary(mAT)
+
+```
+
+```{r}
+r2AT <- round(r2_ml(mAT), 4)
+r2AT
+```
+
+```{r}
+#| label: orchard_assay_type
+#| fig-width: 6
+#| fig-height: 4
+#| warning: false
+assay_labels <- c(
+  "Elevated Plus Maze" = "EPM",
+  "Open Field Test" = "OFT",
+  "Light-Dark Box" = "LDB",
+  "Forced Swim Test (FST)" = "FST",
+  "Tail Suspension Test (TST)" = "TST",
+  "Sucrose Preference Test (SPT)" = "SPT"
+)
+
+orchard_assay <- orchard_plot(
+  mAT,legend.pos = "top.left",
+  mod   = "Assay_type",
+  group = "Study_ID",
+  xlab  = expression(lnVR) ,trunk.size = 0.3,     
+              branch.size = 1
+) +
+  scale_colour_brewer(palette = "Set1") +
+  scale_fill_brewer(palette = "Dark2") +
+  scale_x_discrete(labels = assay_labels)+
+  scale_y_continuous(limits = c(-6,10.5),breaks = seq(-8, 10, by = 2),
+                     minor_breaks = seq(-8, 10, by = 1 ))+  
+  labs(
+    x = NULL,
+    y = expression(lnVR),
+    subtitle = "Behavioural assay"
+  ) +
+  theme(
+    plot.subtitle = element_text(size = 10, face = "bold"),
+    axis.title.y = element_text(face = "bold"),legend.direction = "vertical")
+  
+
+orchard_assay
+
+
+```
+
+```{r}
+summary(glht(mAT, linfct=cbind(contrMat(rep(1,5), type="Tukey"))), test=adjusted("none"))
+```
+
+
+
+
+
+
+
 :::
 
 
