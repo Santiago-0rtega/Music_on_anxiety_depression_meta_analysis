@@ -47,8 +47,6 @@ vcalc_args <- list(vi = "lnRR_var",
                    rho = 0.5)
 ```
 
-
-
 ```{r}
 #| label: refit_model
 
@@ -64,7 +62,6 @@ ma_all <- rma.mv(yi = lnRR,
 summary(ma_all)
 ```
 
-
 ```{r}
 
 ```
@@ -76,7 +73,6 @@ loo_t<-leave_one_out(ma_all, group = "Study", vcalc_args =vcalc_args)
 ```{r}
 loo_t
 ```
-
 
 ```{r}
 loo_plot<-orchard_leave1out(leave1out = loo_t,
@@ -107,4 +103,3 @@ ggsave(filename = here("..","Plots", "loo_studies.jpg"),
        dpi = 300)
 
 ```
-

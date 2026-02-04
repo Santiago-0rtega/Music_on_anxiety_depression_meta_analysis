@@ -116,7 +116,6 @@ summary(ma_all)
 orchaRd::i2_ml(ma_all)
 ```
 
-
 ```{r}
 #| label: r2_extraction2
 r2 <- round(r2_ml(ma_all), 4)
@@ -135,30 +134,11 @@ Finally, we can visualize the overall effect size estimate using an orchard plot
 overall_lnRR<-orchard_plot(ma_all,
               group = "Study_ID",
               xlab = "lnRR", 
-              flip=FALSE) + 
+              flip=T) + 
               scale_x_discrete(labels = c("Overall effect")) +
                 scale_y_continuous(breaks = seq(-8, 10, by = 2),
                                    minor_breaks = seq(-8, 10, by = 1 ))
 overall_lnRR
 ```
-
-```{r}
-#| label: save-figure
-#| eval: false
-
-ggsave(filename = here("..","Plots", "overall_lnRR.pdf"),
-       plot = overall_lnRR,
-       dpi = 300, device = cairo_pdf)
-
-ggsave(filename = here("..","Plots", "overall_lnRR.jpg"),
-       plot = overall_lnRR,
-       width = 7,  
-       height = 9,  
-       dpi = 300)
-
-```
-
-
-
 
 

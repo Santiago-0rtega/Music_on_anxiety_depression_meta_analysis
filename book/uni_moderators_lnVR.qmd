@@ -31,13 +31,9 @@ VCV <- metafor::vcalc(
 )
 ```
 
-
-
 # Meta-regressions
 
-
 ::: panel-tabset
-
 ## 1. Outcome type: Anxiety and Depression
 
 ```{r}
@@ -61,7 +57,6 @@ indices_to_keep <- which(db$Outcome_type %in% levels_to_keep)
 VCV_filtered <- VCV[indices_to_keep, indices_to_keep]
 ```
 
-
 ```{r}
 #| label: model_outcome_type
 
@@ -78,12 +73,11 @@ mOT <- rma.mv(yi = lnVR,
 
 summary(mOT)
 ```
+
 ```{r}
 r2OT <- round(r2_ml(mOT), 4)
 r2OT
 ```
-
-
 
 ```{r}
 #| label: orchard_outcome_type
@@ -102,11 +96,8 @@ orchard_outcome<-orchard_plot(mOT,
 orchard_outcome
 ```
 
-
-
-
-
 ## 2. Lifestage of exposure
+
 ```{r}
 #| label: model_lifestage_exp
 
@@ -124,18 +115,14 @@ mLE <- rma.mv(yi = lnVR,
 summary(mLE)
 ```
 
-
 ```{r}
 r2LE <- round(r2_ml(mLE), 4)
 r2LE
 ```
 
-
-
 ```{r}
 summary(glht(mLE, linfct=cbind(contrMat(rep(1,6), type="Tukey"))), test=adjusted("none"))
 ```
-
 
 ```{r}
 #| label: orchard_lifestage_exp
@@ -166,6 +153,7 @@ orchard_lifestage<-orchard_plot(mLE,legend.pos = "top.left",
   theme(legend.direction = "vertical")
 orchard_lifestage
 ```
+
 ```{r}
 #| label: save-figure_lifestage
 #| eval: false
@@ -180,11 +168,6 @@ ggsave(filename = here("..","Plots", "orchard_lifestage_lnVR.jpg"),
        height = 7,  
        dpi = 300)
 ```
-
-
-
-
-
 
 ## 3. Sex
 
@@ -270,8 +253,6 @@ ggsave(filename = here("..","Plots", "orchard_sex_lnVR.jpg"),
 
 ```
 
-
-
 ## 4. Music genre
 
 Meta_genre
@@ -298,13 +279,14 @@ summary(mMG)
 r2MG <- round(r2_ml(mMG), 4)
 r2MG
 ```
+
 ```{r}
 summary(glht(mMG, linfct=cbind(contrMat(rep(1,4), type="Tukey"))), test=adjusted("none"))
 ```
-Meta_genre	0.1273	0.3021	0.4215	214	0.6738	-0.4681	0.7227	
-Meta_genrePopular Contemporary Music	1.2294	0.3296	3.7301	214	0.0002	0.5798	1.8791	***
-Meta_genre	1.2961	0.4610	2.8114	214	0.0054	0.3874	2.2049	**
-Meta_genreWestern Art Music / Orchestral
+
+Meta_genre 0.1273 0.3021 0.4215 214 0.6738 -0.4681 0.7227\
+Meta_genrePopular Contemporary Music 1.2294 0.3296 3.7301 214 0.0002 0.5798 1.8791 \* **Meta_genre 1.2961 0.4610 2.8114 214 0.0054 0.3874 2.2049** Meta_genreWestern Art Music / Orchestral
+
 ```{r}
 #| label: orchard_music_genre
 #| fig-width: 6
@@ -355,8 +337,6 @@ ggsave(filename = here("..","Plots", "orchard_genre_lnVR.jpg"),
 
 ```
 
-
-
 ## 5. Music exposure duration
 
 Music_exposure_duration
@@ -402,11 +382,10 @@ summary(mMED)
 r2MED <- round(r2_ml(mMED), 4)
 r2MED
 ```
+
 ```{r}
 summary(glht(mMED, linfct=cbind(contrMat(rep(1,3), type="Tukey"))), test=adjusted("none"))
 ```
-
-
 
 ```{r}
 #| label: orchard_music_exposure
@@ -448,8 +427,6 @@ ggsave(filename = here("..","Plots", "orchard_exposure_lnVR.jpg"),
 
 ```
 
-
-
 ## 6. Experimental design
 
 ```{r}
@@ -478,10 +455,6 @@ r2EXD
 ```{r}
 summary(glht(mEXD, linfct=cbind(contrMat(rep(1,3), type="Tukey"))), test=adjusted("none"))
 ```
-
-
-
-
 
 ```{r}
 #| label: orchard_experimental_design
@@ -522,8 +495,6 @@ ggsave(filename = here("..","Plots", "orchard_design_lnRR.jpg"),
        dpi = 300)
 
 ```
-
-
 
 ## 7. Induced behaviour
 
@@ -583,8 +554,6 @@ ggsave(filename = here("..","Plots", "orchard_behaviour_lnVR.jpg"),
 
 ```
 
-
-
 ## 8. Relative timing
 
 ```{r}
@@ -608,9 +577,11 @@ summary(mRT)
 r2RT <- round(r2_ml(mRT), 4)
 r2RT
 ```
+
 ```{r}
 summary(glht(mRT, linfct=cbind(contrMat(rep(1,3), type="Tukey"))), test=adjusted("none"))
 ```
+
 ```{r}
 #| label: orchard_relative_timing
 #| fig-width: 6
@@ -627,8 +598,6 @@ orchard_timing<-orchard_plot(mRT,,legend.pos = "top.left",
 orchard_timing
 
 ```
-
-
 
 ## 9. Experimental procedures
 
@@ -670,8 +639,6 @@ orchard_exp<-orchard_plot(mEXP,legend.pos = "top.left",
 orchard_exp
 ```
 
-
-
 ## 10. Control condition
 
 ```{r}
@@ -696,8 +663,6 @@ r2CC <- round(r2_ml(mCC), 4)
 r2CC
 ```
 
-
-
 ```{r}
 #| label: orchard_control_condition
 #| fig-width: 6
@@ -720,8 +685,6 @@ orchard_control<-orchard_plot(mCC,legend.pos = "top.left",
                                                                     minor_breaks = seq(-8, 10, by = 1 ))+  theme(legend.direction = "vertical")
 orchard_control
 ```
-
-
 
 ## 11. Assay type
 
@@ -815,17 +778,7 @@ orchard_assay
 ```{r}
 summary(glht(mAT, linfct=cbind(contrMat(rep(1,5), type="Tukey"))), test=adjusted("none"))
 ```
-
-
-
-
-
-
-
 :::
-
-
-
 
 ```{r}
 #| label: patched_figure
@@ -879,12 +832,3 @@ ggsave(filename = here("..","Plots", "patched_lnVR.jpg"),
        dpi = 300)
 
 ```
-
-
-
-
-
-
-
-
-

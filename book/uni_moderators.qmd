@@ -55,8 +55,6 @@ Variable definitions:
 | **`Overall_rob`** | Overall risk of bias assessment for each study. Levels: **2 (low)**, **1 (moderate)**, **0 (high)**. |
 :::
 
-
-
 ## Meta-regressions
 
 ::: {.callout-note icon="true"}
@@ -95,8 +93,6 @@ indices_to_keep <- which(db$Outcome_type %in% levels_to_keep)
 VCV_filtered <- VCV[indices_to_keep, indices_to_keep]
 ```
 :::
-
-
 
 ::: panel-tabset
 ## 1. Outcome type: Anxiety and Depression
@@ -178,8 +174,6 @@ ggsave(filename = here("..","Plots", "orchard_outcome_lnRR.jpg"),
 
 ```
 
-
-
 ## 2. Lifestage of exposure
 
 ```{r}
@@ -205,12 +199,9 @@ r2LE <- round(r2_ml(mLE), 4)
 r2LE
 ```
 
-
 ```{r}
 summary(glht(mLE, linfct=cbind(contrMat(rep(1,6), type="Tukey"))), test=adjusted("none"))
 ```
-
-
 
 ```{r}
 #| label: orchard_lifestage_exp
@@ -255,8 +246,6 @@ ggsave(filename = here("..","Plots", "orchard_lifestage_lnRR.jpg"),
        dpi = 300)
 
 ```
-
-
 
 ## 3. Sex
 
@@ -334,8 +323,6 @@ ggsave(filename = here("..","Plots", "orchard_sex_lnRR.jpg"),
        dpi = 300)
 
 ```
-
-
 
 ## 4. Music genre
 
@@ -502,7 +489,6 @@ Contrasts between levels
 summary(glht(mMED, linfct=cbind(contrMat(rep(1,3), type="Tukey"))), test=adjusted("none"))
 ```
 
-
 ## 6. Experimental design
 
 ```{r}
@@ -628,8 +614,6 @@ ggsave(filename = here("..","Plots", "orchard_behaviour_lnRR.jpg"),
 
 ```
 
-
-
 ## 8. Relative timing
 
 ```{r}
@@ -716,8 +700,6 @@ orchard_exp<-orchard_plot(mEXP,
                                                                     minor_breaks = seq(-8, 10, by = 1 ))+  theme(legend.direction = "vertical")
 orchard_exp
 ```
-
-
 
 ## 10. Control condition
 
@@ -875,9 +857,7 @@ summary(glht(mAT, linfct=cbind(contrMat(rep(1,6), type="Tukey"))), test=adjusted
 ```
 :::
 
-
 # Patched figure
-
 
 ```{r}
 #| label: patched_figure
@@ -935,16 +915,3 @@ ggsave(filename = here("..","Plots", "patched_lnRR.jpg"),
 ```{r}
 sessionInfo()
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-

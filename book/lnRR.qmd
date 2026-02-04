@@ -124,9 +124,9 @@ calculate_lnRR <- function(dt) {
       dt1$lnRR_var[i] <- effect$lnRR_var
       
       # 2. Outcome Direction Standardization (Sign Flip)
-      # If 'Higher_better' is "No" (e.g., lower anxiety is better), we flip the sign 
-      # of lnRR so that a positive value always indicates a beneficial outcome.
-      if (Higher_better == "No") {
+      # If 'Higher_better' is "Yes" (e.g., increase behavior = less anxious), we flip the sign 
+      # of lnRR so that a negative value always indicates a beneficial outcome.
+      if (Higher_better == "Yes") {
         dt1$lnRR[i] <- dt1$lnRR[i] * -1
       }
     }
@@ -144,9 +144,9 @@ calculate_lnRR <- function(dt) {
           C_SD <- C_SD / 100
       }
 
-      # 1. Standardization: Adjust means if "Higher_better" is "No"
-      # Flips the proportion (e.g., 80% success becomes 20% failure) to standardize direction.
-      if (Higher_better == "No") {
+      # 1. Standardization: Adjust means if "Higher_better" is "Yes"
+      # Flips the proportion (e.g., 80% failure becomes 20% success) to standardize direction.
+      if (Higher_better == "Yes") {
         Ex_mean <- 1 - Ex_mean
         C_mean <- 1 - C_mean
       }
@@ -289,7 +289,7 @@ DT::datatable(
 ```{r}
 #| label: lnRR_histogram
 
-hist(db_effect_sizes$lnRR,xlim=c(-6.5,9),breaks = seq(-6.5,9,0.5))
+hist(db_effect_sizes$lnRR,xlim=c(-9,6.5),breaks = seq(-9,6.5,0.5))
 
 
 hist(db_effect_sizes$lnRR_var, xlim=c(0,13),breaks = seq(0,13,0.1))

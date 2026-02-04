@@ -43,7 +43,9 @@ ma_all <- rma.mv(yi = lnRR,
 
 summary(ma_all)
 ```
+
 ## Visual inspection: funnel plots
+
 ```{r}
 # funnel plot - standard error
 funnel(ma_all, yaxis = "sei",
@@ -69,20 +71,10 @@ funnel_plot<-funnel(ma_all, yaxis = "seinv",
 funnel_plot
 ```
 
-
-
-
-
-
-
-
-
-
-
-
 ## Egger's Regression (Testing Small-Study Effects)
 
 Visual inspection is subjective. Egger's Regression formally tests if the effect size depends on the sample size (or precision). If the slope is significant, it means small studies are systematically different from large ones (often due to bias).
+
 ```{r}
 #| label: eggers_test
 
@@ -103,8 +95,6 @@ egger_model_full <- rma.mv(yi = lnRR,
 
 summary(egger_model_full)
 ```
-
-
 
 ```{r}
 #| label: egger_bubble_plot
@@ -168,9 +158,6 @@ lag2<-time_lag +
 lag2
 ```
 
-
-
-
 ```{r}
 library(patchwork)
 library(gridGraphics) # Required for capturing Base R plots
@@ -198,8 +185,20 @@ p_funnel <- wrap_elements(panel = ~{
 })
 ```
 
+
+
 ```{r}
-final_dashboard <- p_funnel +egger / lag2 +
+# SAVE DIRECTLY - Do not type 'vertical_stack' in the console
+pdf(here("..", "Plots", "funnel.pdf"), width = 10, height = 7) 
+print(p_funnel)
+dev.off()
+```
+
+
+
+
+```{r}
+final_dashboard <- egger / lag2 +
   plot_annotation(tag_levels = "A")  & 
   theme(
     plot.tag = element_text(size = 12, face = "bold"),
@@ -210,21 +209,19 @@ final_dashboard
 
 ```
 
-
-
 ```{r}
 #| label: save-figure_behaviour
 #| eval: false
 
 ggsave(filename = here("..","Plots", "bias_lnRR.pdf"),
        plot = final_dashboard,
-       dpi = 300, device = cairo_pdf,width = 7,  
-       height = 10)
+       dpi = 300, device = cairo_pdf,width = 10,  
+       height = 7)
 
 ggsave(filename = here("..","Plots", "bias_lnRR.jpg"),
        plot = final_dashboard,
-       width = 7,  
-       height = 10,  
+       width = 10,  
+       height = 7,  
        dpi = 300)
 
 ```
@@ -238,9 +235,5 @@ sessionInfo()
 vertical_stack <- p_funnel / egger / lag2 + 
   plot_annotation(tag_levels = "A")
 
-# SAVE DIRECTLY - Do not type 'vertical_stack' in the console
-pdf(here("..", "Plots", "vertical_stack.pdf"), width = 6, height = 8) 
-print(vertical_stack)
-dev.off()
-```
 
+```
