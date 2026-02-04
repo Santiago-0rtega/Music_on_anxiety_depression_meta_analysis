@@ -55,10 +55,31 @@ funnel(ma_all, yaxis = "sei",
 
 ```{r}
 # funnel plot - inverse of standard error
-funnel(ma_all, yaxis = "seinv",
-      xlab = "Standarised residuals",
-      ylab = "Precision (inverse of SE)",  col = c(alpha("orange", 0.5)))
+funnel_plot<-funnel(ma_all, yaxis = "seinv",
+       las = 1,                   # Rotates Y-axis text to be horizontal
+       digits = c(2, 1),
+      xlab = "Standarised residuals (lnRR)",
+      ylab = "Precision (inverse of SE)",  pch = 21,                  # 
+       bg = alpha("black", 0.2),   
+       col = "black",             
+       cex = 1.2,ylim = c(0.01, 40),
+      xlim = c(-6, 10)
+      )        
+
+funnel_plot
 ```
+
+
+
+
+
+
+
+
+
+
+
+
 ## Egger's Regression (Testing Small-Study Effects)
 
 Visual inspection is subjective. Egger's Regression formally tests if the effect size depends on the sample size (or precision). If the slope is significant, it means small studies are systematically different from large ones (often due to bias).
@@ -75,10 +96,9 @@ dt_egger_full <- db %>%
 egger_model_full <- rma.mv(yi = lnRR,
                            V = VCV, 
                            mods = ~ 1 + sqrt_inv_e_n, # The 'Egger' predictor
-                           random = list(~1 | Study_ID, ~1 | ES_ID), 
-                           test = "z",       
+                           random = list(~1 | Study_ID, ~1|Strain, ~1 | ES_ID), 
+                           test = "t",       
                            method = "REML",
-                           sparse = TRUE,
                            data = dt_egger_full)
 
 summary(egger_model_full)
@@ -88,10 +108,12 @@ summary(egger_model_full)
 
 ```{r}
 #| label: egger_bubble_plot
-bubble_plot(egger_model_full,
+egger<-bubble_plot(egger_model_full,
             mod = "sqrt_inv_e_n",
             group = "Study_ID",
-            xlab = "Square root of inverse of effective sample size")
+            xlab = "Square root of inverse of effective sample size", ylab="Effect size (lnRR)")
+
+egger
 ```
 
 ## Decline Effect (Time-Lag Bias)
@@ -111,7 +133,7 @@ db_decline <- dt_egger_full %>%
 year_lag_model <- rma.mv(yi = lnRR,
                          V = VCV, 
                          mods = ~ 1 + Year_c + sqrt_inv_e_n, 
-                         random = list(~1 | Study_ID, ~1 | ES_ID), 
+                         random = list(~1 | Study_ID, ~1|Strain,~1 | ES_ID), 
                          test = "t", 
                          method = "REML",
                          sparse = TRUE,
@@ -124,44 +146,101 @@ summary(year_lag_model)
 
 ```{r}
 #| label: time_lag_bubble_plot
-bubble_plot(year_lag_model,
+time_lag<-bubble_plot(year_lag_model,
             mod = "Year_c",
             group = "Study_ID",
-            xlab = "Year of publication")
+            xlab = "Year of publication",ylab="Effect size (lnRR)")
+
+
+
+mean_year <- mean(dt_egger_full$Year, na.rm = TRUE)
+
+# Define the years you want to see on the axis
+target_years <- seq(2007, 2025, by = 3)
+
+lag2<-time_lag + 
+  scale_x_continuous(
+    name = "Year of publication",
+    breaks = target_years - mean_year, 
+    labels = target_years 
+  )
+
+lag2
 ```
 
-
-
-
-## Reporting Quality as a Moderator of Decline Effect
 
 
 
 ```{r}
-#| label: quality_analysis
+library(patchwork)
+library(gridGraphics) # Required for capturing Base R plots
 
-# 1. Center the Quality Score
-db_decline <- db_decline %>%
-  mutate(quality_c = Reporting_quality - mean(Reporting_quality, na.rm = TRUE))
 
-# 2. Run the comprehensive bias model
-# Controls for: Precision (Egger), Time (Year), and Quality all at once.
-reporting_model <- rma.mv(yi = lnRR,
-                          V = VCV, 
-                          mods = ~ 1 + quality_c + sqrt_inv_e_n + Year_c, 
-                          random = list(~1 | Study_ID, ~1 | ES_ID), 
-                          test = "t", 
-                          method = "REML",
-                          sparse = TRUE,
-                          data = db_decline)
 
-summary(reporting_model)
+p_funnel <- wrap_elements(panel = ~{
+  # 1. Force smaller margins (Bottom, Left, Top, Right)
+  # Standard is c(5, 4, 4, 2); we reduce them to fit tight spaces
+  par(mar = c(4, 5, 1, 1)) 
+  
+  # 2. Run the funnel code
+  funnel(ma_all, 
+         yaxis = "seinv",
+         las = 1,
+         digits = c(2, 1),
+         xlab = "Standardised residuals (lnRR)",
+         ylab = "Precision (1/SE)", 
+         pch = 21,
+         bg = alpha("black", 0.2),
+         col = "black",
+         cex = 1.2,
+         ylim = c(0.01, 40),
+         xlim = c(-6, 10))
+})
 ```
 
 ```{r}
-#| label: quality_bubble_plot
-bubble_plot(reporting_model,
-            mod = "quality_c",
-            group = "Study_ID",
-            xlab = "Reporting quality")
+final_dashboard <- p_funnel +egger / lag2 +
+  plot_annotation(tag_levels = "A")  & 
+  theme(
+    plot.tag = element_text(size = 12, face = "bold"),
+    plot.subtitle = element_text(size = 10, face = "bold")
+  )
+
+final_dashboard
+
 ```
+
+
+
+```{r}
+#| label: save-figure_behaviour
+#| eval: false
+
+ggsave(filename = here("..","Plots", "bias_lnRR.pdf"),
+       plot = final_dashboard,
+       dpi = 300, device = cairo_pdf,width = 7,  
+       height = 10)
+
+ggsave(filename = here("..","Plots", "bias_lnRR.jpg"),
+       plot = final_dashboard,
+       width = 7,  
+       height = 10,  
+       dpi = 300)
+
+```
+
+```{r}
+sessionInfo()
+```
+
+```{r}
+# Define the vertical stack
+vertical_stack <- p_funnel / egger / lag2 + 
+  plot_annotation(tag_levels = "A")
+
+# SAVE DIRECTLY - Do not type 'vertical_stack' in the console
+pdf(here("..", "Plots", "vertical_stack.pdf"), width = 6, height = 8) 
+print(vertical_stack)
+dev.off()
+```
+
