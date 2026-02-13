@@ -72,6 +72,7 @@ The function below implements all steps required to compute lnRR and its samplin
 
 ```{r}
 #| label: calculate_lnRR_final
+#| fold: TRUE
 calculate_lnRR <- function(dt) {
 
   ## 1. Data Cleaning and Imputation (Handling Extreme Values)

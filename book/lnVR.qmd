@@ -4,7 +4,18 @@ title: "lnVR"
 
 Here we estimate the **log variability ratio** ($ln VR$), which quantifies whether music exposure changes the **dispersion** (standard deviation) of behavioral outcomes relative to controls.
 
-$$\ln VR = \ln \left( \frac{SD_{Experimental}}{SD_{Control}} \right)$$
+
+::: callout-note
+$$
+\ln VR = \ln\left(\frac{SD_T}{SD_C}\right) + \frac{1}{2}\left(\frac{1}{N_T-1}-\frac{1}{N_C-1}\right)
+$$
+
+where $SD$ is the standard deviation and $N$ is the sample size for treatment ($T$) and control ($C$) groups.
+:::
+
+
+
+
 
 We exclude proportional outcomes (0–1 or 0–100 measures) from the $ln VR$ analysis because bounded variables impose a mechanical mean–variance relationship, making it difficult to interpret variability changes biologically.
 

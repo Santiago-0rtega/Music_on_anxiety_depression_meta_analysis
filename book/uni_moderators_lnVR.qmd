@@ -167,20 +167,7 @@ orchard_lifestage<-orchard_plot(mLE,legend.pos = "top.left",
 orchard_lifestage
 ```
 
-```{r}
-#| label: save-figure_lifestage
-#| eval: false
 
-ggsave(filename = here("..","Plots", "orchard_lifestage_lnVR.pdf"), 
-       plot = orchard_lifestage,
-       dpi = 300, device = cairo_pdf)
-
-ggsave(filename = here("..","Plots", "orchard_lifestage_lnVR.jpg"),
-       plot = orchard_lifestage,
-       width = 9,  
-       height = 7,  
-       dpi = 300)
-```
 
 ## 3. Sex
 
@@ -239,21 +226,7 @@ orchard_sex<-orchard_plot(mSX, legend.pos = "top.left",
 orchard_sex
 ```
 
-```{r}
-#| label: save-figure_sex
-#| eval: false
 
-ggsave(filename = here("..","Plots", "orchard_sex_lnVR.pdf"),
-       plot = orchard_sex,
-       dpi = 300, device = cairo_pdf)
-
-ggsave(filename = here("..","Plots", "orchard_sex_lnVR.jpg"),
-       plot = orchard_sex,
-       width = 7,  
-       height = 9,  
-       dpi = 300)
-
-```
 
 ## 4. Music genre
 
@@ -321,21 +294,7 @@ orchard_genre<-orchard_plot(mMG,legend.pos = "top.left",
 orchard_genre
 ```
 
-```{r}
-#| label: save-figure_genre
-#| eval: false
 
-ggsave(filename = here("..","Plots", "orchard_genre_lnVR.pdf"),
-       plot = orchard_genre,
-       dpi = 300, device = cairo_pdf)
-
-ggsave(filename = here("..","Plots", "orchard_genre_lnVR.jpg"),
-       plot = orchard_genre,
-       width = 9,  
-       height = 7,  
-       dpi = 300)
-
-```
 
 ## 5. Music exposure duration
 
@@ -399,21 +358,7 @@ orchard_exposure<-orchard_plot( mMED,legend.pos = "top.left",
 orchard_exposure
 ```
 
-```{r}
-#| label: save-figure_exposure
-#| eval: false
 
-ggsave(filename = here("..","Plots", "orchard_exposure_lnVR.pdf"),
-       plot = orchard_exposure,
-       dpi = 300, device = cairo_pdf)
-
-ggsave(filename = here("..","Plots", "orchard_exposure_lnVR.jpg"),
-       plot = orchard_exposure,
-       width = 9,  
-       height = 7,  
-       dpi = 300)
-
-```
 
 ## 6. Experimental design
 
@@ -480,21 +425,7 @@ orchard_design<-orchard_plot(mEXD,legend.pos = "top.left",
 orchard_design
 ```
 
-```{r}
-#| label: save-figure_design
-#| eval: false
 
-ggsave(filename = here("..","Plots", "orchard_design_lnRR.pdf"),
-       plot = orchard_design,
-       dpi = 300, device = cairo_pdf)
-
-ggsave(filename = here("..","Plots", "orchard_design_lnRR.jpg"),
-       plot = orchard_design,
-       width = 9,  
-       height = 7,  
-       dpi = 300)
-
-```
 
 ## 7. Induced behaviour
 
@@ -538,21 +469,7 @@ orchard_behaviour<-orchard_plot(mIB,
 orchard_behaviour
 ```
 
-```{r}
-#| label: save-figure_behaviour
-#| eval: false
 
-ggsave(filename = here("..","Plots", "orchard_behaviour_lnVR.pdf"),
-       plot = orchard_behaviour,
-       dpi = 300, device = cairo_pdf)
-
-ggsave(filename = here("..","Plots", "orchard_behaviour_lnVR.jpg"),
-       plot = orchard_behaviour,
-       width = 9,  
-       height = 7,  
-       dpi = 300)
-
-```
 
 ## 8. Relative timing
 
@@ -723,9 +640,7 @@ r2AT
 summary(glht(mAT, linfct=cbind(contrMat(rep(1,5), type="Tukey"))), test=adjusted("none"))
 ```
 
-```{r}
 
-```
 
 
 
@@ -775,7 +690,7 @@ orchard_assay
 
 ```{r}
 #| label: patched_figure
-#| 
+#| fold: TRUE
 orchard_assay     <- orchard_assay     + labs(subtitle = "Behavioral assay")
 orchard_lifestage <- orchard_lifestage + labs(subtitle = "Age at exposure")
 
@@ -818,7 +733,7 @@ patched_figure
 ```{r}
 #| label: save-figure_patched
 #| eval: false
-
+#| fold: TRUE
 ggsave(filename = here("..","Plots", "patched_lnVR.pdf"),
        plot = patched_figure,
        dpi = 300, device = cairo_pdf,width = 10,  

@@ -37,11 +37,4 @@ Where relevant, we provide intermediate outputs (effect size tables, VCV constru
 If you cite this supplement, please cite the main article and (optionally) the repository/archive where this site is hosted.
 :::
 
-::: {.card}
-## Quick links
 
-- Start here: **lnRR → Estimating effect sizes**
-- Overall effect: **lnRR → Overall effect**
-- Moderators: **lnRR → Uni-moderators**
-- Sensitivity: **lnRR → leave-one-out**
-:::

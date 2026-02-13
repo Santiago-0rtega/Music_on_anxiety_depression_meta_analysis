@@ -81,6 +81,7 @@ loo_t
 ```
 
 ```{r}
+#| label: loo_plot
 loo_plot<-orchard_leave1out(leave1out = loo_t,
                   xlab = "lnRR",
                   ylab = "Studies left out",
