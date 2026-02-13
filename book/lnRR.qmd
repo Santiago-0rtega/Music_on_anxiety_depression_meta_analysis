@@ -1,5 +1,32 @@
 # Estimating effect sizes
 
+This section documents the full workflow used to compute log response ratios (lnRR) and their sampling variances from the extracted dataset.
+
+::: callout-note
+The log response ratio (lnRR) is defined as:
+
+$$
+\begin{equation} \label{eq:lnRR}
+\ln RR =
+\ln\left(\frac{M_T}{M_C}\right)
++
+\frac{1}{2}
+\left(
+\frac{SD_T^2}{N_T M_T^2}
+-
+\frac{SD_C^2}{N_C M_C^2}
+\right),
+\end{equation}
+$$
+
+where $M_T$ and $M_C$ denote the sample means, $SD_T$ and $SD_C$ the sample standard deviations, and $N_T$ and $N_C$ the sample sizes of the music-exposed (treatment) and control groups, respectively.
+
+
+Negative values indicate reductions in anxiety- or depression-like behavior under music exposure (after directional harmonization).
+:::
+
+The following packages are required for data manipulation, effect size computation, and visualization. The `metafor` package is used for standardized effect size calculations, and `orchaRd` is used for meta-analytic visualization.
+
 ```{r}
 #| label: setup
 #| include: true
@@ -17,30 +44,30 @@ pacman::p_load(
 
 ## lnRR Effect Size Calculation Function
 
-This function, `calculate_lnRR()`, is designed to calculate the Log Response Ratio ($\text{lnRR}$) and its variance ($\text{lnRR_var}$) for both continuous and percentage data, accounting for dependent (correlated) and independent comparison structures.
+This function, `calculate_lnRR()`, is designed to calculate the Log Response Ratio ($lnRR}$) and its variance ($lnRR_var}$) for both continuous and percentage data, accounting for dependent (correlated) and independent comparison structures.
+
+The function below implements all steps required to compute lnRR and its sampling variance. It includes:
+
+-   Boundary corrections for extreme values (0 or 100%)
+-   Standard deviation imputation from standard errors
+-   Direction harmonization so that negative lnRR values always indicate beneficial effects
+-   Separate handling of continuous and proportional outcomes
+-   Variance adjustment for dependent comparisons (assuming r = 0.5)
 
 ::: callout-note
 ## Variable definitions
 
-| Variable Name | Definition                              |
-|:--------------|:----------------------------------------|
-| **`ES_ID`**   | Unique identifier for each effect size. |
-
-\|**`Study_ID`**\| Identifier for the study from which the data is drawn.
-
-\|**`C_n`, `Ex_n`**\| Sample sizes for Control and Experimental groups, respectively.
-
-\|**`C_mean`, `Ex_mean*`**\| Mean values for Control and Experimental groups, respectively.
-
-\|**`C_SE`, `Ex_SE`**\|Standard errors for Control and Experimental groups, respectively.
-
-\|**`C_SD`, `Ex_SD`**\| Standard deviations for Control and Experimental groups, respectively.
-
-\|**`Data_type`**\| Type of data (e.g., "time", "distance", "count", "latency", "percentage", "index").
-
-\|**`Comparison_structure`**\| Indicates whether the comparison is "Independent" (separate animals) or "Dependent" (same animals).
-
-\|**`Higher_better`**\| Indicates whether higher values are better ("Yes") or not ("No") for standardization purposes.
+| Variable | Description |
+|:------------------------------|:---------------------------------------|
+| `ES_ID` | Unique identifier for each effect size |
+| `Study_ID` | Identifier for the original study |
+| `C_n`, `Ex_n` | Sample sizes for control and experimental groups |
+| `C_mean`, `Ex_mean` | Group means for control and experimental groups |
+| `C_SE`, `Ex_SE` | Standard errors |
+| `C_SD`, `Ex_SD` | Standard deviations |
+| `Data_type` | Outcome type (time, distance, count, latency, percentage, index) |
+| `Comparison_structure` | Independent (separate animals) or Dependent (same animals) |
+| `Higher_better` | Indicates whether higher values reflect lower anxiety/depression |
 :::
 
 ```{r}
@@ -188,7 +215,19 @@ calculate_lnRR <- function(dt) {
 }
 ```
 
-After defining the function, we proceed to load and clean the dataset.
+The function returns a dataset with two additional columns:
+
+- `lnRR`: log response ratio
+- `lnRR_var`: sampling variance of lnRR
+
+These values are used in subsequent multilevel meta-analytic models.
+
+We next load the extracted dataset and perform minimal cleaning required for effect size computation. Specifically, we:
+
+- Convert numeric columns to numeric format
+- Reconstruct standard deviations when only standard errors were reported
+- Create a cohort identifier to model non-independence
+- Convert categorical variables to factors for later meta-regression
 
 ```{r}
 #| label: load_and_clean_data
@@ -227,9 +266,8 @@ db <- readr::read_csv(here("..","data","db251124.csv")) %>%
 
 ## Calculate InRR Effect Sizes
 
-Now, we apply the `calculate_lnRR()` function to the cleaned dataset to compute the effect sizes and their variances.
+We apply the `calculate_lnRR()` function to the cleaned dataset to generate effect sizes and sampling variances. The resulting dataset is saved for reproducibility and downstream modeling.
 
-The resulting dataset, `db_effect_sizes`, is then saved as a CSV file for further analysis.
 
 ```{r}
 #| label: calculate_effect_sizes
@@ -286,12 +324,41 @@ DT::datatable(
 
 ## Effect Size Distributions
 
+The histograms below show the distribution of calculated lnRR values and their sampling variances. These plots allow visual inspection of:
+
+- Directional bias (skew toward negative values)
+- Extreme outliers
+- Variance heterogeneity across studies
+
+
 ```{r}
 #| label: lnRR_histogram
 
-hist(db_effect_sizes$lnRR,xlim=c(-9,6.5),breaks = seq(-9,6.5,0.5))
+hist(db_effect_sizes$lnRR,
+     xlim=c(-9,6.5),
+     breaks = seq(-9,6.5,0.5),
+     main = "Distribution of lnRR",
+     xlab = "lnRR")
 
-
-hist(db_effect_sizes$lnRR_var, xlim=c(0,13),breaks = seq(0,13,0.1))
+hist(db_effect_sizes$lnRR_var,
+     xlim=c(0,13),
+     breaks = seq(0,13,0.1),
+     main = "Distribution of lnRR Variance",
+     xlab = "Sampling Variance")
 ```
 :::
+
+
+The full dataset of computed effect sizes is available in the project repository to facilitate independent replication of all meta-analytic results.
+
+
+
+
+:::callout-note
+```{r}
+sessionInfo()
+```
+
+
+:::
+

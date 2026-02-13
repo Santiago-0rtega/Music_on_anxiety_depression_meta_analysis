@@ -1,6 +1,47 @@
-# Index {.unnumbered}
+---
+title: "Online supplementary"
+subtitle: "Reproducible workflow, full outputs, and extended methods"
+toc: false
+---
 
-This is the only supplementary material for the study: Effects of music on anxiety- and depression-like behaviours in lab rodents
+::: {.card}
+## What this site contains
 
+This online supplement provides the complete computational workflow for the systematic review and multilevel meta-analysis of music exposure effects on anxiety- and depression-like behavior in laboratory rodents.
 
-    
+It includes:
+
+- Full data-processing and effect size derivations (**lnRR** and **lnVR**)
+- Multilevel model specifications, moderator analyses, and contrasts
+- Publication-bias diagnostics and leave-one-out sensitivity analyses
+- Figures and downloadable tables
+:::
+
+::: {.card}
+## How to navigate
+
+Use the left sidebar to browse chapters by effect size type (**lnRR** and **lnVR**).  
+Use the search box to find code chunks, model objects, or specific moderators (e.g., `Assay_type`, `Meta_genre`).
+:::
+
+::: {.card}
+## Reproducibility
+
+All code is executed in Quarto and frozen for stable rendering.  
+Where relevant, we provide intermediate outputs (effect size tables, VCV construction, model summaries) alongside the exact R code used.
+:::
+
+::: {.card}
+## Citation
+
+If you cite this supplement, please cite the main article and (optionally) the repository/archive where this site is hosted.
+:::
+
+::: {.card}
+## Quick links
+
+- Start here: **lnRR → Estimating effect sizes**
+- Overall effect: **lnRR → Overall effect**
+- Moderators: **lnRR → Uni-moderators**
+- Sensitivity: **lnRR → leave-one-out**
+:::

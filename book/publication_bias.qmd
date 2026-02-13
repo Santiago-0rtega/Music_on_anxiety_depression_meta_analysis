@@ -15,10 +15,10 @@ pacman::p_load(
                tidyverse,
                patchwork,
                metafor,
-               orchaRd, emmeans
+               orchaRd, emmeans,scales
                )
 db <- readr::read_csv(here("..","data","db_lnRR.csv")) %>%
-mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD), as.numeric))%>%
+mutate(across( c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD, lnRR, lnRR_var), as.numeric))%>%
   mutate(across(where(is.character), as.factor))
 
 
@@ -46,42 +46,50 @@ summary(ma_all)
 
 ## Visual inspection: funnel plots
 
-```{r}
-# funnel plot - standard error
-funnel(ma_all, yaxis = "sei",
-      xlab = "Standarised residuals",
-      ylab = "Precision (inverse of SE)" )
 
 
-```
 
 ```{r}
-# funnel plot - inverse of standard error
-funnel_plot<-funnel(ma_all, yaxis = "seinv",
-       las = 1,                   # Rotates Y-axis text to be horizontal
+#| label: funnel_plot
+
+pdf(file = "funnel_plot.pdf", width = 8, height = 6)
+
+
+funnel_plot <- funnel(ma_all, 
+       yaxis = "seinv",
+       las = 1,
        digits = c(2, 1),
-      xlab = "Standarised residuals (lnRR)",
-      ylab = "Precision (inverse of SE)",  pch = 21,                  # 
+       xlab = "Standarised residuals (lnRR)",
+       ylab = "Precision (inverse of SE)", 
+       pch = 21,
        bg = alpha("black", 0.2),   
-       col = "black",             
-       cex = 1.2,ylim = c(0.01, 40),
-      xlim = c(-6, 10)
-      )        
+       col = "black",              
+       cex = 1.2,
+       ylim = c(0.01, 40),
+       xlim = c(-6, 10)
+)
 
-funnel_plot
+
+dev.off()
+
 ```
+
+
+
 
 ## Egger's Regression (Testing Small-Study Effects)
 
-Visual inspection is subjective. Egger's Regression formally tests if the effect size depends on the sample size (or precision). If the slope is significant, it means small studies are systematically different from large ones (often due to bias).
+
+We tested for small-study effects using an Egger-type meta-regression adapted for lnRR. Because lnRR and its sampling variance are mathematically coupled, regressions on the standard error can be biased. Following recommendations for multilevel meta-analysis, we used an N-based precision proxy and fitted it as a moderator in the same multilevel model.
+
 
 ```{r}
 #| label: eggers_test
 
 # 1. Calculate the effective sample size term (sqrt_inv_e_n)
-# Formula: sqrt(2/Ex_n + 2/C_n) approximates the standard error based on N
+# Formula: sqrt(1/Ex_n + 1/C_n) approximates the standard error based on N
 dt_egger_full <- db %>%
-  mutate(sqrt_inv_e_n = sqrt((2 / Ex_n) + (2 / C_n)))
+  mutate(sqrt_inv_e_n = sqrt((1 / Ex_n) + (1 / C_n)))
 
 # 2. Run the Meta-Regression
 # If 'sqrt_inv_e_n' is significant (p < 0.05), we have evidence of small-study effects.
@@ -158,46 +166,13 @@ lag2<-time_lag +
 lag2
 ```
 
-```{r}
-library(patchwork)
-library(gridGraphics) # Required for capturing Base R plots
 
-
-
-p_funnel <- wrap_elements(panel = ~{
-  # 1. Force smaller margins (Bottom, Left, Top, Right)
-  # Standard is c(5, 4, 4, 2); we reduce them to fit tight spaces
-  par(mar = c(4, 5, 1, 1)) 
-  
-  # 2. Run the funnel code
-  funnel(ma_all, 
-         yaxis = "seinv",
-         las = 1,
-         digits = c(2, 1),
-         xlab = "Standardised residuals (lnRR)",
-         ylab = "Precision (1/SE)", 
-         pch = 21,
-         bg = alpha("black", 0.2),
-         col = "black",
-         cex = 1.2,
-         ylim = c(0.01, 40),
-         xlim = c(-6, 10))
-})
-```
-
-
-
-```{r}
-# SAVE DIRECTLY - Do not type 'vertical_stack' in the console
-pdf(here("..", "Plots", "funnel.pdf"), width = 10, height = 7) 
-print(p_funnel)
-dev.off()
-```
 
 
 
 
 ```{r}
+#| label: final_dashboard
 final_dashboard <- egger / lag2 +
   plot_annotation(tag_levels = "A")  & 
   theme(
@@ -226,14 +201,12 @@ ggsave(filename = here("..","Plots", "bias_lnRR.jpg"),
 
 ```
 
+We treat all publication-bias diagnostics as exploratory because heterogeneity is high and effect sizes are dependent. We interpret agreement across the funnel plot, Egger-type regression, and the year moderator as stronger evidence than any single test.
+
+
+::: callout-note
 ```{r}
 sessionInfo()
 ```
+:::
 
-```{r}
-# Define the vertical stack
-vertical_stack <- p_funnel / egger / lag2 + 
-  plot_annotation(tag_levels = "A")
-
-
-```

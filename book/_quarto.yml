@@ -1,11 +1,43 @@
 project:
   type: book
   output-dir: ../docs
+  resources:
+    - styles.css
+    - images
 
 book:
-  title: "Music_meta_book"
-  author: "TBA"
+  title: "Music exposure reduces anxiety- and depression-like behavior in rodents: a systematic review and multilevel meta-analysis"
+  subtitle: "Online supplementary (reproducible workflow + full outputs)"
+  author:
+    - name: Santiago Ortega
+      attributes:
+        corresponding: true
+    - name: Anna Lenz
+    - name: Erick Lundgren
+    - name: Ayumi Mizuno
+    - name: Sergio Poo Hernandez
+    - name: Shinichi Nakagawa
+    - name: Malgorzata Lagisz
   date: last-modified
+
+  # Adds top bar + links
+  navbar:
+    pinned: true
+    right:
+      - icon: github
+        href: https://github.com/Santiago-0rtega/Music_on_anxiety_depression_meta_analysis  # change
+        aria-label: GitHub
+      - text: "OSF"
+        href: https://osf.io/mv78t                   # change if needed
+      - text: "Paper"
+        href: https://doi.org/XXXXX                  # optional
+
+  # Adds left sidebar controls + search box
+  sidebar:
+    style: "floating"
+    search: true
+    collapse-level: 2
+
   chapters:
     - index.qmd
     - part: "lnRR"
@@ -13,33 +45,42 @@ book:
         - lnRR.qmd
         - overall_effect.qmd
         - uni_moderators.qmd
-        - multi_moderator.qmd
         - publication_bias.qmd
         - leave_one_out.qmd
     - part: "lnVR"
-      chapters: 
+      chapters:
         - lnVR.qmd
         - overall_effect_lnVR.qmd
         - uni_moderators_lnVR.qmd
-    # - part: "lnCVR"
-    #   chapters:
-    #     - placeholder.qmd
 
-number-sections: false 
+number-sections: false
 bibliography: references.bib
 biblio-style: apalike
 
 format:
   html:
     theme:
-      light: litera
+      light: litera 
       dark: darkly
-    mainfont: "Atkinson Hyperlegible" 
-    code-tools: true
+    css: styles.css
+    mainfont: "Atkinson Hyperlegible"
+    fontsize: 1.05em
+    linestretch: 1.35
+    favicon: images/favicon.png
+
     toc: true
     toc-depth: 3
     toc-location: left
+
+    code-tools: true
     code-copy: true
+    code-fold: show
+
+    link-external-newwindow: true
+    smooth-scroll: true
+
+    # nicer citations in browser
+    citeproc: true
 
 execute:
   freeze: auto

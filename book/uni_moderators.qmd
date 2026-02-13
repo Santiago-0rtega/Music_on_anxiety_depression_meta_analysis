@@ -13,12 +13,12 @@ pacman::p_load(
                tidyverse,
                patchwork,
                metafor,
-               orchaRd, multcomp,
+               orchaRd, multcomp
                )
 
-#| label: load_and_clean_data
+
 db <- readr::read_csv(here("..","data","db_lnRR.csv")) %>%
-mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD), as.numeric))%>%
+mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD, lnRR, lnRR_var), as.numeric))%>%
   mutate(across(where(is.character), as.factor)) 
 
 
@@ -47,7 +47,7 @@ Variable definitions:
 | **`Meta_genre`** | Categorization of the music stimulus. Levels: **Western Art Music / Orchestral**, **Popular Contemporary Music**, **Traditional Music / Folk / World**, **Mixed**, **Unclear**. |
 | **`Music_exposure_duration`** | Total time subjects were exposed to music. Levels: **Acute**, **short**, **medium**, **long**. |
 | **`Experimental_design`** | Study's methodological setup. Levels: **Posttest-Only Control Group**, **Randomized Block**, **Factorial**, **Repeated Measures**. |
-| **`Induced behaviour`** | Whether the tested behavior was innate or experimentally induced. |
+| **`Induced behavior`** | Whether the tested behavior was innate or experimentally induced. |
 | **`Relative_timing`** | When music was administered relative to the behavioral test. Levels: **before**, **concurrent**, **both**, **not specified**. |
 | **`Experimental_procedures`** | Identifies non-treatment controls for interventions. Levels: **sham**, **none**. |
 | **`Control_condition`** | Description of the control group condition. Levels: **white noise**, **ambient noise** |
@@ -60,39 +60,27 @@ Variable definitions:
 ::: {.callout-note icon="true"}
 ## Data Filtering & Matrix Alignment
 
-This snippet performs quality control before running your meta-analysis. It serves two critical functions:
+We exclude moderator levels with fewer than five effect sizes (k < 5) to avoid unstable estimates and misleading contrasts.
 
-Ensures Reliability: It removes specific levels of your moderator (groups) that have too little data to be trusted (in this case, fewer than 5 effect sizes).
-
-Prevents Errors: Crucially, it subsets the Variance-Covariance (VCV) matrix to match your filtered data. Since the VCV matrix is a square grid where every row/column corresponds to a row in your data, filtering the data without "cropping" the matrix correspondingly will cause your model to crash due to a dimension mismatch.
 
 ```{r}
 #| label: filter_low_k
-#| eval: FALSE
+#| eval: TRUE
 
-# 1. Identify and Filter Low-K Levels
-# (Replace 'Outcome_type' with the specific moderator column name)
+filter_low_k <- function(dat, V, moderator, min_k = 5) {
+  moderator <- rlang::ensym(moderator)
+  k_counts <- dat %>%
+    dplyr::count(!!moderator, name = "k_es")
+  keep_levels <- k_counts %>% dplyr::filter(k_es >= min_k) %>% dplyr::pull(!!moderator)
+  dat_f <- dat %>% dplyr::filter((!!moderator) %in% keep_levels)
+  idx <- which(dat[[rlang::as_string(moderator)]] %in% keep_levels)
+  V_f <- V[idx, idx]
+  list(data = dat_f, V = V_f, keep = keep_levels, k = k_counts)
+}
 
-# Calculate the count of ES_ID (k) for each level of the moderator
-k_counts <- db %>%
-  group_by(Outcome_type) %>%
-  summarise(k_es = n())
-
-# Identify the levels to keep (where k_es >= 5)
-levels_to_keep <- k_counts %>%
-  filter(k_es >= 5) %>%
-  pull(Outcome_type)
-
-# 2. Create the Filtered Data Frame
-db_filtered <- db %>%
-  filter(Outcome_type %in% levels_to_keep)
-
-# 3. Subset the VCV Matrix (CRITICAL STEP)
-# Assumes VCV matrix rows/columns match the original 'db' data frame indices.
-indices_to_keep <- which(db$Outcome_type %in% levels_to_keep)
-VCV_filtered <- VCV[indices_to_keep, indices_to_keep]
 ```
 :::
+Each section below fits a separate uni-moderator meta-regression. These models test whether the mean lnRR differs across levels of a single moderator while maintaining the same random-effects structure and the same dependence assumptions (VCV matrix). Because these are uni-moderator models, results describe *conditional differences across that moderator only* and should not be interpreted as causal effects or independent contributions to heterogeneity.
 
 ::: panel-tabset
 ## 1. Outcome type: Anxiety and Depression
@@ -101,21 +89,10 @@ VCV_filtered <- VCV[indices_to_keep, indices_to_keep]
 #| label: filter_outcome_type
 #| fold: TRUE
 
-k_counts <- db %>%
-  group_by(Outcome_type) %>%
-  summarise(k_es = n())
+f <- filter_low_k(db, VCV, Outcome_type, min_k = 5)
+db_filtered <- f$data
+VCV_filtered <- f$V
 
-
-levels_to_keep <- k_counts %>%
-  filter(k_es >= 5) %>%
-  pull(Outcome_type)
-
-
-db_filtered <- db %>%
-  filter(Outcome_type %in% levels_to_keep)
-
-indices_to_keep <- which(db$Outcome_type %in% levels_to_keep)
-VCV_filtered <- VCV[indices_to_keep, indices_to_keep]
 ```
 
 ```{r}
@@ -137,6 +114,7 @@ summary(mOT)
 ```
 
 ```{r}
+#| label: r2_outcome_type
 r2OT <- round(r2_ml(mOT), 4)
 r2OT
 ```
@@ -159,7 +137,7 @@ orchard_outcome
 ```
 
 ```{r}
-#| label: save-figure
+#| label: save-figure_outcome
 #| eval: false
 
 ggsave(filename = here("..","Plots", "orchard_outcome_lnRR.pdf"),
@@ -198,6 +176,7 @@ summary(mLE)
 r2LE <- round(r2_ml(mLE), 4)
 r2LE
 ```
+
 
 ```{r}
 summary(glht(mLE, linfct=cbind(contrMat(rep(1,6), type="Tukey"))), test=adjusted("none"))
@@ -249,24 +228,18 @@ ggsave(filename = here("..","Plots", "orchard_lifestage_lnRR.jpg"),
 
 ## 3. Sex
 
+
 ```{r}
 #| label: filter_sex
 #| fold: TRUE
-k_counts <- db %>%
-  group_by(Sex) %>%
-  summarise(k_es = n())
 
-levels_to_keep <- k_counts %>%
-  filter(k_es >= 5) %>%
-  pull(Sex)
+f <- filter_low_k(db, VCV, Sex, min_k = 5)
+db_filtered <- f$data
+VCV_filtered <- f$V
 
-db_filtered <- db %>%
-  filter(Sex %in% levels_to_keep)
-
-
-indices_to_keep <- which(db$Sex %in% levels_to_keep)
-VCV_filtered <- VCV[indices_to_keep, indices_to_keep]
 ```
+
+
 
 ```{r}
 #| label: model_sex
@@ -407,25 +380,17 @@ summary(glht(mMG, linfct=cbind(contrMat(rep(1,4), type="Tukey"))), test=adjusted
 ## 5. Music exposure duration
 
 Music_exposure_duration
-
 ```{r}
 #| label: filter_music_exposure
 #| fold: TRUE
 
-k_counts <- db %>%
-  group_by(Music_exposure_duration) %>%
-  summarise(k_es = n())
+f <- filter_low_k(db, VCV, Music_exposure_duration, min_k = 5)
+db_filtered <- f$data
+VCV_filtered <- f$V
 
-levels_to_keep <- k_counts %>%
-  filter(k_es >= 5) %>%
-  pull(Music_exposure_duration)
-
-db_filtered <- db %>%
-  filter(Music_exposure_duration %in% levels_to_keep)
-
-indices_to_keep <- which(db$Music_exposure_duration %in% levels_to_keep)
-VCV_filtered <- VCV[indices_to_keep, indices_to_keep]
 ```
+
+
 
 ```{r}
 #| label: model_music_exposure
@@ -599,7 +564,7 @@ orchard_behaviour
 ```
 
 ```{r}
-#| label: save-figure_behaviour
+#| label: save-figure_mechanism
 #| eval: false
 
 ggsave(filename = here("..","Plots", "orchard_behaviour_lnRR.pdf"),
@@ -767,27 +732,16 @@ summary(mCC)
 ## 11. Assay type
 
 ```{r}
-# 1. Identify and Filter Low-K Levels
+#| label: filter_assay_type
+f <- filter_low_k(db, VCV,Assay_type, min_k = 5)
+db_filtered <- f$data
+VCV_filtered <- f$V
 
-
-k_counts <- db %>%
-  group_by(Assay_type) %>%
-  summarise(k_es = n())
-
-# Identify the levels to keep (where k_es >= 5)
-levels_to_keep <- k_counts %>%
-  filter(k_es >= 5) %>%
-  pull(Assay_type)
-
-# 2. Create the Filtered Data Frame
-db_filtered <- db %>%
-  filter(Assay_type %in% levels_to_keep)
-
-# 3. Subset the VCV Matrix (CRITICAL STEP)
-# Assumes VCV matrix rows/columns match the original 'db' data frame indices.
-indices_to_keep <- which(db$Assay_type %in% levels_to_keep)
-VCV_filtered <- VCV[indices_to_keep, indices_to_keep]
 ```
+
+
+
+
 
 ```{r}
 #| label: model_assay_type
@@ -861,20 +815,20 @@ summary(glht(mAT, linfct=cbind(contrMat(rep(1,6), type="Tukey"))), test=adjusted
 
 ```{r}
 #| label: patched_figure
-
-orchard_lifestage <- orchard_lifestage + labs(subtitle = "Age at exposure")
 orchard_assay     <- orchard_assay     + labs(subtitle = "Behavioral assay")
+orchard_lifestage <- orchard_lifestage + labs(subtitle = "Age at exposure")
 orchard_control   <- orchard_control   + labs(subtitle = "Control condition")
 orchard_behaviour <- orchard_behaviour + labs(subtitle = "Behavioral mechanism")
 
 # 2) Hide legends on all but ONE panel (choose bottom-right here)
-orchard_lifestage <- orchard_lifestage + theme(legend.position = "none")
 orchard_assay     <- orchard_assay     + theme(legend.position = "none")
+orchard_lifestage <- orchard_lifestage + theme(legend.position = "none")
+
 orchard_control   <- orchard_control   + theme(legend.position = "none")
 # orchard_behaviour keeps the legend
 
 # 3) Patch with your layout
-patched_figure <- (orchard_lifestage + orchard_assay) /
+patched_figure <- (orchard_assay + orchard_lifestage  ) /
                  (orchard_control   + orchard_behaviour) +
   plot_annotation(tag_levels = "A") &
   theme(
@@ -911,7 +865,8 @@ ggsave(filename = here("..","Plots", "patched_lnRR.jpg"),
        dpi = 300)
 
 ```
-
+::: callout-note
 ```{r}
 sessionInfo()
 ```
+:::

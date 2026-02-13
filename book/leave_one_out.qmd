@@ -1,6 +1,9 @@
 ---
 title: "leave-one-out"
 ---
+To evaluate whether the overall meta-analytic estimate is driven by any single study, we perform a leave-one-out analysis at the **study level**. 
+
+For each iteration, we refit the full multilevel model after removing all effect sizes from one study and record the resulting overall lnRR estimate. If the pooled effect remains stable across iterations, this indicates that the main result is not unduly influenced by any single study.
 
 ```{r}
 #| label: setup
@@ -20,7 +23,7 @@ pacman::p_load(
 ```{r}
 #| label: load_and_clean_data
 db <- readr::read_csv(here("..","data","db_lnRR.csv")) %>%
-mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD), as.numeric))%>%
+mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD, lnRR, lnRR_var), as.numeric))%>%
   mutate(across(where(is.character), as.factor))
 
 
@@ -29,6 +32,7 @@ mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD), as.numeri
 db <- db %>%
   mutate(Study = str_extract(Study_ID, ".*_\\d{4}"))
 ```
+
 
 ```{r}
 VCV <- metafor::vcalc(
@@ -39,6 +43,10 @@ VCV <- metafor::vcalc(
   data = db 
 )
 ```
+
+
+
+Because our model uses a variance–covariance matrix (VCV) to account for within-cohort dependence, we must recompute that matrix each time a study is removed. The `vcalc_args` object ensures that the same covariance structure (cluster variable and assumed correlation) is applied during each refitting step.
 
 ```{r}
 vcalc_args <- list(vi = "lnRR_var",
@@ -62,9 +70,7 @@ ma_all <- rma.mv(yi = lnRR,
 summary(ma_all)
 ```
 
-```{r}
 
-```
 
 ```{r}
 loo_t<-leave_one_out(ma_all, group = "Study", vcalc_args =vcalc_args)
@@ -86,6 +92,7 @@ loo_plot<-orchard_leave1out(leave1out = loo_t,
 
 loo_plot
 ```
+Across iterations, the pooled lnRR estimate remained within a narrow range and consistently below zero. No single study reversed the direction or substantially altered the magnitude of the overall effect. This indicates that the observed reduction in anxiety- and depression-like behaviors under music exposure is not driven by any individual dataset and is robust to study-level exclusion.
 
 ```{r}
 #| label: save-figure_behaviour
@@ -103,3 +110,15 @@ ggsave(filename = here("..","Plots", "loo_studies.jpg"),
        dpi = 300)
 
 ```
+
+
+
+::: callout-note
+```{r}
+sessionInfo()
+```
+:::
+
+
+
+

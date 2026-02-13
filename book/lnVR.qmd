@@ -2,6 +2,14 @@
 title: "lnVR"
 ---
 
+Here we estimate the **log variability ratio** ($ln VR$), which quantifies whether music exposure changes the **dispersion** (standard deviation) of behavioral outcomes relative to controls.
+
+$$\ln VR = \ln \left( \frac{SD_{Experimental}}{SD_{Control}} \right)$$
+
+We exclude proportional outcomes (0–1 or 0–100 measures) from the $ln VR$ analysis because bounded variables impose a mechanical mean–variance relationship, making it difficult to interpret variability changes biologically.
+
+A positive $ln VR$ indicates **higher variability** under music exposure (less consistent responses), whereas a negative $ln VR$ indicates **lower variability** (more consistent responses).
+
 ```{r}
 #| label: setup
 #| include: false
@@ -71,11 +79,6 @@ calculate_lnVR <- function(dt) {
   ## 2. Data Cleaning and Imputation
   dt <- dt %>%
     mutate(
-      # Adjust means (for consistency)
-      C_mean = ifelse(C_mean == 0, 0.005, C_mean),
-      Ex_mean = ifelse(Ex_mean == 0, 0.005, Ex_mean),
-      C_mean = ifelse(C_mean == 100, 99.5, C_mean), 
-      Ex_mean = ifelse(Ex_mean == 100, 99.5, Ex_mean),
 
       # Adjust SDs that are 0 (Critical for lnVR)
       Ex_SD = ifelse(Ex_SD == 0, 0.01, Ex_SD),
@@ -139,6 +142,10 @@ calculate_lnVR <- function(dt) {
 }
 ```
 
+::: callout-note
+We computed $ln VR$ using `metafor::escalc()` (measures `VR` and `VRC`), which implements the same bias-corrected estimators described in the Methods.
+:::
+
 ```{r}
 #| label: apply_lnVR_calculation
 #| eval: false
@@ -178,3 +185,59 @@ DT::datatable(
   formatRound(columns = round_cols, digits = 3) %>%
   formatStyle(columns = display_cols, `text-align` = 'center')
 ```
+
+
+
+
+
+```{r}
+#| label: lnVR_histogram
+
+hist(db_lnVR$lnVR,
+     
+    xlim=c(-4,10),
+     breaks = seq(-4,10,1),
+     main = "Distribution of lnVR",
+     xlab = "lnRR")
+
+hist(db_lnVR$lnVR_var,
+     xlim=c(.05,.2),
+     breaks = seq(0.05,.2,0.05),
+     main = "Distribution of lnVR Variance",
+     xlab = "Sampling Variance")
+```
+
+
+
+The full dataset of computed effect sizes is available in the project repository to facilitate independent replication of all meta-analytic results.
+
+
+
+
+:::callout-note
+```{r}
+sessionInfo()
+```
+
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
