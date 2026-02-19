@@ -85,7 +85,7 @@ filter_low_k <- function(dat, V, moderator, min_k = 5) {
 }
 
 ```
-
+:::
 # lnRR
 
 ```{r}
@@ -343,9 +343,16 @@ patched_figure <- patched_figure &
   ) &
   labs(y = expression(lnRR), x = NULL)
 
-patched_figure
 
 ```
+::: card
+```{r}
+#| echo: false
+patched_figure
+```
+:::
+
+
 
 ```{r}
 #| label: save-figure_behaviour_lnRR
@@ -669,9 +676,17 @@ patched_figure <- patched_figure &
   ) &
   labs(y = expression(lnVR), x = NULL)
 
-patched_figure
+
 
 ```
+
+::: card
+```{r}
+#| echo: false
+patched_figure
+```
+:::
+
 
 ```{r}
 #| label: save-figure_patched_lnVR
@@ -700,8 +715,23 @@ fig2<-fig2+
     title = '',
     tag_levels = 'A'
   )
+
+```
+
+
+::: card
+```{r}
+#| echo: false
 fig2
 ```
+:::
+
+
+
+
+
+
+
 
 ```{r}
 #| label: save-figure_overall
@@ -729,8 +759,20 @@ fig3<-fig3+
     title = '',
     tag_levels = 'A'
   )
+
+```
+
+
+
+
+::: card
+```{r}
+#| echo: false
 fig3
 ```
+:::
+
+
 
 ```{r}
 #| label: save-figure_outcomes
@@ -747,4 +789,4 @@ ggsave(filename = here("..","Plots", "outcome_effects.jpg"),
        dpi = 300)
 
 ```
-:::
+

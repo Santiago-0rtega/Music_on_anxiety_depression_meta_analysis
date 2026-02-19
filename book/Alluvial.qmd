@@ -1,6 +1,17 @@
 ---
 title: "Alluvial plot"
 ---
+The alluvial plots below summarize the distribution of effect sizes across key study characteristics (e.g., outcome type, species/strain, sex, and exposure design variables).
+
+::: callout-note
+### Post-processing for the manuscript figure
+
+The code here reproduces the alluvial plots and exports them as PDF/JPG.  
+For the final manuscript figure, we **made minor edits in vector-graphics software** (e.g., Illustrator/Inkscape) to improve readability—primarily **manual repositioning of labels, spacing adjustments, and small layout tweaks**. These edits **do not change the underlying data or flows**; they only improve figure legibility.
+:::
+
+
+
 
 ```{r}
 #| label: setup
@@ -186,17 +197,16 @@ assay_plot
 plot1<-(Out_spp_strain/assay_plot)+ plot_annotation(
     tag_levels = 'A'
   )
-plot1
 ```
 
 ```{r}
-ggsave(filename = here("..","Plots", "alluvial.pdf"),
+ggsave(filename = here("..","Plots", "alluvial_raw.pdf"),
        plot = plot1,
        dpi = 300, device = cairo_pdf, width = 12,   
        height = 15)
 
 
-ggsave(filename = here("..","Plots", "alluvial.jpg"),
+ggsave(filename = here("..","Plots", "alluvial_raw.jpg"),
        plot = plot1,
        width = 12,  
        height = 15,  
