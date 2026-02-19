@@ -440,30 +440,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="what-this-site-contains" class="level2 card">
-<h2 class="anchored" data-anchor-id="what-this-site-contains">What this site contains</h2>
-<p>This online supplement provides the complete computational workflow for the systematic review and multilevel meta-analysis of music exposure effects on anxiety- and depression-like behavior in laboratory rodents.</p>
+<section id="what-this-site-contains" class="level1 card">
+<h1>What this site contains</h1>
+<p>This online supplement provides the complete computational workflow for the systematic review and multilevel meta-analysis of music exposure effects on anxiety- and depression-like behaviour in laboratory rodents.</p>
 <p>It includes:</p>
 <ul>
-<li>Full data-processing and effect size derivations (<strong>lnRR</strong> and <strong>lnVR</strong>)</li>
-<li>Multilevel model specifications, moderator analyses, and contrasts</li>
-<li>Publication-bias diagnostics and leave-one-out sensitivity analyses</li>
-<li>Figures and downloadable tables</li>
+<li><p>Full data processing and effect-size derivations (lnRR, lnVR, and lnCVR), including safeguards for boundary values and audit checks</p></li>
+<li><p>Multilevel model specifications (VCV construction, random-effects structure) and overall-effect models for each effect size</p></li>
+<li><p>Uni-moderator meta-regressions across study and design characteristics, with post-hoc contrasts where applicable</p></li>
+<li><p>Publication-bias diagnostics and leave-one-out sensitivity analyses</p></li>
+<li><p>Figures and downloadable tables generated directly from the analysis pipeline</p></li>
 </ul>
 </section>
 <section id="how-to-navigate" class="level2 card">
 <h2 class="anchored" data-anchor-id="how-to-navigate">How to navigate</h2>
-<p>Use the left sidebar to browse chapters by effect size type (<strong>lnRR</strong> and <strong>lnVR</strong>).<br>
-Use the search box to find code chunks, model objects, or specific moderators (e.g., <code>Assay_type</code>, <code>Meta_genre</code>).</p>
+<p>Use the left sidebar to browse the workflow chapters:</p>
+<ul>
+<li><p><strong>Home</strong> (index.qmd)</p></li>
+<li><p><strong>Effect size calculation</strong> (<code>effect_size_calculation.qmd</code>) — data cleaning, continuity corrections, and computation of lnRR, lnVR, and lnCVR</p></li>
+<li><p><strong>Overall effects</strong> (<code>overall_effect.qmd</code>) — intercept-only multilevel models for each effect size</p></li>
+<li><p><strong>Uni-moderators</strong> (<code>uni_moderators.qmd</code>) — uni-moderator meta-regressions and post-hoc contrasts</p></li>
+<li><p><strong>Publication bias</strong> (<code>publication_bias.qmd</code>) — small-study effects / bias diagnostics</p></li>
+<li><p><strong>Leave-one-out</strong> (<code>leave_one_out.qmd</code>) — sensitivity analyses excluding one study at a time</p></li>
+<li><p><strong>Main figures</strong> (<code>main_figures.qmd</code>) — reproduction of figures from the manuscript</p></li>
+<li><p><strong>Alluvial</strong> (<code>Alluvial.qmd</code>) — alluvial visualization of study characteristics and outcome structure</p></li>
+</ul>
 </section>
 <section id="reproducibility" class="level2 card">
 <h2 class="anchored" data-anchor-id="reproducibility">Reproducibility</h2>
-<p>All code is executed in Quarto and frozen for stable rendering.<br>
-Where relevant, we provide intermediate outputs (effect size tables, VCV construction, model summaries) alongside the exact R code used.</p>
-</section>
-<section id="citation" class="level2 card">
-<h2 class="anchored" data-anchor-id="citation">Citation</h2>
-<p>If you cite this supplement, please cite the main article and (optionally) the repository/archive where this site is hosted.</p>
+<p>All code is executed in Quarto and frozen for stable rendering. Where relevant, we provide intermediate outputs (effect-size tables, continuity-correction audits, VCV matrices, model summaries, and contrasts) alongside the exact R code used to generate them.</p>
 </section>
 
 
@@ -956,38 +961,54 @@ Where relevant, we provide intermediate outputs (effect size tables, VCV constru
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>::: {.card}</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## What this site contains</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu"># What this site contains</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>This online supplement provides the complete computational workflow for the systematic review and multilevel meta-analysis of music exposure effects on anxiety- and depression-like behavior in laboratory rodents.</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>This online supplement provides the complete computational workflow for the systematic review and multilevel meta-analysis of music exposure effects on anxiety- and depression-like behaviour in laboratory rodents.</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>It includes:</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Full data-processing and effect size derivations (**lnRR** and **lnVR**)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Multilevel model specifications, moderator analyses, and contrasts</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Publication-bias diagnostics and leave-one-out sensitivity analyses</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Figures and downloadable tables</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Full data processing and effect-size derivations (lnRR, lnVR, and lnCVR), including safeguards for boundary values and audit checks</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Multilevel model specifications (VCV construction, random-effects structure) and overall-effect models for each effect size</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Uni-moderator meta-regressions across study and design characteristics, with post-hoc contrasts where applicable</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>::: {.card}</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## How to navigate</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>Use the left sidebar to browse chapters by effect size type (**lnRR** and **lnVR**).  </span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>Use the search box to find code chunks, model objects, or specific moderators (e.g., <span class="in">`Assay_type`</span>, <span class="in">`Meta_genre`</span>).</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>::: {.card}</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reproducibility</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Publication-bias diagnostics and leave-one-out sensitivity analyses</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Figures and downloadable tables generated directly from the analysis pipeline</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>::: {.card}</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">## How to navigate</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>Use the left sidebar to browse the workflow chapters:</span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>All code is executed in Quarto and frozen for stable rendering.  </span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>Where relevant, we provide intermediate outputs (effect size tables, VCV construction, model summaries) alongside the exact R code used.</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Home** (index.qmd)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Effect size calculation** (<span class="in">`effect_size_calculation.qmd`</span>) — data cleaning, continuity corrections, and computation of lnRR, lnVR, and lnCVR</span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>::: {.card}</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="fu">## Citation</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>If you cite this supplement, please cite the main article and (optionally) the repository/archive where this site is hosted.</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Overall effects** (<span class="in">`overall_effect.qmd`</span>) — intercept-only multilevel models for each effect size</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Uni-moderators** (<span class="in">`uni_moderators.qmd`</span>) — uni-moderator meta-regressions and post-hoc contrasts</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Publication bias** (<span class="in">`publication_bias.qmd`</span>) — small-study effects / bias diagnostics</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Leave-one-out** (<span class="in">`leave_one_out.qmd`</span>) — sensitivity analyses excluding one study at a time</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Main figures** (<span class="in">`main_figures.qmd`</span>) — reproduction of figures from the manuscript</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Alluvial** (<span class="in">`Alluvial.qmd`</span>) — alluvial visualization of study characteristics and outcome structure</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>::: {.card}</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reproducibility</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>All code is executed in Quarto and frozen for stable rendering.</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>Where relevant, we provide intermediate outputs (effect-size tables, continuity-correction audits, VCV matrices, model summaries, and contrasts) alongside the exact R code used to generate them.</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

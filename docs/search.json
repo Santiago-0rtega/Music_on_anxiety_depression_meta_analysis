@@ -4,17 +4,7 @@
     "href": "index.html",
     "title": "Music exposure reduces anxiety- and depression-like behavior in rodents: a systematic review and multilevel meta-analysis",
     "section": "",
-    "text": "What this site contains\nThis online supplement provides the complete computational workflow for the systematic review and multilevel meta-analysis of music exposure effects on anxiety- and depression-like behavior in laboratory rodents.\nIt includes:",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Online supplementary</span>"
-    ]
-  },
-  {
-    "objectID": "index.html#what-this-site-contains",
-    "href": "index.html#what-this-site-contains",
-    "title": "Music exposure reduces anxiety- and depression-like behavior in rodents: a systematic review and multilevel meta-analysis",
-    "section": "",
-    "text": "Full data-processing and effect size derivations (lnRR and lnVR)\nMultilevel model specifications, moderator analyses, and contrasts\nPublication-bias diagnostics and leave-one-out sensitivity analyses\nFigures and downloadable tables",
+    "text": "What this site contains\nThis online supplement provides the complete computational workflow for the systematic review and multilevel meta-analysis of music exposure effects on anxiety- and depression-like behaviour in laboratory rodents.\nIt includes:",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Online supplementary</span>"
     ]
@@ -24,7 +14,7 @@
     "href": "index.html#how-to-navigate",
     "title": "Music exposure reduces anxiety- and depression-like behavior in rodents: a systematic review and multilevel meta-analysis",
     "section": "How to navigate",
-    "text": "How to navigate\nUse the left sidebar to browse chapters by effect size type (lnRR and lnVR).\nUse the search box to find code chunks, model objects, or specific moderators (e.g., Assay_type, Meta_genre).",
+    "text": "How to navigate\nUse the left sidebar to browse the workflow chapters:\n\nHome (index.qmd)\nEffect size calculation (effect_size_calculation.qmd) — data cleaning, continuity corrections, and computation of lnRR, lnVR, and lnCVR\nOverall effects (overall_effect.qmd) — intercept-only multilevel models for each effect size\nUni-moderators (uni_moderators.qmd) — uni-moderator meta-regressions and post-hoc contrasts\nPublication bias (publication_bias.qmd) — small-study effects / bias diagnostics\nLeave-one-out (leave_one_out.qmd) — sensitivity analyses excluding one study at a time\nMain figures (main_figures.qmd) — reproduction of figures from the manuscript\nAlluvial (Alluvial.qmd) — alluvial visualization of study characteristics and outcome structure",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Online supplementary</span>"
     ]
@@ -34,17 +24,7 @@
     "href": "index.html#reproducibility",
     "title": "Music exposure reduces anxiety- and depression-like behavior in rodents: a systematic review and multilevel meta-analysis",
     "section": "Reproducibility",
-    "text": "Reproducibility\nAll code is executed in Quarto and frozen for stable rendering.\nWhere relevant, we provide intermediate outputs (effect size tables, VCV construction, model summaries) alongside the exact R code used.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Online supplementary</span>"
-    ]
-  },
-  {
-    "objectID": "index.html#citation",
-    "href": "index.html#citation",
-    "title": "Music exposure reduces anxiety- and depression-like behavior in rodents: a systematic review and multilevel meta-analysis",
-    "section": "Citation",
-    "text": "Citation\nIf you cite this supplement, please cite the main article and (optionally) the repository/archive where this site is hosted.",
+    "text": "Reproducibility\nAll code is executed in Quarto and frozen for stable rendering. Where relevant, we provide intermediate outputs (effect-size tables, continuity-correction audits, VCV matrices, model summaries, and contrasts) alongside the exact R code used to generate them.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Online supplementary</span>"
     ]
