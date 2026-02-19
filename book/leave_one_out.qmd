@@ -22,7 +22,7 @@ pacman::p_load(
 
 ```{r}
 #| label: load_and_clean_data
-db <- readr::read_csv(here("..","data","db_lnRR.csv")) %>%
+db <- readr::read_csv(here("..","data","db_effect_sizes.csv")) %>%
 mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD, lnRR, lnRR_var), as.numeric))%>%
   mutate(across(where(is.character), as.factor))
 

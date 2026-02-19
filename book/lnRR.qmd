@@ -162,22 +162,16 @@ calculate_lnRR <- function(dt) {
     # --- B. Proportion Data (Data_type is Percentage) ---
     else if (Data_type %in% c("percentage")) {
       
-      # *** CRITICAL FIX: CONDITIONAL RESCALING ***
-      # Only rescale if the study is NOT "es018," as "es018" reports 0-1 proportions.
-      # All other studies report 0-100 percentages and must be divided by 100.
-      if (current_es_id != "es018") {
+      # 1. CONDITIONAL RESCALING ***
+      # 
+    if (max(c(Ex_mean, C_mean), na.rm = TRUE) > 1) {
           Ex_mean <- Ex_mean / 100
           C_mean <- C_mean / 100
           Ex_SD <- Ex_SD / 100 
           C_SD <- C_SD / 100
       }
 
-      # 1. Standardization: Adjust means if "Higher_better" is "Yes"
-      # Flips the proportion (e.g., 80% failure becomes 20% success) to standardize direction.
-      if (Higher_better == "Yes") {
-        Ex_mean <- 1 - Ex_mean
-        C_mean <- 1 - C_mean
-      }
+   
 
       # 2. Transform SDs 
       # Calculate the standard deviation of the arcsin-transformed data (SD') based on the formula: 
@@ -206,7 +200,9 @@ calculate_lnRR <- function(dt) {
         # V_dep = V_Ex + V_C - 2 * rho * sqrt(V_Ex * V_C)
         lnRR_var_pro <- V_Ex + V_C - 2 * 0.5 * sqrt(V_Ex) * sqrt(V_C)
       }
-      
+      if (Higher_better == "Yes") {
+        lnRR_pro_calc <- lnRR_pro_calc * -1
+      }
       # Final assignment of results for proportional data.
       dt1$lnRR[i] <- lnRR_pro_calc
       dt1$lnRR_var[i] <- lnRR_var_pro

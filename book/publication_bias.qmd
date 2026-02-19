@@ -17,7 +17,7 @@ pacman::p_load(
                metafor,
                orchaRd, emmeans,scales
                )
-db <- readr::read_csv(here("..","data","db_lnRR.csv")) %>%
+db <- readr::read_csv(here("..","data","db_effect_sizes.csv")) %>%
 mutate(across( c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD, lnRR, lnRR_var), as.numeric))%>%
   mutate(across(where(is.character), as.factor))
 
@@ -75,6 +75,25 @@ dev.off()
 ```
 
 
+```{r}
+#| label: funnel
+#| echo: false
+
+funnel_plot <- funnel(ma_all, 
+       yaxis = "seinv",
+       las = 1,
+       digits = c(2, 1),
+       xlab = "Standarised residuals (lnRR)",
+       ylab = "Precision (inverse of SE)", 
+       pch = 21,
+       bg = alpha("black", 0.2),   
+       col = "black",              
+       cex = 1.2,
+       ylim = c(0.01, 40),
+       xlim = c(-6, 10)
+)
+
+```
 
 
 ## Egger's Regression (Testing Small-Study Effects)

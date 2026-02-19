@@ -40,18 +40,14 @@ book:
 
   chapters:
     - index.qmd
-    - part: "lnRR"
-      chapters:
-        - lnRR.qmd
-        - overall_effect.qmd
-        - uni_moderators.qmd
-        - publication_bias.qmd
-        - leave_one_out.qmd
-    - part: "lnVR"
-      chapters:
-        - lnVR.qmd
-        - overall_effect_lnVR.qmd
-        - uni_moderators_lnVR.qmd
+    - effect_size_calculation.qmd
+    - overall_effect.qmd
+    - uni_moderators.qmd
+    - publication_bias.qmd
+    - leave_one_out.qmd
+    - main_figures.qmd
+    - Alluvial.qmd
+
 
 number-sections: false
 bibliography: references.bib
@@ -81,7 +77,12 @@ format:
 
     # nicer citations in browser
     citeproc: true
-
+    page-layout: full
+    grid:
+      sidebar-width: 300px
+      body-width: 1400px  
+      margin-width: 200px
+      gutter-width: 1.5rem
 execute:
   freeze: auto
   warning: false

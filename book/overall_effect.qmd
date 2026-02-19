@@ -1,11 +1,6 @@
 ---
-title: "Overall effect"
+title: "Overall effects"
 ---
-
-After estimating effect sizes, we fit a multilevel, intercept-only meta-analytic model to estimate the overall mean effect of music exposure across all studies. 
-
-Because many studies contributed multiple, non-independent effect sizes (e.g., multiple outcomes measured within the same cohort), we use the `rma.mv()` function from the `metafor` package to account for hierarchical structure and sampling dependence.
-
 
 ```{r}
 #| label: setup
@@ -22,145 +17,222 @@ pacman::p_load(
                )
 ```
 
+
 ```{r}
-#| label: load_and_clean_data
-db <- readr::read_csv(here("..","data","db_lnRR.csv")) %>%
-mutate(across(c(C_n, Ex_n, C_mean, Ex_mean, C_SE, Ex_SE, C_SD, Ex_SD,lnRR,lnRR_var), as.numeric))%>%
-  mutate(across(where(is.character), as.factor))
+#| label: load_effectsize_db
+#| message: false
+#| warning: false
+
+db <- readr::read_csv(here("..","data","db_effect_sizes.csv")) %>%
+  mutate(across(where(is.character), as.factor)) %>%
+  mutate(across(c(lnRR, lnRR_var, lnVR, lnVR_var, lnCVR, lnCVR_var), as.numeric))
 ```
+
+After estimating effect sizes, we fit three multilevel, intercept-only meta-analytic models to estimate the overall mean effect of music exposure on:
+
+- the mean outcome (lnRR),
+
+- the absolute variability (lnVR),
+
+- the relative variability (lnCVR).
+
+Because many studies contribute multiple, non-independent outcomes (often measured on the same cohort), we use `rma.mv()` in `metafor` with a cohort-level variance–covariance (VCV) matrix built using `vcalc()`.
+
+
+
+
 
 ::: callout-note
 Variable definitions:
 
 | Variable Name | Definition |
 |:-----------------------------------|:-----------------------------------|
-| **`ES_ID`** | Unique row identifier for each $\text{lnRR}$ effect size. |
+| **`ES_ID`** | Unique row identifier for each effect size. |
 | **`Study_ID`** | Identifier for the primary research paper. |
 | **`Cohort_ID`** | Identifier for specific experimental groups within a study (combination of Study_ID and Experiment_ID). |
+|**`lnRR`**, **`lnRR_var`** | Log response ratio and its sample variance.|
+|**`lnVR`**, **`lnVR_var`** | Log variability ratio and its sample variance.|
+|**`lnCVR`**, **`lnCVR_var`** | Log coefficient of variation ratio and its sample variance.|
+
+
+
 :::
 
-## Variance–covariance matrix
+## Variance–covariance matrices (within-cohort dependence)
 
-We construct a variance–covariance (VCV) matrix to model dependencies among effect sizes derived from the same experimental cohort.
-
-When multiple outcomes are measured on the same animals, their sampling errors are correlated. Treating them as fully independent would underestimate standard errors and inflate precision. The VCV matrix explicitly incorporates this correlation structure.
+We assume that multiple outcomes measured on the same cohort have correlated sampling errors. We therefore construct a VCV matrix with an assumed within-cohort correlation of r = 0.5 when correlations are not reported.
 
 
-We assume a within-cohort correlation of ρ = 0.5 when the true correlation is not reported. This value reflects a moderate level of dependence and is commonly used in ecological and behavioral meta-analyses when correlations are unknown.
+## Multilevel intercept-only meta-analytic models
+
+
+
+The code below fits the three models using the same specification:
+
+- Random intercepts for Study (`Study_ID`)
+
+- Random intercepts for Effect size (`ES_ID`)
+
+- Random intercepts for Strain (`Strain`)
+
+- REML estimation and `test = "t"`
+
 
 
 ```{r}
-#| label: vcv_matrix
-
-VCV <- metafor::vcalc(
-  vi = lnRR_var,
-  cluster = Cohort_ID, # The clustering variable (Study_ID + Ex_ID)
-  obs = ES_ID,         # The unique observation/effect size ID
-  rho = 0.5,           # Assumed correlation between outcomes from the same cohort
-  data = db 
-)
-```
-
-## Multilevel intercept-only meta-analytic model
-
-We fit an intercept-only multilevel meta-analysis to estimate the grand mean lnRR across all studies.
-
-Random effects account for:
-- Study-level variation (`Study_ID`)
-- Within-study effect-size variation (`ES_ID`)
-- Strain-level variation (`Strain`)
-
-This structure partitions heterogeneity across hierarchical levels while preserving appropriate uncertainty.
-
-
-::: callout-note
-Note that the VCV matrix models correlated sampling errors at the cohort level, whereas random effects model between-study and between-effect heterogeneity.
-:::
-
-
-```{r}
-#| label: multilevel_meta_analysis
-ma_all <- rma.mv(yi = lnRR,
-                  V = VCV, 
-                  random = list(~1 | Study_ID,
-                                ~1 | Cohort_ID,
-                                ~1 | ES_ID,
-                                ~1 | Strain),
-                  test = "t",
-                  method = "REML", 
-                  sparse = TRUE,
-                  data = db)
-
-summary(ma_all)
-```
-
-We extract multilevel $I^2$ statistics to quantify the proportion of total variance attributable to heterogeneity at each random-effect level (rather than sampling error alone).
-
-
-```{r}
-#| label: i2_extraction
-orchaRd::i2_ml(ma_all)
-```
-
-
-
-## Model simplification
-
-Variance partitioning indicated that `Cohort_ID` accounted for negligible additional heterogeneity beyond the VCV structure and other random effects. We therefore refit a more parsimonious model excluding `Cohort_ID` to evaluate whether model fit materially changed.
-
-
-```{r}
-#| label: refit_model
-
-ma_all <- rma.mv(yi = lnRR,
-                  V = VCV, 
-                  random = list(~1 | Study_ID,
-                                ~1 | ES_ID,
-                                ~1 | Strain),
-                  test = "t",
-                  method = "REML", 
-                  sparse = TRUE,
-                  data = db)
-
-summary(ma_all)
-```
-
-```{r}
-#| label: i2_extraction2
-orchaRd::i2_ml(ma_all)
-```
-
-
-
-The simplified model produced nearly identical parameter estimates and heterogeneity components, supporting the use of the more parsimonious structure.
-
-
-## Visualization of the overall effect
-
-We visualize the pooled lnRR estimate using an orchard plot. The plot displays:
-
-- The pooled mean effect
-- Its 95% confidence interval
-- Study-level effect sizes
-- Prediction interval (if included)
-
-Negative values indicate reductions in anxiety- or depression-like behavior.
-
-
-```{r}
-#| label: orchard_plot
-#| fig-width: 6
-#| fig-height: 4
+#| label: overall_models_all_three
+#| message: false
 #| warning: false
-overall_lnRR<-orchard_plot(ma_all,
-              group = "Study_ID",
-              xlab = "lnRR", 
-              flip=T) + 
-              scale_x_discrete(labels = "Overall effect") +
-                scale_y_continuous(breaks = seq(-8, 10, by = 2),
-                                   minor_breaks = seq(-8, 10, by = 1 ))
-overall_lnRR
+
+fit_overall_mv <- function(dat, yi, vi, rho = 0.5) {
+  
+  dat2 <- dat %>%
+    filter(!is.na(.data[[yi]]), !is.na(.data[[vi]]))
+  
+  VCV <- metafor::vcalc(
+    vi = dat2[[vi]],
+    cluster = dat2$Cohort_ID,
+    obs = dat2$ES_ID,
+    rho = rho,
+    data = dat2
+  )
+  
+  mod <- metafor::rma.mv(
+    yi = dat2[[yi]],
+    V  = VCV,
+    random = list(
+      ~1 | Study_ID,
+      ~1 | ES_ID,
+      ~1 | Strain
+    ),
+    test = "t",
+    method = "REML",
+    sparse = TRUE,
+    data = dat2
+  )
+  
+  list(data = dat2, VCV = VCV, model = mod)
+}
+
+res_lnRR  <- fit_overall_mv(db, yi = "lnRR",  vi = "lnRR_var",  rho = 0.5)
+res_lnVR  <- fit_overall_mv(db, yi = "lnVR",  vi = "lnVR_var",  rho = 0.5)
+res_lnCVR <- fit_overall_mv(db, yi = "lnCVR", vi = "lnCVR_var", rho = 0.5)
+
+
+
+
+
 ```
+
+
+
+:::::::: columns
+:::: {.column width="49%"}
+::: panel-text
+## lnRR
+:::
+```{r}
+#| label: summary_lnRR
+summary(res_lnRR$model)
+```
+```{r}
+#| label: i2_lnRR
+orchaRd::i2_ml(res_lnRR$model)
+```
+::: card
+```{r}
+#| label: orchard_lnRR
+p_lnRR <- orchard_plot(
+  res_lnRR$model,
+  group = "Study_ID",
+  xlab = "lnRR",
+  flip = TRUE
+) +
+  scale_x_discrete(labels = "Overall effect")
+p_lnRR
+```
+:::
+
+::::
+
+::: {.column width="2%"}
+:::
+
+
+:::: {.column width="49%"}
+::: panel-text
+## lnVR
+:::
+```{r}
+#| label: summary_lnVR
+summary(res_lnVR$model)
+```
+```{r}
+#| label: i2_lnVR
+orchaRd::i2_ml(res_lnVR$model)
+```
+::: card
+```{r}
+#| label: orchard_lnVR
+p_lnVR <- orchard_plot(
+  res_lnVR$model,
+  group = "Study_ID",
+  xlab = "lnVR",
+  flip = TRUE
+) +
+  scale_x_discrete(labels = "Overall effect")
+p_lnVR
+```
+:::
+
+:::
+
+::::
+
+
+
+:::::::: columns
+:::: {.column width="25%"}
+::::
+:::: {.column width="50%"}
+
+::: panel-text
+## lnCVR
+:::
+```{r}
+#| label: summary_lnCVR
+summary(res_lnCVR$model)
+```
+
+```{r}
+#| label: i2_lnCVR
+orchaRd::i2_ml(res_lnCVR$model)
+```
+::: card
+```{r}
+#| label: orchard_lnCVR
+p_lnCVR <- orchard_plot(
+  res_lnCVR$model,
+  group = "Study_ID",
+  xlab = "lnCVR",
+  flip = TRUE
+) +
+  scale_x_discrete(labels = "Overall effect")
+p_lnCVR
+```
+:::
+
+:::
+:::: {.column width="25%"}
+::::
+
+::::::::
+
+
+
+
+
+
 
 ::: callout-note
 

@@ -153,6 +153,17 @@ calculate_lnVR <- function(dt) {
 }
 ```
 
+
+
+
+
+
+
+
+
+
+
+
 ::: callout-note
 We computed $ln VR$ using `metafor::escalc()` (measures `VR` and `VRC`), which implements the same bias-corrected estimators described in the Methods.
 :::
