@@ -1,17 +1,6 @@
 ---
 title: "Alluvial plot"
 ---
-The alluvial plots below summarize the distribution of effect sizes across key study characteristics (e.g., outcome type, species/strain, sex, and exposure design variables).
-
-::: callout-note
-### Post-processing for the manuscript figure
-
-The code here reproduces the alluvial plots and exports them as PDF/JPG.  
-For the final manuscript figure, we **made minor edits in vector-graphics software** (e.g., Illustrator/Inkscape) to improve readability—primarily **manual repositioning of labels, spacing adjustments, and small layout tweaks**. These edits **do not change the underlying data or flows**; they only improve figure legibility.
-::: 
-
-
-
 
 ```{r}
 #| label: setup
@@ -27,6 +16,21 @@ pacman::p_load(
                orchaRd, ggalluvial, patchwork
                )
 ```
+
+
+
+
+The alluvial plots below summarize the distribution of effect sizes across key study characteristics (e.g., outcome type, species/strain, sex, and exposure design variables).
+
+::: callout-note
+### Post-processing for the manuscript figure
+
+The code here reproduces the alluvial plots and exports them as PDF/JPG.  
+For the final manuscript figure, we **made minor edits in vector-graphics software** (e.g., Illustrator/Inkscape) to improve readability—primarily **manual repositioning of labels, spacing adjustments, and small layout tweaks**. These edits **do not change the underlying data or flows**; they only improve figure legibility.
+::: 
+
+
+
 
 ```{r}
 db <- readr::read_csv(here(
@@ -212,3 +216,24 @@ ggsave(filename = here("..","Plots", "alluvial_raw.jpg"),
        height = 15,  
        dpi = 300)
 ```
+
+
+
+
+
+
+
+
+
+::: callout-note
+```{r}
+sessionInfo()
+```
+
+:::
+
+
+
+
+
+

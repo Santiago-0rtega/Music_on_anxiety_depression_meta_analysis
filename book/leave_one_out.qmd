@@ -1,5 +1,5 @@
 ---
-title: "leave-one-out"
+title: "Leave-one-out"
 ---
 To evaluate whether the overall meta-analytic estimate is driven by any single study, we perform a leave-one-out analysis at the **study level**. 
 
