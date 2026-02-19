@@ -10,7 +10,7 @@ pacman::p_load(
                dtplyr,
                here, 
                knitr,
-               tidyverse,
+               tidyverse, 
                patchwork,
                metafor,
                orchaRd, multcomp
@@ -64,13 +64,10 @@ Variable definitions:
 | **`Overall_rob`** | Overall risk of bias assessment for each study. Levels: **2 (low)**, **1 (moderate)**, **0 (high)**. |
 :::
 
-
-
 ::: {.callout-note icon="true"}
 ## Data Filtering & Matrix Alignment
 
-We exclude moderator levels with fewer than five effect sizes (k < 5) to avoid unstable estimates and misleading contrasts.
-
+We exclude moderator levels with fewer than five effect sizes (k \< 5) to avoid unstable estimates and misleading contrasts.
 
 ```{r}
 #| label: filter_low_k
@@ -90,7 +87,6 @@ filter_low_k <- function(dat, V, moderator, min_k = 5) {
 ```
 
 # lnRR
-
 
 ```{r}
 #| label: overall_lnRR
@@ -117,8 +113,6 @@ overall_lnRR<-orchard_plot(ma_all,
                                    minor_breaks = seq(-4, 2, by = 0.5 ))
 overall_lnRR
 ```
-
-
 
 ```{r}
 #| label: model_outcome_type_lnRR
@@ -152,14 +146,6 @@ orchard_outcomelnRR<-orchard_plot(mOT,
                                                                     minor_breaks = seq(-4, 2, by = 0.5 ))
 orchard_outcomelnRR
 ```
-
-
-
-
-
-
-
-
 
 ## Assay type
 
@@ -218,11 +204,7 @@ orchard_assay
 
 ```
 
-
-
-
-
-##  Lifestage of exposure
+## Lifestage of exposure
 
 ```{r}
 #| label: model_lifestage_exp_lnRR
@@ -263,9 +245,6 @@ orchard_lifestage<-orchard_plot(mLE,legend.pos = "top.left",
 orchard_lifestage
 ```
 
-
-
-
 ## Control condition
 
 ```{r}
@@ -300,9 +279,6 @@ orchard_control<-orchard_plot(mCC,
 orchard_control
 ```
 
-
-
-
 ## Induced behaviour
 
 ```{r}
@@ -331,9 +307,6 @@ orchard_behaviour<-orchard_plot(mIB,
                                                                     minor_breaks = seq(-4, 2, by = 0.5 ))+  theme(legend.direction = "vertical")
 orchard_behaviour
 ```
-
-
-
 
 # Patched figure
 
@@ -391,13 +364,7 @@ ggsave(filename = here("..","Plots", "patched_lnRR.jpg"),
 
 ```
 
-
-
-
 # lnVR
-
-
-
 
 ```{r}
 db <- readr::read_csv(here("..","data","db_effect_sizes.csv")) %>%
@@ -415,13 +382,10 @@ VCV <- metafor::vcalc(
 )
 ```
 
-
-
-
 ## Overall effect
 
 ```{r}
-#| label: model_outcome_type_lnVR
+#| label: model_overall_lnVR
 
 mOV <- rma.mv(yi = lnVR, 
                   V = VCV, 
@@ -482,17 +446,7 @@ orchard_outcome_lnVR<-orchard_plot(mOT2,
 orchard_outcome_lnVR
 ```
 
-
-
-
-
-
-
-
-
-
-
-##  Assay type
+## Assay type
 
 ```{r}
 
@@ -550,8 +504,6 @@ orchard_assay
 
 ```
 
-
-
 ## Lifestage of exposure
 
 ```{r}
@@ -593,10 +545,7 @@ orchard_lifestage<-orchard_plot(mLE,legend.pos = "top.left",
 orchard_lifestage
 ```
 
-
-
-
-##  Music genre
+## Music genre
 
 Meta_genre
 
@@ -641,8 +590,7 @@ orchard_genre<-orchard_plot(mMG,legend.pos = "top.left",
 orchard_genre
 ```
 
-
-##  Experimental design
+## Experimental design
 
 ```{r}
 #| label: model_experimental_design_lnVR
@@ -682,7 +630,6 @@ orchard_design<-orchard_plot(mEXD,legend.pos = "top.left",
   theme(legend.direction = "vertical")
 orchard_design
 ```
-
 
 ```{r}
 #| label: patched_figure_lnVR
@@ -743,14 +690,7 @@ ggsave(filename = here("..","Plots", "patched_lnVR.jpg"),
 
 ```
 
-
-
-
-
-
 # Overall effects figure
-
-
 
 ```{r}
 fig2<-(overall_lnRR/orchard_overalllnVR)
@@ -763,11 +703,8 @@ fig2<-fig2+
 fig2
 ```
 
-
-
-
 ```{r}
-#| label: save-figure
+#| label: save-figure_overall
 #| eval: false
 
 ggsave(filename = here("..","Plots", "overall_effects.pdf"),
@@ -781,6 +718,7 @@ ggsave(filename = here("..","Plots", "overall_effects.jpg"),
        dpi = 300)
 
 ```
+
 # Outcome type figure
 
 ```{r}
@@ -794,10 +732,8 @@ fig3<-fig3+
 fig3
 ```
 
-
-
 ```{r}
-#| label: save-figure
+#| label: save-figure_outcomes
 #| eval: false
 
 ggsave(filename = here("..","Plots", "outcome_effects.pdf"),
@@ -811,15 +747,4 @@ ggsave(filename = here("..","Plots", "outcome_effects.jpg"),
        dpi = 300)
 
 ```
-
-
-
-
-
-
-
-
-
-
-
-
+:::

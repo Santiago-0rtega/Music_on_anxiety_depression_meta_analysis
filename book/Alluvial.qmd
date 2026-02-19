@@ -192,7 +192,7 @@ plot1
 ```{r}
 ggsave(filename = here("..","Plots", "alluvial.pdf"),
        plot = plot1,
-       dpi = 300, device = cairo_pdf, width = 12,  
+       dpi = 300, device = cairo_pdf, width = 12,   
        height = 15)
 
 
