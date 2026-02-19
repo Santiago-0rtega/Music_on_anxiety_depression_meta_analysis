@@ -8,7 +8,7 @@ The alluvial plots below summarize the distribution of effect sizes across key s
 
 The code here reproduces the alluvial plots and exports them as PDF/JPG.  
 For the final manuscript figure, we **made minor edits in vector-graphics software** (e.g., Illustrator/Inkscape) to improve readability—primarily **manual repositioning of labels, spacing adjustments, and small layout tweaks**. These edits **do not change the underlying data or flows**; they only improve figure legibility.
-:::
+::: 
 
 
 
