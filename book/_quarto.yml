@@ -8,24 +8,13 @@ project:
 book:
   title: "Music exposure reduces anxiety- and depression-like behavior in rodents: a systematic review and multilevel meta-analysis"
   subtitle: "Online supplementary (reproducible workflow + full outputs)"
-  author:
-    - name: Santiago Ortega
-      attributes:
-        corresponding: true
-    - name: Anna Lenz
-    - name: Erick Lundgren
-    - name: Ayumi Mizuno
-    - name: Sergio Poo Hernandez
-    - name: Shinichi Nakagawa
-    - name: Malgorzata Lagisz
-  date: last-modified
+
 
   # Adds top bar + links
   navbar:
     pinned: true
     right:
       - icon: github
-        href: https://github.com/Santiago-0rtega/Music_on_anxiety_depression_meta_analysis  # change
         aria-label: GitHub
       - text: "OSF"
         href: https://osf.io/mv78t                   # change if needed
