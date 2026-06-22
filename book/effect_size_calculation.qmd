@@ -145,8 +145,8 @@ db <- readr::read_csv(here("..","data","db251124.csv")) %>%
     C_SD  = ifelse(is.na(C_SD)  & !is.na(C_SE)  & !is.na(C_n),  C_SE  * sqrt(C_n),  C_SD),
     Ex_SD = ifelse(is.na(Ex_SD) & !is.na(Ex_SE) & !is.na(Ex_n), Ex_SE * sqrt(Ex_n), Ex_SD)
   ) %>%
-  # Helpful unique cohort identifier (optional)
-  mutate(Cohort_ID = paste(Study_ID, "Ex-ID", sep = "_"))
+  # Helpful unique cohort identifier (Study_ID + Ex_ID)
+  mutate(Cohort_ID = paste(Study_ID, Ex_ID, sep = "_"))
 
 ```
 

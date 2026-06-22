@@ -37,6 +37,8 @@ Use the left sidebar to browse the workflow chapters:
 
 -   **Publication bias** (`publication_bias.qmd`) — small-study effects / bias diagnostics
 
+-   **CRIME-Q risk-of-bias figure** (`crime_q.qmd`) — study-level CRIME-Q rating matrix and compact item definitions
+
 -   **Leave-one-out** (`leave_one_out.qmd`) — sensitivity analyses excluding one study at a time
 
 -   **Main figures** (`main_figures.qmd`) — reproduction of figures from the manuscript

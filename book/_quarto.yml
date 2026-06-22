@@ -33,6 +33,7 @@ book:
     - overall_effect.qmd
     - uni_moderators.qmd
     - publication_bias.qmd
+    - crime_q.qmd
     - leave_one_out.qmd
     - main_figures.qmd
     - Alluvial.qmd

@@ -1,0 +1,43 @@
+## Batch prompts (5 cohorts each — fire one per turn, export each to Excel/Sheets)
+
+Each prompt makes the wide table for 5 cohorts and tells NotebookLM to **export it as an Excel spreadsheet / Google Sheet**. Save the 10 files into `data/crime_q_batches/`, then run `aggregate_crime_q_batches.R`.
+
+**Batch 1 (Index 1-5) -> `batch_01.xlsx`:**
+
+> Build ONE wide table for EXACTLY these 5 cohorts, one row each: Camargo_2013_PSYN_ex001; Chen_2019_BIOMEDRI_ex001; Chen_2019_BIOMEDRI_ex002; Cheng_2024_HLYN_ex001; Cheng_2024_HLYN_ex002. Columns, in this order: `Study_ID, Cohort_ID, 1X, 2X, 2Y, 3X, 3Y, 3Z, 4Y, 5X, 5Y, 5Z(1), 5Z(2), 5Z(3), 6X, 7X, 7Z(1), 7Z(2), 7Z(3), 8X, 8Z(1), 8Z(2), 9X, 10X, 10Z, MUSIC-D1`. Each cell holds only one rating token (`Yes`/`Partly`/`No`/`Unclear`/`NA`, or for MUSIC-D1 `Low concern`/`Some concerns`/`High concern`); every cell filled; the 24 items are columns, never rows. Assess each cohort against its study's own PDF using the roster Contrast(s)/Co-manipulation as scope; apply the Section 10.3 propagation rule. **Then export this table as an Excel spreadsheet (.xlsx) / to Google Sheets.**
+
+**Batch 2 (Index 6-10) -> `batch_02.xlsx`:**
+
+> Build ONE wide table for EXACTLY these 5 cohorts, one row each: Cheng_2024_HLYN_ex003; Cheng_2024_HLYN_ex004; Chikahisa_2007_BBR_ex001; Chikahisa_2007_BBR_ex002; Chikahisa_2007_BBR_ex003. Columns, in this order: `Study_ID, Cohort_ID, 1X, 2X, 2Y, 3X, 3Y, 3Z, 4Y, 5X, 5Y, 5Z(1), 5Z(2), 5Z(3), 6X, 7X, 7Z(1), 7Z(2), 7Z(3), 8X, 8Z(1), 8Z(2), 9X, 10X, 10Z, MUSIC-D1`. Each cell holds only one rating token (`Yes`/`Partly`/`No`/`Unclear`/`NA`, or for MUSIC-D1 `Low concern`/`Some concerns`/`High concern`); every cell filled; the 24 items are columns, never rows. Assess each cohort against its study's own PDF using the roster Contrast(s)/Co-manipulation as scope; apply the Section 10.3 propagation rule. **Then export this table as an Excel spreadsheet (.xlsx) / to Google Sheets.**
+
+**Batch 3 (Index 11-15) -> `batch_03.xlsx`:**
+
+> Build ONE wide table for EXACTLY these 5 cohorts, one row each: Chikahisa_2007_BBR_ex004; Chikahisa_2007_BBR_ex005; Chikahisa_2007_BBR_ex006; Chikahisa_2007_BBR_ex007; Chikahisa_2007_BBR_ex008. Columns, in this order: `Study_ID, Cohort_ID, 1X, 2X, 2Y, 3X, 3Y, 3Z, 4Y, 5X, 5Y, 5Z(1), 5Z(2), 5Z(3), 6X, 7X, 7Z(1), 7Z(2), 7Z(3), 8X, 8Z(1), 8Z(2), 9X, 10X, 10Z, MUSIC-D1`. Each cell holds only one rating token (`Yes`/`Partly`/`No`/`Unclear`/`NA`, or for MUSIC-D1 `Low concern`/`Some concerns`/`High concern`); every cell filled; the 24 items are columns, never rows. Assess each cohort against its study's own PDF using the roster Contrast(s)/Co-manipulation as scope; apply the Section 10.3 propagation rule. **Then export this table as an Excel spreadsheet (.xlsx) / to Google Sheets.**
+
+**Batch 4 (Index 16-20) -> `batch_04.xlsx`:**
+
+> Build ONE wide table for EXACTLY these 5 cohorts, one row each: Escribano_2014_APPANBSC_ex001; Escribano_2014_APPANBSC_ex002; Escribano_2014_APPANBSC_ex003; Escribano_2014_APPANBSC_ex004; Escribano_2014_APPANBSC_ex007. Columns, in this order: `Study_ID, Cohort_ID, 1X, 2X, 2Y, 3X, 3Y, 3Z, 4Y, 5X, 5Y, 5Z(1), 5Z(2), 5Z(3), 6X, 7X, 7Z(1), 7Z(2), 7Z(3), 8X, 8Z(1), 8Z(2), 9X, 10X, 10Z, MUSIC-D1`. Each cell holds only one rating token (`Yes`/`Partly`/`No`/`Unclear`/`NA`, or for MUSIC-D1 `Low concern`/`Some concerns`/`High concern`); every cell filled; the 24 items are columns, never rows. Assess each cohort against its study's own PDF using the roster Contrast(s)/Co-manipulation as scope; apply the Section 10.3 propagation rule. **Then export this table as an Excel spreadsheet (.xlsx) / to Google Sheets.**
+
+**Batch 5 (Index 21-25) -> `batch_05.xlsx`:**
+
+> Build ONE wide table for EXACTLY these 5 cohorts, one row each: Escribano_2014_APPANBSC_ex008; Flores_2018_NP_ex001; Flores_2018_NP_ex002; Flores_2018_NP_ex003; Flores_2018_NP_ex004. Columns, in this order: `Study_ID, Cohort_ID, 1X, 2X, 2Y, 3X, 3Y, 3Z, 4Y, 5X, 5Y, 5Z(1), 5Z(2), 5Z(3), 6X, 7X, 7Z(1), 7Z(2), 7Z(3), 8X, 8Z(1), 8Z(2), 9X, 10X, 10Z, MUSIC-D1`. Each cell holds only one rating token (`Yes`/`Partly`/`No`/`Unclear`/`NA`, or for MUSIC-D1 `Low concern`/`Some concerns`/`High concern`); every cell filled; the 24 items are columns, never rows. Assess each cohort against its study's own PDF using the roster Contrast(s)/Co-manipulation as scope; apply the Section 10.3 propagation rule. **Then export this table as an Excel spreadsheet (.xlsx) / to Google Sheets.**
+
+**Batch 6 (Index 26-30) -> `batch_06.xlsx`:**
+
+> Build ONE wide table for EXACTLY these 5 cohorts, one row each: Flores_2018_NP_ex005; Flores_2018_NP_ex006; Freitas_2020_ECNE_ex001; Freitas_2020_ECNE_ex002; Fu_2023_TRANSPSY_ex001. Columns, in this order: `Study_ID, Cohort_ID, 1X, 2X, 2Y, 3X, 3Y, 3Z, 4Y, 5X, 5Y, 5Z(1), 5Z(2), 5Z(3), 6X, 7X, 7Z(1), 7Z(2), 7Z(3), 8X, 8Z(1), 8Z(2), 9X, 10X, 10Z, MUSIC-D1`. Each cell holds only one rating token (`Yes`/`Partly`/`No`/`Unclear`/`NA`, or for MUSIC-D1 `Low concern`/`Some concerns`/`High concern`); every cell filled; the 24 items are columns, never rows. Assess each cohort against its study's own PDF using the roster Contrast(s)/Co-manipulation as scope; apply the Section 10.3 propagation rule. **Then export this table as an Excel spreadsheet (.xlsx) / to Google Sheets.**
+
+**Batch 7 (Index 31-35) -> `batch_07.xlsx`:**
+
+> Build ONE wide table for EXACTLY these 5 cohorts, one row each: Fu_2023_TRANSPSY_ex002; Fu_2025_TRANSPSY_ex001; Krishnamurthy_2025_INDIANJTRADITKNOW_ex001; Li_2010_BR_ex001; Li_2010_BR_ex002. Columns, in this order: `Study_ID, Cohort_ID, 1X, 2X, 2Y, 3X, 3Y, 3Z, 4Y, 5X, 5Y, 5Z(1), 5Z(2), 5Z(3), 6X, 7X, 7Z(1), 7Z(2), 7Z(3), 8X, 8Z(1), 8Z(2), 9X, 10X, 10Z, MUSIC-D1`. Each cell holds only one rating token (`Yes`/`Partly`/`No`/`Unclear`/`NA`, or for MUSIC-D1 `Low concern`/`Some concerns`/`High concern`); every cell filled; the 24 items are columns, never rows. Assess each cohort against its study's own PDF using the roster Contrast(s)/Co-manipulation as scope; apply the Section 10.3 propagation rule. **Then export this table as an Excel spreadsheet (.xlsx) / to Google Sheets.**
+
+**Batch 8 (Index 36-40) -> `batch_08.xlsx`:**
+
+> Build ONE wide table for EXACTLY these 5 cohorts, one row each: Milbratz_2017_ALN_ex001; Milbratz_2017_ALN_ex002; Niehues_2011_BCNEURO_ex001; Pangemanan_2024_PHJ_ex001; Papadakakis_2019_BBR_ex001. Columns, in this order: `Study_ID, Cohort_ID, 1X, 2X, 2Y, 3X, 3Y, 3Z, 4Y, 5X, 5Y, 5Z(1), 5Z(2), 5Z(3), 6X, 7X, 7Z(1), 7Z(2), 7Z(3), 8X, 8Z(1), 8Z(2), 9X, 10X, 10Z, MUSIC-D1`. Each cell holds only one rating token (`Yes`/`Partly`/`No`/`Unclear`/`NA`, or for MUSIC-D1 `Low concern`/`Some concerns`/`High concern`); every cell filled; the 24 items are columns, never rows. Assess each cohort against its study's own PDF using the roster Contrast(s)/Co-manipulation as scope; apply the Section 10.3 propagation rule. **Then export this table as an Excel spreadsheet (.xlsx) / to Google Sheets.**
+
+**Batch 9 (Index 41-45) -> `batch_09.xlsx`:**
+
+> Build ONE wide table for EXACTLY these 5 cohorts, one row each: Papadakakis_2019_BBR_ex002; Ren_2024_ASEAN_ex001; Ren_2024_ASEAN_ex002; Rizzolo_2021_CC_ex001; Saghari_2021_BIOINTERFACE_ex001. Columns, in this order: `Study_ID, Cohort_ID, 1X, 2X, 2Y, 3X, 3Y, 3Z, 4Y, 5X, 5Y, 5Z(1), 5Z(2), 5Z(3), 6X, 7X, 7Z(1), 7Z(2), 7Z(3), 8X, 8Z(1), 8Z(2), 9X, 10X, 10Z, MUSIC-D1`. Each cell holds only one rating token (`Yes`/`Partly`/`No`/`Unclear`/`NA`, or for MUSIC-D1 `Low concern`/`Some concerns`/`High concern`); every cell filled; the 24 items are columns, never rows. Assess each cohort against its study's own PDF using the roster Contrast(s)/Co-manipulation as scope; apply the Section 10.3 propagation rule. **Then export this table as an Excel spreadsheet (.xlsx) / to Google Sheets.**
+
+**Batch 10 (Index 46-49) -> `batch_10.xlsx`:**
+
+> Build ONE wide table for EXACTLY these 4 cohorts, one row each: Saghari_2021_BIOINTERFACE_ex002; Sampaio_2017_PSYNEURO_ex001; Sampaio_2017_PSYNEURO_ex002; Terzioglu_2020_CMJ_ex001. Columns, in this order: `Study_ID, Cohort_ID, 1X, 2X, 2Y, 3X, 3Y, 3Z, 4Y, 5X, 5Y, 5Z(1), 5Z(2), 5Z(3), 6X, 7X, 7Z(1), 7Z(2), 7Z(3), 8X, 8Z(1), 8Z(2), 9X, 10X, 10Z, MUSIC-D1`. Each cell holds only one rating token (`Yes`/`Partly`/`No`/`Unclear`/`NA`, or for MUSIC-D1 `Low concern`/`Some concerns`/`High concern`); every cell filled; the 24 items are columns, never rows. Assess each cohort against its study's own PDF using the roster Contrast(s)/Co-manipulation as scope; apply the Section 10.3 propagation rule. **Then export this table as an Excel spreadsheet (.xlsx) / to Google Sheets.**
