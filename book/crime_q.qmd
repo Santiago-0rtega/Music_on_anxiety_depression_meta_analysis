@@ -144,15 +144,17 @@ if (any(plot_dat$Fill_group == "Other")) {
   warning("Some unexpected CRIME-Q rating values were found.")
 }
 
+# Spotify-friendly fills on the dark page (Yes = Spotify green).
 rating_colors <- c(
-  "Yes" = "#2E8B57",
+  "Yes" = "#1DB954",
   "Partly/Unclear" = "#F2B705",
-  "No" = "#D7263D",
-  "NA" = "#2660A4"
+  "No" = "#E5484D",
+  "NA" = "#4C8DD8"
 )
+spotify_text <- "#E8E8E8"
 
 ggplot(plot_dat, aes(x = Item, y = Study, fill = Fill_group)) +
-  geom_tile(color = "grey25", linewidth = 0.35) +
+  geom_tile(color = "#121212", linewidth = 0.6) +
   scale_fill_manual(
     values = rating_colors,
     breaks = c("Yes", "Partly/Unclear", "No", "NA"),
@@ -173,12 +175,13 @@ ggplot(plot_dat, aes(x = Item, y = Study, fill = Fill_group)) +
       angle = 0,
       hjust = 0.5,
       vjust = 0.5,
-      face = "bold"
+      face = "bold",
+      color = spotify_text
     ),
-    axis.text.y = element_text(face = "bold"),
+    axis.text.y = element_text(face = "bold", color = spotify_text),
     axis.ticks = element_blank(),
     legend.position = "bottom",
-    legend.text = element_text(size = 11),
+    legend.text = element_text(size = 11, color = spotify_text),
     plot.margin = margin(10, 10, 10, 10)
   )
 ```

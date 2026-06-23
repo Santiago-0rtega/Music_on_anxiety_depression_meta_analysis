@@ -45,11 +45,9 @@ biblio-style: apalike
 
 format:
   html:
-    theme:
-      light: litera 
-      dark: darkly
+    theme: darkly
     css: styles.css
-    mainfont: "Atkinson Hyperlegible"
+    mainfont: "Helvetica Neue, Helvetica, Arial, sans-serif"
     fontsize: 1.05em
     linestretch: 1.35
     favicon: images/favicon.png

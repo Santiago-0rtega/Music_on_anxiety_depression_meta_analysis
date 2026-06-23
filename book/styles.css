@@ -1,145 +1,163 @@
 /* =====================================================================
-   Violin book theme
-   Palette drawn from a varnished violin on a crimson backdrop:
-   chestnut/amber wood, ebony, ivory, and a warm crimson red.
-   Headings use a Helvetica-family sans so codes like lnCVR keep their
-   case (no small-caps distortion). Accent colours apply in light and
-   dark mode; the ivory ground is scoped to light mode.
+   Spotify-inspired book theme
+   Charcoal ground (#121212), elevated #181818 panels, signature green
+   accent, white primary text, grey secondary text, rounded pills, and a
+   Helvetica-family sans (Circular-like) that preserves codes like lnCVR.
+   Built on the Quarto `darkly` base.
    ===================================================================== */
 
 :root {
-  --v-ivory:      #f3ece0;  /* glove / page ground */
-  --v-ivory-2:    #e8dcc6;  /* sidebar */
-  --v-ink:        #241a12;  /* body text */
-  --v-wood:       #a8632f;  /* varnished maple */
-  --v-wood-light: #c98a4b;  /* amber highlight */
-  --v-wood-dark:  #6f3f20;  /* deep chestnut */
-  --v-ebony:      #1c1714;  /* fingerboard */
-  --v-red:        #cc3a30;  /* crimson backdrop */
-  --v-red-deep:   #9e2a22;  /* shadowed red */
-  --v-heading-font: "Helvetica Neue", Helvetica, Arial, "Inter", "Segoe UI", sans-serif;
+  --sf-bg:        #121212;  /* main ground */
+  --sf-bg-elev:   #181818;  /* cards / code / tables */
+  --sf-bg-elev-2: #282828;  /* hover / table header */
+  --sf-black:     #000000;  /* navbar / sidebar */
+  --sf-green:     #1db954;  /* primary accent */
+  --sf-green-br:  #1ed760;  /* hover / active */
+  --sf-text:      #ffffff;  /* primary text */
+  --sf-text-sub:  #b3b3b3;  /* secondary text */
+  --sf-font: "Circular", "Helvetica Neue", Helvetica, Arial, "Inter", "Segoe UI", sans-serif;
 }
 
-/* --- Ivory ground (light mode only) --- */
-body:not(.quarto-dark) {
-  background-color: var(--v-ivory);
-  background-image:
-    radial-gradient(circle at 16% 10%, rgba(201, 138, 75, 0.10), transparent 45%),
-    radial-gradient(circle at 84% 90%, rgba(204, 58, 48, 0.06), transparent 45%);
-  background-attachment: fixed;
-  color: var(--v-ink);
+/* --- Charcoal ground --- */
+body {
+  background-color: var(--sf-bg) !important;
+  color: var(--sf-text);
+  font-family: var(--sf-font);
 }
 
-/* --- Crimson navbar with ivory lettering, wood trim --- */
+/* --- Black navbar with green-on-hover --- */
 .navbar {
-  background: linear-gradient(180deg, var(--v-red) 0%, var(--v-red-deep) 100%) !important;
-  border-bottom: 3px solid var(--v-wood);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  background: var(--sf-black) !important;
+  border-bottom: 1px solid #2a2a2a;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 .navbar .navbar-brand,
 .navbar .nav-link,
 .navbar .navbar-title,
 .navbar a {
-  color: var(--v-ivory) !important;
+  color: var(--sf-text) !important;
+  font-weight: 600;
 }
 .navbar .nav-link:hover,
 .navbar a:hover {
-  color: var(--v-wood-light) !important;
+  color: var(--sf-green-br) !important;
 }
 
-/* --- Headings: Helvetica-family sans, case preserved --- */
+/* --- Headings: bold white sans, case preserved --- */
 h1, h2, h3, h4, h5,
 .title, .subtitle {
-  font-family: var(--v-heading-font);
-  font-feature-settings: normal;     /* no small-caps / ligature remapping */
+  font-family: var(--sf-font);
+  font-feature-settings: normal;
   font-variant: normal;
-  text-transform: none;              /* keep lnCVR as written */
-  letter-spacing: 0;
+  text-transform: none;          /* keep lnCVR as written */
+  letter-spacing: -0.01em;
+  color: var(--sf-text);
 }
 
-h1, .title {
-  color: var(--v-wood-dark);
-  font-weight: 700;
-}
-
+h1, .title { font-weight: 800; }
 h2 {
-  color: var(--v-wood);
-  border-bottom: 2px solid var(--v-wood-light);
-  padding-bottom: 0.25rem;
+  font-weight: 700;
+  border-bottom: 1px solid #2a2a2a;
+  padding-bottom: 0.3rem;
 }
+h3 { font-weight: 700; color: var(--sf-text); }
+.subtitle { color: var(--sf-text-sub); }
 
-h3 {
-  color: var(--v-red-deep);
-}
-
-body.quarto-dark h1,
-body.quarto-dark .title { color: var(--v-wood-light); }
-body.quarto-dark h2     { color: var(--v-wood-light); }
-body.quarto-dark h3     { color: var(--v-wood); }
-
-/* --- Links in crimson, hover to wood --- */
+/* --- Links in Spotify green --- */
 a {
-  color: var(--v-red);
-  text-decoration-color: var(--v-wood-light);
+  color: var(--sf-green);
+  text-decoration: none;
 }
 a:hover {
-  color: var(--v-wood-dark);
+  color: var(--sf-green-br);
+  text-decoration: underline;
 }
 
-/* --- Sidebar in soft ivory with wood edge (light mode) --- */
-body:not(.quarto-dark) .sidebar {
-  background-color: var(--v-ivory-2);
-  border-right: 2px solid var(--v-wood-light);
+/* --- Sidebar: near-black, grey items, green active --- */
+.sidebar {
+  background-color: var(--sf-black) !important;
+  border-right: 1px solid #2a2a2a;
+}
+.sidebar .sidebar-item-text,
+.sidebar a {
+  color: var(--sf-text-sub) !important;
+  font-weight: 600;
 }
 .sidebar .sidebar-item-text:hover,
-.sidebar a.active {
-  color: var(--v-red) !important;
+.sidebar a:hover {
+  color: var(--sf-text) !important;
+}
+.sidebar a.active,
+.sidebar .active > .sidebar-item-text {
+  color: var(--sf-green) !important;
+}
+
+/* --- Search box --- */
+.aa-Form, #quarto-search input {
+  background-color: var(--sf-bg-elev) !important;
+  border-radius: 500px;
+  border: 1px solid #2a2a2a;
+  color: var(--sf-text);
 }
 
 /* --- code blocks --- */
 pre {
-  border-radius: 12px;
+  background-color: var(--sf-bg-elev) !important;
+  border-radius: 8px;
   padding: 0.9rem 1.0rem;
-  border-left: 3px solid var(--v-wood-light);
+  border-left: 3px solid var(--sf-green);
 }
-
 code {
   border-radius: 6px;
+  color: #e8e8e8;
 }
 
-/* --- Callouts a bit cleaner --- */
+/* --- Code-tools / buttons as green pills --- */
+.btn,
+.code-tools-button,
+details > summary.btn {
+  border-radius: 500px;
+}
+.btn-primary {
+  background-color: var(--sf-green) !important;
+  border-color: var(--sf-green) !important;
+  color: var(--sf-black) !important;
+  font-weight: 700;
+}
+.btn-primary:hover {
+  background-color: var(--sf-green-br) !important;
+  border-color: var(--sf-green-br) !important;
+}
+
+/* --- Callouts --- */
 .callout {
-  border-radius: 14px;
+  border-radius: 12px;
 }
 
-/* --- cards --- */
+/* --- cards: elevated charcoal --- */
 .card {
-  border: 1px solid rgba(168, 99, 47, 0.35);
-  border-radius: 16px;
+  background-color: var(--sf-bg-elev);
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
   padding: 1.1rem 1.2rem;
   margin: 1rem 0;
-  box-shadow: 0 6px 18px rgba(111, 63, 32, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
+.card h3 { margin-top: 0.1rem; }
 
-.card h3 {
-  margin-top: 0.1rem;
-}
-
-/* --- Better tables: wood header band --- */
+/* --- tables: elevated charcoal, dark header --- */
 table {
   border-collapse: separate;
   border-spacing: 0;
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  background-color: var(--sf-bg-elev);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
 }
-
 table thead th {
-  background: linear-gradient(180deg, var(--v-wood-light) 0%, var(--v-wood) 100%);
-  color: var(--v-ivory);
-  border-bottom: 2px solid var(--v-wood-dark);
+  background-color: var(--sf-bg-elev-2);
+  color: var(--sf-text);
+  border-bottom: 1px solid #3a3a3a;
 }
-
-body:not(.quarto-dark) table tbody tr:nth-child(even) {
-  background-color: rgba(201, 138, 75, 0.10);
-}
+table tbody td { color: var(--sf-text-sub); }
+table tbody tr:hover td { color: var(--sf-text); }
