@@ -18,7 +18,7 @@ pacman::p_load(
 )
 ```
 
-This chapter reproduces the CRIME-Q study-level rating figure from the cohort-level risk-of-bias assessment table and provides a compact item definition section for the CRIME-Q music-exposure codebook.
+This chapter presents the CRIME-Q music-exposure codebook as a compact item-definition table and reproduces the study-level rating figure from the cohort-level risk-of-bias assessment.
 
 ```{r}
 #| label: crimeq-load
@@ -60,6 +60,16 @@ collapse_rating <- function(x) {
   if (length(vals) == 1L) vals else "Partly"
 }
 
+# Turn a Study_ID like "Camargo_2013_PSYN" into "Camargo et al. 2013".
+study_label <- function(study_id) {
+  parts <- str_split(study_id, "_", simplify = FALSE)
+  vapply(parts, function(p) {
+    author <- p[1]
+    year <- p[2]
+    paste0(author, " et al. ", year)
+  }, character(1))
+}
+
 study_matrix <- cohort_matrix |>
   group_by(Study_ID) |>
   summarise(
@@ -67,8 +77,8 @@ study_matrix <- cohort_matrix |>
     .groups = "drop"
   ) |>
   arrange(Study_ID) |>
-  mutate(ID = row_number()) |>
-  relocate(ID, .before = Study_ID)
+  mutate(Study = study_label(Study_ID)) |>
+  relocate(Study, .before = Study_ID)
 
 codebook <- read_csv(
   codebook_file,
@@ -82,16 +92,34 @@ if (!identical(codebook$Item, item_cols)) {
 }
 ```
 
-## CRIME-Q study-level rating matrix
+## CRIME-Q item definitions
 
-The source assessment contains `r nrow(cohort_matrix)` cohort rows from `r n_distinct(cohort_matrix$Study_ID)` studies. When a study has multiple cohorts, item ratings are collapsed to one display row: if all cohorts have the same rating, that rating is retained; if cohort ratings differ, the study is displayed as `Partly`.
+The table below defines each CRIME-Q item used in the figure: the item code, the domain it covers, what the item checks, and the allowed ratings.
+
+```{r}
+#| label: crimeq-definitions
+#| echo: false
+
+codebook |>
+  transmute(
+    Item,
+    Domain,
+    Definition = Question,
+    Ratings = Response_options
+  ) |>
+  kable(align = c("l", "l", "l", "l"))
+```
+
+## CRIME-Q study-level rating figure
+
+The source assessment contains `r nrow(cohort_matrix)` cohort rows from `r n_distinct(cohort_matrix$Study_ID)` studies. When a study has multiple cohorts, item ratings are collapsed to one display row: if all cohorts share the same rating, that rating is kept; if cohort ratings differ, the study is shown as `Partly`.
 
 ```{r}
 #| label: crimeq-heatmap
 #| fig-width: 14
-#| fig-height: 7
+#| fig-height: 8
 #| out-width: "100%"
-#| fig-cap: "CRIME-Q item ratings collapsed to one row per study. Green = Yes, yellow = Partly or Unclear, red = No, and blue = NA."
+#| fig-cap: "CRIME-Q item ratings collapsed to one row per study. Green = Yes, gold = Partly or Unclear, red = No, and blue = NA."
 
 plot_dat <- study_matrix |>
   pivot_longer(
@@ -101,7 +129,7 @@ plot_dat <- study_matrix |>
   ) |>
   mutate(
     Item = factor(Item, levels = item_cols),
-    ID = factor(ID, levels = rev(unique(ID))),
+    Study = factor(Study, levels = rev(unique(Study))),
     Fill_group = case_when(
       Rating == "Yes" ~ "Yes",
       Rating %in% c("Partly", "Unclear") ~ "Partly/Unclear",
@@ -115,109 +143,51 @@ if (any(plot_dat$Fill_group == "Other")) {
   warning("Some unexpected CRIME-Q rating values were found.")
 }
 
-ggplot(plot_dat, aes(x = Item, y = ID, fill = Fill_group)) +
-  geom_tile(color = "black", linewidth = 0.35) +
+# Sgt. Pepper-inspired palette: vivid satin band colours on warm parchment.
+sgt_pepper <- list(
+  parchment = "#F6EAD0",
+  ink       = "#3A2A1A",
+  gold      = "#C8920E",
+  yes       = "#2E8B57",
+  partly    = "#F2B705",
+  no        = "#D7263D",
+  na        = "#2660A4"
+)
+
+ggplot(plot_dat, aes(x = Item, y = Study, fill = Fill_group)) +
+  geom_tile(color = sgt_pepper$gold, linewidth = 0.45) +
   scale_fill_manual(
     values = c(
-      "Yes" = "#33FF33",
-      "Partly/Unclear" = "#FFFF4D",
-      "No" = "#FF3333",
-      "NA" = "#1E3DFF"
+      "Yes" = sgt_pepper$yes,
+      "Partly/Unclear" = sgt_pepper$partly,
+      "No" = sgt_pepper$no,
+      "NA" = sgt_pepper$na
     ),
     breaks = c("Yes", "Partly/Unclear", "No", "NA"),
     name = NULL
   ) +
   labs(
     x = NULL,
-    y = "ID"
+    y = NULL
   ) +
-  theme_minimal(base_size = 12) +
+  theme_minimal(base_size = 12, base_family = "serif") +
   theme(
+    plot.background = element_rect(fill = sgt_pepper$parchment, color = NA),
+    panel.background = element_rect(fill = sgt_pepper$parchment, color = NA),
+    legend.background = element_rect(fill = sgt_pepper$parchment, color = NA),
+    legend.key = element_rect(fill = sgt_pepper$parchment, color = NA),
     panel.grid = element_blank(),
     axis.text.x = element_text(
       angle = 0,
       hjust = 0.5,
       vjust = 0.5,
-      face = "bold"
+      face = "bold",
+      color = sgt_pepper$ink
     ),
-    axis.text.y = element_text(face = "bold"),
+    axis.text.y = element_text(face = "bold", color = sgt_pepper$ink),
     axis.ticks = element_blank(),
     legend.position = "bottom",
-    legend.text = element_text(size = 11),
-    plot.margin = margin(10, 10, 10, 10)
+    legend.text = element_text(size = 11, color = sgt_pepper$ink, face = "bold"),
+    plot.margin = margin(12, 14, 12, 14)
   )
-```
-
-## Study ID lookup
-
-```{r}
-#| label: crimeq-id-lookup
-#| echo: false
-
-study_matrix |>
-  select(ID, Study_ID) |>
-  kable(
-    col.names = c("Figure ID", "Study ID"),
-    align = c("r", "l")
-  )
-```
-
-## CRIME-Q item definitions
-
-The compact guide below keeps the definition fields needed to interpret the figure: item code, construct, assessment level, allowed ratings, and the simplified coding rule.
-
-```{r}
-#| label: crimeq-codebook-summary
-#| echo: false
-
-construct_labels <- c(
-  QoR = "Quality of reporting",
-  MQ = "Methodological quality",
-  RoB = "Risk of bias"
-)
-
-codebook |>
-  transmute(
-    Item,
-    Construct = recode(Construct, !!!construct_labels),
-    Domain,
-    `Assessment level` = Assessment_level,
-    `Ratings` = Response_options
-  ) |>
-  kable(align = c("l", "l", "l", "l", "l"))
-```
-
-```{r}
-#| label: crimeq-item-definitions
-#| echo: false
-#| results: asis
-
-clean_field <- function(x) {
-  x <- str_squish(as.character(x))
-  ifelse(is.na(x) | x == "" | x == "-", NA_character_, x)
-}
-
-for (i in seq_len(nrow(codebook))) {
-  row <- codebook[i, ]
-  construct <- recode(row$Construct, !!!construct_labels)
-  syrcle <- clean_field(row$SYRCLE_item)
-  na_rule <- clean_field(row$NA_rule)
-  notes <- clean_field(row$Notes)
-
-  cat("### ", row$Item, ": ", row$Domain, "\n\n", sep = "")
-  cat("**Construct:** ", construct, "  \n", sep = "")
-  if (!is.na(syrcle)) {
-    cat("**SYRCLE mapping:** ", syrcle, "  \n", sep = "")
-  }
-  cat("**Assessment level:** ", row$Assessment_level, "  \n", sep = "")
-  cat("**Rating options:** ", row$Response_options, "\n\n", sep = "")
-  cat("**What it checks:** ", row$Question, "\n\n", sep = "")
-  cat("**Simplified coding rule:** ", row$Operational_guidance, "\n\n", sep = "")
-  if (!is.na(na_rule) && na_rule != "Not used") {
-    cat("**NA rule:** ", na_rule, "\n\n", sep = "")
-  }
-  if (!is.na(notes)) {
-    cat("**Note:** ", notes, "\n\n", sep = "")
-  }
-}
 ```
