@@ -1,13 +1,106 @@
+/* =====================================================================
+   Violin book theme
+   Palette drawn from a varnished violin on a crimson backdrop:
+   chestnut/amber wood, ebony, ivory, and a warm crimson red.
+   Headings use a Helvetica-family sans so codes like lnCVR keep their
+   case (no small-caps distortion). Accent colours apply in light and
+   dark mode; the ivory ground is scoped to light mode.
+   ===================================================================== */
+
 :root {
+  --v-ivory:      #f3ece0;  /* glove / page ground */
+  --v-ivory-2:    #e8dcc6;  /* sidebar */
+  --v-ink:        #241a12;  /* body text */
+  --v-wood:       #a8632f;  /* varnished maple */
+  --v-wood-light: #c98a4b;  /* amber highlight */
+  --v-wood-dark:  #6f3f20;  /* deep chestnut */
+  --v-ebony:      #1c1714;  /* fingerboard */
+  --v-red:        #cc3a30;  /* crimson backdrop */
+  --v-red-deep:   #9e2a22;  /* shadowed red */
+  --v-heading-font: "Helvetica Neue", Helvetica, Arial, "Inter", "Segoe UI", sans-serif;
+}
 
-} 
+/* --- Ivory ground (light mode only) --- */
+body:not(.quarto-dark) {
+  background-color: var(--v-ivory);
+  background-image:
+    radial-gradient(circle at 16% 10%, rgba(201, 138, 75, 0.10), transparent 45%),
+    radial-gradient(circle at 84% 90%, rgba(204, 58, 48, 0.06), transparent 45%);
+  background-attachment: fixed;
+  color: var(--v-ink);
+}
 
+/* --- Crimson navbar with ivory lettering, wood trim --- */
+.navbar {
+  background: linear-gradient(180deg, var(--v-red) 0%, var(--v-red-deep) 100%) !important;
+  border-bottom: 3px solid var(--v-wood);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+.navbar .navbar-brand,
+.navbar .nav-link,
+.navbar .navbar-title,
+.navbar a {
+  color: var(--v-ivory) !important;
+}
+.navbar .nav-link:hover,
+.navbar a:hover {
+  color: var(--v-wood-light) !important;
+}
 
+/* --- Headings: Helvetica-family sans, case preserved --- */
+h1, h2, h3, h4, h5,
+.title, .subtitle {
+  font-family: var(--v-heading-font);
+  font-feature-settings: normal;     /* no small-caps / ligature remapping */
+  font-variant: normal;
+  text-transform: none;              /* keep lnCVR as written */
+  letter-spacing: 0;
+}
+
+h1, .title {
+  color: var(--v-wood-dark);
+  font-weight: 700;
+}
+
+h2 {
+  color: var(--v-wood);
+  border-bottom: 2px solid var(--v-wood-light);
+  padding-bottom: 0.25rem;
+}
+
+h3 {
+  color: var(--v-red-deep);
+}
+
+body.quarto-dark h1,
+body.quarto-dark .title { color: var(--v-wood-light); }
+body.quarto-dark h2     { color: var(--v-wood-light); }
+body.quarto-dark h3     { color: var(--v-wood); }
+
+/* --- Links in crimson, hover to wood --- */
+a {
+  color: var(--v-red);
+  text-decoration-color: var(--v-wood-light);
+}
+a:hover {
+  color: var(--v-wood-dark);
+}
+
+/* --- Sidebar in soft ivory with wood edge (light mode) --- */
+body:not(.quarto-dark) .sidebar {
+  background-color: var(--v-ivory-2);
+  border-right: 2px solid var(--v-wood-light);
+}
+.sidebar .sidebar-item-text:hover,
+.sidebar a.active {
+  color: var(--v-red) !important;
+}
 
 /* --- code blocks --- */
 pre {
   border-radius: 12px;
   padding: 0.9rem 1.0rem;
+  border-left: 3px solid var(--v-wood-light);
 }
 
 code {
@@ -21,21 +114,32 @@ code {
 
 /* --- cards --- */
 .card {
-  border: 1px solid rgba(120,120,120,0.25);
+  border: 1px solid rgba(168, 99, 47, 0.35);
   border-radius: 16px;
   padding: 1.1rem 1.2rem;
   margin: 1rem 0;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  box-shadow: 0 6px 18px rgba(111, 63, 32, 0.12);
 }
 
 .card h3 {
   margin-top: 0.1rem;
 }
 
-/* --- Better tables --- */
+/* --- Better tables: wood header band --- */
 table {
   border-collapse: separate;
   border-spacing: 0;
   border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+table thead th {
+  background: linear-gradient(180deg, var(--v-wood-light) 0%, var(--v-wood) 100%);
+  color: var(--v-ivory);
+  border-bottom: 2px solid var(--v-wood-dark);
+}
+
+body:not(.quarto-dark) table tbody tr:nth-child(even) {
+  background-color: rgba(201, 138, 75, 0.10);
 }
