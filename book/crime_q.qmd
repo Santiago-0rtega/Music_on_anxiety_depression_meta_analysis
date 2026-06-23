@@ -144,17 +144,17 @@ if (any(plot_dat$Fill_group == "Other")) {
   warning("Some unexpected CRIME-Q rating values were found.")
 }
 
-# Spotify-friendly fills on the dark page (Yes = Spotify green).
-rating_colors <- c(
-  "Yes" = "#1DB954",
-  "Partly/Unclear" = "#F2B705",
-  "No" = "#E5484D",
-  "NA" = "#4C8DD8"
-)
-spotify_text <- "#E8E8E8"
 
-ggplot(plot_dat, aes(x = Item, y = Study, fill = Fill_group)) +
-  geom_tile(color = "#121212", linewidth = 0.6) +
+rating_colors <- c(
+  "Yes" = "#6F8542",
+  "Partly/Unclear" = "#B8842F",
+  "No" = "#A64747",
+  "NA" = "#557993"
+)
+gallery_text <- "#242321"
+
+CRIME<-ggplot(plot_dat, aes(x = Item, y = Study, fill = Fill_group)) +
+  geom_tile(color = "#FFFDF8", linewidth = 0.6) +
   scale_fill_manual(
     values = rating_colors,
     breaks = c("Yes", "Partly/Unclear", "No", "NA"),
@@ -176,12 +176,46 @@ ggplot(plot_dat, aes(x = Item, y = Study, fill = Fill_group)) +
       hjust = 0.5,
       vjust = 0.5,
       face = "bold",
-      color = spotify_text
+      color = gallery_text
     ),
-    axis.text.y = element_text(face = "bold", color = spotify_text),
+    axis.text.y = element_text(face = "bold", color = gallery_text),
     axis.ticks = element_blank(),
     legend.position = "bottom",
-    legend.text = element_text(size = 11, color = spotify_text),
+    legend.text = element_text(size = 11, color = gallery_text),
     plot.margin = margin(10, 10, 10, 10)
   )
+
+CRIME
 ```
+
+
+
+
+
+```{r}
+#| label: save-figure_behaviour
+#| eval: false
+
+ggsave(filename = here("..","Plots", "CRIMEQ.pdf"),
+       plot = CRIME,
+       dpi = 300, device = cairo_pdf,width = 10,  
+       height = 7)
+
+ggsave(filename = here("..","Plots", "CRIMEQ.jpg"),
+       plot = CRIME,
+       width = 10,  
+       height = 7,  
+       dpi = 300)
+
+```
+
+
+
+
+
+
+
+
+
+
+

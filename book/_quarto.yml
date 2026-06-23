@@ -2,8 +2,8 @@ project:
   type: book
   output-dir: ../docs
   resources:
-    - styles.css
-    - images
+    - cossee_logo.png
+    - cover.png
 
 book:
   title: "Music exposure reduces anxiety- and depression-like behavior in rodents: a systematic review and multilevel meta-analysis"
@@ -12,6 +12,8 @@ book:
 
   # Adds top bar + links
   navbar:
+    logo: cossee_logo.png
+    logo-alt: "COSSEE logo"
     pinned: true
     right:
       - icon: github
@@ -45,16 +47,19 @@ biblio-style: apalike
 
 format:
   html:
-    theme: darkly
-    css: styles.css
-    mainfont: "Helvetica Neue, Helvetica, Arial, sans-serif"
-    fontsize: 1.05em
-    linestretch: 1.35
-    favicon: images/favicon.png
+    theme:
+      - cosmo
+      - styles.scss
+    mainfont: "Inter, Aptos, Segoe UI, Helvetica Neue, Arial, sans-serif"
+    fontsize: 1.03em
+    linestretch: 1.45
+    favicon: cossee_logo.png
 
     toc: true
     toc-depth: 3
     toc-location: left
+    fig-cap-location: bottom
+    tbl-cap-location: top
 
     code-tools: true
     code-copy: true
@@ -68,8 +73,8 @@ format:
     page-layout: full
     grid:
       sidebar-width: 300px
-      body-width: 1400px  
-      margin-width: 200px
+      body-width: 1120px  
+      margin-width: 220px
       gutter-width: 1.5rem
 execute:
   freeze: auto
