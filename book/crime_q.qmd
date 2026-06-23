@@ -119,6 +119,7 @@ The source assessment contains `r nrow(cohort_matrix)` cohort rows from `r n_dis
 #| fig-width: 14
 #| fig-height: 8
 #| out-width: "100%"
+#| dev.args: !expr list(bg = "transparent")
 #| fig-cap: "CRIME-Q item ratings collapsed to one row per study. Green = Yes, gold = Partly or Unclear, red = No, and blue = NA."
 
 plot_dat <- study_matrix |>
@@ -143,26 +144,17 @@ if (any(plot_dat$Fill_group == "Other")) {
   warning("Some unexpected CRIME-Q rating values were found.")
 }
 
-# Sgt. Pepper-inspired palette: vivid satin band colours on warm parchment.
-sgt_pepper <- list(
-  parchment = "#F6EAD0",
-  ink       = "#3A2A1A",
-  gold      = "#C8920E",
-  yes       = "#2E8B57",
-  partly    = "#F2B705",
-  no        = "#D7263D",
-  na        = "#2660A4"
+rating_colors <- c(
+  "Yes" = "#2E8B57",
+  "Partly/Unclear" = "#F2B705",
+  "No" = "#D7263D",
+  "NA" = "#2660A4"
 )
 
 ggplot(plot_dat, aes(x = Item, y = Study, fill = Fill_group)) +
-  geom_tile(color = sgt_pepper$gold, linewidth = 0.45) +
+  geom_tile(color = "grey25", linewidth = 0.35) +
   scale_fill_manual(
-    values = c(
-      "Yes" = sgt_pepper$yes,
-      "Partly/Unclear" = sgt_pepper$partly,
-      "No" = sgt_pepper$no,
-      "NA" = sgt_pepper$na
-    ),
+    values = rating_colors,
     breaks = c("Yes", "Partly/Unclear", "No", "NA"),
     name = NULL
   ) +
@@ -170,24 +162,23 @@ ggplot(plot_dat, aes(x = Item, y = Study, fill = Fill_group)) +
     x = NULL,
     y = NULL
   ) +
-  theme_minimal(base_size = 12, base_family = "serif") +
+  theme_minimal(base_size = 12) +
   theme(
-    plot.background = element_rect(fill = sgt_pepper$parchment, color = NA),
-    panel.background = element_rect(fill = sgt_pepper$parchment, color = NA),
-    legend.background = element_rect(fill = sgt_pepper$parchment, color = NA),
-    legend.key = element_rect(fill = sgt_pepper$parchment, color = NA),
+    plot.background = element_rect(fill = "transparent", color = NA),
+    panel.background = element_rect(fill = "transparent", color = NA),
+    legend.background = element_rect(fill = "transparent", color = NA),
+    legend.key = element_rect(fill = "transparent", color = NA),
     panel.grid = element_blank(),
     axis.text.x = element_text(
       angle = 0,
       hjust = 0.5,
       vjust = 0.5,
-      face = "bold",
-      color = sgt_pepper$ink
+      face = "bold"
     ),
-    axis.text.y = element_text(face = "bold", color = sgt_pepper$ink),
+    axis.text.y = element_text(face = "bold"),
     axis.ticks = element_blank(),
     legend.position = "bottom",
-    legend.text = element_text(size = 11, color = sgt_pepper$ink, face = "bold"),
-    plot.margin = margin(12, 14, 12, 14)
+    legend.text = element_text(size = 11),
+    plot.margin = margin(10, 10, 10, 10)
   )
 ```

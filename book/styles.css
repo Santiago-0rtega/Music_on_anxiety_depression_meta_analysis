@@ -1,13 +1,103 @@
+/* =====================================================================
+   Sgt. Pepper book theme
+   Warm parchment ground, marching-band reds & golds, satin accents.
+   Accent colours apply in both light and dark mode; the parchment
+   ground is scoped to light mode so the dark theme stays readable.
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap');
+
 :root {
+  --sp-parchment:   #f6ead0;
+  --sp-parchment-2: #efe0c1;
+  --sp-ink:         #2f2316;
+  --sp-gold:        #c8920e;
+  --sp-gold-soft:   #e3b94e;
+  --sp-red:         #c5202e;
+  --sp-red-deep:    #8d1620;
+  --sp-blue:        #2660a4;
+  --sp-green:       #2e8b57;
+  --sp-heading-font: "Cinzel", "Playfair Display", Georgia, serif;
+}
 
-} 
+/* --- Parchment ground (light mode only) --- */
+body:not(.quarto-dark) {
+  background-color: var(--sp-parchment);
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(227, 185, 78, 0.10), transparent 45%),
+    radial-gradient(circle at 82% 88%, rgba(197, 32, 46, 0.07), transparent 45%);
+  background-attachment: fixed;
+  color: var(--sp-ink);
+}
 
+/* --- Marching-band navbar: deep red with gold lettering --- */
+.navbar {
+  background: linear-gradient(180deg, var(--sp-red) 0%, var(--sp-red-deep) 100%) !important;
+  border-bottom: 3px solid var(--sp-gold);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+.navbar .navbar-brand,
+.navbar .nav-link,
+.navbar .navbar-title,
+.navbar a {
+  color: var(--sp-gold-soft) !important;
+}
+.navbar .nav-link:hover,
+.navbar a:hover {
+  color: #fff !important;
+}
 
+/* --- Ornamental headings --- */
+h1, h2, h3, h4, h5,
+.title, .subtitle {
+  font-family: var(--sp-heading-font);
+  letter-spacing: 0.01em;
+}
+
+h1, .title {
+  color: var(--sp-red-deep);
+  font-weight: 700;
+}
+
+h2 {
+  color: var(--sp-gold);
+  border-bottom: 2px solid var(--sp-gold-soft);
+  padding-bottom: 0.25rem;
+}
+
+h3 {
+  color: var(--sp-blue);
+}
+
+body.quarto-dark h1,
+body.quarto-dark .title { color: var(--sp-gold-soft); }
+body.quarto-dark h2     { color: var(--sp-gold-soft); }
+body.quarto-dark h3     { color: var(--sp-gold); }
+
+/* --- Links in satin red --- */
+a {
+  color: var(--sp-red);
+  text-decoration-color: var(--sp-gold-soft);
+}
+a:hover {
+  color: var(--sp-blue);
+}
+
+/* --- Sidebar trimmed in gold (light mode) --- */
+body:not(.quarto-dark) .sidebar {
+  background-color: var(--sp-parchment-2);
+  border-right: 2px solid var(--sp-gold-soft);
+}
+.sidebar .sidebar-item-text:hover,
+.sidebar a.active {
+  color: var(--sp-red) !important;
+}
 
 /* --- code blocks --- */
 pre {
   border-radius: 12px;
   padding: 0.9rem 1.0rem;
+  border-left: 3px solid var(--sp-gold-soft);
 }
 
 code {
@@ -21,21 +111,32 @@ code {
 
 /* --- cards --- */
 .card {
-  border: 1px solid rgba(120,120,120,0.25);
+  border: 1px solid rgba(200, 146, 14, 0.35);
   border-radius: 16px;
   padding: 1.1rem 1.2rem;
   margin: 1rem 0;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  box-shadow: 0 6px 18px rgba(141, 22, 32, 0.10);
 }
 
 .card h3 {
   margin-top: 0.1rem;
 }
 
-/* --- Better tables --- */
+/* --- Better tables: gold header band --- */
 table {
   border-collapse: separate;
   border-spacing: 0;
   border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+table thead th {
+  background: linear-gradient(180deg, var(--sp-gold-soft) 0%, var(--sp-gold) 100%);
+  color: var(--sp-ink);
+  border-bottom: 2px solid var(--sp-red-deep);
+}
+
+body:not(.quarto-dark) table tbody tr:nth-child(even) {
+  background-color: rgba(227, 185, 78, 0.10);
 }
