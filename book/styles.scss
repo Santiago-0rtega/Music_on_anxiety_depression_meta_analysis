@@ -51,26 +51,31 @@ body {
 }
 
 #quarto-content {
-  padding: 1.25rem 1.5rem 2.5rem;
+  padding: 0.75rem clamp(0.5rem, 1vw, 1rem) 2.5rem;
 }
 
 main.content {
-  max-width: 1120px;
+  max-width: none;
+  width: 100%;
   background: var(--gallery-wall);
   border: 1px solid var(--gallery-rule);
-  border-radius: 8px;
-  box-shadow: var(--gallery-shadow);
-  padding: 2.25rem 3rem 3.2rem;
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgba(38, 35, 29, 0.06);
+  padding: clamp(1.25rem, 1.8vw, 2.25rem) clamp(1.2rem, 1.9vw, 2.4rem) 3rem;
 }
 
 main.content p,
 main.content li {
-  max-width: 82ch;
+  max-width: 92ch;
 }
 
 main.content img,
 main.content table,
-main.content pre {
+main.content pre,
+main.content .cell-output,
+main.content .cell-output-display,
+main.content .cell-output-stdout,
+main.content .cell-output-stderr {
   max-width: 100%;
 }
 
@@ -206,7 +211,7 @@ main.content pre {
   letter-spacing: 0;
   line-height: 1.45;
   margin-top: 0.55rem;
-  max-width: 80ch;
+  max-width: 96ch;
 }
 
 h1,
@@ -277,6 +282,11 @@ a:hover {
   color: var(--gallery-ink);
   margin: 1.25rem 0;
   padding: 1.15rem 1.35rem;
+}
+
+.card p,
+.card li {
+  max-width: 98ch;
 }
 
 .card h1,
@@ -403,6 +413,7 @@ table {
   font-size: 0.93rem;
   margin: 1.15rem 0 1.6rem;
   overflow: hidden;
+  width: 100%;
 }
 
 th,

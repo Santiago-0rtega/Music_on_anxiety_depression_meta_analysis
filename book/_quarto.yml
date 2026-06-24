@@ -72,10 +72,10 @@ format:
     citeproc: true
     page-layout: full
     grid:
-      sidebar-width: 300px
-      body-width: 1120px  
-      margin-width: 220px
-      gutter-width: 1.5rem
+      sidebar-width: 240px
+      body-width: 1600px
+      margin-width: 24px
+      gutter-width: 0.75rem
 execute:
   freeze: auto
   warning: false

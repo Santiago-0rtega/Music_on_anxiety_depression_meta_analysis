@@ -1,7 +1,8 @@
 ---
 title: "Leave-one-out"
 ---
-To evaluate whether the overall meta-analytic estimate is driven by any single study, we perform a leave-one-out analysis at the **study level**. 
+
+To evaluate whether the overall meta-analytic estimate is driven by any single study, we perform a leave-one-out analysis at the **study level**.
 
 For each iteration, we refit the full multilevel model after removing all effect sizes from one study and record the resulting overall lnRR estimate. If the pooled effect remains stable across iterations, this indicates that the main result is not unduly influenced by any single study.
 
@@ -33,7 +34,6 @@ db <- db %>%
   mutate(Study = str_extract(Study_ID, ".*_\\d{4}"))
 ```
 
-
 ```{r}
 VCV <- metafor::vcalc(
   vi = lnRR_var,
@@ -43,8 +43,6 @@ VCV <- metafor::vcalc(
   data = db 
 )
 ```
-
-
 
 Because our model uses a variance–covariance matrix (VCV) to account for within-cohort dependence, we must recompute that matrix each time a study is removed. The `vcalc_args` object ensures that the same covariance structure (cluster variable and assumed correlation) is applied during each refitting step.
 
@@ -70,8 +68,6 @@ ma_all <- rma.mv(yi = lnRR,
 summary(ma_all)
 ```
 
-
-
 ```{r}
 loo_t<-leave_one_out(ma_all, group = "Study", vcalc_args =vcalc_args)
 ```
@@ -93,6 +89,7 @@ loo_plot<-orchard_leave1out(leave1out = loo_t,
 
 loo_plot
 ```
+
 Across iterations, the pooled lnRR estimate remained within a narrow range and consistently below zero. No single study reversed the direction or substantially altered the magnitude of the overall effect. This indicates that the observed reduction in anxiety- and depression-like behaviors under music exposure is not driven by any individual dataset and is robust to study-level exclusion.
 
 ```{r}
@@ -112,14 +109,8 @@ ggsave(filename = here("..","Plots", "loo_studies.jpg"),
 
 ```
 
-
-
 ::: callout-note
 ```{r}
 sessionInfo()
 ```
 :::
-
-
-
-

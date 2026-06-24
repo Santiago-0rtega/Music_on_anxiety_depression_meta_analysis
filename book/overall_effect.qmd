@@ -17,7 +17,6 @@ pacman::p_load(
                )
 ```
 
-
 ```{r}
 #| label: load_effectsize_db
 #| message: false
@@ -38,10 +37,6 @@ After estimating effect sizes, we fit three multilevel, intercept-only meta-anal
 
 Because many studies contribute multiple, non-independent outcomes (often measured on the same cohort), we use `rma.mv()` in `metafor` with a cohort-level variance–covariance (VCV) matrix built using `vcalc()`.
 
-
-
-
-
 ::: callout-note
 Variable definitions:
 
@@ -50,22 +45,16 @@ Variable definitions:
 | **`ES_ID`** | Unique row identifier for each effect size. |
 | **`Study_ID`** | Identifier for the primary research paper. |
 | **`Cohort_ID`** | Identifier for specific experimental groups within a study (combination of Study_ID and Experiment_ID). |
-|**`lnRR`**, **`lnRR_var`** | Log response ratio and its sample variance.|
-|**`lnVR`**, **`lnVR_var`** | Log variability ratio and its sample variance.|
-|**`lnCVR`**, **`lnCVR_var`** | Log coefficient of variation ratio and its sample variance.|
-
-
-
+| **`lnRR`**, **`lnRR_var`** | Log response ratio and its sample variance. |
+| **`lnVR`**, **`lnVR_var`** | Log variability ratio and its sample variance. |
+| **`lnCVR`**, **`lnCVR_var`** | Log coefficient of variation ratio and its sample variance. |
 :::
 
 ## Variance–covariance matrices (within-cohort dependence)
 
 We assume that multiple outcomes measured on the same cohort have correlated sampling errors. We therefore construct a VCV matrix with an assumed within-cohort correlation of r = 0.5 when correlations are not reported.
 
-
 ## Multilevel intercept-only meta-analytic models
-
-
 
 The code below fits the three models using the same specification:
 
@@ -76,8 +65,6 @@ The code below fits the three models using the same specification:
 - Random intercepts for Strain (`Strain`)
 
 - REML estimation and `test = "t"`
-
-
 
 ```{r}
 #| label: overall_models_all_three
@@ -124,21 +111,22 @@ res_lnCVR <- fit_overall_mv(db, yi = "lnCVR", vi = "lnCVR_var", rho = 0.5)
 
 ```
 
-
-
-:::::::: columns
-:::: {.column width="49%"}
+:::::::::: columns
+::::: {.column width="49%"}
 ::: panel-text
 ## lnRR
 :::
+
 ```{r}
 #| label: summary_lnRR
 summary(res_lnRR$model)
 ```
+
 ```{r}
 #| label: i2_lnRR
 orchaRd::i2_ml(res_lnRR$model)
 ```
+
 ::: card
 ```{r}
 #| label: orchard_lnRR
@@ -152,25 +140,26 @@ p_lnRR <- orchard_plot(
 p_lnRR
 ```
 :::
-
-::::
+:::::
 
 ::: {.column width="2%"}
 :::
 
-
-:::: {.column width="49%"}
+::::: {.column width="49%"}
 ::: panel-text
 ## lnVR
 :::
+
 ```{r}
 #| label: summary_lnVR
 summary(res_lnVR$model)
 ```
+
 ```{r}
 #| label: i2_lnVR
 orchaRd::i2_ml(res_lnVR$model)
 ```
+
 ::: card
 ```{r}
 #| label: orchard_lnVR
@@ -184,21 +173,18 @@ p_lnVR <- orchard_plot(
 p_lnVR
 ```
 :::
-
-:::
-
-::::
-
-
+:::::
+::::::::::
 
 :::::::: columns
-:::: {.column width="25%"}
-::::
-:::: {.column width="50%"}
+::: {.column width="25%"}
+:::
 
+::::: {.column width="50%"}
 ::: panel-text
 ## lnCVR
 :::
+
 ```{r}
 #| label: summary_lnCVR
 summary(res_lnCVR$model)
@@ -208,6 +194,7 @@ summary(res_lnCVR$model)
 #| label: i2_lnCVR
 orchaRd::i2_ml(res_lnCVR$model)
 ```
+
 ::: card
 ```{r}
 #| label: orchard_lnCVR
@@ -221,24 +208,14 @@ p_lnCVR <- orchard_plot(
 p_lnCVR
 ```
 :::
+:::::
 
+::: {.column width="25%"}
 :::
-:::: {.column width="25%"}
-::::
-
 ::::::::
 
-
-
-
-
-
-
 ::: callout-note
-
 ```{r}
 sessionInfo()
 ```
-
 :::
-
