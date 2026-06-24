@@ -54,6 +54,32 @@ body {
   padding: 0.75rem clamp(0.5rem, 1vw, 1rem) 2.5rem;
 }
 
+@media (min-width: 992px) {
+  body.nav-sidebar.floating #quarto-content.page-columns {
+    grid-template-columns:
+      [screen-start] 0.75rem
+      [screen-start-inset] 0
+      [page-start] 240px
+      [page-start-inset] 0
+      [body-start-outset] 0
+      [body-start] 0.75rem
+      [body-content-start] minmax(0, 1fr)
+      [body-content-end] 0.75rem
+      [body-end body-end-outset page-end-inset page-end] 0
+      [screen-end-inset] 0.75rem
+      [screen-end] !important;
+  }
+
+  body.nav-sidebar.floating #quarto-sidebar {
+    padding-left: 0;
+    padding-right: 0.75rem;
+  }
+
+  body.nav-sidebar.floating .sidebar.margin-sidebar {
+    display: none;
+  }
+}
+
 main.content {
   max-width: none;
   width: 100%;
