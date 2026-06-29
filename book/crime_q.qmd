@@ -5,96 +5,136 @@ title: "CRIME-Q risk-of-bias figure"
 ```{r}
 #| label: setup-crimeq
 #| include: false
-pacman::p_load(
-  dplyr,
-  ggplot2,
-  knitr,
-  readr,
-  readxl,
-  stringr,
-  tibble,
-  tidyr,
-  here
+required_packages <- c(
+  "dplyr",
+  "ggplot2",
+  "knitr",
+  "readxl",
+  "stringr",
+  "tibble",
+  "tidyr",
+  "here"
 )
+
+missing_packages <- required_packages[
+  !vapply(required_packages, requireNamespace, logical(1), quietly = TRUE)
+]
+if (length(missing_packages) > 0) {
+  stop(
+    "Missing required package(s): ",
+    paste(missing_packages, collapse = ", ")
+  )
+}
+
+invisible(lapply(required_packages, library, character.only = TRUE))
 ```
 
-This chapter presents the CRIME-Q music-exposure codebook as a compact item-definition table and reproduces the study-level rating figure from the cohort-level risk-of-bias assessment.
+This chapter presents the finalized CRIME-Q music-exposure codebook and the study-level risk-of-bias rating figure. Both are read from the finalized Excel workbook so the displayed item definitions, item order, and plotted ratings stay aligned with the reviewed assessment.
 
 ```{r}
 #| label: crimeq-load
 #| include: false
 
 input_file <- here("..", "data", "MUSIC-CRIME-Q_RoB_assessment.xlsx")
-input_sheet <- "Table 2"
-codebook_file <- here("..", "CRIME-Q_Music_RoB_Codebook_v1.8.csv")
+assessment_sheet <- "Sheet1"
+codebook_sheet <- "CRIME-Q Codebook"
 
-item_cols <- c(
-  "1X", "2X", "2Y", "3X", "3Y", "3Z", "4Y",
-  "5X", "5Y", "5Z(1)", "5Z(2)", "5Z(3)",
-  "6X", "7X", "7Z(1)", "7Z(2)", "7Z(3)",
-  "8X", "8Z(1)", "8Z(2)", "9X", "10X", "10Z"
-)
+required_sheets <- c(assessment_sheet, codebook_sheet)
+missing_sheets <- setdiff(required_sheets, excel_sheets(input_file))
+if (length(missing_sheets) > 0) {
+  stop(
+    "The CRIME-Q workbook is missing required sheet(s): ",
+    paste(missing_sheets, collapse = ", ")
+  )
+}
 
-expected_cols <- c("Study_ID", "Cohort_ID", item_cols)
+clean_text_cols <- function(.data) {
+  .data |>
+    rename_with(str_squish) |>
+    mutate(across(everything(), ~ na_if(str_squish(.x), "")))
+}
 
-cohort_matrix <- read_excel(
+assessment_raw <- read_excel(
   path = input_file,
-  sheet = input_sheet,
+  sheet = assessment_sheet,
   col_types = "text",
   na = ""
 ) |>
-  rename_with(str_trim) |>
-  mutate(across(everything(), str_trim)) |>
-  select(all_of(expected_cols))
+  clean_text_cols()
 
-if (!identical(names(cohort_matrix), expected_cols)) {
-  stop("Sheet 'Table 2' does not match the expected column structure.")
-}
-
-if (anyDuplicated(cohort_matrix$Cohort_ID) > 0) {
-  stop("Duplicated Cohort_ID values detected.")
-}
-
-collapse_rating <- function(x) {
-  vals <- unique(x)
-  if (length(vals) == 1L) vals else "Partly"
-}
-
-# Turn a Study_ID like "Camargo_2013_PSYN" into "Camargo et al. 2013".
-study_label <- function(study_id) {
-  parts <- str_split(study_id, "_", simplify = FALSE)
-  vapply(parts, function(p) {
-    author <- p[1]
-    year <- p[2]
-    paste0(author, " et al. ", year)
-  }, character(1))
-}
-
-study_matrix <- cohort_matrix |>
-  group_by(Study_ID) |>
-  summarise(
-    across(all_of(item_cols), collapse_rating),
-    .groups = "drop"
-  ) |>
-  arrange(Study_ID) |>
-  mutate(Study = study_label(Study_ID)) |>
-  relocate(Study, .before = Study_ID)
-
-codebook <- read_csv(
-  codebook_file,
-  show_col_types = FALSE,
-  trim_ws = TRUE
+codebook <- read_excel(
+  path = input_file,
+  sheet = codebook_sheet,
+  col_types = "text",
+  na = ""
 ) |>
-  arrange(Order)
+  clean_text_cols() |>
+  filter(!is.na(Item)) |>
+  rename(
+    Item_Name = `Item name`,
+    Response_options = `Response options`,
+    Decision_rule = `Decision rule`
+  )
 
-if (!identical(codebook$Item, item_cols)) {
-  stop("Codebook item order does not match the CRIME-Q matrix columns.")
+required_codebook_cols <- c(
+  "Item", "Item_Name", "Question", "Response_options",
+  "Yes", "Partly", "No", "Unclear", "NA", "Decision_rule"
+)
+if (!all(required_codebook_cols %in% names(codebook))) {
+  stop("The CRIME-Q Codebook sheet does not contain the expected columns.")
 }
+
+item_cols <- codebook$Item
+
+score_cols_in_workbook <- setdiff(names(assessment_raw), c("Study", "Study_Title"))
+score_cols_in_workbook <- score_cols_in_workbook[
+  !str_detect(score_cols_in_workbook, "_JUSTIFICATION$|_VERBATIM$")
+]
+
+if (!identical(score_cols_in_workbook, item_cols)) {
+  stop("CRIME-Q score columns do not match the workbook codebook item order.")
+}
+
+assessment_matrix <- assessment_raw |>
+  select(Study, Study_Title, all_of(item_cols))
+
+if (any(is.na(assessment_matrix$Study))) {
+  stop("Blank Study values detected in the CRIME-Q assessment sheet.")
+}
+
+if (anyDuplicated(assessment_matrix$Study) > 0) {
+  stop("Duplicated Study values detected in the CRIME-Q assessment sheet.")
+}
+
+valid_ratings <- c("Yes", "Partly", "No", "Unclear", "NA")
+observed_ratings <- assessment_matrix |>
+  select(all_of(item_cols)) |>
+  unlist(use.names = FALSE) |>
+  unique() |>
+  na.omit()
+
+unexpected_ratings <- setdiff(observed_ratings, valid_ratings)
+if (length(unexpected_ratings) > 0) {
+  stop(
+    "Unexpected CRIME-Q rating values found: ",
+    paste(unexpected_ratings, collapse = ", ")
+  )
+}
+
+study_label <- function(study_id) {
+  str_replace(study_id, "^([[:alpha:]]+)([0-9]{4})$", "\\1 et al. \\2")
+}
+
+assessment_matrix <- assessment_matrix |>
+  mutate(
+    Study_Label = study_label(Study),
+    .after = Study
+  )
 ```
 
 ## CRIME-Q item definitions
 
-The table below defines each CRIME-Q item used in the figure: the item code, the domain it covers, what the item checks, and the allowed ratings.
+The table below is read from the `CRIME-Q Codebook` sheet in the assessment workbook. It defines each item, the allowed response options, and the item-specific scoring rules used for the figure.
 
 ```{r}
 #| label: crimeq-definitions
@@ -103,26 +143,32 @@ The table below defines each CRIME-Q item used in the figure: the item code, the
 codebook |>
   transmute(
     Item,
-    Domain,
-    Definition = Question,
-    Ratings = Response_options
+    `Item name` = Item_Name,
+    Question,
+    `Response options` = Response_options,
+    Yes,
+    Partly,
+    No,
+    Unclear,
+    `NA`,
+    `Decision rule` = Decision_rule
   ) |>
-  kable(align = c("l", "l", "l", "l"))
+  kable(align = c("l", "l", "l", "l", "l", "l", "l", "l", "l", "l"))
 ```
 
 ## CRIME-Q study-level rating figure
 
-The source assessment contains `r nrow(cohort_matrix)` cohort rows from `r n_distinct(cohort_matrix$Study_ID)` studies. When a study has multiple cohorts, item ratings are collapsed to one display row: if all cohorts share the same rating, that rating is kept; if cohort ratings differ, the study is shown as `Partly`.
+The source assessment contains `r nrow(assessment_matrix)` study rows and `r length(item_cols)` CRIME-Q items. Ratings are plotted directly from the finalized study-level score cells in `Sheet1`; justification and verbatim columns are retained in the workbook but are not plotted.
 
 ```{r}
 #| label: crimeq-heatmap
-#| fig-width: 14
+#| fig-width: 13
 #| fig-height: 8
 #| out-width: "100%"
 #| dev.args: !expr list(bg = "transparent")
-#| fig-cap: "CRIME-Q item ratings collapsed to one row per study. Green = Yes, gold = Partly or Unclear, red = No, and blue = NA."
+#| fig-cap: "CRIME-Q item ratings from the finalized study-level assessment. Green = Yes, yellow = Partly, red = No, orange = Unclear, and blue = NA."
 
-plot_dat <- study_matrix |>
+plot_dat <- assessment_matrix |>
   pivot_longer(
     cols = all_of(item_cols),
     names_to = "Item",
@@ -130,36 +176,30 @@ plot_dat <- study_matrix |>
   ) |>
   mutate(
     Item = factor(Item, levels = item_cols),
-    Study = factor(Study, levels = rev(unique(Study))),
-    Fill_group = case_when(
-      Rating == "Yes" ~ "Yes",
-      Rating %in% c("Partly", "Unclear") ~ "Partly/Unclear",
-      Rating == "No" ~ "No",
-      Rating == "NA" ~ "NA",
-      TRUE ~ "Other"
-    )
+    Study_Label = factor(Study_Label, levels = rev(assessment_matrix$Study_Label)),
+    Rating = factor(Rating, levels = valid_ratings)
   )
 
-if (any(plot_dat$Fill_group == "Other")) {
-  warning("Some unexpected CRIME-Q rating values were found.")
-}
-
-
 rating_colors <- c(
-  "Yes" = "#6F8542",
-  "Partly/Unclear" = "#B8842F",
-  "No" = "#A64747",
-  "NA" = "#557993"
+  "Yes" = "#009E60",
+  "Partly" = "#EFBF04",
+  "No" = "#DC143C",
+  "Unclear" = "#F4B183",
+  "NA" = "#D9EAF7"
 )
 gallery_text <- "#242321"
 
-CRIME<-ggplot(plot_dat, aes(x = Item, y = Study, fill = Fill_group)) +
-  geom_tile(color = "#FFFDF8", linewidth = 0.6) +
+CRIME <- ggplot(plot_dat, aes(x = Item, y = Study_Label, fill = Rating)) +
+  geom_tile(color = "#FFFDF8", linewidth = 0.6, width = 0.96, height = 0.96) +
   scale_fill_manual(
     values = rating_colors,
-    breaks = c("Yes", "Partly/Unclear", "No", "NA"),
+    breaks = valid_ratings,
+    drop = FALSE,
     name = NULL
   ) +
+  scale_x_discrete(position = "top") +
+  scale_y_discrete(labels = function(x) str_wrap(x, width = 22)) +
+  coord_equal() +
   labs(
     x = NULL,
     y = NULL
@@ -172,9 +212,8 @@ CRIME<-ggplot(plot_dat, aes(x = Item, y = Study, fill = Fill_group)) +
     legend.key = element_rect(fill = "transparent", color = NA),
     panel.grid = element_blank(),
     axis.text.x = element_text(
-      angle = 0,
       hjust = 0.5,
-      vjust = 0.5,
+      vjust = 0,
       face = "bold",
       color = gallery_text
     ),
@@ -188,34 +227,24 @@ CRIME<-ggplot(plot_dat, aes(x = Item, y = Study, fill = Fill_group)) +
 CRIME
 ```
 
-
-
-
-
 ```{r}
-#| label: save-figure_behaviour
+#| label: save-figure_crimeq
 #| eval: false
 
-ggsave(filename = here("..","Plots", "CRIMEQ.pdf"),
-       plot = CRIME,
-       dpi = 300, device = cairo_pdf,width = 10,  
-       height = 7)
+ggsave(
+  filename = here("..", "Plots", "CRIMEQ.pdf"),
+  plot = CRIME,
+  dpi = 300,
+  device = cairo_pdf,
+  width = 12,
+  height = 8
+)
 
-ggsave(filename = here("..","Plots", "CRIMEQ.jpg"),
-       plot = CRIME,
-       width = 10,  
-       height = 7,  
-       dpi = 300)
-
+ggsave(
+  filename = here("..", "Plots", "CRIMEQ.jpg"),
+  plot = CRIME,
+  width = 12,
+  height = 8,
+  dpi = 300
+)
 ```
-
-
-
-
-
-
-
-
-
-
-

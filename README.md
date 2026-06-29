@@ -7,5 +7,10 @@ In the `data/` folder:
 
 In the `book/` folder, all analytical code is provided and organized into multiple Quarto (`.qmd`) files corresponding to different parts of the workflow.
 
+In the `CRIMEQ/` folder:
+- `notebooklm_workflow/` contains the finalized NotebookLM CRIME-Q extraction materials, organized as one clean five-study batch notebook per run.
+- `notebooklm_workflow/batches/*/pdfs/` contains local ignored PDFs organized by batch for private testing.
+- `archive/` contains previous NotebookLM prompt and instruction drafts, old working-upload scaffolding, and dated zip archives.
+
 
 

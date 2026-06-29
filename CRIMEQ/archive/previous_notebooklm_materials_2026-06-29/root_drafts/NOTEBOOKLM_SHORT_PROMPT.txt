@@ -1,0 +1,54 @@
+====================================================================
+NOTEBOOKLM SHORT PROMPT FOR CRIME-Q MUSIC ASSESSMENT
+====================================================================
+
+Read the Instructions sheet in the attached assessment template (MUSIC-CRIME-Q_RoB_assessment_v2.xlsx).
+
+For each of 20 animal studies, assess 20 CRIME-Q items. For each item:
+1. SCORE: Yes, No, Partly, Unclear, or NA
+2. JUSTIFICATION: 1-2 sentences explaining why you gave this score
+3. VERBATIM: Direct quote from the paper with [page X] reference
+
+Output as a GOOGLE SHEET (tab-separated values) that can be directly pasted into Google Sheets.
+
+Reference the Codebook sheet for detailed assessment criteria. Assessment is at STUDY LEVEL (one assessment per paper, not per cohort/behavioral contrast).
+
+====================================================================
+
+EXPECTED OUTPUT FORMAT (first 2 items shown):
+
+Study_ID | Study_Title | 1X_Peer_review_SCORE | 1X_Peer_review_JUSTIFICATION | 1X_Peer_review_VERBATIM | 3X_Animals_reporting_SCORE | 3X_Animals_reporting_JUSTIFICATION | 3X_Animals_reporting_VERBATIM | ...
+
+Camargo_2013_PSYN | Camargo_2013_PSYN | Yes | Published in peer-reviewed journal Psychoneuroendocrinology | [cover page] Psychoneuroendocrinology Vol 146 pp 105-113 | Partly | Study reports strain (Wistar), sex (Male), age and n per group but not housing enrichment details | [page 2 Methods] Male Wistar rats n=12 per group aged...
+
+====================================================================
+
+20 STUDIES TO ASSESS:
+1. Camargo_2013_PSYN
+2. Chen_2019_BIOMEDRI
+3. Cheng_2024_HLYN
+4. Chikahisa_2007_BBR
+5. Escribano_2014_APPANBSC
+6. Flores_2018_NP
+7. Freitas_2020_ECNE
+8. Fu_2023_TRANSPSY
+9. Fu_2025_TRANSPSY
+10. Krishnamurthy_2025_INDIANJTRADITKNOW
+11. Li_2010_BR
+12. Milbratz_2017_ALN
+13. Niehues_2011_BCNEURO
+14. Pangemanan_2024_PHJ
+15. Papadakakis_2019_BBR
+16. Ren_2024_ASEAN
+17. Rizzolo_2021_CC
+18. Saghari_2021_BIOINTERFACE
+19. Sampaio_2017_PSYNEURO
+20. Terzioglu_2020_CMJ
+
+====================================================================
+
+TOTAL DATA TO PRODUCE:
+20 studies × 20 items × 3 columns = 1,200 data cells
+Output as TSV (tab-separated) table for direct paste into Google Sheets
+
+====================================================================

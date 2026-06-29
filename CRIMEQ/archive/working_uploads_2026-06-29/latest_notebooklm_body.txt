@@ -1,0 +1,596 @@
+add
+Create notebook
+trending_up
+Analytics
+share
+Share
+settings
+Settings
+PLUS
+Sources
+dock_to_right
+add
+Add sources
+language
+keyboard_arrow_down
+search_spark
+keyboard_arrow_down
+search
+label_auto
+Select all
+markdown
+CRIME-Q NotebookLM Calibration and Extraction Protocols
+markdown
+CRIME-Q_CODEBOOK_FOR_NOTEBOOKLM.md
+drive_pdf
+Camargo2013.pdf
+drive_pdf
+Chen2019.pdf
+drive_pdf
+Cheng2024.pdf
+drive_pdf
+Chikahisa2007.pdf
+drive_pdf
+Escribano2014.pdf
+drive_pdf
+Flores2018.pdf
+drive_pdf
+Freitas2020.pdf
+drive_pdf
+Fu2023.pdf
+drive_pdf
+Fu2025.pdf
+markdown
+GENERAL_NOTEBOOKLM_INSTRUCTIONS.md
+drive_pdf
+Krishnamurthy2025.pdf
+drive_pdf
+Li2010.pdf
+drive_pdf
+Milbratz2017.pdf
+drive_pdf
+Niehues2011.pdf
+drive_pdf
+Pangemanan2024.pdf
+drive_pdf
+Papadakakis2019.pdf
+drive_pdf
+Ren2024.pdf
+drive_pdf
+Rizzolo2021.pdf
+drive_pdf
+Saghari2021.pdf
+drive_pdf
+Sampaio2017.pdf
+drive_pdf
+Terzioglu2020.pdf
+markdown
+WIDE_SHEET_COLUMN_TEMPLATE.md
+markdown
+all_studies_manifest.md
+Chat
+tune
+more_vert
+landscape_2
+🧠
+photo_spark
+Customize
+Music and Simvastatin: Synergistic Effects on Rat Anxiety and Memory
+25 sources
+·
+Jun 27, 2026
+
+Research conducted by Pangemanan et al. (2024) and Sampaio et al. (2017) explores how music therapy, specifically Mozart’s compositions, influences the behavior and biology of rats. The first study demonstrates that combining Mozart K448 with the antidepressant fluoxetine significantly improves depressive-like behavior and body weight in stressed rodents. While this combination was effective, the researchers noted that music alone resulted in the highest melatonin levels, whereas fluoxetine was more effective at lowering corticosterone. Complementary research by Sampaio et al. examined the impact of Mozart’s Sonata for Two Pianos across different life stages, from childhood to old age. Their findings indicate that music exposure can reduce anxiety and depression while enhancing memory retention, though results varied by gender and age. Together, these sources suggest that classical music serves as a potent palliative tool for managing mental health conditions and supporting central nervous system development.
+
+keep
+copy_all
+thumb_up
+thumb_down
+How does Mozart K448 influence depressive behavior in rats?
+Does music therapy affect male and female rats differently?
+How does combining music with fluoxetine compare to single treatments?
+Today • 10:15 PM
+
+Create a Google Sheet or Studio Data Table named "CRIME-Q music extraction part 01".
+
+
+
+
+Use ONLY these uploaded study PDFs for this table:
+Camargo2013.pdf
+Chen2019.pdf
+
+
+
+
+Use these uploaded instruction sources:
+all_studies_manifest.md
+CRIME-Q_CODEBOOK_FOR_NOTEBOOKLM.md
+GENERAL_NOTEBOOKLM_INSTRUCTIONS.md
+WIDE_SHEET_COLUMN_TEMPLATE.md
+CRIME-Q_NOTEBOOKLM_CALIBRATION_RULES.md
+
+
+
+
+Before creating the table, verify that you can read both PDFs by finding each exact article title. If either PDF is unavailable, stop and report only: Source access failed for: [filename].
+
+
+
+
+The table must have exactly 2 rows, in this order:
+Camargo2013
+Chen2019
+
+
+
+
+Use CRIME-Q item IDs exactly. Do not replace them with generic fields.
+
+
+
+
+Item meanings: 1X=Peer Review; 3X=Animals: Reporting; 3Y=Animals: Technical Quality; 3Z=Selection Bias: Baseline Characteristics; 4Y=Sample-Size Calculation; 5X=Music Intervention: Reporting; 5Y=Music Intervention: Technical Quality; 5Z(1)=Selection Bias: Sequence Generation; 5Z(2)=Performance Bias: Random Housing; 5Z(3)=Detection Bias: Outcome Assessment; 6X=Ethical Compliance; 7X=Blinding: Reporting; 7Z(1)=Performance Bias: Experimenter Blinding; 7Z(2)=Detection Bias: Assessor Blinding; 8X=Methods-Results Alignment; 8Z(1)=Attrition Bias: Incomplete Data; 8Z(2)=Reporting Bias: Selective Outcomes; 9X=Discussion: Limitations; 10X=Conflict-of-Interest Statement; 10Z=Other Bias: Funder Influence.
+
+
+
+
+For every item, apply CRIME-Q_CODEBOOK_FOR_NOTEBOOKLM.md and CRIME-Q_NOTEBOOKLM_CALIBRATION_RULES.md. Use exactly the columns in WIDE_SHEET_COLUMN_TEMPLATE.md.
+
+
+
+
+SCORE must be exactly one of: Yes, No, Partly, Unclear, NA.
+JUSTIFICATION must be one concise sentence explaining the CRIME-Q score.
+VERBATIM must be an exact quote from the target paper with quoted words plus a location tag, or exactly NOT REPORTED IN PAPER. A page/table/figure location alone is invalid.
+
+
+
+
+Do not write "full text not available in source context" in any CRIME-Q cell. Do not put location-only citations in VERBATIM cells.
+Do not add extra columns.
+Do not leave any cells blank.
+Do not summarize.
+
+I have verified that both "Camargo2013.pdf" (title: Adjuvant effects of classical music on simvastatin induced reduction of anxiety but not object recognition memory in rats) and "Chen2019.pdf" (title: Regular Music Exposure in Juvenile Rats Facilitates Conditioned Fear Extinction and Reduces Anxiety after Foot Shock in Adulthood) are available for extraction.
+The following data represents the CRIME-Q music extraction for these two studies, formatted as tab-separated values for use in a data table.
+STUDY
+	
+ITEM_1X_SCORE
+	
+ITEM_1X_JUSTIFICATION
+	
+ITEM_1X_VERBATIM
+	
+ITEM_3X_SCORE
+	
+ITEM_3X_JUSTIFICATION
+	
+ITEM_3X_VERBATIM
+	
+ITEM_3Y_SCORE
+	
+ITEM_3Y_JUSTIFICATION
+	
+ITEM_3Y_VERBATIM
+	
+ITEM_3Z_SCORE
+	
+ITEM_3Z_JUSTIFICATION
+	
+ITEM_3Z_VERBATIM
+	
+ITEM_4Y_SCORE
+	
+ITEM_4Y_JUSTIFICATION
+	
+ITEM_4Y_VERBATIM
+	
+ITEM_5X_SCORE
+	
+ITEM_5X_JUSTIFICATION
+	
+ITEM_5X_VERBATIM
+	
+ITEM_5Y_SCORE
+	
+ITEM_5Y_JUSTIFICATION
+	
+ITEM_5Y_VERBATIM
+	
+ITEM_5Z1_SCORE
+	
+ITEM_5Z1_JUSTIFICATION
+	
+ITEM_5Z1_VERBATIM
+	
+ITEM_5Z2_SCORE
+	
+ITEM_5Z2_JUSTIFICATION
+	
+ITEM_5Z2_VERBATIM
+	
+ITEM_5Z3_SCORE
+	
+ITEM_5Z3_JUSTIFICATION
+	
+ITEM_5Z3_VERBATIM
+	
+ITEM_6X_SCORE
+	
+ITEM_6X_JUSTIFICATION
+	
+ITEM_6X_VERBATIM
+	
+ITEM_7X_SCORE
+	
+ITEM_7X_JUSTIFICATION
+	
+ITEM_7X_VERBATIM
+	
+ITEM_7Z1_SCORE
+	
+ITEM_7Z1_JUSTIFICATION
+	
+ITEM_7Z1_VERBATIM
+	
+ITEM_7Z2_SCORE
+	
+ITEM_7Z2_JUSTIFICATION
+	
+ITEM_7Z2_VERBATIM
+	
+ITEM_8X_SCORE
+	
+ITEM_8X_JUSTIFICATION
+	
+ITEM_8X_VERBATIM
+	
+ITEM_8Z1_SCORE
+	
+ITEM_8Z1_JUSTIFICATION
+	
+ITEM_8Z1_VERBATIM
+	
+ITEM_8Z2_SCORE
+	
+ITEM_8Z2_JUSTIFICATION
+	
+ITEM_8Z2_VERBATIM
+	
+ITEM_9X_SCORE
+	
+ITEM_9X_JUSTIFICATION
+	
+ITEM_9X_VERBATIM
+	
+ITEM_10X_SCORE
+	
+ITEM_10X_JUSTIFICATION
+	
+ITEM_10X_VERBATIM
+	
+ITEM_10Z_SCORE
+	
+ITEM_10Z_JUSTIFICATION
+	
+ITEM_10Z_VERBATIM
+
+
+Camargo2013
+	
+Yes
+	
+Published in a peer-reviewed journal.
+	
+[p.403, Header] "Psychology & Neuroscience, 2013, 6, 3, 403 - 410"
+	
+Yes
+	
+Reports species, strain, sex, age, weight range, supplier, and group size.
+	
+[p.2, Subjects] "A total of 60 male genetically heterogeneous albino Wistar rats (Rattus norvegicus), 3 to 5 months and weighing 220 to 310 g, were obtained from the animal house of the Regional University of Blumenau."
+1
+	
+Partly
+	
+Animals were randomized and homogeneous but arm-specific baseline data were not provided.
+	
+[p.2, Experimental protocols] "They were randomized with 10 rats per group"
+2
+	
+Unclear
+	
+No arm-specific baseline data or balancing procedure was reported.
+	
+NOT REPORTED IN PAPER
+	
+No
+	
+No a priori sample size calculation or power analysis was reported.
+	
+NOT REPORTED IN PAPER
+	
+Yes
+	
+Reports music type, duration, intensity in dB, and control condition.
+	
+[p.2, Experimental protocols] "The rats in the auditory enriched conditions were exposed to music for 5 h/day... The music (i.e., Mozart’s piano sonata, KV361, Largo, 8:35 min duration) was continuous and repeated... The sound levels for the silence and music groups were 50 dB (ambient noise) and 65-75 dB, respectively"
+2
+	
+Partly
+	
+Multiple animals were housed per cage but the analysis treated individuals as independent.
+	
+[p.2, Subjects] "these animals were housed in groups of five per opaque plastic cage"
+1
+	
+Unclear
+	
+The study states rats were randomized but no specific method of sequence generation is described.
+	
+[p.2, Experimental protocols] "They were randomized with 10 rats per group"
+2
+	
+Unclear
+	
+Groups were in separate matched rooms but counterbalancing or rotation was not reported.
+	
+[p.2, Experimental protocols] "The silent room was exactly the same as the room in which music was played but no sound was made"
+2
+	
+Yes
+	
+All allocated animals were selected for assessment at a pre-specified time.
+	
+[p.2, Experimental protocols] "After 4 weeks the rats in each subgroup were selected for the behavioral studies."
+2
+	
+Partly
+	
+Compliance with society and international guidelines is reported without a specific committee approval or protocol number.
+	
+[p.2, Subjects] "The experiments were performed in compliance with the recommendations of the Brazilian Society of Neuroscience and Behavior (SBNeC), which are based on the United States National Institutes of Health Guide for Care and Use of Laboratory Animals."
+1
+	
+No
+	
+There is no mention of blinding in any phase of the study.
+	
+NOT REPORTED IN PAPER
+	
+Unclear
+	
+Blinding of handlers delivering the intervention was not reported.
+	
+NOT REPORTED IN PAPER
+	
+Unclear
+	
+Blinding of outcome assessors was not reported.
+	
+NOT REPORTED IN PAPER
+	
+Yes
+	
+Outcomes, group sizes, and timing match between the Methods and Results sections.
+	
+[Fig 1] "The data are expressed as mean ± SEM (n = 10/group)."
+3
+	
+Yes
+	
+Allocation n matches analysis n for all reported outcomes, implying no attrition.
+	
+[p.2, Subjects] "A total of 60 male... rats" and [Fig 1] "(n = 10/group)" for six groups.
+1
+3
+	
+Yes
+	
+All outcomes pre-specified in the methods were fully reported in the results section.
+	
+[p.2, Subjects] "assess anxiety levels... assess memory, the novel object recognition test was used."
+4
+5
+	
+No
+	
+No study-specific limitation was acknowledged in the discussion.
+	
+NOT REPORTED IN PAPER
+	
+Yes
+	
+A formal competing interests statement is present declaring no conflicts.
+	
+[p.7, Competing Interests] "The authors declare that they do not have any financial or nonfinancial competing interests."
+6
+	
+Unclear
+	
+No funding statement was provided to assess potential funder influence.
+	
+NOT REPORTED IN PAPER
+
+
+Chen2019
+	
+Yes
+	
+Published in a peer-reviewed journal.
+	
+[p.2, Header] "Hindawi BioMed Research International Volume 2019"
+7
+	
+Yes
+	
+Reports species, strain, sex, age stage, weight, supplier, and group sizes.
+	
+[p.3, Subjects] "Seventy-eight juvenile rats (42 male and 36 female, 180-220 g weight)... selected from litters of six SD (Sprague Dawley) mother rats obtained from Central South University Animal Services"
+8
+	
+Partly
+	
+Animals were littermates from a small number of dams and litter effects were not addressed.
+	
+[p.3, Subjects] "selected from litters of six SD (Sprague Dawley) mother rats"
+8
+	
+Unclear
+	
+No arm-specific baseline data or balancing procedure was reported.
+	
+NOT REPORTED IN PAPER
+	
+No
+	
+No sample size calculation or justification was reported.
+	
+NOT REPORTED IN PAPER
+	
+Yes
+	
+Reports music type, intensity in dB, duration, and control condition.
+	
+[p.4, Music Exposure Test] "exposed to Mozart’s piano sonata, K.488 with a sound intensity of 65-75 dB; the second (control) group was placed in a similar room without music (ambient noise; ∼55 dB)... consecutive days."
+9
+	
+Partly
+	
+Multiple littermates were housed together and individuals were treated as independent units.
+	
+[p.3, Subjects] "groups of four littermates were housed together throughout the experiment."
+8
+	
+Unclear
+	
+States rats were randomly assigned but no method is described.
+	
+[p.2, Fig 1] "Rats were randomly assigned to the music groups or the control groups (ambient noise only)."
+7
+	
+Unclear
+	
+Groups were in separate similar rooms but cage position randomization was not reported.
+	
+[p.4, Music Exposure Test] "the second (control) group was placed in a similar room without music"
+9
+	
+Yes
+	
+All allocated animals were tested at pre-specified postnatal days.
+	
+[p.3, Experimental Design] "anxiety-like behaviors in all rats were examined... on PND 60. After that, the rats were submitted to fear extinction training for 3 consecutive days starting on PND 61"
+10
+	
+Yes
+	
+Reports approval by a named institutional committee and provides a protocol number.
+	
+[p.3, Subjects] "approved by the Animal Care and Use Committee of Central South University... (ethics approval number 201310125, Changsha, China)."
+8
+	
+Yes
+	
+The report states that all behavioral tests were conducted under blinded conditions.
+	
+[p.3, Experimental Design] "All animal behavior tests were conducted under blinded conditions"
+10
+	
+Unclear
+	
+Blinding of experimenters delivering the music intervention is not reported.
+	
+NOT REPORTED IN PAPER
+	
+Yes
+	
+Outcome assessment for behavioral tests was performed under blinded conditions.
+	
+[p.3, Experimental Design] "All animal behavior tests were conducted under blinded conditions"
+10
+	
+Yes
+	
+Methods and results for outcomes and group sizes are coherent and aligned.
+	
+[p.4, Statistical Analysis] "The sample size of music and control groups is the same... factors are music, sex, and fear conditioning."
+11
+	
+Yes
+	
+Allocation n matches analysis n for all reported outcomes, implying zero attrition.
+	
+[p.3, Experimental Design] "thirty juvenile rats (18 males and 12 females) were randomly divided into music group and control group." and [p.6, Results] "(for each group, n male = 9, n female = 6)".
+10
+12
+	
+Yes
+	
+All pre-specified behavioral and molecular outcomes were reported with full statistics.
+	
+[p.3, Experimental Design] "anxiety-like behaviors... elevated plus maze test (EPM) and the open field test (OFT)... fear extinction training... BDNF assays."
+10
+	
+No
+	
+No study-specific limitation was acknowledged in the discussion section.
+	
+NOT REPORTED IN PAPER
+	
+Yes
+	
+A formal conflicts of interest statement is present declaring no conflicts.
+	
+[p.8, Conflicts of Interest] "The authors declare that they have no conflicts of interest."
+13
+	
+Yes
+	
+Academic and government funding is reported with no declared conflicts.
+	
+[p.8, Acknowledgments] "This research was supported by Grants from the “National Natural Science Foundation of China”... “China Scholarship Council”, and the “Science and Technology Project of Hunan Province”"
+13
+keep_pin
+Save to note
+copy_all
+thumb_up
+thumb_down
+25 sources
+arrow_forward
+Studio
+dock_to_left
+audio_magic_eraser
+Audio Overview
+chevron_forward
+tablet
+Slide Deck
+chevron_forward
+subscriptions
+Video Overview
+chevron_forward
+flowchart
+Mind Map
+chevron_forward
+auto_tab_group
+Reports
+chevron_forward
+cards_star
+Flashcards
+chevron_forward
+quiz
+Quiz
+chevron_forward
+stacked_bar_chart
+Infographic
+chevron_forward
+table_view
+Data Table
+chevron_forward
+edit_fix_auto
+Studio output will be saved here.
+After adding sources, click to add Audio Overview, Study Guide, Mind Map, and more!
+sticky_note_2
+Add note
+NotebookLM can be inaccurate; please double check its responses.

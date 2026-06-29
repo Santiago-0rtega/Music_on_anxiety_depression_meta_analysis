@@ -3,6 +3,7 @@
 .Rproj.user
 __pycache__/
 .ipynb_checkpoints/
+.claude/
 
 # --- Quarto Internals ---
 # Ignore cache from root and book folder
@@ -25,3 +26,7 @@ __pycache__/
 
 
 *.jpg
+
+# --- Local NotebookLM PDF/upload test bundles ---
+/CRIMEQ/working_uploads/
+/CRIMEQ/notebooklm_workflow/batches/*/pdfs/

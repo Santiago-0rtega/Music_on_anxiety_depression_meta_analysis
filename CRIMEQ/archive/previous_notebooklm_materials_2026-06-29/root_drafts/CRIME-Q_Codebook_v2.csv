@@ -1,0 +1,21 @@
+Item,Domain,Construct,Question,Criteria
+1X,Peer review,QoR,Peer review status?,Yes=peer-reviewed journal | No=preprint/thesis | Partly=N/A | Unclear=N/A
+3X,Animals reporting,QoR,Animals sufficiently described?,"Yes=species, strain, sex, age, baseline | Partly=missing 1-2 descriptors | No=generic/insufficient | Unclear=N/A"
+3Y,Animals technical quality,MQ,Characteristics comparable?,Yes=group balance or matching | Partly=likely but incomplete | No=imbalance unaddressed | Unclear=N/A
+3Z,Selection bias baseline,RoB,Baseline balanced?,Yes=arm-specific data AND balanced OR matching | No=imbalance unaddressed | Unclear=no baseline info | Partly=N/A
+4Y,Sample size,QoR,Sample-size calculation?,"Yes=power analysis with effect size, power, alpha | Partly=mentioned but incomplete | No=none reported | Unclear=N/A"
+5X,Music reporting,QoR,Music intervention described?,"Yes=genre, delivery, duration, frequency, timing, volume, control | Partly=one or more missing | No=insufficient | Unclear=N/A"
+5Y,Music technical quality,MQ,Music design sound?,Yes=distinct music/control; no cross-contamination | Partly=plausible but incomplete | No=clear problem | Unclear=N/A
+5Z(1),Randomization,RoB,Allocation randomized?,"Yes=described random method (RNG, table, lots) | No=non-random | Unclear=no method stated | Partly=N/A"
+5Z(2),Random housing,RoB,Housing randomized?,Yes=random placement/counterbalancing/rotation | No=systematic placement confounded | Unclear=not reported | Partly=N/A
+5Z(3),Outcome assessment,RoB,Assessment unbiased?,Yes=all tested at pre-specified time OR rule | No=outcome-dependent selection | Unclear=not reported | Partly=N/A
+6X,Ethics compliance,QoR,Ethical approval reported?,"Yes=ethics/IACUC approval explicit | Partly=general statement, incomplete | No=none | Unclear=N/A"
+7X,Blinding reporting,QoR,Blinding described?,"Yes=states WHO, WHEN, WHICH condition | Partly=unqualified or limited detail | No=no blinding | Unclear=N/A"
+7Z(1),Experimenter blinding,RoB,Experimenter blinded?,"Yes=procedures prevented knowing (coded, automated) | No=unblinded with influence | Unclear=not reported | Partly=N/A"
+7Z(2),Assessor blinding,RoB,Assessor blinded?,Yes=assessors/coders blinded or data masked | No=unblinded with judgment outcome | Unclear=not reported | Partly=N/A
+8X,Methods-results alignment,QoR,Methods/results aligned?,"Yes=outcomes/labels/n/timing match | Partly=minor discrepancies, primary interpretable | No=major mismatches | Unclear=N/A"
+8Z(1),Attrition bias,RoB,Attrition handled?,Yes=numbers allocated/analyzed/excluded clear | No=unequal or outcome-related | Unclear=insufficiently reported | Partly=N/A
+8Z(2),Selective reporting,RoB,Outcomes fully reported?,Yes=pre-registration matches OR methods/results aligned | No=key outcome missing | Unclear=no protocol | Partly=N/A
+9X,Limitations,QoR,Limitations discussed?,"Yes=substantive limitations (design, sample, music) | Partly=generic/brief | No=none | Unclear=N/A"
+10X,Conflict-of-interest,QoR,COI statement included?,Yes=formal statement (including no conflicts) | No=no statement | Partly=N/A | Unclear=N/A
+10Z,Funder influence,RoB,Free from funder bias?,Yes=no conflict AND no inappropriate role | No=funder controlled design/reporting | Unclear=conflict absent | Partly=N/A

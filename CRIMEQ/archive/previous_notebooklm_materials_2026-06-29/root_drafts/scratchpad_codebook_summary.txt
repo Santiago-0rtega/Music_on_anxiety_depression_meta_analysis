@@ -1,0 +1,76 @@
+PROPOSED IMPROVED MUSIC CRIME-Q CODEBOOK
+========================================
+
+Total Items: 20 (reduced from 23 by removing non-applicable items)
+
+Construct Breakdown:
+  - QoR (Quality of Reporting): 9 items
+  - MQ (Methodological Quality): 2 items  
+  - RoB (Risk of Bias): 9 items
+
+KEY IMPROVEMENTS:
+1. Removed items 2X & 2Y (bench-top/lab work) - NOT applicable to music behavioral studies
+2. Added music-specific examples and guidance throughout
+3. Each item now has 5 detailed components:
+   - Clear criteria for each response option
+   - Music study examples
+   - Common pitfalls to avoid
+   - Assessment level (Study-level assessment, not cohort-level)
+
+NEW STRUCTURE FOR ASSESSMENT FILE:
+- Study-level assessment (one row per 20 studies)
+- For each CRIME-Q item: 3 columns
+  * Column 1: Assessment score (Yes/No/Partly/Unclear/NA)
+  * Column 2: Justification (why you gave this score)
+  * Column 3: Verbatim (direct quote from paper + page number)
+
+Example columns for one item (5X - Music intervention reporting):
+  5X_music_intervention_reporting_SCORE
+  5X_music_intervention_reporting_JUSTIFICATION
+  5X_music_intervention_reporting_VERBATIM
+
+Total assessment columns: 20 items × 3 columns = 60 columns + Study_ID + Title = 62 columns
+
+ITEMS INCLUDED:
+1X - Peer review
+3X - Animals: reporting
+3Y - Animals: technical quality  
+3Z - Selection bias: baseline characteristics
+4Y - Sample-size calculation
+5X - Music intervention: reporting
+5Y - Music intervention: technical quality
+5Z(1) - Selection bias: sequence generation
+5Z(2) - Performance bias: random housing
+5Z(3) - Detection bias: outcome assessment
+6X - Ethical compliance
+7X - Blinding: reporting
+7Z(1) - Performance bias: experimenter blinding
+7Z(2) - Detection bias: assessor blinding
+8X - Methods-results alignment
+8Z(1) - Attrition bias: incomplete outcome data
+8Z(2) - Reporting bias: selective outcome reporting
+9X - Discussion: limitations
+10X - Conflict-of-interest statement
+10Z - Other bias: funder influence
+
+NOTEBOOKLM INSTRUCTION TEMPLATE:
+
+"For each CRIME-Q item in the paper:
+
+1. SCORE: Assess the paper and assign: Yes, No, Partly, Unclear, or NA
+   (Use the detailed criteria provided)
+
+2. JUSTIFICATION: Explain WHY you gave this score (1-2 sentences)
+   Example: "The authors reported strain and sex but not age/stage; therefore Partly"
+
+3. VERBATIM: Provide a direct quote from the paper that supports this score
+   Include page number(s) or section name
+   Example: [page 3, Methods] 'Male Sprague-Dawley rats (n=24)'"
+
+READY FOR REVIEW?
+
+Questions for discussion:
+1. Do you want to keep all 20 items, or are there others to remove/add?
+2. Should the 3-column structure be exactly as proposed above?
+3. Any music-specific items you want to add that aren't in the standard CRIME-Q?
+4. How should we format the Justification and Verbatim columns? (free text, structured format?)

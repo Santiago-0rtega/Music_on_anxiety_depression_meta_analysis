@@ -1,0 +1,163 @@
+================================================================================
+✓ MUSIC CRIME-Q ASSESSMENT SETUP COMPLETE
+================================================================================
+
+DATE: June 26, 2026
+STATUS: Ready for NotebookLM
+
+================================================================================
+WHAT WAS CREATED
+================================================================================
+
+NEW FILE: data/MUSIC-CRIME-Q_RoB_assessment_v2.xlsx
+  - Study Roster sheet: 20 unique studies from your roster
+  - Codebook sheet: 20 CRIME-Q items with assessment criteria
+  - Assessment sheet: 20 rows × 62 columns (ready for NotebookLM)
+    * Study_ID + Study_Title
+    * 20 items × 3 columns (SCORE + JUSTIFICATION + VERBATIM)
+  - Instructions sheet: NotebookLM guidance
+
+SUPPORTING DOCUMENTS:
+  - NOTEBOOKLM_CRIME-Q_Instructions.md: Detailed guidance with examples
+  - NOTEBOOKLM_SHORT_PROMPT.txt: Copy this exact prompt for NotebookLM
+  - CRIME-Q_ASSESSMENT_SETUP.md: Complete setup reference guide
+
+================================================================================
+KEY CHANGES FROM OLD ASSESSMENT
+================================================================================
+
+OLD (Cohort-based):
+  ✗ 49 rows (one per cohort)
+  ✗ Multiple assessments per study (averaged unclear)
+  ✗ 1 column per item (score only)
+  ✗ ~27 total columns
+
+NEW (Study-level):
+  ✓ 20 rows (one per study)
+  ✓ Single assessment per paper
+  ✓ 3 columns per item (SCORE + JUSTIFICATION + VERBATIM)
+  ✓ 62 total columns
+
+================================================================================
+20 STUDIES INCLUDED
+================================================================================
+
+From your roster (20 unique Study_IDs, 49 total cohorts):
+
+1. Camargo_2013_PSYN
+2. Chen_2019_BIOMEDRI
+3. Cheng_2024_HLYN
+4. Chikahisa_2007_BBR
+5. Escribano_2014_APPANBSC
+6. Flores_2018_NP
+7. Freitas_2020_ECNE
+8. Fu_2023_TRANSPSY
+9. Fu_2025_TRANSPSY
+10. Krishnamurthy_2025_INDIANJTRADITKNOW
+11. Li_2010_BR
+12. Milbratz_2017_ALN
+13. Niehues_2011_BCNEURO
+14. Pangemanan_2024_PHJ
+15. Papadakakis_2019_BBR
+16. Ren_2024_ASEAN
+17. Rizzolo_2021_CC
+18. Saghari_2021_BIOINTERFACE
+19. Sampaio_2017_PSYNEURO
+20. Terzioglu_2020_CMJ
+
+================================================================================
+20 CRIME-Q ITEMS
+================================================================================
+
+Quality of Reporting (QoR):
+  1X Peer review
+  3X Animals: reporting
+  4Y Sample size
+  6X Ethics compliance
+  7X Blinding: reporting
+  8X Methods-results alignment
+  9X Limitations
+  10X Conflict-of-interest
+
+Methodological Quality (MQ):
+  3Y Animals: technical quality
+  5Y Music technical quality (CRITICAL)
+
+Risk of Bias (RoB):
+  3Z Selection bias: baseline
+  5Z(1) Randomization
+  5Z(2) Random housing
+  5Z(3) Outcome assessment
+  7Z(1) Experimenter blinding
+  7Z(2) Assessor blinding
+  8Z(1) Attrition bias
+  8Z(2) Selective reporting
+  10Z Funder influence
+
+================================================================================
+HOW TO USE WITH NOTEBOOKLM
+================================================================================
+
+STEP 1: Copy the short prompt
+  → File: NOTEBOOKLM_SHORT_PROMPT.txt
+  → Copy the entire prompt text
+
+STEP 2: Upload to NotebookLM
+  → Upload 20 study PDFs
+  → Paste the short prompt
+  → Attach: data/MUSIC-CRIME-Q_RoB_assessment_v2.xlsx
+
+STEP 3: NotebookLM will output
+  → Tab-separated values (TSV) format
+  → 20 studies × 20 items × 3 columns
+  → Direct paste into the Assessment sheet
+
+STEP 4: Paste results
+  → Copy NotebookLM's TSV output
+  → Paste into Assessment sheet starting at A2
+
+================================================================================
+OUTPUT STRUCTURE (NotebookLM)
+================================================================================
+
+Each row (study) will have:
+  Study_ID | Study_Title | 1X_SCORE | 1X_JUSTIFICATION | 1X_VERBATIM | 3X_SCORE | 3X_JUSTIFICATION | 3X_VERBATIM | ... (20 items)
+
+Example:
+  Camargo_2013_PSYN | Camargo_2013_PSYN | Yes | Published in Psychoneuroendocrinology | [cover] Journal title page | Partly | Strain and sex reported, age and housing not detailed | [page 2, Methods] Wistar male rats...
+
+================================================================================
+TOTAL DATA
+================================================================================
+
+  20 studies × 20 items × 3 columns = 1,200 data cells
+
+Assessment time estimate: 2-4 hours per study with NotebookLM
+
+================================================================================
+FILES IN PROJECT ROOT
+================================================================================
+
+✓ data/MUSIC-CRIME-Q_RoB_assessment_v2.xlsx (NEW - study-level)
+  data/MUSIC-CRIME-Q_RoB_assessment.xlsx (OLD - cohort-level, keep for reference)
+  data/crime_q_cohort_roster.csv (Reference: Study_ID → Cohort_ID mapping)
+
+✓ NOTEBOOKLM_CRIME-Q_Instructions.md
+✓ NOTEBOOKLM_SHORT_PROMPT.txt
+✓ CRIME-Q_ASSESSMENT_SETUP.md
+✓ SETUP_COMPLETE.txt (this file)
+
+================================================================================
+READY TO PROCEED
+================================================================================
+
+All files are in place and the template is ready for NotebookLM.
+
+Next action: Upload study PDFs to NotebookLM with NOTEBOOKLM_SHORT_PROMPT.txt
+
+Questions? Refer to:
+  - CRIME-Q_ASSESSMENT_SETUP.md (detailed guide)
+  - NOTEBOOKLM_CRIME-Q_Instructions.md (examples)
+  - data/MUSIC-CRIME-Q_RoB_assessment_v2.xlsx (Codebook and Instructions sheets)
+
+================================================================================
