@@ -1,0 +1,1035 @@
+[p.1] Contents lists available at ScienceDirect
+Behavioural Brain Research
+journal homepage: www.elsevier.com/locate/bbr
+Research report
+Music exposure attenuates anxiety- and depression-like behaviors and
+increases hippocampal spine density in male rats
+A. Papadakakis a, K. Sidiropoulou b, G. Panagis a,⁎
+a Laboratory of Behavioral Neuroscience, Department of Psychology, University of Crete, Rethymno, Crete, Greece
+b Department of Biology, University of Crete and Institute of Molecular Biology and Biotechnology-Foundation for Research and Technology Hellas, Heraklion, 70013,
+Crete, Greece
+ARTICLE INFO
+Keywords:
+Early life stress
+Enriched environment
+Golgi-cox stain
+Mozart music
+Neuroplasticity
+Spine formation
+ABSTRACT
+Epidemiological and clinical studies suggest that early-life stress (ELS) may lead to the development of mental
+disorders in adulthood. Maternal separation (MS) is a valid animal model of ELS that produces detrimental
+eﬀects on brain and behavior of experimental animals. Positive environmental stimuli have been shown to
+counteract the behavioral de ﬁcits of ELS and enhance neuroplasticity. Recent data indicate that music may serve
+as a form of environmental enrichment in experimental animals. However, the underlying mechanisms through
+which musical enrichment exerts its eﬀ ects are poorly understood. Male Sprague –Dawley rats were submitted to
+a 3 h MS protocol during postnatal days (PND) 2 –14, while another group was left undisturbed. Half of the
+animals within each group were exposed from PND 21 to PND 76 for 12 h/day to Mozart K. 448. At approxi-
+mately three months of age, elevated plus maze procedure, forced swim test and social approach task were
+applied to test whether music exposure can mitigate the eﬀ ects of MS stress on animal emotional behaviors.
+Moreover, we investigated the eﬀ ects of these treatments on dendritic spine density in the CA1 region of hip-
+pocampus. As expected, MS rats showed decreased sociability, increased anxiety- and depressive-like behaviors,
+and decreased mature dendritic spines in the CA1 region of hippocampus in adulthood. Musical enrichment
+reversed these eﬀ ects. Our results suggest that musical enrichment can reverse the negative eﬀ ects of MS on
+anxiety, depression, and sociability in adult rats and modulate neuronal plasticity and provide additional data
+for a new therapeutic intervention to rescue emotional symptoms.
+1. Introduction
+Consistent epidemiological evidence links early adverse experiences
+in humans with the development of psychopathology in adulthood
+[1,2]. In the same way, exposure to early-life stress in rodents is able to
+induce a variety of physiological and behavioral alterations in later life
+and has been associated with a range of emotional disorders and im-
+paired cognitive performance [ 3,4]. Indeed, the initial period of post-
+natal life (for example in rats PND 2 – PND 21) is characterized by great
+plasticity and represents a critical development interval where any in-
+sult or inappropriate intervention can in ﬂuence both positively and
+negatively brain development and behavior [ 5–7].
+Maternal separation (MS) is a widely used rodent model of adverse
+early-life experience [ 8,9]. Rat pups subjected to repeated separation
+from dam develop altered behavioral phenotypes, including anxiety-
+and depression-like behavior in adulthood [ 10]. Moreover, MS leads to
+increased stress-induced corticosterone levels, blunted
+adrenocorticotropic hormone (ACTH) response, reduced hippocampal
+glucocorticoid receptors, reduced levels of BDNF in the hippocampus,
+loss of dendritic spines and decreased hippocampal neurogenesis
+[11,12]. Interestingly, these are long-term changes and persist until
+adulthood [ 13].
+Environmental enrichment involves the enhancement of an animal ’s
+physical or social environment. Examples of environmental enrichment
+in rodents include social enrichment with direct or indirect contact with
+individuals of the same species or humans, running wheels that en-
+courage exercise, physical enrichment with speci ﬁc objects (for ex-
+ample nest boxes), sensory enrichment (e.g. auditory stimuli) and nu-
+tritional enrichment (e.g. novel food types) [ 14].
+Emerging evidence suggests that detrimental e ﬀects of early adverse
+experiences, such as MS, could be e ﬀectively reversed by the so-called
+"positive environmental stimuli", like environmental enrichment,
+sociability and physical exercise [ 15–18]. These stimuli have been
+found to reduce aggression, anxiety, fear and stress [ 19], depression-
+https://doi.org/10.1016/j.bbr.2019.112023
+Received 2 March 2019; Received in revised form 18 May 2019; Accepted 7 June 2019
+⁎ Corresponding author at: University of Crete, Department of Psychology, Laboratory of Behavioral Neuroscience, 74100, Rethymno, Crete, Greece.
+E-mail address: panagis@uoc.gr (G. Panagis).
+Behavioural Brain Research 372 (2019) 112023
+Available online 15 June 2019
+0166-4328/ © 2019 Elsevier B.V. All rights reserved.
+T\n[p.2] like behavior, and addiction-related behaviors [ 20], while improving
+memory and learning processes [ 21]. Thus, the reversal or prevention
+of the brain alterations induced by MS could be a useful method for the
+prevention of behavioral abnormalities and psychopathology in adult-
+hood.
+Musical stimuli may also serve as a form of environmental enrich-
+ment in experimental animals. Indeed, music is well known to a ﬀect
+human physiology and behavior and regulate mood and emotion and
+several studies have examined its clinical application on patients with
+anxiety and depression [ 22–24]. Moreover, musical stimuli in humans
+activate several brain areas associated with emotional behaviors [ 25],
+whereas in experimental animals can induce neuroplastic changes in
+several brain regions, such as prefrontal cortex [ 26], amygdala [ 27],
+hippocampus [ 28] and hypothalamus [ 29]. Interestingly, music can
+ameliorate depression- and anxiety-like behaviors and enhance learning
+and memory performance in experimental animals [ 27,30,31].
+Although these ﬁndings indicate that music has several positive
+behavioral e ﬀects and elicits several neuroplastic changes in the brain,
+its potential protective e ﬀect on the behavioral and neural deﬁ cits in-
+duced by early life stress has not been studied. Therefore, the present
+study utilized the social approach task, the elevated plus maze proce-
+dure and the forced swim test to test the hypothesis that exposure to a
+patterned sound, such as Mozart ’s sonata K. 448, during early devel-
+opment (i.e. from PND 21 to PND 76) is able to mitigate the e ﬀects of
+MS stress on animal emotional behaviors. Finally, since the hippo-
+campus plays a critical role in emotional processes and shows a con-
+siderable amount of plasticity, we investigated the e ﬀects of these
+treatments on neuronal spine density in the CA1 region of hippocampus
+using the Golgi-Cox staining method.
+2. Materials and methods
+2.1. Animals
+Male rat pups were o ﬀspring of experimentally naive
+Sprague–Dawley rats from an in-house breeding colony of the
+Laboratory of Behavioral Neuroscience, Department of Psychology,
+University of Crete. Litters were housed under standard experimental
+conditions in a humidity- and temperature-controlled vivarium room on
+a 12-h light –12-h dark cycle (lights on from 08:30 to 20:30 h), with
+standard rodent chow and water available ad libitum . On postnatal
+(PND) day 1, litters were culled to 8– 10 pups (60 –70% male subjects).
+On PND 2, rats were randomly divided into two groups: maternal se-
+paration group (MS, n = 22) and control group (CG, n = 20). On PND
+21, rats were weaned and randomly divided into two groups: maternal
+separation group (MS, n = 22) and control group (CG, n = 20). These
+two groups of rats were further divided into two sub-groups as follows:
+1) MS + Ambient Noise (MSA) (n = 11); 2) MS + Mozart ’s Sonata K.
+448 (MSM) (n = 11); 3) Control + Ambient Noise (CGA) (n = 10); 4)
+Control + Mozart’s Sonata K. 448 (CGM) (n = 10). Thereafter, animals
+were
+housed in same-sex and -experimental groups with 2 –3 rats per
+cage. Experiments were conducted in accordance with the European
+Communities Council Directive (86/609/EEC) and the National
+Institutes of Health Guide for the Care and Use of Laboratory Animals.
+All e ﬀorts were made to minimize animal su ﬀering and to reduce the
+number of animals used.
+2.2. Maternal separation (MS)
+A MS procedure as previously described by Daniels et al. [ 11], was
+implemented. MS was conducted in 5 litters, while 5 other litters re-
+mained undisturbed. Thus, rat pups were removed from their dams for
+3 h daily (11:00 h – 14:00 h) from PND 2 to PND 14 for half of the litters
+(n = 22). During each session of MS, dams were removed from their
+home cages and placed in a separate cage ﬁlled with nesting material in
+the same room, while pups remained in their home cages. After 3 h,
+dams were returned to their home cage and reunited with their litter.
+Control dams and litters were left undisturbed during this period, apart
+from standard animal facility maintenance cleaning.
+2.3. Music exposure
+Mozart’s sonata for two pianos in D major, K. 448, which is usually
+used in studies on the “Mozart eﬀect” was employed in this study. Two
+groups of rats, as previously described, were exposed repeatedly for
+12 h per day (20:30 h –08:30 h) to music from PND 21 to PND 76. The
+control groups were not exposed to any music but kept in a silence
+room with ambient noise. The intensity of Mozart music stimulus was
+65–75 dB, while the intensity of ambient noise was 65 dB.
+2.4. Experimental design
+As Fig. 1 shows, the animals were submitted individually to the
+social approach task (SAT), elevated plus maze (EPM) test, and forced
+swimming test (FST) between PND 81 and PND 90. All behavioral
+procedures were conducted in a quiet room with controlled lighting
+(150 lx) during the light phase, when rodents are less active. Upon
+completion of the behavioral testing, subjects were sacriﬁ ced by de-
+capitation, their brains were removed and hippocampal tissue samples
+were obtained following the Golgi-Cox method.
+2.5. Behavioral tests
+2.5.1. Social approach task (SAT)
+The automated three-chambered social approach task has been
+widely employed as a standard test for assaying sociability in rodents
+Fig. 1. Experimental design.
+A. Papadakakis, et al. Behavioural Brain Research 372 (2019) 112023
+2\n[p.3] [32]. The sociability apparatus (120 cm long ×80 cm wide ×40 cm
+height) consisted of a 3-chambered cage, with transparent walls, a non-
+reﬂective grey-colored ﬂoor and 2 grid enclosures, i.e., small wire cages
+(25 cm height × 15 cm diameter) (Ugo Basile, Model 46503). During
+habituation period, the test rat was ﬁrstly placed in the central chamber
+with the dividers closed to allow it to explore the middle chamber for
+10 min. Subsequently the doorways were opened gently and the rat was
+allowed to explore the empty apparatus for 10 min with access to all 3
+chambers. After this habituation period, the test rat was con ﬁned to the
+middle chamber with the dividers closed. An unfamiliar adult rat (i.e., a
+novel rat of the same age and sex from a di ﬀerent litter, which was
+acclimated to the small wire cage for three 10-min sessions before the
+habituation period) was placed inside a small wire cage in one of the
+side chambers. An identical empty wire cage was placed in the opposite
+chamber. The dividers were then raised, allowing the test rat to move
+freely throughout all three chambers of the apparatus over a 10-minute
+test session. The location of the small wire cage and the novel rat al-
+ternated across subjects. Measures were taken of (a) time spent in the
+novel rat chamber, (b) time spent in the novel object (empty wire cage)
+chamber, (c) time spent sniﬃ ng the novel rat, and (d) time spent
+sniﬃ ng the novel object (empty wire cage) for 10 min. The test rat was
+considered to be sniﬃ ng the wire cage when its nose was directed to the
+cage and the distance between the nose tip and metal bars was 1 cm or
+less. All behaviors were recorded using a videocamera connected to
+ANY-maze software version 4.75 (Ugo Basile, Model 60000).
+2.5.2. Elevated plus maze (EPM) test
+The elevated plus maze test (EPM) is widely used to assess anxiety-
+related behavior [ 33]. In this paradigm, an increase in closed arms
+activity (time spend and/or entries) re ﬂects anxiety-like behavior,
+whereas an increase in open arms activity (time spend and/or entries)
+reﬂects anti-anxiety or anxiolytic behavior. The EPM apparatus con-
+sisted of two open arms and two closed arms opposite to each other
+(46 cm length ×15 cm width), elevated 70 cm from the ﬂoor. The
+closed arms were surrounded by gray walls (23 cm height). For testing,
+each rat was placed in the center of the maze facing an open arm.
+During a 5 min test period, the following parameters were measured:
+(a) time spent in the open arms and (b) time spent in the closed arms.
+Moreover, risk assessment behaviors were also measured: (a) total
+number of stretch-attend postures (SAPs), (b) protected (% Closed)
+SAPs (c) number of head dips in the open arms. All behaviors were
+recorded using a videocamera connected to ANY-maze software version
+4.75 (Ugo Basile, Model 60000).
+2.5.3. Forced swimming test (FST)
+Forced swim test (FST) was based on the behavioral model ﬁrst
+described by Porsolt et al. [ 34]. Brie ﬂy, the FST was performed by
+placing a rat in an opaque Plexiglas cylinder (20 cm diameter ×60 cm
+height) containing 40 cm of water (maintained at 24 ± 1
+oC). Rats
+were ﬁrstly exposed to a pre-testing session for 15 min. Twenty four
+hours following the pre-testing phase, rats were subjected to a 5-min
+FST. The total duration of immobility (increased immobility is in-
+dicative of depression-like behavior), climbing, and swimming (in-
+creased climbing and/or swimming re ﬂect an ambient increase in be-
+havioral despair, indicative of depression-like behavior) was measured
+using the ANY-maze software version 4.75 (Ugo Basile, Model 60000)
+according to van Zyl et al. [ 35]. After the test, rats were well-dried with
+towels and then transferred to their cages.
+2.6. Golgi-Cox staining
+Two days upon completion of the behavioral testing, rats were sa-
+criﬁced by rapid decapitation, their brains were removed and placed in
+Golgi-Cox solution (5% Potassium Dichromate, 5% Mercuric Chloride
+(sublimate), and 5% Solution of Potassium Chromate), which had been
+prepared at least 5 days earlier. Brains remained in Golgi-Cox solution
+for 14 days at room temperature, then placed in 30% sucrose solution
+and subsequently sliced (150- μm-thick slices) in a vibratome (Leica
+VT1000S, Leica Biosystems GmbH, Wetzlar, Germany). The slices
+containing the hippocampus (bregma -3 to -4.2) [ 36] were placed onto
+gelatin-coated microscope slides, covered with para ﬁlm, and main-
+tained in a humidity chamber for about 30 –40 h. The para ﬁlm was then
+removed, and the slices were incubated ﬁrst in ammonium hydroxide
+for 15 min followed by washes with dH
+2O. The brain slices were then
+dehydrated with increasing concentrations of ethanol, incubated in
+xylene for 5 min and coverslipped with permount. The slides were kept
+for at least a month before imaging under the 60x lens of Nikon Eclipse
+E800 microscope (Nikon Instruments Europe BV, Amsterdam, Nether-
+lands). Initially, the CA1 pyramidal hippocampal neurons to be ana-
+lyzed were picked under 20x magni ﬁcation. We analyzed 6– 8 neurons
+of both hemispheres from 4 sections per animal, and measured den-
+dritic spine density on secondary dendrites. The spines were then
+analyzed separately according to the spine type: stubby, thin and
+mushroom spines [ 37]. In the ﬁnal results, mushroom and thin spines
+were summed and presented as mature spines.
+2.7. Statistical analysis
+All data were expressed as mean ± standard error of the mean
+(SEM) and statistically analyzed using two-way analysis of variance
+(ANOVA), group (maternal separation or control) × treatment
+(Mozart’s sonata or ambient noise). The level of signi ﬁcance was set at
+0.05. Correlated t-tests using Bonferroni ’s adjustment for multiple
+comparisons were performed as post-hoc tests and the e ﬀect size of
+each parameter was measured as well with eta squared ( η
+2). Statistical
+analysis was performed using IBM SPSS 21.0.
+3. Results
+3.1. Behavioral tests
+3.1.1. Social approach task (SAT)
+Two-way ANOVA (group × treatment) identi ﬁed a signi ﬁcant in-
+teraction ( η
+2 = 0.354) between Maternal Separation ( η2 = 0.433) and
+music (η2 = 0.288) in the total time that subjects spent in the chamber
+of the novel rat (F (1,38) = 20.833, p = 0.000051). Post-hoc analysis
+showed that MSA rats spent signi ﬁcantly less time with the novel rat
+compared to the control groups ( Fig. 2a). MSM rats spent signi ﬁcantly
+more time with the novel rat compared to MSA rats, but equal time
+compared to control groups, indicating that music recovered the de ﬁcit
+in social interaction induced by maternal separation. There was no
+signiﬁcant di ﬀerence between the control groups (with and without
+music), indicating that music did not enhance social interaction in
+control animals. On the other hand, two-way ANOVA (group × treat-
+ment) showed no signi ﬁcant diﬀerence between experimental groups in
+the total time that subjects spent in the chamber of the novel object
+(Fig. 2b).
+Two-way ANOVA (group × treatment) also identi ﬁed a signi ﬁcant
+interaction ( η
+2 = 0.239) between Maternal Separation ( η2 = 0.202)
+and music ( η2 = 0.187) in the total time that subjects spent sni ﬃ ng the
+novel rat (F (1,38) = 11.917, p = 0.001379). Post-hoc analysis showed
+that MSA rats spent signi ﬁcantly less time sniﬃ ng the novel rat com-
+pared to the MSM, and control groups ( Fig. 2c), indicating reduced
+sociability for the MSA group. On the other hand, two-way ANOVA
+(group × treatment) showed no signi ﬁcant di ﬀerence between experi-
+mental groups in the total time that subjects spent sni ﬃ ng the novel
+object ( Fig. 2d).
+3.1.2. Elevated plus maze (EPM) test
+Two-way ANOVA (group × treatment) identi ﬁed a signi ﬁcant in-
+teraction ( η
+2 = 0.253) between Maternal Separation ( η2 = 0.172) and
+music ( η2 = 0.211) in the total time that subjects spent in the closed
+A. Papadakakis, et al. Behavioural Brain Research 372 (2019) 112023
+3\n[p.4] arms of the elevated plus maze (F (1,38) = 12.850, p = 0.000947). Post-
+hoc analysis showed that MSA rats spent signi ﬁcantly more time in the
+closed arms of the maze compared to MSM and control groups ( Fig. 3a),
+indicating increased anxiety-like behavior for the MSA group.
+Two-way ANOVA (group × treatment) identi ﬁed a signi ﬁcant in-
+teraction ( η2 = 0.328) between Maternal Separation ( η2 = 0.043) and
+music (η2 = 0.103) in the total time that subjects spent in the open arms
+of the elevated plus maze (F (1,38) = 18.580, p = 0.000111). Post-hoc
+analysis showed that MSA rats spent signi ﬁcantly less time in the open
+arms of the maze compared to MSM, and control groups ( Fig. 3b), in-
+dicating increased anxiety-like behavior and reduced exploratory ten-
+dency for the MSA group.
+Two-way ANOVA (group × treatment) identi ﬁed a signi ﬁcant in-
+teraction ( η2 = 0.191) between Maternal Separation ( η2 = 0.045) and
+music ( η2 = 0.035) in the total number of stretch attend postures
+(SAPs) that subjects made in both arms of the maze (F (1,38) = 8.975,
+p = 0.004798) and proportionally in the closed ones [(SAPs in closed
+arms/SAPs in total)× 100%)] (F (1,38) = 12.982, p = 0.000899). Post-
+hoc analysis showed that MSA rats made signi ﬁcantly less SAPs in both
+arms compared to MSM and control groups ( Fig. 4a), indicating re-
+duced exploratory tendency and increased anxiety-like behavior for the
+MSA group. However, post-hoc analysis showed that MSA rats made
+proportionally signi ﬁcantly more SAPs in the closed arms (protected
+SAPs) of the maze than the other experimental groups ( Fig. 4b).
+Two-way ANOVA (group × treatment) identi ﬁed a signi ﬁcant in-
+teraction ( η
+2 = 0.388) between Maternal Separation ( η2 = 0.048) and
+music ( η2 = 0.211) in the total number of head dips in the open arms
+(unprotected) of the maze (F (1,38) = 24.055, p = 0.000018). Post-hoc
+Fig. 2. Social Approach Task. (a + c) MSA group spent less time with the novel rat and less time sni ﬃng it than the other experimental groups (Bonferroni post-hoc
+test, *** p < 0.001). (b + d) All experimental groups spent similar time with the novel object and similar time sni ﬃng it.
+Fig. 3. Elevated Plus Maze Test. (a –b) MSA group spent more time in the closed arms of the maze and less time in the open arms than the other experimental groups
+(Bonferroni post-hoc test, ** p < 0.01, *** p < 0.001).
+A. Papadakakis, et al. Behavioural Brain Research 372 (2019) 112023
+4\n[p.5] analysis showed that MSA performed signi ﬁcantly less head dips com-
+pared to MSM, and control groups ( Fig. 4c), indicating increased an-
+xiety-like behavior and reduced exploratory tendency for the MSA
+group.
+3.1.3. Forced swim test (FST)
+Two-way ANOVA (group × treatment) identi ﬁed a signi ﬁcant in-
+teraction ( η2 = 0.368) between Maternal Separation ( η2 = 0.715) and
+music ( η2 = 0.573) in the total time of subjects ’ immobility (F (1,38) =
+22.103, p = 0.000034) and in the total time of subjects ’ active behavior
+(F(1,38) = 22.103, p = 0.000034). Post-hoc analysis showed that MSA
+and MSM rats spent more time immobile and made less active behaviors
+compared to control groups indicating increased depressive-like beha-
+vior for the MSA and MSM groups. However, post-hoc analysis showed
+that MSA rats had been even more immobile and made less active be-
+haviors than MSM rats ( Fig. 5 a-b).
+More speci ﬁcally, two-way ANOVA (group × treatment) identi ﬁed
+a signi ﬁcant interaction ( η2 = 0.368) between Maternal Separation
+(η2 = 0.715) and music ( η2 = 0.573) in the total time of subjects ’
+climbing (F (1,38) = 11.368, p = 0.001728) and in the total time of
+subjects’ swimming (F(1,38) = 11.798, p = 0.001448). Post-hoc analysis
+showed that MSA and MSM rats spent less time climbing and swimming
+compared to control groups, indicating increased depressive-like be-
+havior for the MSA and MSM groups. However, post-hoc analysis
+showed that MSA rats had made even less escape movements than MSM
+rats ( Fig. 5c –d).
+3.2. Dendritic spine density
+Two-way ANOVA (group × treatment) identi ﬁed a signi ﬁcant in-
+teraction ( η2 = 0.447) between Maternal Separation ( η2 = 0.211) and
+music ( η2 = 0.196) in the total dendritic spine density (F (1,19) =
+15.370, p = 0.000919) as well as in the density of mature (thin &
+mushroom) dendritic spines on secondary dendritic segment of CA1
+pyramidal neurons (F
+(1,19) = 24.958, p = 0.000080) (e ﬀect size for
+interaction η2 = 0.568, MS η2 = 0.450 and music η2 = 0.455). Post-hoc
+analysis showed that MSA rats ’ CA1 neurons had signi ﬁcantly lower
+density both in total and mature dendritic spines compared to MSM and
+control groups ( Fig. 6b– c), indicating decreased neuronal plasticity for
+the MSA group. Furthermore, the number of mature dendritic spines in
+the MSM group was signi ﬁcantly higher compared to MSA groups,
+showing that music rescued the dendritic spine de ﬁciently induced by
+MSA. However, music did not have an e ﬀect on the dendritic spine
+density in the control groups. On the other hand, two-way ANOVA
+(group × treatment) did not reveal any signi ﬁcant di ﬀerence between
+the experimental groups in the density of stubby (immature) spines
+(Fig. 6d).
+4. Discussion
+The aim of the present study was to investigate whether musical
+enrichment can counterbalance the negative impact of maternal se-
+paration (MS) in early life. In particular, we studied the e ﬀects of these
+environmental manipulations as well as their interaction in a battery of
+behavioral tasks on anxiety, emotionality, and sociability as well as
+dendritic spine formation in the CA1 region of the hippocampus using
+Golgi-Cox staining. Overall, our results indicate that MS in early life
+induces a variety of behavioral and neural de ﬁcits, such as reduced
+social interaction, increased anxiety and despair, as well as decreased
+mature dendritic spine density in hippocampal CA1 neurons.
+Environmental enrichment with Mozart's K. 448 sonata could rescue
+these deﬁcits in MS rats, but not in control rats.
+4.1. Behavior
+There is a considerable amount of literature indicating that both
+positive and negative early life experiences can exert profound and
+long-lasting e ﬀects on behavior, brain function and neuroplasticity
+[4,38–40]. Our results agree with previous studies showing that ma-
+ternal separation induces anxiety, despair, impaired social interaction
+as well as deﬁ cits in dendritic spine density [ 41,42].
+MS rats spent signi ﬁcantly less time contacting or sni ﬃ ng the novel
+rat in the social approach task. This is in line with the results of other
+studies showing that sociability in adult rats was reduced by early life
+stress [ 43–45]. Musical enrichment successfully reversed MS-induced
+impairment in social interest. Our results corroborate previous studies
+showing that environmental [ 46] or social [ 47] enrichment is able to
+enhance social approach behavior in non-stressed rats and in rats from
+stressed pregnancies, respectively. It is notable that MS did not a ﬀect
+the approach/interaction with non social stimuli, i.e. a novel object,
+suggesting that MS and musical enrichment alters social interest in a
+task-speciﬁc manner.
+Fig. 4. Elevated Plus Maze Test. (a) MSA group overall showed less stretch
+attend postures than the other experimental groups, but (b) proportionally
+more in the closed arms of the maze (Bonferroni post-hoc test, ** p < 0.01). (c)
+MSA group performed less head dips than the other experimental groups
+(Bonferroni post-hoc test, ** p < 0.01, *** p < 0.001).
+A. Papadakakis, et al. Behavioural Brain Research 372 (2019) 112023
+5\n[p.6] Moreover, MSA rats (i.e. maternal separated subjects exposed to
+Ambient Noise) showed enhanced anxiety-like behavior as indicated by
+spending more time in the closed arms and less time in the open arms of
+the elevated plus maze. Exploratory behavior as indicated by the total
+number of stretch attend postures and head dips in open arms was
+decreased, whereas % protective stretch attend postures was increased,
+indicating anxiety-like behavior. The increased anxiety in MSA rats is
+further indicated by the decreased social interactions they exhibited in
+Fig. 5. Forced Swim Test. (a) Both MSA and
+MSM groups exhibited increased immobility
+time and (b) decreased activity time in com-
+parison to the other experimental groups, al-
+though the MSA group had a signi ﬁcant dif-
+ference from the MSM group (Bonferroni post-
+hoc test, *** p < 0.001). (c) Both MSA and
+MSM groups exhibited decreased climbing
+time and (d) decreased swimming time com-
+pared to the other experimental groups, al-
+though the MSA group had a signi ﬁcant dif-
+ference from the MSM group (Bonferroni post-
+hoc test, ** p < 0.01, *** p < 0.001).
+Fig. 6. Golgi-Cox Staining. (a) Secondary den-
+drite of a pyramidal hippocampal neuron
+under 100x magni ﬁcation (* corresponds to
+mushroom spines, # corresponds to thin spines
+and · corresponds to stubby spines). (b + c)
+MSA group ’s total and mature dendritic spine
+density was lower in comparison to the other
+experimental groups (Bonferroni post-hoc test,
+** p < 0.01, *** p < 0.001). (d) There were
+no signi ﬁcant di ﬀerences among the three
+groups in the stubby (immature) dendritic
+spine density.
+A. Papadakakis, et al. Behavioural Brain Research 372 (2019) 112023
+6\n[p.7] the social approach task [ 48,49]. Our results are in line with previous
+studies showing that MS is able to provoke anxiety-like behaviors
+[50–55]. These e ﬀects could be attributed to elevated stress reactivity
+[10], which may come from HPA dysfunction [ 56]. Indeed, repeated
+corticosterone administration in rats has been associated with anxiety-
+and depression-like states [ 57–59]. Environmental enrichment with
+Mozart's K. 448 sonata rescued these de ﬁcits inducing anxiolytic-like
+eﬀects. It is notable that the anxiolytic e ﬀects of musical enrichment
+was evident only in the MS group of animals, suggesting that music
+exposure-induced anxiolysis may be related with stress related e ﬀects
+induced by MS. In other words, the behaviors of the MS group which
+has been exposed to the musical stimuli resemble those of the control
+group, which has not been exposed neither to maternal absence nor to
+musical environmental enrichment. Our results are consistent with
+previous studies, in which classical music decreases stress and anxiety
+in humans [ 60–63] and musical enrichment in experimental animals
+induces anxiolytic-like e ﬀects in animal groups that exhibit increased
+anxiety compared to control animals [ 27,64–66]. Similar to our study,
+musical enrichment does not induce anxiolysis in control animals. In-
+terestingly, similar results have been reported with other types of ex-
+periences, such as physical exercise [ 67] or enriched environment [ 55].
+We also used the FST, in which increased immobility time re ﬂects
+behavioral despair and inability to cope with stressful situations, to
+explore depressive-like behaviors. Our ﬁndings revealed that MS rats
+exhibited increased depressive-like behavior based on the increased
+immobility time and decreased coping behaviors (i.e. total activity,
+climbing and swimming) in the forced swim test. Our ﬁndings are in
+agreement with previous studies which have reported that MS is able to
+provoke depressive-like behaviors in rodents [ 52,68–71]. Additionally,
+the present results showed that musical enrichment is able to induce
+antidepressant-like e ﬀects by decreasing the immobility time and in-
+creasing active coping behaviors, such as climbing and swimming, in
+the FST. Thus, the reduced immobility of rats exposed to musical en-
+richment in the present study is indicative of resilience to depression.
+Our data provide support to a previous report which indicates that
+musical enrichment decreases despair-like behavior in rodents sub-
+jected to early-life adversity and housed in an enriched environment
+combined with auditory stimuli [ 72]. The present ﬁndings are also in
+agreement with previous studies which have reported the anti-
+depressant-like e ﬀects of physical exercise or other types of environ-
+mental enrichment, also in early-life stress animals [ 67,69,70,73–76].
+4.2.
+Anatomy
+The hippocampus is a key regulatory brain region implicated in
+emotional regulation. It is one of the most plastic structures of the brain
+and it is extremely vulnerable to environmental factors, such as stress
+[77]. Thus, alterations in dendritic spine formation in the CA1 region of
+the hippocampus, in response to MS experience and musical environ-
+mental enrichment and the interaction between the two was also in-
+vestigated. Morphological analysis revealed that musical environmental
+enrichment a ﬀected spine density in the CA1 region of the hippo-
+campus in the animals of the MS group, in a spine-type speci ﬁc manner.
+Three main types of dendritic spines exist: the stubby, the thin and the
+mushroom-type spines. The thin and mushroom-type spines are con-
+sidered the mature spines, which can undergo plasticity process, while
+the stubby spines are the immature spines which cannot participate
+[78].
+Thus, while the number of immature (stubby) dendritic spines re-
+mained unchanged in all four groups, whether they were exposed to the
+musical stimuli or not, the number of mature (thin & mushroom)
+dendritic spines varied per group. Indeed, we observed decreased ma-
+ture dendritic spines in the MS group compared to the control group,
+which was reversed in the MS rats that were exposed to Mozart's sonata
+K. 448. Thus, in this group (the MSM group) the dendritic density of the
+mature spines was similar to the control group. We can speculate that
+the decreased spine density is due to separation of o ﬀspring from the
+dam. Indeed, our ﬁndings corroborate the results of previous studies
+reporting decreased spine density in the CA1 region of the hippocampus
+in MS animals [ 41,42]. Similarly, low maternal care has been asso-
+ciated with lower spine density in CA1 cells of hippocampus [ 79].
+It has been proposed that synapses develop at the same time as the
+dendritic spines increase, suggesting that presynaptic and postsynaptic
+elements interaction plays an active role in the formation of dendritic
+spines [ 80,81]. Indeed, a decrease in spine density can be the result of
+axonal loss that makes synaptic connections with these spines. There-
+fore, our results on spine density reorganization suggest that MS could
+disrupt spinogenesis and consequently synaptogenesis in the hippo-
+campus, e ﬀects which might be related with the behavioral deﬁ cits
+observed herein [ 82]. In agreement with these ﬁndings, Andersen and
+Teicher [83] found that MS decreases synaptophysin in the CA1 region
+of the hippocampus of rats at a post-pubertal age. Interestingly, similar
+eﬀects on spine density reorganization have been reported in anxiety-
+and depression-like phenotypes [ 84,85].
+Mounting evidence supports the role of various types of environ-
+mental enrichment in preserving dendritic spine density in various
+brain regions, including the hippocampus, consequent to di ﬀerent types
+of insults or damages of the brain [ 86–91]. Interestingly, long-term
+human handling has been shown to increase spine density in the CA1
+region of hippocampus of adult rats [ 92].
+The
+mechanism by which MS induces structural changes in den-
+dritic spines in the CA1 region of the hippocampus is not clear. There is
+a large volume of published studies describing the e ﬀects of early-life
+stress on the function of the hypothalamic-pituitary-adrenal axis (HPA)
+[93–95]. High levels of corticosteroids not only produce diverse e ﬀects
+on behavior but also induce neuronal morphological rearrangements in
+the hippocampus [ 96]. Therefore, the hypersecretion of corticosterone
+induced by MS may have as a result the decrease in dendritic spine
+density reported in our study. Another contributor to the retraction of
+dendritic spines may be the augmented glutamatergic neurotransmis-
+sion and subsequent activation of NMDA receptors. This view is sup-
+ported by Venero and Borrell who report increased extracellular glu-
+tamate levels in the CA1 region of the hippocampus after corticosterone
+treatment [ 97]. In line with this, a recent study by Masrour et al. pro-
+vided evidence for increased gene expression of the NR2A subunit of
+NMDA receptors in the hippocampus of MS rats [ 70]. Likewise, another
+major study, using an early life stress model involving denial or ma-
+ternal contact has recently reported that early life stress increases the
+expression of NR2A in the hippocampus of adult rats [ 98]. Similarly,
+stimulation of NMDA receptors in the CA1 region results in spine re-
+traction [ 99,100], whereas administration of NMDA antagonists can
+abolish the loss of dendritic spines [ 100,101]. Interestingly, chronic
+administration of corticosterone to prepubertal rats has been associated
+with increased expression of the NR1 and NR2A subunits of NMDA
+receptors in the hippocampus [ 102]. To the contrary, running wheel
+exercise, which was able to mitigate the negative e ﬀects of MS on de-
+pressive-like behaviors of rats, also normalized the increased expression
+of NR2A subunit of NMDA receptor in the hippocampus [ 70].
+Furthermore, neurotrophins, and in particular BDNF, participate in
+shaping dendritic spines [ 103,104] and may also contribute to the
+morphological alterations observed herein [ 105,106]. This view ac-
+cords with a study which showed a decrease in the levels of brain-de-
+rived neurotrophic factor (BDNF) in the hippocampus of MS animals
+[107]. Moreover, another neurotrophin, the nerve growth factor (NGF)
+has been found to be altered in MS animals [ 108]. On the other hand, it
+has been shown that environmental enrichment through musical sti-
+muli leads to increased expression of brain-derived neurotrophic factor
+(BDNF) in various brain regions, such as the prefrontal cortex, amyg-
+dala, hypothalamus and hippocampus, resulting in enhanced learning
+processes and decreased depression- and anxiety-like behaviors
+[29,37]. In particular, listening to Mozart's K. 448 sonata enhances the
+expression of both BDNF and its receptor, TrkB, on the dentate gyrus
+A. Papadakakis, et al. Behavioural Brain Research 372 (2019) 112023
+7\n[p.8] and CA3 region in rats [ 28]. Interestingly, some studies have shown
+that music increased the expression of BDNF only in mutants that had a
+speciﬁc mutation (Val66Met) in both BDNF genes [ 27]. Similarly, rats
+reared in enriched environments also show increased levels of BDNF
+[17,109].
+It has been demonstrated that the signaling of BDNF begins a series
+of processes in the neuron, most notably the induction of the CREB
+transcription factor. CREB plays a crucial role to neuroplasticity, since
+its molecular pathway leads to the dephosphorylation of co ﬁlin, an
+actin-binding protein that in its phosphorylated form contributes to the
+disassembly of F-actin. When co ﬁlin is dephosphorylated, F-actin con-
+tributes to the formation of dendritic spines [ 38]. As it becomes evident
+from other studies [ 38,39], this signaling plays a decisive role in the
+formation and morphology of the dendritic spines in the hippocampus
+and especially in the early stages of life. This is also evident from the
+eﬀect of maternal separation (MS), as this manipulation has been
+shown to signi ﬁcantly reduce the density of dendritic spines in hippo-
+campal CA1 and CA3 regions [ 40] and induce hippocampus-dependent
+learning de ﬁcit later in life [ 41]. Thus, the possibility that musical
+enrichment either counterbalanced the reduced expression of BDNF or
+did not allow its reduction cannot be excluded.
+A large and growing body of literature has investigated the gluco-
+corticoids-BDNF crosstalk which seems essential for early-life pro-
+gramming of the HPA axis and neurotrophin signaling [ 93]. It has now
+been suggested that during early development, both high BDNF and low
+glucocorticoid levels are required for dendritic spine formation and
+subsequent synaptic integrity in the hippocampus [ 110]. MS can shift
+this equilibrium contributing to heightened risk for a variety of stress-
+related behavioral phenotypes in later life. It can thus be suggested that
+musical enrichment induces the expression of BDNF, which then may
+acts at two di ﬀerent points: initially at some part of the HPA axis and at
+the same time speci ﬁcally in the pyramidal neurons of the CA1 region,
+thus preventing the decrease in hippocampal dendritic spine density
+and producing a physiological bu ﬀer against depression- and anxiety-
+like behaviors.
+In conclusion, results of this study suggest that musical enrichment
+is able to reverse the negative e ﬀects of MS on anxiety, emotionality,
+and sociability in adult rats. Additionally we demonstrated that MS rats
+show a decrease in mature dendritic spines in the CA1 area of the
+hippocampus, an e ﬀect which was reversed by exposure to Mozart's
+sonata K. 448. The disruption of normal development via early life
+stress, such as MS, supports the overall literature of early adverse ex-
+periences leading to behavioral abnormalities in adulthood. However,
+the present data indicate that these changes are not permanent and
+positive/stimulating environments, such as musical enrichment, can
+modulate neuronal plasticity and overcome the e ﬀects of adversity
+applied during early stages of development. Our investigation into this
+area is crucial to the discussion of positive environmental enrichment,
+since the results indicate that musical enrichment has a preventative
+eﬀect on anxiety- and depression-like behaviors both behaviorally and
+neurobiologically. Finally, a number of important limitations need to be
+considered. First, the speci ﬁce ﬀect
+of music versus other types of au-
+ditory stimuli was not investigated. Moreover, rat’ s hearing frequency is
+diﬀerent from that of humans. Thus, music could sound di ﬀerently to
+rats and might be to them a patterned sound. Second, in order to un-
+derstand the interaction between MS and musical enrichment on hip-
+pocampal structure, the present study has only investigated one mor-
+phological variable, i.e. dendritic spine density. Hence, future studies
+are required to elucidate other morphological changes of hippocampal
+neurons, such as dendritic arborization, dendritic length and spine
+morphology. Third, further experimental investigations in this area are
+needed to determine if there is a causal relationship between the in-
+creased spine density and the behavioral e ﬀects of musical enrichment.
+Finally, on a wider level, further research must be conducted to de-
+termine whether other brain areas are also a ﬀected and weather other
+forms of music have similar e ﬀects.
+Acknowledgement
+This study was supported by the Department of Psychology and the
+Department of Biology of the University of Crete.
+References
+[1] C. Heim, D.J. Newport, T. Mletzko, A.H. Miller, C.B. Nemeroﬀ , The link between
+childhood trauma and depression: insights from HPA axis studies in humans,
+Psychoneuroendocrinology 33 (2008) 693 –710, https://doi.org/10.1016/j.
+psyneuen.2008.03.008.
+[2] K.M. Scott, K.A. Mclaughlin, D.A.R. Smith, P.M. Ellis, Childhood maltreatment and
+DSM-IV adult mental disorders : comparison of prospective and retrospective
+ﬁndings, Br. J. Psychiatry 200 (2012) 469 –475, https://doi.org/10.1192/bjp.bp.
+111.103267.
+[3] K.J.S. Anand, F.M. Scalzo, Alter brain development and subsequent behavior?
+Biol. Neonate 77 (2000) 69 –82.
+[4] A.C. Kentner, J.F. Cryan, Resilience priming: translational models for under-
+standing resiliency and adaptation to early life adversity, Dev. Psychobiol. (2018)
+1–26, https://doi.org/10.1002/dev.21775.
+[5] C.B. Nemeroﬀ, P.M. Plotsky, Long-term behavioral and neuroendocrine adapta-
+tions to adverse early experience, Prog. Brain Res. 122 (2000) 81 –103.
+[6] S.J. Lupien, B.S. Mcewen, M.R. Gunnar, C. Heim, E ﬀects of stress throughout the
+lifespan on the brain, behaviour and cognition, Nat. Rev. Neurosci. 10 (2009)
+434–445, https://doi.org/10.1038/nrn2639.
+[7] M. Marinelli, J.E. Mccutcheon, Heterogeneity of dopamine neuron activity across
+traits and states, Neuroscience 282 (2014) 176 –197, https://doi.org/10.1016/j.
+neuroscience.2014.07.034.
+[8] J. Vetulani, Early maternal separation : a rodent model of depression and a pre-
+vailing human condition, Pharmacol. Rep. 65 (2013) 1451 –1461, https://doi.org/
+10.1016/S1734-1140(13)71505-6.
+[9] E.M. Marco, R. Llorente, M. López-gallardo, V. Mela, Á. Llorente-berzal, C. Prada,
+M. Viveros, The maternal deprivation animal model revisited, Neurosci. Biobehav.
+Rev. 51 (2015) 151 –163, https://doi.org/10.1016/j.neubiorev.2015.01.015.
+[10] M. Li, X. Xue, S. Shao, F. Shao, W. Wang, Cognitive, emotional and neurochemical
+eﬀects of repeated maternal separation in adolescent rats, Brain Res. 1518 (2013)
+82–90, https://doi.org/10.1016/j.brainres.2013.04.026.
+[11] W.M.U. Daniels, C.Y. Pietersen, M.E. Carstens, D.J. Stein, Maternal separation in
+rats leads to anxiety-like behavior and a blunted ACTH response and altered
+neurotransmitter levels in response to a subsequent stressor, Metab. Brain Dis. 19
+(2004) 3 –14.
+[12] B. Aisa, R. Tordera, B. Lasheras, D. Rı , M.J. Ramı, Cognitive impairment associated
+to HPA axis hyperactivity after maternal separation in rats,
+Psychoneuroendocrinology 32 (2007) 256 –266, https://doi.org/10.1016/j.
+psyneuen.2006.12.013.
+[13] M. Lippmann, A. Bress, C.B. Nemeroﬀ , P.M. Plotsky, L.M. Monteggia, Long-term
+behavioural and molecular alterations associated with maternal separation in rats,
+Eur.
+J. Neurosci. 25 (2007) 3091 –3098, https://doi.org/10.1111/j.1460-9568.
+2007.05522.x.
+[14] M.A. Bloomsmith, L.Y. Brent, S.J. Schapiro, Guidelines for developing and
+managing an environmental enrichment program for nonhuman primates, Lab.
+Anim. Sci. 41 (1991) 372 –377.
+[15] X. Du, L. Leang, T. Mustafa, T. Renoir, T.Y. Pang, A.J. Hannan, Environmental
+enrichment rescues female-speci ﬁc hyperactivity of the hypothalamic-pituitary-
+adrenal axis in a model of Huntington ’s disease, Transl. Psychiatry 2 (2012),
+https://doi.org/10.1038/tp.2012.58 e133–e133.
+[16] S.A. Stuart, P. Butler, M.R. Munafò, D.J. Nutt, E.S. Robinson, A translational ro-
+dent assay of a ﬀective biases in depression and antidepressant therapy,
+Neuropsychopharmacology 38 (2013) 1625 –1635, https://doi.org/10.1038/npp.
+2013.69.
+[17] A.C. Kentner, A. Khoury, E. Queiroz, M. Macrae, Environmental enrichment res-
+cues the e ﬀects of early life in ﬂammation on markers of synaptic transmission and
+plasticity, Brain Behav. Immun. 57 (2016) 151 –160, https://doi.org/10.1016/j.
+bbi.2016.03.013.
+[18] A.R. Strzelewicz, E. Ordoñes, A.N. Rondón-ortiz, A. Raneri, S.T. Famularo,
+D.A. Bangasser, A.C. Kentner, Access to a high resource environment protects
+against accelerated maturation following early life stress: a translational animal
+model of high, medium and low security settings, Horm. Behav. (2019) 1 –14,
+https://doi.org/10.1016/j.yhbeh.2019.01.003.
+[19] Y. Ilin, G. Richter-levin, Enriched environment experience overcomes learning
+deﬁcits and depressive-like behavior induced by juvenile stress, PLoS One 4
+(2009) e4329, https://doi.org/10.1371/journal.pone.0004329.
+[20] A.T. Abad, H.M. Associate, I. Bigdeli, E ﬀects of swimming exercise on morphine-
+induced reward and behavioral sensitization in maternally-separated rat pups in
+the conditioned place preference procedure, Neurosci. Lett. 631 (2016) 79 –84,
+https://doi.org/10.1016/j.neulet.2016.08.011.
+[21] G.M. Leggio, L. Mandolesi, F. Federico, F. Spirito, B. Ricci, F. Gelfo, L. Petrosini,
+Environmental enrichment promotes improved spatial abilities and enhanced
+dendritic growth in the rat, Behav. Brain Res. 163 (2005) 78 –90, https://doi.org/
+10.1016/j.bbr.2005.04.009.
+[22] S.B. Hanser, L.W. Thompson, E ﬀects of a music therapy strategy on depressed
+older adults, J. Gerontol. 49 (1994) 265 –269.
+[23] Y.M. Chan, P.W.H. Lee, D. Ph, T.Y. Ng, H.Y.S. Ngan, L.C. Wong, The use of music
+to reduce anxiety for patients undergoing colposcopy : a randomized trial,
+A. Papadakakis, et al.
+Behavioural Brain Research 372 (2019) 112023
+8\n[p.9] Gynecol. Oncol. 91 (2003) 213 –217, https://doi.org/10.1016/S0090-8258(03)
+00412-8.
+[24] M. Chou, M. Lin, Exploring the listening experiences during guided imagery and
+music therapy of outpatients with depression, J. Nurs. Res. 14 (2006) 93 –102.
+[25] M. Boso, P. Politi, F. Barale, Neurophysiology and neurobiology of the musical
+experience, Funct. Neurol. 21 (2006) 187 –191.
+[26] W. Verrusio, E. Ettorre, E. Vicenzini, N. Vanacore, The mozart e ﬀect: a quantita-
+tive EEG study, Conscious. Cogn. 35 (2015) 150 –155, https://doi.org/10.1016/j.
+concog.2015.05.005.
+[27] W. Li, H. Yu, J. Yang, J. Gao, H. Jiang, M. Feng, Y. Zhao, Z. Chen, Anxiolytic e ﬀect
+of music exposure on BDNF Met / Met transgenic mice, Brain Res. 1347 (2010)
+71–79, https://doi.org/10.1016/j.brainres.2010.05.080.
+[28] Y. Xing, W. Chen, Y. Wang, W. Jing, S. Gao, D. Guo, Y. Xia, D. Yao, Music exposure
+improves spatial cognition by enhancing the BDNF level of dorsal hippocampal
+subregions in the developing rats, Brain Res. Bull. 121 (2016) 131 –137, https://
+doi.org/10.1016/j.brainresbull.2016.01.009.
+[29] F. Angelucci, E. Ricci, L. Padua, A. Sabino, P. Attilio, Music exposure di ﬀerentially
+alters the levels of brain-derived neurotrophic factor and nerve growth factor in
+the mouse hypothalamus, Neurosci. Lett. 429 (2007) 152 –155, https://doi.org/10.
+1016/j.neulet.2007.10.005.
+[30] B. Meng, S. Zhu, S. Li, Q. Zeng, B. Mei, Global view of the mechanisms of improved
+learning and memory capability in mice with music-exposure by microarray, Brain
+Res. Bull. 80 (2009) 36 –44, https://doi.org/10.1016/j.brainresbull.2009.05.020.
+[31] W.C.M. Sampaio, M.C. Ribeiro, L.F. Costa, W.C. de Souza, G.M. de Castilho,
+M.S. de Assis, F.P. Carneiro, D. Marchiori, N.T. de Lima, P.P. Cavalcanti,
+V.M. Ferreira, E ﬀect of music therapy on the developing central nervous system of
+rats, Psychol. Neurosci. 10 (2017) 176 –188.
+[32] J.J. Nadler, S.S. Moy, G. Dold, Automated apparatus for quantitation of social
+approach behaviors in mice, Genes Brain Behav. 3 (2004) 303 –314, https://doi.
+org/10.1111/j.1601-183X.2004.00071.x.
+[33] K. Montgomery, The relationship between fear induced by novel stimulation and
+exploratory behavior, J. Comp. Physiol. Psychol. 48 (1958) 254 –260.
+[34] R.D. Porsolt, M. Le Pichon, M. Jalfre, Depression: a new animal model sensitive to
+antidepressant treatments, Nature 266 (1977) 730 –732.
+[35] P.J. van Zyl, J.J. Dimatelis, V.A. Russell, Behavioural and biochemical changes in
+maternally separated Sprague – Dawley rats exposed to restraint stress, Metab.
+Brain Dis. 31 (2015) 121 –133, https://doi.org/10.1007/s11011-015-9757-y.
+[36] G. Paxinos, C. Watson, The Rat Brain in Stereotaxic Coordinates, 7th ed., Elsevier,
+Amsterdam, 2014, https://doi.org/10.3389/fnsys.2018.00007.
+[37] C.H.
+Horner, E. Arbuthnott, Methods of estimation of spine density - are spines
+evenly distributed throughout the dendritic ﬁeld? J. Anat. 177 (1991) 179 –184.
+[38] J. Nithianantharajah, A.J. Hannan, Enriched environments, experience- dependent
+plasticity and disorders of the nervous system, Nat. Rev. Neurosci. 7 (2006)
+697–709, https://doi.org/10.1038/nrn1970.
+[39] S. Tzanoulinou, C. Sandi, The programming of the social brain by stress during
+childhood and adolescence: from rodents to humans, Curr. Top. Behav. Neurosci.
+(2017) 411 –429, https://doi.org/10.1007/7854.
+[40] N.P. Bondar, A.A. Lepeshko, V.V. Reshetnikov, E ﬀects of early-life stress on social
+and anxiety-like behaviors in adult mice: sex-speci ﬁce ﬀects, Behav. Neurol.
+(2018) 1 –13.
+[41] E. Monroy, E. Hernández-Torres, G. Flores, Maternal separation disrupts dendritic
+morphology of neurons in prefrontal cortex, hippocampus, and nucleus accumbens
+in male rat o ﬀspring, J. Chem. Neuroanat. 40 (2010) 93 –101, https://doi.org/10.
+1016/j.jchemneu.2010.05.005.
+[42] K. Ohta, S. Suzuki, K. Warita, T. Kaji, T. Kusaka, T. Miki, Prolonged maternal
+separation attenuates BDNF-ERK signaling correlated with spine formation in the
+hippocampus during early brain development, J. Neurochem. 141 (2017)
+179–194, https://doi.org/10.1111/ijlh.12426.
+[43] C.M. Maciag, G. Dent, D. Ph, P. Gilligan, D. Ph, L. He, D. Ph, K. Dowling, T. Ko,
+S. Levine, D. Ph, M.A. Smith, D. Ph, E ﬀects of a non-peptide CRF antagonist
+(DMP696) on the behavioral and endocrine sequelae of maternal separation,
+Neuropsychopharmacology 26 (2002) 574 –582.
+[44] K. Takase, Y. Yamamoto, T. Yagami, Maternal deprivation in the middle of a stress
+hyporesponsive period decreases hippocampal calcineurin expression and causes
+abnormal social and cognitive behaviours in adult male Wistar rats : relevance to
+negative symptoms of schizophrenia, Behav. Brain Res. 232 (2012) 306 –315,
+https://doi.org/10.1016/j.bbr.2012.04.016.
+[45] M.C. Tsuda, N. Yamaguchi, M. Nakata, S. Ogawa, Modiﬁ cation of female and male
+social behaviors in estrogen receptor beta knockout mice by neonatal maternal
+separation, Front. Neurosci. 8 (2014) 1 –9, https://doi.org/10.3389/fnins.2014.
+00274.
+[46] G. Laviola, M. Rea, S. Morley- ﬂetcher, S. Di Carlo, A. Bacosi, R. De Simone,
+M. Bertini, R. Paci ﬁci, V.R. Elena, I.- Roma, Bene ﬁcial e ﬀects of enriched en-
+vironment on adolescent rats from stressed pregnancies, Eur. J. Neurosci. 20
+(2004) 1655 –1664, https://doi.org/10.1111/j.1460-9568.2004.03597.x.
+[47] J.C. Brenes, M. Lackinger, G. Schratt, R.K.W. Schwarting, W. Markus, Di ﬀerential
+eﬀects
+of social and physical environmental enrichment on brain plasticity, cog-
+nition, and ultrasonic communication in rats, J. Comp. Neurol. 524 (2016)
+1586–1607, https://doi.org/10.1002/cne.23842.
+[48] S.E. File, J.R.G. Hyde, Can social interaction be used to measure anxiety? Br. J.
+Pharmacol. 62 (1978) 19 –24.
+[49] A.C. Campos, M.V. Fogac, D.C. Aguiar, F.S. Guimara, Animal models of anxiety
+disorders and stress, Braz. J. Psychiatry 35 (2013) 101 –111, https://doi.org/10.
+1590/1516-4446-2013-1139.
+[50] R.D. Romeo, A. Mueller, H.M. Sisti, S. Ogawa, B.S. Mcewen, W.G. Brake, Anxiety
+and fear behaviors in adult male and female C57BL / 6 mice are modulated by
+maternal separation, Horm. Behav. 43 (2003) 561 –567, https://doi.org/10.1016/
+S0018-506X(03)00063-1.
+[51] C. Troakes, C.D. Ingram, Anxiety behaviour of the male rat on the elevated plus
+maze : associated regional increase in c-fos mRNA expression and modulation by
+early maternal separation, Stress 12 (2009) 362 –369, https://doi.org/10.1080/
+10253890802506391.
+[52] J.L. Montalvo-Ortiz, K.A. Bordner, B.C. Carlyle, J. Gelernter, A.A. Simen,
+J. Kaufman, The role of genes involved in stress, neural plasticity, and brain cir-
+cuitry in depressive phenotypes: convergent ﬁndings in a mouse model of neglect,
+Behav. Brain Res. (2016) 71 –74, https://doi.org/10.1016/j.bbr.2016.08.010.
+[53] A.S. Koe, A. Ashokan, R. Mitra, Short environmental enrichment in adulthood
+reverses anxiety and basolateral amygdala hypertrophy induced by maternal se-
+paration, Transl. Psychiatry 6 (2016) e729, https://doi.org/10.1038/tp.2015.217.
+[54] S. Jin, Y. Zhao, Y. Jiang, Y. Wang, C. Li, D. Zhang, B. Lian, Z. Du, H. Sun, L. Sun,
+Anxiety-like behaviour assessments of adolescent rats after repeated maternal
+separation during early life, Neuroreport (2018) 1 –7, https://doi.org/10.1097/
+WNR.0000000000001010.
+[55] E. Dandi, A. Kalamari, O. Touloumi, R. Lagoudaki, E. Nousiopoulou,
+C. Simeonidou, E. Spandou, D. Tata, Accepted manuscript, Int. J. Dev. Neurosci.
+67 (2018) 19 –32, https://doi.org/10.1016/j.ijdevneu.2018.03.003.
+[56] M. Barzegar, F.S. Sajjadi, S.A. Talaei, G. Hamidi, M. Salami, Prenatal exposure to
+noise stress: anxiety, impaired spatial memory, and deteriorated hippocampal
+plasticity in postnatal life, Hippocampus 25 (2014) 187 –196, https://doi.org/10.
+1002/hipo.22363.
+[57] L.E. Kalynchuk, A. Gregus, D. Boudreau, T.S. Perrot-sinal, Corticosterone increases
+depression-like behavior, with some e ﬀects on predator odor-induced defensive
+behavior, in male and female rats, Behav. Neurosci. 118 (2004) 1365 –1377,
+https://doi.org/10.1037/0735-7044.118.6.1365.
+[58] A. Gregus, A.J. Wintink, A.C. Davis, L.E. Kalynchuk, E ﬀect of repeated corticos-
+terone injections and restraint stress on anxiety and depression-like behavior in
+male rats, Behav. Brain Res. 156 (2005) 105 –114, https://doi.org/10.1016/j.bbr.
+2004.05.013.
+[59] S.A. Johnson, N.M. Fournier, L.E. Kalynchuk, E ﬀect of di ﬀerent doses of corti-
+costerone on depression-like behavior and HPA axis responses to a novel stressor,
+Behav. Brain Res. 168 (2006) 280 –288, https://doi.org/10.1016/j.bbr.2005.11.
+019.
+[60]
+D. Smolen, R. Topp, L. Singer, The e ﬀect of self-selected music during colonoscopy
+on anxiety, heart rate, and blood pressure, Appl. Nurs. Res. 16 (2002) 126 –136,
+https://doi.org/10.1053/apnr.2002.34140.
+[61] N.S. Rickard, S.R. Toukhsati, S.E. Field, N.S. Rickard, S.R. Toukhsati, S.E. Field,
+Behavioral and cognitive neuroscience reviews the e ﬀect of music on cognitive
+performance: insight from neurobiological and animal studies, Behav. Cogn.
+Neurosci. Rev. 4 (2005) 235 –261, https://doi.org/10.1177/1534582305285869.
+[62] P. Binns-Turner, L. Wilson, E. Pryor, G. Boyd, C. Prickett, Perioperative music and
+its eﬀects on anxiety, hemodynamics, and pain in women undergoing mastectomy,
+Am. Assoc. Nurse Anesth. 79 (2011) .
+[63] E.A.G. Villarreal, E. Brattico, L. Vase, L. Østergaard, P. Vuust, Superior analgesic
+eﬀect of an active distraction versus pleasant unfamiliar sounds and music : the
+inﬂuence of emotion and cognitive style, PLoS One 7 (2012) e29397, , https://doi.
+org/10.1371/journal.pone.0029397.
+[64] Y. Lu, M. Liu, S. Shi, H. Jiang, L. Yang, X. Liu, Q. Zhang, F. Pan, D. Ph, E ﬀects of
+stress in early life on immune functions in rats with asthma and the e ﬀects of
+music therapy, J. Asthma 47 (2010) 526 –531, https://doi.org/10.3109/
+02770901003801964.
+[65] J. Niehues da Cruz, D. Delwing de Lima, D. Delwing Dal Magro, J.G. Pereira da
+Cruz, The power of classic music to reduce anxiety in rats treated with simvastatin,
+Basic Clin. Neurosci. 2 (2011) 5 –11.
+[66] L.C. Alworth, S.C. Buerkle, The e ﬀects of music on animal physiology, behavior
+and welfare, Lab Anim. (NY) 42 (2013) 54 –61, https://doi.org/10.1038/laban.
+162.
+[67] A. Bjørnebekk, A.A. Mathe, S. Brene, The antidepressant e ﬀect of running is as-
+sociated with increased hippocampal cell proliferation, Int. J.
+Neuropsychopharmacol. 8 (2005) 357 –368.
+[68] L. Marais, S.J. Van Rensburg, J.M. Van Zyl, D.J. Stein, W.M.U. Daniels, Maternal
+separation of rat pups increases the risk of developing depressive-like behavior
+after subsequent chronic stress by altering corticosterone and neurotrophin levels
+in the hippocampus, Neurosci. Res. 61 (2008) 106 –112, https://doi.org/10.1016/
+j.neures.2008.01.011.
+[69] M. Sadeghi, M. Peeri, M. Hosseini, Adolescent voluntary exercise attenuated
+hippocampal innate immunity responses and depressive-like behaviors following
+maternal separation stress in male rats, Physiol. Behav. 163 (2016) 177 –183,
+https://doi.org/10.1016/j.physbeh.2016.05.017.
+[70] F.F. Masrour, M. Peeri, M.A. Azarbayjani, M.-J. Hosseini, Voluntary exercise
+during adolescence mitigated negative the e ﬀects of maternal separation stress on
+the depressive-like behaviors of adult male rats: role of NMDA receptors,
+Neurochem. Res. 43 (2018) 1067 –1074, https://doi.org/10.1007/s11064-018-
+2519-6.
+[71]
+J.L. Lukkes, S. Meda, K.J. Norman, S.L. Andersen, Anhedonic behavior and γ
+-amino butyric acid during a sensitive period in female rats exposed to early ad-
+versity, J. Psychiatr. Res. 100 (2018) 8 –15, https://doi.org/10.1016/j.jpsychires.
+2018.02.005.
+[72] E. Flores-gutiérrez, E.A. Cabrera-muñoz, N.M. Vega-rivera, L. Ortiz-lópez,
+G.B. Ramírez-rodríguez, Exposure to patterned auditory stimuli during acute stress
+prevents despair-like behavior in adult mice that were previously housed in an
+enriched environment in combination with auditory stimuli, Neural Plast. (2018)
+1–14.
+A. Papadakakis, et al.
+Behavioural Brain Research 372 (2019) 112023
+9\n[p.10] [73] S. Hattori, R. Hashimoto, T. Miyakawa, H. Yamanaka, H. Maeno, K. Wada,
+H. Kunugi, Enriched environments in ﬂuence depression-related behavior in adult
+mice and the survival of newborn cells in their hippocampi, Behav. Brain Res. 180
+(2007) 69 –76, https://doi.org/10.1016/j.bbr.2007.02.036.
+[74] A. Bjørnebekk, A.A. Mathe, S. Brene, The antidepressant e ﬀects of running and
+escitalopram are associated with levels of hippocampal NPY and Y1 receptor but
+not cell proliferation in a rat model of depression, Hippocampus 20 (2010)
+820–828, https://doi.org/10.1002/hipo.20683.
+[75] E.J. Connors, M.M. Migliore, S.L. Pillsbury, A.N. Shaik, A.C. Kentner,
+Environmental enrichment models a naturalistic form of maternal separation and
+shapes the anxiety response patterns of o ﬀspring, Psychoneuroendocrinology 52
+(2015) 153 –167, https://doi.org/10.1016/j.psyneuen.2014.10.021.
+[76] A. Ashokan, A. Hegde, A. Balasingham, R. Mitra, Housing environment in ﬂuences
+stress-related hippocampal substrates and depression-like behavior, Brain Res.
+1683 (2018) 78 –85, https://doi.org/10.1016/j.brainres.2018.01.021.
+[77] H.A. Cameron, T.J. Schoenfeld, Behavioral and structural adaptations to stress,
+Front. Neuroendocrinol. 49 (2018) 106 –113, https://doi.org/10.1016/j.yfrne.
+2018.02.002.
+[78] E.A. Nimchinsky, B.L. Sabatini, K. Svoboda, Structure and function of dendritic
+spines, Annu. Rev. Physiol. 64 (2002) 313 –353, https://doi.org/10.1146/annurev.
+physiol.64.081501.160008.
+[79] D.L. Champagne, R.C. Bagot, F. Van Hasselt, G. Ramakers, M.J. Meaney, E.R. De
+Kloet, M. Joe, H. Krugers, Maternal care and hippocampal plasticity: evidence for
+experience-dependent structural plasticity, altered synaptic functioning, and dif-
+ferential responsiveness to glucocorticoids and stress, J. Neurosci. 28 (2008)
+6037–6045, https://doi.org/10.1523/JNEUROSCI.0526-08.2008.
+[80] J. Lippman, A. Dunaevsky, Dendritic spine morphogenesis and plasticity, J.
+Neurobiol. 64 (2005) 47 –57, https://doi.org/10.1002/neu.20149.
+[81] D.L. Benson, G.W. Huntley, Building and remodeling synapses, Hippocampus. 22
+(2010) 954 –968, https://doi.org/10.1002/hipo.20872.
+[82] J.C. Fiala, J. Spacek, K.M. Harris, Dendritic spine pathology: cause or consequence
+of neurological disorders? Brain Res. Rev. 39 (2002) 29 –54.
+[83] S.L. Andersen, M.H. Teicher, Delayed e ﬀects of early stress on hippocampal de-
+velopment, Neuropsychopharmacology 29 (2004) 1988 –1993, https://doi.org/10.
+1038/sj.npp.1300528.
+[84] B. Leuner, T.J. Shors, Stress, anxiety, and dendritic spines: What are the connec-
+tions? Neuroscience 251 (2012) 108 –119, https://doi.org/10.1016/j.
+neuroscience.2012.04.021.
+[85] Z. Ren, N. Sahir, S. Murakami, B.A. Luellen, J.C. Earnheart, R. Lal, J. Young,
+H. Song, B. Luscher, Defects in dendrite and spine maturation and synaptogenesis
+associated with an anxious-depressive-like phenotype of GABA A receptor-de ﬁ-
+cient mice, Neuropharmacology 88 (2014) 171 –179, https://doi.org/10.1016/j.
+neuropharm.2014.07.019.
+[86] R.F.
+Berman, J.H. Hannigan, M.A. Sperry, C.S. Zajac, Prenatal alcohol exposure
+and the e ﬀects of environmental enrichment on hippocampal dendritic spine
+density, Alcohol 13 (1996) 209 –216.
+[87] J. Beauquis, P. Roig, A.F. De Nicola, F. Saravia, Short-term environmental en-
+richment enhances adult neurogenesis, vascular network and dendritic complexity
+in the Hippocampus of type 1 diabetic mice, PLoS One 5 (2010) e13993, , https://
+doi.org/10.1371/journal.pone.0013993.
+[88] X. Hu, S. Bergström, M. Brink, A. Rönnbäck, P. Dahlqvist, Enriched environment
+increases spinophilin mRNA expression and spinophilin immunoreactive dendritic
+spines in hippocampus and cortex, Neurosci. Lett. 476 (2010) 79 –83, https://doi.
+org/10.1016/j.neulet.2010.04.007.
+[89] J.J. Rojas, B.F. Deniz, P.M. Miguel, R. Diaz, Édo E.-S. Hermel, M. Achaval,
+C.A. Netto, L.O. Pereira, E ﬀects of daily environmental enrichment on behavior
+and dendritic spine density in hippocampus following neonatal hypoxia – ischemia
+in the rat, Exp. Neurol. 241 (2013) 25 –33, https://doi.org/10.1016/j.expneurol.
+2012.11.026.
+[90] C.K.E. Jung, J. Herms, Structural dynamics of dendritic spines are in ﬂ uenced by
+an environmental enrichment: an in vivo imaging study, Cereb. Cortex 24 (2014)
+377–384, https://doi.org/10.1093/cercor/bhs317.
+[91] B.C. Harland, D.A. Collings, N. Mcnaughton, W.C. Abraham, Anterior thalamic
+lesions reduce spine density in both hippocampal CA1 and retrosplenial cortex,
+but enrichment rescues CA1 spines only, Hippocampus 24 (2014) 1232 –1247,
+https://doi.org/10.1002/hipo.22309.
+[92] C.H. Horner, M. O ’Regan, E. Arbuthnott, Neural plasticity of the hippocampal
+(CA1) pyramidal cell - quantitative changes in spine density following handling
+and injection for drug testing, J. Anat. 174 (1991) 229 –238.
+[93] N.P. Daskalakis, E.R. De Kloet, R. Yehuda, D. Malaspina, T.M. Kranz, Early life
+stress eﬀects on glucocorticoid — BDNF interplay in the Hippocampus, Front. Mol.
+Neurosci. 8 (2015), https://doi.org/10.3389/fnmol.2015.00068.
+[94] P.J. Brunton, Programming the brain and behaviour by early-life stress: a focus on
+neuroactive steroids neuroendocrinology, J. Neuroendocrinol. 27 (2015) 468 –480,
+https://doi.org/10.1111/jne.12265.
+[95] M. van Bodegom, J.R. Homberg, M.J.A.G. Henckens, Modulation of the hy-
+pothalamic-pituitary-adrenal axis by early life stress exposure, Front. Cell.
+Neurosci. 11 (2017), https://doi.org/10.3389/fncel.2017.00087.
+[96] S.L. Gourley, A.M. Swanson, A.J. Koleske, Corticosteroid-induced neural re-
+modeling predicts behavioral vulnerability and resilience, J. Neurosci. 33 (2013)
+3107–3112, https://doi.org/10.1523/JNEUROSCI.2138-12.2013.
+[97] C. Venero, J. Borrell, Rapid glucocorticoid e ﬀects on excitatory amino acid levels
+in the hippocampus: a microdialysis study in freely moving rats, Eur. J. Neurosci.
+11 (1999) 2465 –2473.
+[98] V. Manatos, F. Stylianopoulou, A. Stamatakis, Neuroscience Letters the levels of
+the GluN2A NMDA receptor subunit are modi ﬁed
+ in both the neonatal and adult
+rat brain by an early experience involving denial of maternal contact, Neurosci.
+Lett. 612 (2016) 98 –103, https://doi.org/10.1016/j.neulet.2015.12.005.
+[99] U.V. Nägerl, N. Eberhorn, S.B. Cambridge, T. Bonhoe ﬀer, Bidirectional activity-
+dependent morphological plasticity in hippocampal neurons, Neuron 44 (2004)
+759–767.
+[100] I.S. Stein, J.A. Gray, K. Zito, Non-ionotropic NMDA receptor signaling drives ac-
+tivity- induced dendritic spine shrinkage, J. Neurosci. 35 (2015) 12303 –12308,
+https://doi.org/10.1523/JNEUROSCI.4289-14.2015.
+[101] J.H. Birnbaum, J. Bali, L. Rajendran, R.M. Nitsch, C. Tackenberg, Calcium ﬂux-
+independent NMDA receptor activity is required for A β oligomer-induced sy-
+naptic loss, Cell Death Dis. 6 (2015) e1791 –9, https://doi.org/10.1038/cddis.
+2015.160.
+[102] P.R. Lee, D. Brady, J.I. Koenig, Corticosterone alters N -methyl- D -aspartate re-
+ceptor subunit mRNA expression before puberty, Mol. Brain Res. 115 (2003)
+55–62.
+[103] S.L. Patterson, T. Abel, T.A.S. Deuel, K.C. Martin, J.C. Rose, E.R. Kandel,
+Recombinant BDNF rescues de ﬁcits in basal synaptic transmission and hippo-
+campal LTP in BDNF knockout mice, Neuron 16 (1996) 1137 –1145.
+[104] C.S. Rex, C. Lin, E.A. Krama, L.Y. Chen, C.M. Gall, G. Lynch, Brain-derived neu-
+rotrophic factor promotes long-term potentiation-related cytoskeletal changes in
+adult Hippocampus, J. Neurosci. 27 (2007) 3017 –3029, https://doi.org/10.1523/
+JNEUROSCI.4037-06.2007.
+[105] P.A. Dijkhuizen, A. Ghosh, Molecular and cell biological mechanisms of neuronal
+network development and synapse formation, Prog. Brain Res. 147 (2005) 15 –27.
+[106] O. von Bohlen und Halbach, V. von Bohlen und Halbach, BDNF e ﬀects on dendritic
+spine morphology and hippocampal function, Cell Tissue Res. 373 (2018)
+729–741.
+[107] M. Roceri, W. Hendriks, G. Racagni, B.A. Ellenbroek, M.A. Riva, Early maternal
+deprivation reduces the expression of BDNF and NMDA receptor subunits in rat
+hippocampus, Mol. Psychiatry 7 (2002) 609 –616, https://doi.org/10.1038/sj.mp.
+4001036.
+[108] J. Faure, J.D.K. Uys, L. Marais, D.J. Stein, W.M.U. Daniels, Early maternal se-
+paration followed by later stressors leads to dysregulation of the HPA-axis and
+increases in hippocampal NGF and NT-3 levels in a rat model, Metab. Brain Dis. 21
+(2006) 172 –179, https://doi.org/10.1007/s11011-006-9013-6.
+[109] T.M. Pham, B. Winblad, A. Granholm, A.H. Mohammed, Environmental in ﬂuences
+on brain neurotrophins in rats, Pharmacol. Biochem. Behav. 73 (2002) 167 –175.
+[110] F. Jeanneteau, M.V. Chao, Are BDNF and glucocorticoid activities calibrated?
+Neuroscience 239 (2013) 173 –195, https://doi.org/10.1016/j.neuroscience.2012.
+09.017.
+A.
+Papadakakis, et al. Behavioural Brain Research 372 (2019) 112023
+10

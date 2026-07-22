@@ -1,0 +1,804 @@
+[p.1] ARTICLE OPEN
+Music prevents stress-induced depression and anxiety-like
+behavior in mice
+Qiang Fu 1,2, Rui Qiu 1,2, Lei Chen 3, Yuewen Chen 4,5 ✉, Wen Qi 6 ✉ and Yong Cheng 1,3
+© The Author(s) 2023
+Depression is the most prevalent psychiatric disorder worldwide and remains incurable; however, there is little research on its
+prevention. The leading cause of depression is stress, and music has been hypothesized to alleviate stress. To examine the potential
+beneﬁcial effects of music on stress and depression, we subjected mice to chronic unpredictable mild stress (CUMS) during the day
+and music at night. Strikingly, our results indicated that music completely prevented CUMS-induced depression and anxiety-like
+behaviors in mice, as assessed by the open ﬁeld, tail suspension, sucrose preference, novelty suppressed feeding, and elevated plus
+maze tests. We found that listening to music restored serum corticosterone levels in CUMS mice, which may contribute to the
+beneﬁcial effects of music on the mouse brain, including the restoration of BDNF and Bcl-2 levels. Furthermore, listening to music
+prevented CUMS-induced oxidative stress in the serum, prefrontal cortex, and hippocampus of mice. Moreover, the CUMS-induced
+inﬂammatory responses in the prefrontal cortex and hippocampus of mice were prevented by listening to music. Taken together,
+we have demonstrated for the ﬁrst time in mice experiments that listening to music prevents stress-induced depression and
+anxiety-like behaviors in mice. Music may restore hypothalamus-pituitary-adrenal axis homeostasis, preventing oxidative stress,
+inﬂammation, and neurotrophic factor de ﬁcits, which had led to the observed phenotypes in CUMS mice.
+Translational Psychiatry          (2023) 13:317 ; https://doi.org/10.1038/s41398-023-02606-z
+INTRODUCTION
+The 21st century is an era of global economic development,
+strengthening of scienti ﬁc power [ 1], and ﬁerce competition. The
+working population is facing hardships, helplessness, competition,
+pressure, worries, and depression, and the number of people with
+depression is increasing [ 2]. Depression severely impairs psycho-
+social function and reduces the quality of life [ 3, 4]. Due to the
+burden of work and duties, many people experience chronic
+unpredictable stress. It is estimated that depression will account
+for the highest number of loss of healthy life years because of a
+disability by 2030 worldwide [ 5]. Up to 25% of the world ’s
+population is affected by depression and pathological anxiety,
+which impose a substantial health burden on the contemporary
+society [ 6].
+Depression has an unknown etiology and complex symptoms
+[7]. In recent years, the incidence of depression has been
+increasing annually with an increase in social pressure and an
+accelerated pace of life [ 8]. Its common clinical manifestations
+include obvious anxiety, anhedonia, pessimism, and suicidal
+tendency [ 9, 10]. Despite its complex mechanisms, increasing
+evidence has identi ﬁed the involvement of neurotrophic factors,
+inﬂammatory cytokines, the hypothalamus-pituitary-adrenal (HPA)
+axis, and oxidative stress/anti-oxidative stress systems in the
+pathophysiology [11–13]. HPA-axis disorders play a key role in the
+development of depression. Clinical tests have shown that
+depression is often accompanied by hyperactivation of the HPA
+axis, which is mainly characterized by increased cortisol levels
+[14–17].
+Although current treatments for depression include chemicals,
+peptides, and gene therapies, nearly one-third of patients with
+depression are insensitive to existing drugs [ 18–21]. Moreover, the
+blood-brain barrier limits most drugs from reaching the brain,
+leading to unsatisfactory therapeutic outcomes [ 22]. Current
+regimens used to treat depression have many adverse effects
+and a negative impact on patient health. Therefore, there is an
+urgent need to develop alternative therapies with a higher
+efﬁ
+cacy and fewer side effects [ 23].
+The 21st century is an era of high admiration for pure art [ 24]. In
+the context of globalization, art is the fusion, projection, and
+reﬂection of cultures, contexts, things, self, history, and civilization
+process. Since the beginning of the 21st century, owing to the
+rapid development of technology, increased productivity, eco-
+nomic integration, and mutual in ﬂuence of exchanges between
+different cultural backgrounds, art, in the process of globalization,
+has increasingly assumed a contemporary character that resonates
+greatly with the present generation. Music is an art that re ﬂects
+the real-life emotions of human beings. It is an artistic language
+that expresses or holds people ’s feelings, conveys emotions more
+Received: 22 March 2023 Revised: 14 September 2023 Accepted: 20 September 2023
+1Institute of National Security, Center on Translational Neuroscience, Minzu University of China, Beijing, China. 2School of Ethnology and Sociology, Minzu University of China,
+Beijing, China. 3College of Life and Environmental Sciences, Minzu University of China, Beijing, China. 4Chinese Academy of Sciences Key Laboratory of Brain Connectome and
+Manipulation, Shenzhen Key Laboratory of Translational Research for Brain Diseases, The Brain Cognition and Brain Disease Institute, Shenzhen Ins titute of Advanced Technology,
+Chinese Academy of Sciences; Shenzhen –Hong Kong Institute of Brain Science –Shenzhen Fundamental Research Institutions, Shenzhen, Guangdong 518055, China.
+5Guangdong Provincial Key Laboratory of Brain Science, Disease and Drug Development, HKUST Shenzhen Research Institute, Shenzhen, Guangdong 51805 7, China. 6College of
+Dance, Minzu University of China, Beijing, China. ✉email: yw.chen1@siat.ac.cn; wonderful_qi@126.com
+www.nature.com/tpTranslational Psychiatry
+1234567890();,:\n[p.2] directly than ordinary language, and is associated with beauty
+[25]. Music therapy treats patients with physiological or psycho-
+social diseases using rhythms and tones, and is one of the most
+effective methods of spiritual healing for psychosomatic disorders
+[26]. Music can help patients better express their emotions and
+promote the communication of inner emotions [ 26, 27]. It can be a
+good preventative measure against prenatal depression [ 28, 29].
+Music therapy is often used as an adjunct in the treatment of
+depression and has become widely popular in developed
+countries such as the United States [ 30, 31]. However, limited
+research has been conducted on the mechanisms by which music
+prevents depression. We analyzed the effect of music on a mouse
+model of chronic unpredictable mild stress (CUMS) using
+biomedical methods to explore its possible mechanism of action
+in preventing depression.
+MATERIALS AND METHODS
+Animal preparation
+Male C57BL/6 mice (7 weeks old, 22 ± 1.5 g) were purchased from Fang
+Yuanyuan Breeding Farm (Beijing, China). The animals were raised at
+23 ± 1 °C and 50 ± 1% relative humidity under a 12-h light/dark cycle (lights
+on from 8 a.m. to 8 p.m.) and provided ad libitum access to a standard diet
+and drinking water. All animal experiments in this study were conducted in
+accordance with the National Institutes of Health Laboratory Animal Care
+and Use Guidelines (NIH Publication No. 80-23) and approved by the
+Animal Care and Use Committee of Minzu University of China. We divided
+the mice into four groups, control ( n = 6), CUMS ( n = 10), Music ( n = 6),
+and CUMS +Music ( n = 14), respectively.
+Music and CUMS induction
+CUMS was induced as previously described [ 32]. Brie ﬂy, CUMS mice were
+induced by the use of several stressors including restraint (4 h), cage tilt
+(45° for 24 h), wet bedding (24 h), food and/or water deprivation (24 h), tail
+nip (1 cm from the end of the tail for 3 min), cold water swimming (4 °C for
+3 min), and light inversion (24 h). Mice were housed individually and
+exposed to three different stressors daily.
+CUMS+Music mice listened to music for 1.5 h each night from 20:30 to
+22:00. The music player was located approximately 2 m away from the
+mice, and music was played in a random order from the song list to
+simulate the listening pattern of the normal population. Regarding the
+selection of music, in the research endeavor undertaken by the team
+specializing in music studies, a carefully curated collection of 25 musical
+pieces (detailed music frequency see Table 1) was assembled to facilitate
+auditory stimulation experiments involving murine subjects. The compila-
+tion exhibits a comprehensive range of musical styles that extend across
+various historical periods, encompassing the Baroque, Classical, and
+Romantic eras. As for musical genres, the assortment presents a diverse
+selection of Eastern and Western instrumental and vocal compositions,
+integrating instruments such as the piano, ﬂute, harp, violin, guqin, and
+Cucurbit ﬂute. The vocal repertoire comprises operatic arias, indigenous
+folk songs, and contemporary popular tunes, with a particular emphasis
+placed on the rich legacy of traditional Chinese ethnic and folk music
+originating from a multitude of cultural groups, including Han, Tibetan,
+Mongolian, Dai, and Uighur.
+Behavioral tests
+The second day after the mice were treated with CUMS and/or music for
+28 days, they were subjected to behavioral tests. Behavioral tests were
+conducted in a quiet environment and scored by the same researcher. The
+Table 1. Music list.
+No. Composation Composer Genre Time (s) Frequency (Hz)
+1 Piano Concerto No.23 in A Major, K.488 Wolfgang Amadeus Mozart Piano 341 172 –20,112
+2 Melodie Christopf Willibald Gluck Violin 196 215 –18,992
+3 Serenade in G major, K525 Wolfgang Amadeus Mozart String quartet 322 215 –20,241
+4 Tempo di Minuetto in the Style of Gaetano
+Pugnani
+Fritz Kreisler Violin 216 388 –20,284
+5 Romantic Pieces, Op.75 No.1 Antonín Leopold Dvo řák Violin 194 215 –22,006
+6 Greensleeves King Henry VIII Harp 245 258 –11,585
+7 12 Variations on “Ah, vous dirai-je Maman ” in C
+major K.265
+Wolfgang Amadeus Mozart Piano 277 388 –19,165
+8 Hearing the soft rain amid the mountains Yi Su Guqin 332 234 –20,531
+9 The Nightingale Alexander Aleksandrovich
+Alyabyev
+Song 271 86 –20,069
+10 Summer Joe Hisaishi Piano 153 258 –11,413
+11 Down By the Salley Gardens Joanie Madden Flute 229 215 –20,370
+12 Improvisation for March of Time Eddie Condon Jazz 182 172 –20,112
+13 Skylines at dawn Nameless Piano 217 215 –16,021
+14 The eternity of the moment Haiyang Zhao Piano 161 43 –7235
+15 Silver stars and milk way in the mind CMJ Piano 220 94 –20,578
+16 Amid brooks in deep mountains Yi Su Piano 228 188 –19,734
+17 Songs of the moon Nameless Song 208 172 –20,370
+18 Mother in dream Lag Basuron Song 225 258 –20,284
+19 Moonlight shining on you Nameless Song 171 345 –17,097
+20 Fernleaf Hedge Bamboo in the moonlight Guangnan Shi Cucurbit ﬂute 277 86 –20,155
+21 Melancholia or mirth July Piano 234 172 –20,112
+22 Ballade pour Adeline Paul de Senneville Piano 158 43 –20,112
+23 Nocturne in G Major, Op.37 No.2 Fryderyk Franciszek Chopin Piano 398 172 –5685
+24 Waltz, Op. 70 No.1 in G-Flat Major Fryderyk Franciszek Chopin Piano 114 345 –20,112
+25 Prelude in C Major, BWV846 Johann Sebastian Bach Piano 147 172 –20,155
+Q. Fu et al.
+2
+Translational Psychiatry          (2023) 13:317\n[p.3] mice were transferred to the testing room at least 3 h before the
+behavioral tests.
+Sucrose preference test . A sucrose preference test (SPT) was used to test
+the preference of mice for sugar to evaluate anhedonia [ 33]. Brie ﬂy, the
+mice were exposed to one bottle of 1% (w/v) sucrose solution for three
+days to habituate them to the solution. The mice were then exposed to
+both tap water and sucrose solution bottles for 24 h to obtain a sucrose
+preference baseline. Finally, the mice were subjected to a 12 h SPT, in
+which tap water and sucrose solution were provided in identical bottles.
+The positions of the two bottles were switched every 6 h and sucrose and
+water consumptions were measured simultaneously. The preference for
+sucrose solution consumption was calculated as percentage preference =
+[(sucrose intake/total intake) × 100]. The tests were performed by an
+individual who was blinded to the treatment status of the animals.
+Open ﬁeld test. An open ﬁeld test (OFT) was used to assess the locomotor
+and exploratory behaviors of the mice [ 34]. The open ﬁeld apparatus was
+divided into 16 equal squares. The mice were placed in the center. After a
+2 min habituation period, the total movement distance, time spent in the
+center, and number of times the mice crossed the center were recorded for
+3 min. The tests were performed by an individual who was blinded to the
+treatment status of the animals.
+Tail suspension test . A tail suspension test (TST) was used to assess for the
+presence of despair/depression-like behaviors in mice [ 35]. The mice were
+suspended from the ceiling of a box with an adhesive tape placed
+approximately 1 cm below the tail tip. After a 1 min habituation period,
+immobility duration was measured for 5 min. If the time exceeds 5 min, it is
+also recorded as 5 min. The tests were performed by an individual who was
+blinded to the treatment status of the animals.
+Novelty-suppressed feeding . The mice were starved for 24 h before being
+subjected to the test [ 36]. A white ﬁlter paper was placed in the middle of
+the testing device (50 × 50 × 45 cm), and food particles were placed on the
+paper. Individual mice were positioned on the corner grid of the ﬂoor of
+the testing device and allowed to roam at will. The period of inactivity
+before the mice started eating was recorded.
+Elevated plus maze . The elevated plus maze (EPM) is one of the most
+commonly used rodent tests for assessing anxiety-like behavior, as
+described in our previous study [ 37]. The apparatus comprises two
+opposing open arms (50 × 10 cm) and two opposing wall-enclosed arms
+(50 × 10 × 40 cm). The maze is placed on a 50 cm high pedestal. The
+animals were acclimatized to the testing room for 30 –45 min before the
+experiment. Each rat was placed on the central platform facing one of the
+open arms. The number of entries into the open and closed arms and the
+time spent in each arm in 5 min were recorded by an observer blinded to
+the animal groups. After each trial, the apparatus was wiped with 30%
+isopropanol to avoid odor effects.
+Quantitative real-time polymerase chain reaction
+Total RNA was extracted from the hippocampus and prefrontal cortex of
+the mice using TRIzol reagent (Invitrogen, #15596026) [ 38]. Quantitative
+real-time polymerase chain reaction (qRT-PCR) was performed using
+2×SYBR Green qPCR Master Mix (#Q341; Vazyme) in the StepOnePlus
+instrument (Applied Biosystems). The qPCR primer sequences used are
+listed in Table 2.
+Detection of oxidative markers
+Oxidative markers were detected using the enzymatic colorimetric test
+following the manufacturer ’s instructions. Brie ﬂy, peripheral serum
+samples (0.8 mL) were collected from the retroorbital vessels of the mice,
+and then used to obtain serum layers (300 μL) by centrifuging them for
+20 min at 4 °C at a speed of 4000 rpm. To determine oxidative stress levels,
+blood serum and hippocampal tissue samples were obtained from the
+mice. The levels of malondialdehyde (MDA), glutathione peroxidase (GSH-
+Px), catalase (CAT), nitric oxide (NO), superoxide dismutase (SOD), and
+corticosterone and total antioxidant capacity (T-AOC) were measured using
+a kit from the Nanjing Jiancheng Bioengineering Institute.
+Immunoﬂuorescence
+Animals were sacri ﬁced after they were treated with CUMS and/or music
+for 28 days and behavioral tests. These were achieved by intracardial
+perfusion with saline, and the brains of the mice were ﬁxed with 4%
+paraformaldehydeFixed brains were dehydrated once in 20% sucrose and
+twice in 30% sucrose (both in phosphate-buffered saline [PBS]). The
+coronal sections were cut to a thickness of 35 μm, and washed with 1×
+PBS. The sections were blocked with a blocking buffer (1% BSA (Bovine
+Serum Albumin) + 0.3% Triton X-100 + 10% goat serum in PBS) for one
+hour at room temperature after three washes with 1× PBS. The coronal
+sections were then incubated with the primary antibody rabbit anti-
+doublecortin (DCX, Cell Signaling Technology, #14082, 1:400), rabbit anti-
+glial ﬁbrillary acidic protein (GFAP, Cell Signaling Technology, #14082,
+1:400), mouse anti-ionized calcium-binding adapter molecule 1 (IBA-1, Cell
+Signaling Technology, #14082, 1:400), and rabbit anti-microtubule
+association protein-2 (MAP2, Cell Signaling Technology, #14082, 1:400)
+additionally for an overnight at 4 °C, followed by an additional two hours at
+room temperature with ﬂuor conjugated secondary antibodies of goat
+anti-rabbit IgG (Alexa Fluor ® 594 conjugate, Invitrogen, #A11008, 1:1000)
+and goat anti-mouse IgG (Alexa Fluor ® 594 conjugate, Invitrogen, #A21422,
+1:1000). The sections were washed three times and stained with 4 ′,6-
+diamidino-2-phenylindole solution. Finally, images were captured using a
+Leica TCS SP8 confocal microscope (Leica Microsystems, Germany) [ 39].
+Data analysis
+GraphPad Prism software (version 5.0) was used for statistical analysis.
+One-way ANOVA followed by Tukey ’s multiple comparisons test was used
+to assess differences between the groups. P < 0.05 was regarded as
+statistically signiﬁcant, and all data are presented as mean ± standard error
+of mean.
+RESULTS
+Music prevents depression and anxiety-like behavior in CUMS
+mice
+Behavioral tests are the most effective means of assessing visual
+response to depression- and anxiety-like behavior in mice to verify
+whether music can prevent depression- and anxiety-like behaviors
+caused by chronic high-intensity stress. We established a CUMS
++Music mouse model by subjecting the mice to high-intensity
+stimulation during the day and listening to music for relaxation at
+Table 2. Gene-speciﬁc primers for qRT-PCR.
+Gene Name Sequence (5 ′–3′)
+IL-6-Forward TGGCTAAGGACCAAGACCATCCAA
+IL-6-Reverse AACGCACTAGGTTTGCCGAGTAGA
+IL-10-Forward CCAAGGTGTCTACAAGGCCA
+IL-10-Reverse GCTCTGTCTAGGTCCTGGAGT
+IL-1β-Forward AGCTGGAGAGTGTGGATCCC
+IL-1β-Reverse CCTGTCTTGGCCGAGGACTA
+TNF-α-Forward GGCTTTCCGAATTCACTGGAG
+TNF-α-Reverse CCCCGGCCTTCCAAATAAA
+TGF-β-Forward GTGGAAGATTACAAGCCACCA
+TGF-β-Reverse GGGTCTGAGAACCATCTGTTAGG
+iNOS-Forward CAGCTGGGCTGTACAAACCTT
+iNOS-Reverse CATTGGAAGTGAAGCGTTTCG
+Bcl2-Forward GGCCTTCTTTGAGTTCGGTG
+Bcl2-Reverse GCATGCTGGGGCCATATAGTT
+Bax-Forward TGCTAGCAAACTGGTGCTCA
+Bax-Reverse CTTGGATCCAGACAAGCAGC
+BDNF-Forward GGTCTGACGACGACATCACT
+BDNF-Reverse TAGAGGAGGCTCCAAAGGCA
+Actin-Forward AGACCTCTATGCCAACACAGT
+Actin-Reverse TCCTGCTTGCTGATCCACAT
+Q. Fu et al.
+3
+Translational Psychiatry          (2023) 13:317\n[p.4] night. In this way, we simulated the conditions of humans who are
+under intense stress during the day owing to factors such as work
+or family and relax by listening to music at night.
+The experimental procedure is illustrated in Fig. 1A. CUMS mice
+that were stimulated only showed shorter paths through central
+areas, a shorter total distance of movement in the OFT (Fig. 1B),
+whereas CUMS +Music mice that were stimulated and relaxed by
+music were more active.
+Animals with depression show decreased interest in food intake
+and appetite. Novelty-suppressed feeding (NSF) experiments can
+be used to observe changes in animals without euphoria. CUMS
+mice required more time to eat food in the novel environment
+than CUMS +Music mice (Fig. 1C).
+The EPM is used to evaluate the anxiety response of rodents.
+When mice face a new condition (open arm), they are curious to
+explore; when they are kept in a dark environment (closed arm),
+conﬂict between the two occurs, resulting in anxiety. The height of
+the entire maze from the ground for animals is equivalent to that
+of the edge of a cliff for humans, which can lead to fear and
+anxiety in animals. The anxiety behavior of the mice was evaluated
+by comparing the retention time and distance covered in the
+open and closed arms. CUMS +Music mice showed a greater
+ability to explore, while CUMS mice preferred to hide in a dark and
+claustrophobic environment (Fig. 1D).
+In the tail suspension experiment, the animals were hung with
+their heads facing downward, and to overcome the abnormal
+body position, they ﬁrst struggled to escape. When they were
+unable to get out of the situation, they became intermittently
+motionless, showing “behavioral despair. ” CUMS+Music mice did
+not exhibit despair, whereas CUMS mice exhibited severe
+behavioral despair (Fig. 1E).
+Rodents have a strong natural desire for sweet foods and will
+selectively drink the sweetened solution when given a free choice
+between two drinks such as a sucrose solution and plain water. All
+groups in this experiment, except the CUMS group, showed a
+preference for sucrose solution. However, the CUMS group in this
+experiment was not inclined to drink the sucrose solution because
+of the depression-like behavior caused by chronic stress (Fig. 1F).
+Overall, the CUMS +Music mice did not exhibit depression-like or
+anxious behavior, even when subjected to high levels of stress.
+Music prevents oxidative stress in serum and brain tissues of
+mice
+Reactive oxygen species (ROS) have been suggested to play a role
+in depression [ 40]. We investigated whether music can regulate
+antioxidant capacity and ROS levels. We also indirectly assessed
+the levels of antioxidant enzymes [ 11].
+NO and MDA levels are often measured to determine the
+damage caused by oxidative stress [ 41]. SOD is a vital
+component of the antioxidant enzyme system in biological
+systems. SOD exhibits an extremely strong anti-in ﬂammatory
+effect. GSH-Px is an important peroxidase enzyme widely present
+in organisms. CAT is an antioxidant enzyme found in almost all
+organisms. Its main role is to catalyze the breakdown of
+hydrogen peroxide into water and oxygen and to remove
+hydrogen peroxide from the body, thus protecting cells from the
+toxic effects of hydrogen peroxide. It is one of the key enzymes
+of the biological defense system and provides an antioxidant
+defense mechanism for the organism [ 42]. T-AOC refers to the
+total antioxidant levels of various antioxidant substances and
+enzymes and can be used to evaluate the antioxidant capacity of
+bioactive substances.
+The results showed that NO, SOD, GSH-Px, MDA, and CAT
+expression levels and T-AOC were abnormal in the serum
+(Fig. 2A–F) and cortical and hippocampal tissues (Fig. 2G–L) of
+CUMS mice compared to those of the control mice, while no
+abnormalities were found in CUMS +Music mice.
+Music prevents elevated levels of in ﬂ
+ammatory factors in
+serum and brain tissues of mice
+Depression is a long-lasting and persistent mood disorder in
+which the regulatory mechanisms of neuroin ﬂammation play a
+contributing role to the physiopathology. To verify whether music
+can prevent abnormal expression of in ﬂammatory factors, we
+examined the RNA expression levels of interleukin 6 (IL-6),
+interleukin 1 beta (IL-1 β), inducible nitric oxide (iNOS), tumor
+necrosis factor- α (TNF-α), and transforming growth factor- β
+(TGF-β) in mouse cortical and hippocampal tissues (Fig. 3A–E).
+The results showed that in ﬂammatory factor levels were elevated
+in CUMS mice compared to that in controls, and those in CUMS
++Music mice were essentially similar to those in controls. We also
+examined the expression of the in ﬂammatory suppressor inter-
+leukin 10 (IL-10), which was downregulated in the CUMS group.
+IL-10 was upregulated in the CUMS +Music group and was higher
+than that in the control group (Fig. 4F).
+Microglia play a key role in neuroin ﬂammation by initially
+suppressing the progression of neuroin ﬂammation and subse-
+quently exacerbating the in ﬂammatory response via in ﬂammatory
+factors and interacting with glial cells, such as astrocytes, to
+further exacerbate neurotoxicity. In addition, both astrocytes and
+microglial cells were mediators for neurogenesis in DG, given that
+microglia in the DG region transfer a microglia-enriched micro-
+RNA, miR-146a-5p, via secreting exosomes to inhibit neurogenesis
+in depression [ 43]. Furthermore, astrocytes have been found to
+mediate cholinergic regulation of adult hippocampal DG neuro-
+genesis [ 44]. We therefore analyzed microglia and astroglia in the
+DG using immuno ﬂuorescence experiments and showed that
+microglia in the DG of CUMS mice were increased in number and
+size in the cytosol (Fig. 4I). The number of astrocytes was increased
+and the level of in ﬂammation was elevated. CUMS +Music mice
+were similar to control mice in this aspect (Fig. 4G).
+Music prevents neuronal death and promotes neurogenesis
+Patients with depression exhibit massive hippocampal neuronal
+decay and loss [ 45]. To verify whether music is related to neuronal
+death, we labeled MAP2 by immuno ﬂuorescence to determine the
+number of neurons. The results showed that the number of
+neurons in the DG was signi ﬁcantly reduced in CUMS mice, while
+no signi ﬁcant reduction was observed in CUMS +Music mice
+(Fig. 4B). Overexpression of Bax (B-cell lymphoma-2 associated X
+protein), a water-soluble protein homologous to Bcl-2 (B-cell
+lymphoma-2) and coded by an apoptosis-promoting gene in the
+Bcl-2 gene family, antagonizes the protective effect of Bcl-2 and
+leads to cell death. We found decreased Bcl-2 mRNA expression
+levels (Fig. 4F) and increased Bax mRNA expression levels (Fig. 4E)
+in the cortical and hippocampal tissues of CUMS mice, whereas
+CUMS+Music mice were similar to the control mice in this aspect.
+This suggests that music may inhibit abnormal death of
+hippocampal neurons.
+DCX is a protein speci ﬁcally expressed in neural precursor cells
+and newborn neurons. It can also be used to identify early
+immature neurons. Immuno ﬂuorescence results showed that DCX
+expression was signi ﬁcantly lower in the DG of CUMS mice than of
+control mice, and there was no signi ﬁcant difference between
+CUMS+Music and control mice (Fig. 4A).
+Music prevents the HPA axis activation
+Brain-derived neurotrophic factor (BDNF) is a member of the nerve
+growth factor family, and as an important neurotrophic factor, it has
+neuroprotective functions and plays an important role in the
+formation of synapses and the maintenance of neural protrusion
+morphology. Corticosterone dec reases BDNF expression in the
+hippocampus. Thus, decreased BDNF levels may be an important
+link between corticosterone leve ls and hippocampal injury. We
+measured corticosterone expre ssion levels in cortical and
+Q. Fu et al.
+4
+Translational Psychiatry          (2023) 13:317\n[p.5] Fig. 1 Music prevents depression and anxiety-like behavior in CUMS mice. A Experimental design: schematic representation of the music
+prevention. B Music prevents the decreased explore central area time and total traveling distance induced by CUMS in the open ﬁeld test.
+C Music prevents the increase of preparation time to eat the food induced by CUMS in the novelty-suppressed feeding test. D Music inhibited
+the times decrease of open arms entries induced by CUMS in the elevated plus maze test. E Music prevents the increase of immobility times
+induced by CUMS in the tail suspension test. F Music prevents the decreased consumption of sucrose solution induced by CUMS in the
+sucrose preference test. All values are presented as means ± SEM. Control or Music n = 6, CUMS n = 10, CUMS + Music n = 14. * (#)P < 0.05;
+**(##)P < 0.01; *** (###)P < 0.001. OFT open ﬁeld test, NSF novelty-suppressed feeding, EPM elevated plus maze, TST tail suspension test, SPT
+sucrose preference test.
+Q. Fu et al.
+5
+Translational Psychiatry          (2023) 13:317\n[p.6] Fig. 2 Music prevents oxidative stress in serum and brain tissues of mice. A –L Music prevents abnormal expression of oxidative stress-
+related factors such as NO, SOD, GSH, MDA, CAT, T-AOC in the blood or hippocampus and prefrontal cortex of CUMS. All values are presented
+as means ± SEM. n = 6 per group. * (#)P < 0.05; ** (##)P < 0.01; *** (###)P < 0.001. NO nitric oxide, SOD superoxide dismutase, GSH glutathione
+peroxidase, MDA malondialdehyde, CAT catalase, T-AOC total antioxidant capacity.
+Q. Fu et al.
+6
+Translational Psychiatry          (2023) 13:317\n[p.7] Fig. 3 Music prevents elevated levels of in ﬂammatory factors in serum and brain tissues of mice. A –F Music prevents abnormal
+expression of in ﬂammation-related factors such as IL-6, IL-1 β,i N O S ,T N F -α,T G F -β, IL-10 in the hippocampus and prefrontal cortex of
+CUMS. G, H Representative ﬂuorescence micrographs showing the morphology and density of microglia in DG. H Music prevents the
+increase of microglia in the DG of CUMS. I, J Representative ﬂuorescence micrographs showing the m orphology and density of astrocyte
+in DG. J Music prevents the increase of astrocytes in the D G of CUMS. All values are presented as means ± SEM. n = 6 per group
+*(#) P <0 . 0 5 ;**(##) P <0 . 0 1 ;***(###) P < 0.001. IL-6 interleukin 6, IL-1 β interleukin 1 beta, iNOS inducible nitric oxide, TNF- α tumor necrosis
+factor- α,T G F -β transforming growth factor- β, IL-10 interleukin 10, DAPI 2-(4-Amidinophenyl )-6-indolecarbamidine dihydrochloride, GFAP
+glial ﬁbrillary acidic protein, IBA1 ionized c alcium-binding adapter molecule 1.
+Q. Fu et al.
+7
+Translational Psychiatry          (2023) 13:317\n[p.8] Fig. 4 Music prevents neuronal death and promotes neurogenesis. A , B Representative ﬂuorescence micrographs showing the morphology
+and density of immature neurons and neurons in DG. C Music prevents the loss of DCX cell induced by CUMS in DG. D Music prevents the loss
+of MAP2 cell induced by CUMS in DG. E, F Music prevents the abnormal expression of apoptosis-related factors such as Bax, Bcl-2 in the
+hippocampus and prefrontal cortex of CUMS. All values are presented as means ± SEM. n = 6 per group. * (#)P < 0.05; ** (##)P < 0.01;
+***(###)P < 0.001. DAPI 2-(4-Amidinophenyl)-6-indolecarbamidine dihydrochloride, DCX doublecortin, MAP2 microtubule association protein-2,
+Bax B-cell lymphoma-2 associated X protein, Bcl-2 B-cell lymphoma-2.
+Q. Fu et al.
+8
+Translational Psychiatry          (2023) 13:317\n[p.9] hippocampal tissues and showed that corticosterone mRNA expres-
+sion levels were signi ﬁcantly higher in CUMS mice and not
+signiﬁcantly different between control and CUMS +Music mice
+(Fig. 5A). BDNF mRNA expression was signi ﬁcantly reduced in the
+cortical and hippocampal tissues of CUMS mice, while CUMS+Music
+mice were similar to the control mice in this aspect (Fig. 5B).
+DISCUSSION
+Previous animal studies have suggested that music alleviates pain
+and improves social behaviors under various pathophysiological
+conditions [ 46–49]. In addition, it has been reported that music
+adjuvant therapy enhances the ef ﬁcacy of antiepileptic drugs in
+various temporal lobe epilepsy models [ 46]. Interestingly, results
+from Yang et al. showed that music can induce the opening of
+blood-brain barrier in mice, suggesting the ability of music to
+regulate the interaction between the brain and peripheral system
+[50]. Here we have demonstrated for the ﬁrst time in mice
+experiments that music can prevent depression-like behavior. It
+protects neurons from loss and ensures normal homeostasis by
+regulating the HPA axis, affecting the release of corticosterone
+and BDNF levels, and the levels of oxidative stress and
+Fig. 5 Music prevents the HPA axis activation. A Music prevents the increase of corticosterone by CUMS in qRT-PCR. B Music prevents
+CMUS-induced BDNF downregulation. C Schematic diagram of how music prevents stress-induced depression and anxiety-like behavior. All
+values are presented as means ± SEM. n = 6 per group. * (#)P < 0.05; ** (##)P < 0.01; *** (###)P < 0.001. CORT corticosterone, BDNF brain-derived
+neurotrophic factor, ROS reactive oxygen species, HP A hypothalamus-pituitary-adrenal.
+Q. Fu et al.
+9
+Translational Psychiatry          (2023) 13:317\n[p.10] inﬂammation (Fig. 5C). Although mice can use ultrasonic
+vocalization, the frequency of the music can be received by both
+mice and humans (less than 20 kHz). In addition, it is known that
+some sounds and vocalizations are aversive to rodents, but Yan
+et al. found that none of the different types of music they played,
+including upbeat, slow, and heavy metal music, caused aversive or
+fear responses in the mice [ 51]. These results therefore support the
+translation of these pre-clinical ﬁndings to humans.
+Music is often used clinically as an adjunctive treatment for
+depression and can effectively relieve stress [ 27, 52]. However, the
+potential ability of music to prevent depression was not studied
+before. Here we prevented depression by establishing a CUMS
+mouse model that was exposed to music for 1.5 h every night to
+mimic the prevention of depression by listening to music in
+humans after experiencing high-intensity stress, which was tested
+behaviorally after 28 days. In the behavioral experiments in which
+depression-like behavior was assessed, including the OFT, novelty-
+suppressed feeding, EPM, TST, and SPT, mice that received stimuli
+and listened to music (CUMS +Music) did not show depression-like
+behavior. Even in the EPM experiment, mice listening to music
+(Music and CUMS +Music mice) had longer open arm duration
+than normal mice, which seems to indicate that music can prevent
+mice from developing depression-like behaviors and that listening
+to music can render mice more active.
+Depression is the most prevalent psychiatric disorder worldwide;
+however, its neural mechanism remains elusive. Although we do
+not fully understand how the brain resists stress, the most
+inﬂuential factor is the “stress hypothesis ” [53]. This hypothesis
+suggests that the hypothalamus, pituitary, and adrenal glands
+comprise the neuroendocrine regulatory system, also known as the
+HPA axis. The HPA axis is involved in controlling the response to
+stress and coordinating many physical activities. Stress induces
+inﬂammation and oxidative stress to over-activate the HPA axis,
+leading to the release of large amounts of corticosterone [ 54].
+Corticosterone is a glucocorticoid secreted by the adrenal cortex.
+Under stress and aging conditions, elevated plasma corticosterone
+levels can lead to morphological and functional damage in the
+hippocampus [ 55]. Corticosterone can cause a decrease in the
+expression of BDNF in the hippocampus, an important neuro-
+trophic factor that has neuroprotective functions and plays an
+important role in the formation of synapses and maintenance of
+neuroprotrusive morphology [ 56, 57]. Decreased BDNF levels are
+believed to be a direct cause of depression [ 58]. In consistent with
+the above hypothesis and ﬁndings, here we found increased
+corticosterone expression and substantial depletion of BDNF in the
+hippocampus and cortex of CUMS mice, whereas no abnormalities
+were found in CUMS +Music mice. This demonstrated that music
+protects the HPA axis from damage. Decreased BDNF in the brain is
+often accompanied by neuronal loss. Therefore, we examined the
+number of newborn neurons and neurons in the DG of the
+hippocampus and examined the mRNA levels of the apoptosis-
+affecting factors Bax and Bcl-2, showing that CUMS+Music mice do
+not suffer from signi ﬁcant neuronal loss.
+Depression is a chronic in ﬂammatory and oxidative stress
+disorder caused by stressors and the HPA axis plays a key role in
+the development of depression [ 59, 60]. To verify whether music
+protects CUMS mice from depression-like behaviors by altering
+oxidative stress levels, we examined the expressions of NO, SOD,
+GSH, MDA, CAT, and GSH-Px in the mouse hippocampus, cortex,
+and serum. Unsurprisingly, mice exposed to both stress and music
+(CUMS+Music) did not show abnormalities in the oxidative stress
+indicators, whereas mice exposed only to stress (CUMS) showed
+severe oxidative stress disorders. This suggests that music protects
+mice from the oxidative stress disorders caused by stress overload.
+Excessive stress not only disrupts oxidative stress but also causes
+an increase in in ﬂammatory factor levels. For validation of
+inﬂammatory factor level, we examined the expression of mRNAs
+of inﬂammatory factors such as IL-6, IL-1 β, iNOS, TNF- α, and TGF- β
+in the cortex and hippocampus. We also examined the activation/
+number of microglia and astrocytes in the DG, which indirectly
+reﬂect the level of in ﬂammation in the brain [ 61]. These results
+suggest that music may prevent abnormal neuroin ﬂammation. For
+example, the mRNA expression levels of pro-in ﬂammatory factors
+such as IL-6, IL-1 β, iNOS, TNF-α, and TGF-β were upregulated in the
+cortex and hippocampus of CUMS mice, and those of the anti-
+inﬂammatory factor IL-10 were downregulated. In addition,
+increased numbers of microglia and astrocytes are accompanied
+by increased levels of in ﬂammation, and CUMS mice had a higher
+number of cells in the hippocampal DG region. No abnormalities
+were observed in CUMS +Music mice. These results suggest that
+music may be effective in preventing elevated neuroin ﬂammation
+caused by stressful stimuli.
+Although we have provided strong pre-clinical evidence for a
+beneﬁcial effect of music to prevent depression, there are some
+limitations in this study. The ﬁrst limitation of this study is that we
+used only male mice to mimic human conditions. However, it is
+very likely that music could also prevent female mice from stress-
+induced depression, and this hypothesis needs validation with
+future investigations. Secondly, the mice are nocturnal animals.
+Ideally, the mice should be subjected to the CUMS at night and/or
+listening to the music during the day. However, it is well known
+that most researchers performed rodent experiments during the
+day. This phenomenon is largely due to the inconvenience to
+perform experiments at night, especially experiments that may
+need a certain period of time. The CUMS establishment
+experiments need a long time to complete each day, and thus it
+is very dif ﬁcult for the researchers to perform CUMS experiments
+at night. Nevertheless, with proper controls, it is very unlikely that
+this would affect the soundness of the conclusion found in this
+study. Finally, the gene expression pro ﬁle in auditory cortex of
+mice in response to music has not been evaluated, and future
+studies using RNA-seq analysis are necessary to strengthen our
+understandings on the bene ﬁcial effects of music.
+In conclusion, the neural mechanism by which music prevents
+anxiety- or depression-like behavior may be that music protects
+against the disruption caused by oxidative stress and increase in
+inﬂammation levels caused by severe stress in mice and prevents
+the HPA axis from releasing large amounts of corticosterone due
+to overexcitation, which leads to the downregulation of BDNF.
+Finally, it protects neurons from loss and maintains homeostasis.
+Therefore, we have demonstrated for the ﬁrst time in animal
+studies that music is effective in preventing depression-like
+behavior, which provides substantial evidence for clinical studies.
+In future, music should be explored as a more natural method of
+preventing depression.
+REFERENCES
+1. Xu J, Yang Y, Jia Z, Chang G, Zhang Y, Zhao M, et al. A systematic government-
+driven green development transformation strategy with Chinese characteristics:
+the case study of the Xining metropolitan area. Int J Environ Res Public Health.
+2023;20:1321.
+2. Martin K, Mullan Z, Horton R. Human health and environmental sustainability: the
+21st century ’s grand challenges. Lancet Glob Health. 2016;4:S1 –2.
+3. Charlson F, van Ommeren M, Flaxman A, Cornett J, Whiteford H, Saxena S. New
+WHO prevalence estimates of mental disorders in con ﬂict settings: a systematic
+review and meta-analysis. Lancet. 2019;394:240 –8.
+4. Malhi GS, Mann JJ. Depression. Lancet. 2018;392:2299 –312.
+5. Smith K. Mental health: a world of depression. Nature. 2014;515:181.
+6. Wang D, An SC, Zhang X. Prevention of chronic stress-induced depression-like
+behavior by inducible nitric oxide inhibitor. Neurosci Lett. 2008;433:59 –64.
+7. Wei ZX, Xie GJ, Mao X, Zou XP, Liao YJ, Liu QS, et al. Exosomes from patients with
+major depression cause depressive-like behaviors in mice with involvement of
+miR-139-5p-regulated neurogenesis. Neuropsychopharmacology. 2020;45:1050–8.
+8. Smith SM, Vale WW. The role of the hypothalamic-pituitary-adrenal axis in neu-
+roendocrine responses to stress. Dialogues Clin Neurosci. 2006;8:383 –95.
+Q. Fu et al.
+10
+Translational Psychiatry          (2023) 13:317\n[p.11] 9. Arnow BA, Blasey C, Williams LM, Palmer DM, Rekshan W, Schatzberg AF, et al.
+Depression subtypes in predicting antidepressant response: a report from the
+iSPOT-D trial. Am J Psychiatry. 2015;172:743 –50.
+10. Wray NR, Ripke S, Mattheisen M, Trzaskowski M, Byrne EM, Abdellaoui A, et al.
+Genome-wide association analyses identify 44 risk variants and re ﬁne the genetic
+architecture of major depression. Nat Genet. 2018;50:668 –81.
+11. Herken H, Gurel A, Selek S, Armutcu F, Ozen ME, Bulut M, et al. Adenosine
+deaminase, nitric oxide, superoxide dismutase, and xanthine oxidase in patients
+with major depression: impact of antidepressant treatment. Arch Med Res.
+2007;38:247–52.
+12. Kolber BJ, Boyle MP, Wieczorek L, Kelley CL, Onwuzurike CC, Nettles SA, et al.
+Transient early-life forebrain corticotropin-releasing hormone elevation causes
+long-lasting anxiogenic and despair-like changes in mice. J Neurosci.
+2010;30:2571–81.
+13. Cai S, Huang S, Hao W. New hypothesis and treatment targets of depression: an
+integrated view of key ﬁndings. Neurosci Bull. 2015;31:61 –74.
+14. Lok A, Mocking RJ, Ruhé HG, Visser I, Koeter MW, Assies J, et al. Longitudinal
+hypothalamic-pituitary-adrenal axis trait and state effects in recurrent depression.
+Psychoneuroendocrinology. 2012;37:892 –902.
+15. Keenan K, Hipwell A, Babinski D, Bortner J, Henneberger A, Hinze A, et al.
+Examining the developmental interface of cortisol and depression symptoms in
+young adolescent girls. Psychoneuroendocrinology. 2013;38:2291 –9.
+16. Burbridge S, Stewart I, Placzek M. Development of the neuroendocrine hypo-
+thalamus. Compr Physiol. 2016;6:623 –43.
+17. Joseph JJ, Golden SH. Cortisol dysregulation: the bidirectional link between
+stress, depression, and type 2 diabetes mellitus. Ann N. Y Acad Sci.
+2017;1391:20–34.
+18. Belzeaux R, Gorgievski V, Fiori LM, Lopez JP, Grenier J, Lin R, et al. GPR56/ADGRG1
+is associated with response to antidepressant treatment. Nat Commun.
+2020;11:1635.
+19. Davey CG, Chanen AM, Hetrick SE, Cotton SM, Ratheesh A, Amminger GP, et al.
+The addition of ﬂuoxetine to cognitive behavioural therapy for youth depression
+(YoDA-C): a randomised, double-blind, placebo-controlled, multicentre clinical
+trial. Lancet Psychiatry. 2019;6:735 –44.
+20. Meltzer-Brody S, Colquhoun H, Riesenberg R, Epperson CN, Deligiannidis KM,
+Rubinow DR, et al. Brexanolone injection in post-partum depression: two multi-
+centre, double-blind, randomised, placebo-controlled, phase 3 trials. Lancet.
+2018;392:1058–70.
+21. Murrough JW, Abdallah CG, Mathew SJ. Targeting glutamate signalling in
+depression: progress and prospects. Nat Rev Drug Discov. 2017;16:472 –86.
+22. El-Hage W, Leman S, Camus V, Belzung C. Mechanisms of antidepressant resis-
+tance. Front Pharm. 2013;4:146.
+23. Apazoglou K, Farley S, Gorgievski V, Belzeaux R, Lopez JP, Grenier J, et al. Anti-
+depressive effects of targeting ELK-1 signal transduction. Nat Med.
+2018;24:591–7.
+24. Greenberg DM, Matz SC, Schwartz HA, Fricke KR. The self-congruity effect of
+music. J Pers Soc Psychol. 2021;121:137 –50.
+25. Regier NG, Hodgson NA, Gitlin LN. Characteristics of activities for persons with
+dementia at the mild, moderate, and severe stages. Gerontologist. 2017;57:987–97.
+26. Gao Y, Wei Y, Yang W, Jiang L, Li X, Ding J, et al. The effectiveness of music
+therapy for terminally ill patients: a meta-analysis and systematic review. J Pain
+Symptom Manag. 2019;57:319 –29.
+27. Erkkilä J, Punkanen M, Fachner J, Ala-Ruona E, Pöntiö I, Tervaniemi M, et al.
+Individual music therapy for depression: randomised controlled trial. Br J Psy-
+chiatry. 2011;199:132 –9.
+28. Shiranibidabadi S, Mehryar A. Music therapy as an adjunct to standard treatment
+for obsessive compulsive disorder and co-morbid anxiety and depression: a
+randomized clinical trial. J Affect Disord. 2015;184:13 –7.
+29. Zhu Y, Wang R, Tang X, Li Q, Xu G, Zhang A. The effect of music, massage, yoga
+and exercise on antenatal depression: a meta-analysis. J Affect Disord.
+2021;292:592–602.
+30. Geretsegger M, Mössler KA, Bieleninik Ł, Chen XJ, Heldal TO, Gold C. Music
+therapy for people with schizophrenia and schizophrenia-like disorders.
+Cochrane Database Syst Rev. 2017;5:Cd004025.
+31. Kern P, Tague DB. Music therapy practice status and trends worldwide: an
+international survey study. J Music Ther. 2017;54:255 –86.
+32. Thaker PH, Han LY, Kamat AA, Arevalo JM, Takahashi R, Lu C, et al. Chronic stress
+promotes tumor growth and angiogenesis in a mouse model of ovarian carci-
+noma. Nat Med. 2006;12:939 –44.
+33. Liu MY, Yin CY, Zhu LJ, Zhu XH, Xu C, Luo CX, et al. Sucrose preference test for
+measurement of stress-induced anhedonia in mice. Nat Protoc. 2018;13:1686 –98.
+34. Choleris E, Thomas AW, Kavaliers M, Prato FS. A detailed ethological analysis of
+the mouse open ﬁeld test: effects of diazepam, chlordiazepoxide and an
+extremely low frequency pulsed magnetic ﬁeld. Neurosci Biobehav Rev.
+2001;25:235–60.
+35. Cryan JF, Mombereau C, Vassout A. The tail suspension test as a model for
+assessing antidepressant activity: review of pharmacological and genetic studies
+in mice. Neurosci Biobehav Rev. 2005;29:571 –625.
+36. Ramaker MJ, Dulawa SC. Identifying fast-onset antidepressants using rodent
+models. Mol Psychiatry. 2017;22:656 –65.
+37. Carobrez AP, Bertoglio LJ. Ethological and temporal analyses of anxiety-like
+behavior: the elevated plus-maze model 20 years on. Neurosci Biobehav Rev.
+2005;29:1193–205.
+38. Rio DC, Ares M Jr., Hannon GJ, Nilsen TW. Puri ﬁcation of RNA using TRIzol (TRI
+reagent). Cold Spring Harb Protoc. 2010;2010:pdb.prot5439.
+39. Im K, Mareninov S, Diaz MFP, Yong WH. An introduction to performing immu-
+noﬂuorescence staining. Methods Mol Biol. 2019;1897:299 –311.
+40. Bilici M, Efe H, Köro ğlu MA, Uydu HA, Bekaro ğlu M, De ğer O. Antioxidative
+enzyme activities and lipid peroxidation in major depression: alterations by
+antidepressant treatments. J Affect Disord. 2001;64:43 –51.
+41. Hashimoto M, Fujimoto M, Konno K, Lee ML, Yamada Y, Yamashita K, et al.
+Ubiquitin-speciﬁc protease 2 in the ventromedial hypothalamus modi ﬁes blood
+glucose levels by controlling sympathetic nervous activation. J Neurosci.
+2022;42:4607–18.
+42. Vieira JCS, Braga CP, Queiroz JV, Cavecci-Mendonça B, Oliveira G, Freitas NG, et al.
+The effects of mercury exposure on Amazonian ﬁshes: an investigation of
+potential biomarkers. Chemosphere. 2023;316:137779.
+43. Fan C, Li Y, Lan T, Wang W, Long Y, Yu SY. Microglia secrete miR-146a-5p-
+containing exosomes to regulate neurogenesis in depression. Mol Ther.
+2022;30:1300–14.
+44. Li WP, Su XH, Hu NY, Hu J, Li XW, Yang JM, et al. Astrocytes mediate cholinergic
+regulation of adult hippocampal neurogenesis and memory through M(1) mus-
+carinic receptor. Biol Psychiatry. 2022;92:984 –98.
+45. Berger T, Lee H, Young AH, Aarsland D, Thuret S. Adult hippocampal neuro-
+genesis in major depressive disorder and Alzheimer ’s disease. Trends Mol Med.
+2020;26:803–18.
+46. Xu CL, Nao JZ, Shen YJ, Gong YW, Tan B, Zhang S, et al. Long-term music adjuvant
+therapy enhances the ef ﬁcacy of sub-dose antiepileptic drugs in temporal lobe
+epilepsy. CNS Neurosci Ther. 2022;28:206 –17.
+47. Mao X, Cai D, Lou W. Music alleviates pain perception in depression mouse
+models by promoting the release of glutamate in the hippocampus of mice to
+act on GRIK5. Nucleosides Nucleotides Nucleic Acids. 2022;41:463 –73.
+48. Hung PL, Wu KLH, Chen CJ, Siu KK, Hsin YJ, Wang LJ, et al. Music-based inter-
+vention ameliorates Mecp2-loss-mediated sociability repression in mice through
+the prefrontal cortex FNDC5/BDNF pathway. Int J Mol Sci. 2021;22:7174.
+49. Zhou W, Ye C, Wang H, Mao Y, Zhang W, Liu A, et al. Sound induces analgesia
+through corticothalamic circuits. Science. 2022;377:198 –204.
+50. Semyachkina-Glushkovskaya O, Esmat A, Bragin D, Bragina O, Shirokov AA,
+Navolokin N, et al. Phenomenon of music-induced opening of the blood-brain
+barrier in healthy mice. Proc Biol Sci. 2020;287:20202337.
+51. Yan Y, Song D, Jin Y, Deng Y, Wang C, Huang T, et al. ACx-projecting cholinergic
+neurons in the NB in ﬂuence the BLA ensembles to modulate the discrimination
+of auditory fear memory. Transl Psychiatry. 2023;13:79.
+52. Eisendrath SJ, Gillung E, Delucchi KL, Segal ZV, Nelson JC, McInnes LA, et al. A
+randomized controlled trial of mindfulness-based cognitive therapy for
+treatment-resistant depression. Psychother Psychosom. 2016;85:99 –110.
+53. Duman RS, Aghajanian GK. Synaptic dysfunction in depression: potential ther-
+apeutic targets. Science. 2012;338:68 –72.
+54. Mercau ME, Calanni JS, Aranda ML, Caldareri LJ, Rosenstein RE, Repetto EM, et al.
+Melatonin prevents early pituitary dysfunction induced by sucrose-rich diets. J
+Pineal Res. 2019;66:e12545.
+55. Chen C, Nakagawa S, An Y, Ito K, Kitaichi Y, Kusumi I. The exercise-glucocorticoid
+paradox: how exercise is bene ﬁcial to cognition, mood, and the brain while
+increasing glucocorticoid levels. Front Neuroendocrinol. 2017;44:83 –102.
+56. Schaaf MJ, De Kloet ER, Vreugdenhil E. Corticosterone effects on BDNF expression
+in the hippocampus. Implications for memory formation. Stress. 2000;3:201 –8.
+57. Mo F, Tang Y, Du P, Shen Z, Yang J, Cai M, et al. GPR39 protects against
+corticosterone-induced neuronal injury in hippocampal cells through the CREB-
+BDNF signaling pathway. J Affect Disord. 2020;272:474 –84.
+58. Alexopoulos GS. Depression in the elderly. Lancet. 2005;365:1961 –70.
+59. Welcome MO, Mastorakis NE. Stress-induced blood brain barrier disruption:
+molecular mechanisms and signaling pathways. Pharm Res. 2020;157:104769.
+60. Marx W, Lane M, Hockey M, Aslam H, Berk M, Walder K, et al. Diet and depression:
+exploring the biological mechanisms of action. Mol Psychiatry. 2021;26:134 –50.
+61. Kwon HS, Koh SH. Neuroin ﬂammation in neurodegenerative disorders: the roles
+of microglia and astrocytes. Transl Neurodegener. 2020;9:42.
+Q. Fu et al.
+11
+Translational Psychiatry          (2023) 13:317\n[p.12] ACKNOWLEDGEMENTS
+This study was supported by the National Natural Science Foundation of China
+(82071676), Youth Fund for Humanities and Social Sciences Research Program of the
+Ministry of Education of China (18YJC760061), the National Key R&D Program of China
+(2021YFE0203000), the NSFC-RGC Joint Research Scheme (32061160472), the Guang-
+dong Provincial Fund for Basic and Applied Basic Research (2019B1515130004) and the
+Guangdong Provincial Key S&T Program (2018B030336001).
+AUTHOR CONTRIBUTIONS
+Y Cheng conceived the study; WQ and Y Chen designed the study; QF, RQ, and LC
+performed the experiments; all the authors analyzed and interpreted the data; QF
+drafted the manuscript with critical revisions from Y Cheng, WQ, and Y Chen.
+COMPETING INTERESTS
+The authors declare no competing interests.
+ADDITIONAL INFORMATION
+Correspondence and requests for materials should be addressed to Yuewen Chen or
+Wen Qi.
+Reprints and permission information is available at http://www.nature.com/
+reprints
+Publisher’s note Springer Nature remains neutral with regard to jurisdictional claims
+in published maps and institutional af ﬁliations.
+Open Access This article is licensed under a Creative Commons
+Attribution 4.0 International License, which permits use, sharing,
+adaptation, distribution and reproduction in any medium or format, as long as you give
+appropriate credit to the original author(s) and the source, provide a link to the Creative
+Commons license, and indicate if changes were made. The images or other third party
+material in this article are included in the article ’s Creative Commons license, unless
+indicated otherwise in a credit line to the material. If material is not included in the
+article’s Creative Commons license and your intended use is not permitted by statutory
+regulation or exceeds the permitted use, you will need to obtain permission directly
+from the copyright holder. To view a copy of this license, visit http://
+creativecommons.org/licenses/by/4.0/.
+© The Author(s) 2023
+Q. Fu et al.
+12
+Translational Psychiatry          (2023) 13:317

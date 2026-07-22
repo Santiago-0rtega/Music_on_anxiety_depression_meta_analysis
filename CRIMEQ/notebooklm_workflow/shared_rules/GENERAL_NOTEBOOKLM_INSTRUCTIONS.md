@@ -8,6 +8,18 @@ prompt.
 - Appraise each paper at the study level.
 - Produce one assessment per paper, even if the paper contains multiple cohorts,
   experiments, contrasts, or behavioral tests.
+- This is not a whole-paper appraisal of every experiment in the article. Score
+  the CRIME-Q items only as they apply to the behavioral assays and the in vivo
+  music/acoustic exposure.
+- For items about feasibility, technical quality, alignment, attrition, outcome
+  reporting, blinding, or limitations, focus on the animals/groups contributing
+  behavioral outcomes and the acoustic/music delivery, exposure, and control
+  conditions that could affect those outcomes.
+- Do not give credit for, or penalize based on, details that apply only to
+  molecular, biochemical, histological, hormonal, biomarker, or other
+  non-behavioral procedures unless those details directly determine the
+  behavioral assay, which animals contributed behavioral data, or the
+  interpretation of the acoustic/music exposure.
 - Use only the uploaded sources in the active NotebookLM notebook.
 - Do not use other papers in the notebook to score a target study.
 

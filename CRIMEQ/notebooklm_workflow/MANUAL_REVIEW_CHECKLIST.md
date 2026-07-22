@@ -36,8 +36,12 @@ Use this checklist after NotebookLM produces a five-study CRIME-Q table.
   figures, legends, tables, and statistical degrees of freedom. A single
   matching `n` is not enough if the full flow is unclear.
 - `9X`: Search Discussion and Conclusion for concrete current-study caveats,
-  discrepancies, uncertainties, untested mechanisms, or measurement/model
-  limits. Do not rely only on a formal `Limitations` heading.
+  discrepancies, uncertainties, or measurement/model limits that affect the
+  behavioral assays, acoustic/music delivery, exposure/control conditions, or
+  interpretation of behavioral outcomes. Do not count generic calls for more
+  molecular, histological, hormonal, biomarker, or mechanistic work unless the
+  authors explicitly link them to behavioral interpretation or acoustic
+  exposure.
 - `10Z`: Distinguish no funding statement from academic/government funding. No
   funding information is usually `Unclear`; academic/government funding without
   funder influence is usually lower concern.

@@ -5,6 +5,11 @@ notebook should contain only the five target PDFs and one current copy of each
 shared rule file. Do not reuse a notebook that contains older prompt, codebook,
 or calibration sources.
 
+This CRIME-Q adaptation is scoped to behavioral assays and in vivo
+music/acoustic exposure. It is not a whole-paper appraisal of unrelated
+molecular, histological, biochemical, hormonal, or mechanistic experiments
+unless those details directly affect behavioral outcomes or acoustic exposure.
+
 The NotebookLM output is treated as a first-pass extraction. A human reviewer
 should manually check formatting, evidence, and recurring difficult CRIME-Q
 items before using the table.

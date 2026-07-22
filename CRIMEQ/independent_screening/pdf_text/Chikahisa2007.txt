@@ -1,0 +1,783 @@
+[p.1] Behavioural Brain Research 179 (2007) 50–59
+Research report
+Anxiolytic effect of music depends on ovarian steroid in female mice
+Sachiko Chikahisaa, Atsuko Sanoa, Kazuyoshi Kitaoka b,
+Ken-Ichi Miyamotob, Hiroyoshi Seia,∗
+a Department of Integrative Physiology, Institute of Health Biosciences, The University of Tokushima Graduate School,
+Tokushima 770-8503, Japan
+b Department of Molecular Nutrition, Institute of Health Biosciences, The University of Tokushima Graduate School,
+Tokushima 770-8503, Japan
+Received 14 November 2006; received in revised form 6 January 2007; accepted 12 January 2007
+Available online 16 January 2007
+Abstract
+Music is known to be able to elicit emotional changes, including anxiolytic effects. The gonadal steroid hormones estradiol and progesterone have
+also been reported to play important roles in the modulation of anxiety. In the present study, we examined whether the effect of music on anxiety
+is related to ovarian steroid in female mice. Behavioral paradigms measuring anxiety were tested in gonadally intact (SHAM) and ovariectomized
+(OVX) female mice chronically treated with either placebo (OVX/Placebo), 17/H9252-estradiol (OVX/E), or progesterone (OVX/P). In the elevated plus
+maze, light–dark transition, and marble burying tests, SHAM and OVX/P mice exposed to music showed less anxiety than those exposed to white
+noise or silence while OVX/placebo mice did not show these effects at all. OVX/E mice showed the anxiolytic effect of music only in the marble
+burying test. Furthermore, pretreatment with progesterone’s metabolite inhibitor completely prevented the anxiolytic effect of music in behavioral
+tests, while pretreatment with a progesterone receptor blocker did not prevent the anxiolytic effect of music. These results suggest that exposure
+to music reduces anxiety levels, and ovarian steroids, mainly progesterone, may be involved in the anxiolytic effect of music observed in female
+mice.
+© 2007 Elsevier B.V . All rights reserved.
+Keywords: Anxiety; Music; 17/H9252-Estradiol; Progesterone; Female mice
+1. Introduction
+Music has been well known to elicit emotional changes,
+including anxiolytic effects in humans. In addition to psycholog-
+ical mood changes, music has been shown to elicit physiological
+changes in heart rate, blood pressure, and so forth [44]. There
+have been some clinical ﬁndings indicating that listening to
+music is useful in reducing anxiety [8] and in diminishing
+stress-induced increases in blood pressure related to surgery
+[1]. Several studies have demonstrated gender differences in
+response to musical stimuli in humans. In females, but not males,
+pain intensity and unpleasantness ratings were affected by the
+tempo of the music, accompanied by arousal changes[20]. Fur-
+thermore, it has been reported that women display heightened
+responses to an arousing and unpleasant stimulus while men did
+∗ Corresponding author. Tel.: +81 886337057; fax: +81 886339251.
+E-mail address: sei@basic.med.tokushima-u.ac.jp (H. Sei).
+not, indicating that women tend to be more sensitive to emo-
+tional musical stimuli than men[28]. However, the mechanisms
+of the anxiolytic effects of music and gender differences in music
+perception remain to be elucidated.
+Studies in rodents have also indicated that there are gen-
+der differences in emotional behavior caused by environmental
+conditions. Different social environments have been shown to
+exhibit different inﬂuences on male and female mice [30].I n
+particular, individual housing reduced reactivity and exploration
+and increased anxiety levels only in female mice [31]. Females
+have also been shown to exhibit higher plasma concentrations of
+ACTH and corticosterone and a greater magnitude and duration
+of hypothalamus–pituitary–adrenal (HPA) response to different
+stressors [35]. In rats, females have been shown to exhibit less
+anxiety-like behavior than males [19]. However, closer studies
+of these behaviors during the estrous cycle have shown that this
+reduced anxiety-like behavior generally occurs during the stage
+of proestrous. Proestrous rats entered more central squares of the
+open ﬁeld than diestrous female or male rats[13] and spent more
+0166-4328/$ – see front matter © 2007 Elsevier B.V . All rights reserved.
+doi:10.1016/j.bbr.2007.01.010\n[p.2] S. Chikahisa et al. / Behavioural Brain Research 179 (2007) 50–59 51
+time in the open arms of the elevated plus maze than diestrous
+females [27], indicating a lower level of anxiety in proestrous
+females.
+The emotional changes in female rodents are considered to
+be associated with ovarian steroid hormones [30]. The ovar-
+ian steroid hormones estrogen and progesterone have been well
+documented to have an association with anxiety levels. Mood
+ﬂuctuations, depression, and anxiety have often been related to
+low levels of estradiol in peri- and post-menopausal women,
+whereas estrogen replacement therapy ameliorated these psy-
+chological conditions [18,39]. In ovariectomized female rats,
+subchronic estrogen treatment produced an anxiolytic-like effect
+in the elevated plus maze, while it produced anxiogenic-like
+effect in the social interaction test [21]. The effects of estrogen
+are mediated by its two known speciﬁc receptors, estrogen recep-
+tor /H9251(ER/H9251) and /H9252(ER/H9252) [3]. It has been reported that random
+cycling female ER /H9252-deﬁcient mice exhibited increased anxi-
+ety compared to their wild-type littermates and ER /H9251-deﬁcient
+mice, and that ER/H9252-deﬁcient mice also had disrupted GABAer-
+gic function in the medial amygdala [22]. Thus, estradiol has
+important roles in the modulation of anxiety level.
+Another ovarian hormone, progesterone, has also been impli-
+cated in anxiety. Withdrawal of chronic progesterone exposure,
+which is thought to be related to premenstrual anxiety in some
+women, has been reported to elicit an anxiogenic effect in
+a defensive burying test [15,37] and in the acoustic startle
+response [17] in female rats. These responses were accompa-
+nied by up-regulation of the GABA
+A receptor /H92514 subunit in the
+amygdala [17]. Furthermore, many studies using various animal
+paradigms have indicated that treatment with progesterone or its
+metabolites produced anxiolytic-like behavior [4,5,12–14,33].
+Progesterone has a genomic mechanism of action via proges-
+terone receptors (PR), PR-A and PR-B, and a non-genomic
+mechanism of action through the activation of the GABA
+A-
+receptor via progesterone metabolites[3]. Through the genomic
+mechanism, the PR has been reported to play a critical role for
+the expression of sexual behavior in female mice [26]. Most
+researchers have linked the anxiolytic effect of progesterone to
+the nongenomic mechanism[5,12–14,33]. Progesterone is read-
+ily metabolized by 5/H9251-reductase to dihydroprogesterone (DHP),
+which is then metabolized by 3/H9251-hydroxysteroid dehydrogenase
+to 3 /H9251-hydroxy-5/H9251-pregnan-20-one (allopregnanolone), a very
+effective modulator of GABA
+A receptor complex [3]. Proges-
+terone enhanced anxiolytic activity in wild-type mice but not in
+5/H9251-reductase-deﬁcient mice in the open ﬁeld [14] although the
+anxiolytic action of progesterone was observed in both isoforms
+of PR knockout mice in the elevated plus maze [33].
+Thus, the ovarian steroid hormones estrogen and proges-
+terone have been shown to be closely involved in anxiety levels
+in both human and rodents. We, therefore, hypothesized that
+if exposure to music reduces anxiety levels in mice as well as
+humans, gender differences might be observed, and these gender
+differences would be related to ovarian steroid hormones. In the
+present study, we examined whether exposure to music reduces
+anxiety levels in mice and investigated the possible contribu-
+tion of ovarian steroid hormones to the anxiolytic mechanism of
+exposure to music in mice.
+2. Materials and methods
+2.1. Animals and treatments
+Mice of the Slc:ddY strain (Slc Inc., Shizuoka, Japan) were used in this
+study. The mice were fed ad lib and maintained on a 12-h light/dark cycle
+(lights on at 0800 h) at a controlled ambient temperature (24 ± 1
+◦C). All sur-
+gical manipulations were conducted under appropriate anesthesia (Ketamine
+100 mg/kg + xylazine 25 mg/kg i.p.). All behavioral testing was completed
+between 1300 and 1700 h, and mice were used only once for each type of behav-
+ioral test. The experiments were approved by the Animal Study Committee of
+Tokushima University (No. 05047) and carried out according to the guidelines
+for the Care and Use of Animals approved by the Council of the Physiological
+Society of Japan.
+2.2. Experiment 1: ovariectomy and pellet implantation
+Female mice (25–32 g) were ovariectomized (OVX, n = 116) or sham-
+operated (SHAM, n = 48) at the age of 8 weeks. The female mice were group
+housed, but only two mice were placed in each cage (22 cm× 16 cm× 12 cm) in
+order to produce a varied estrus cycle per cage. After a 2-week recovery period,
+21-day-release pellets (IRA, USA) that delivered approximately 2.4/H9262g/day for
+17/H9252-estradiol (OVX/E,n = 38), 240/H9262g/day for progesterone (OVX/P,n = 40), or
+placebo pellets (OVX/Placebo,n = 38) were implanted into OVX-animals subcu-
+taneously (s.c.). During the following 7 days, mice were handled for 5 min once
+a day between 1300 and 1700 h. Behavioral testing started 8 days and ﬁnished 15
+days after implantation. One type of behavioral test was completed every other
+day. In the behavioral tests, surgically treated mice were randomly assigned to
+one of three groups: silence (silence group), white noise (white-noise group), and
+music (music group) with approximatelyn = 13 per group for each hormonal con-
+dition. In the music or white-noise group, mice were exposed to music or white
+noise from 30 to 45 min before behavioral tests, and also during the tests. Music
+(Mozart’s piano sonata, K. 448) was played repeatedly on a CD player, and white
+noise was produced by radio which was not tuned to a particular station. The
+silence condition was performed in the same room as the music and white-noise
+groups where there was no sound except ambient noise, such as that produced
+by the air conditioner. The sound level of the silence group was 55 dB, music
+65–75 dB, and the white noise 70 dB in the home cages and in the behavioral
+apparatus.
+2.3. Experiment 2: drug treatment
+Finasteride (LKT Laboratories, USA), a 5 /H9251-reductase inhibitor that blocks
+the conversion of progesterone to allopregnanolone, or mifepristone (RU38486)
+(Sigma, USA), a PR antagonist, was administered to 9-week-old female mice
+(26–34 g) with intact ovaries. Finasteride and mifepristone were dissolved in
+sesame oil and administered s.c. at a dose of 50 mg/kg (ﬁnasteride) or 20 mg/kg
+(mifepristone), respectively. The doses of these drugs were chosen to match
+those effectively used in previous studies examining progesterone and anxiety
+in rodents [5,13,33]. A sesame oil vehicle was administered s.c. to control ani-
+mals. Behavioral testing was performed 2 h after administration of each drug
+using the same procedures as the hormonal experiments mentioned above. The
+mice treated with each drug were randomly assigned to one of three groups:
+silence group, white-noise group and music group, approximately n = 14 per
+group.
+2.4. Behavioral testing
+2.4.1. Open ﬁeld
+Locomotor behavior of mice was videotaped in an open ﬁeld test chamber.
+The chamber was an open top box (45 cm × 45 cm× 30 cm) made of acrylic.
+Behavior of the mice in the chamber was monitored for 10 min. The total dis-
+tance and time spent in the central and peripheral area were recorded using an
+automated image analysis system (Smart System, Pan Lab s.l., Spain). Increased
+time spent in the central area has been shown to be an index of lowered anxiety
+behavior [32].\n[p.3] 52 S. Chikahisa et al. / Behavioural Brain Research 179 (2007) 50–59
+2.4.2. Elevated plus maze
+Mice were placed in the center of an apparatus consisting of two opposing
+runways. One of the runways contained the closed arms (6 cm × 30 cm) of the
+maze, which had walls 15 cm high. The other runway consisted of the open
+arms (7 cm× 30 cm) of the maze, which had no walls. The maze was elevated
+to 70 cm above the ﬂoor. Behavior of the mice in the maze was monitored for
+5 min. The number of entries and time spent in the open arms were recorded
+automatically. Increased time spent in the open arms has been shown to be an
+index of lowered anxiety behavior [25].
+2.4.3. Light–dark transition
+A chamber divided equally into two compartments (22 cm× 24 cm× 30 cm)
+was used for the light–dark transition test. The light compartment consisted
+of white ﬂoor and transparent walls and lid. The dark compartment consisted
+of black ﬂoor, walls, and lid and was completely enclosed except for a small
+(15 cm× 5 cm) opening to allow movement from the dark compartment to the
+light compartment. Mice were placed in the dark compartment, and the latency
+to go out into the light side for the ﬁrst time was recorded. The amount of time
+spent in each compartment was also recorded for 5 min. A greater amount of
+time spent in the light side of the chamber has been shown to be an index of
+lowered anxiety behavior [6].
+2.4.4. Marble burying test
+Marble burying was measured by placing a single mouse in a polypropylene
+cage (22 cm × 16 cm× 12 cm) containing 15 glass marbles (1.5 cm diameter)
+evenly spaced on 5 cm deep sawdust. No food or water was present during the
+observation period. Mice have a tendency to bury objects, such as glass marbles,
+present in their environment. It has been suggested that inhibition of marble
+burying behavior is correlated with anxiolytic-like activity [29]. Cages were
+covered with a metal grid, and the number of marbles at least two-thirds covered
+was counted after 30 min.
+2.5. Measurement of plasma levels of 17 β-estradiol and
+progesterone
+The animals were sacriﬁced 2 days after the behavioral tests (17 days after
+pellet implantation), and trunk blood was collected for measurement of plasma
+levels of 17/H9252-estradiol and progesterone. Plasma concentrations of 17/H9252-estradiol
+and progesterone were determined by electrochemiluminescence immunoassay
+(ECLIA).
+2.6. Statistical analyses
+All values are expressed as mean ± S.E.M. Behavioral tests were
+analyzed by Kruskal–Wallis test, followed by the post hoc multiple
+Mann–Whitney U-test. Plasma concentration of 17 /H9252-estradiol and proges-
+terone was analyzed by analysis of variance (ANOV A) followed by Scheffe’s
+post hoc test. For all comparisons, the criterion for signiﬁcance was
+p < 0.05.
+3. Results
+3.1. Difference in the effect of music on anxiety levels
+between male and female mice in the elevated plus maze
+First, the effect of music on anxiety levels was compared
+between normal male and female mice using the elevated plus
+maze. In the elevated plus maze, total distance in the closed
+and open arms did not differ among the three acoustic groups
+in both male and female mice ( Fig. 1A). In the parameters of
+anxiety, female mice showed signiﬁcant differences among the
+three groups in running distance in the open arms ( H = 10.173,
+p < 0.01), time spent in the open arms (H = 11.919,p < 0.01), and
+the number of entries into the open arms ( H = 9.899, p < 0.01)
+while male mice showed no differences among the three acous-
+tic groups for any parameter. In female mice, the music group
+exhibited greater running distance in the open arms, spent more
+time in the open arms, and had a greater number of entries into
+the open arms compared to the silence and white-noise groups
+(p < 0.01, Fig. 1B–D).
+Fig. 1. Anxiety levels of male and female mice in each sound condition (silence, white noise or music) were tested in the elevated plus maze. In the music or
+white-noise group, mice were exposed to music or white noise 30–45 min before and during behavioral tests. Total running distance in the open and close d arms
+did not differ among the three groups in both male and female mice (A). Music-exposed female mice showed increased running distance in the open arms (B), time
+spent in the open arms (C), and open arm entries (D). **p < 0.01 vs. silence group;##p < 0.01 vs. white-noise group. Sample numbers were from 9 to 18 per column.
+Data are expressed as mean± S.E.M.\n[p.4] S. Chikahisa et al. / Behavioural Brain Research 179 (2007) 50–59 53
+Fig. 2. Effect of sound on behavior of female mice with each hormonal treatment
+was tested on the open ﬁeld. SHAM mice exposed to white noise had a lower total
+running distance in the central and peripheral areas (A). OVX/P mice exposed
+to white noise spent less time in the central area on the open ﬁeld (B).
+*p < 0.05,
+**p < 0.01 vs. silence group; §p < 0.05 vs. music group. Sample numbers were
+from 12 to 14 per column. Data are expressed as mean± S.E.M.
+3.2. Experiment 1: anxiolytic effect of music and pellet
+implantation of ovarian steroid hormones into
+ovariectomized female mice
+3.2.1. Open ﬁeld
+Female mice were tested in the open ﬁeld test, a paradigm
+of free exploratory behavior in a novel environment. In the
+silence condition, there were signiﬁcant differences in the time
+spent in the central area ( H = 9.966, p < 0.05) among the four
+groups of ovarian and/or pellet treatments, while no differ-
+ence in the total distance in the central and peripheral areas
+was observed. OVX/P mice spent a greater amount of time
+in the central area compared to SHAM and OVX/E mice
+(p < 0.01).
+In SHAM mice, there was a signiﬁcant difference in the total
+distance traveled in the central and peripheral areas among the
+three acoustic groups (H = 7.312, p < 0.05). The mice exposed to
+white noise traveled less total distance compared to the silence
+and music groups ( p < 0.05, Fig. 2 A). There were no signiﬁ-
+cant differences in the total distance among the three acoustic
+groups in both OVX/E and OVX/P mice while there was a sig-
+niﬁcant difference in OVX/Placebo mice (H = 6.349, p < 0.05).
+In OVX/Placebo mice, the music group was less active than the
+silence group (p < 0.05, Fig. 2A). Time spent in the central area
+was signiﬁcantly changed in OVX/P mice (H = 10.361,p < 0.01).
+In these mice, the white-noise group spent signiﬁcantly less time
+in the central area of the open ﬁeld than the silence ( p < 0.01)
+and music (p < 0.05) groups (Fig. 2B).
+3.2.2. Elevated plus maze
+There was no signiﬁcant difference in any parameter among
+the four groups of hormonal treatments in the elevated plus
+maze under the silence condition, indicating that behavior in
+the elevated plus maze was not affected by ovarian or pellet
+treatment.
+Total distance traveled during the test was not different among
+the three acoustic groups for any hormonal treatment (Fig. 3A).
+However, SHAM and OVX/P mice showed the same tendency
+in the time spent in the open arms, a measure of anxiety. These
+Fig. 3. Anxiolytic effect of music in SHAM and OVX/P mice in the elevated plus maze. Total running distance in the open and closed arms did not differ among the
+three acoustic groups (A). SHAM and OVX/P exposed to music showed increased running distance in the open arms (B) and spent more time in the open arms (C),
+but they showed no changes in the number of entries into the open arms (D).*p < 0.05, **p < 0.01, ***p < 0.001 vs. silence group;#p < 0.05, ##p < 0.01 vs. white-noise
+group; §p < 0.05 vs. music group. Sample numbers were from 11 to 14 per column. Data are expressed as mean± S.E.M.\n[p.5] 54 S. Chikahisa et al. / Behavioural Brain Research 179 (2007) 50–59
+two groups showed signiﬁcant differences among the three
+acoustic conditions in the running distance in the open arms
+(SHAM H = 8.134, p < 0.05) and time spent in the open arms
+(SHAM H = 9.978, p < 0.01; OVX/P H = 16.090, p < 0.001). In
+SHAM mice, the music group showed greater running distance
+in the open arms when compared to the silence ( p < 0.01) and
+white-noise (p < 0.05) groups (Fig. 3B). The OVX/P mice also
+showed the same tendency although it did not reach signiﬁcance
+(H = 5.908, p = 0.0521). The music group in SHAM and OVX/P
+mice spent signiﬁcantly more time in the open arms compared to
+the silence (SHAM p < 0.01; OVX/Pp < 0.001) and white-noise
+(SHAM p < 0.05; OVX/Pp < 0.01) groups (Fig. 3C). There was
+also a signiﬁcant difference in the number of entries into the
+open arms in OVX/E mice (H = 7.193,p < 0.05). In OVX/E mice,
+the white-noise group had a greater number of entries into the
+open arms compared to the silence and music groups (p < 0.05,
+Fig. 3D). However, the white-noise group in OVX/E mice did
+not show a signiﬁcant change in running distance in the open
+arms and time spent in the open arms (Fig. 3C) and the outer half
+of the open arms (data not shown), indicating that they moved
+back from the open arms immediately. In the OVX/Placebo
+mice, no signiﬁcant difference was observed among the
+three acoustic groups for these parameters in the elevated
+plus maze.
+3.2.3. Light–dark transition
+Comparing the results for each silence group, there were no
+signiﬁcant differences for any parameters among the four groups
+of hormonal treatments. Time spent in the light compartment
+(SHAM H = 9.951, p < 0.01; OVX/P H = 6.315, p < 0.05) and
+the latency to move from the dark to the light compartment
+(SHAM H = 14.813, p < 0.001; OVX/P H = 13.160, p < 0.01)
+were changed among the three acoustic groups in SHAM and
+OVX/P mice. The music group in SHAM and OVX/P mice spent
+more time in the light compartment compared with the silence
+(SHAM p < 0.05; OVX/P p < 0.05) and white-noise (SHAM
+p < 0.01; OVX/P p < 0.05) groups ( Fig. 4 A). Furthermore, in
+SHAM and OVX/P mice, the music group had a signiﬁcantly
+shorter latency to move to the light compartment in comparison
+to the silence (SHAM p < 0.05; OVX/P p < 0.01) and white-
+noise (SHAM p < 0.001; OVX/P p < 0.001) groups ( Fig. 4B).
+In OVX/Placebo and OVX/E mice, there were no signiﬁcant
+differences among the three groups for any parameter in the
+light–dark transition.
+3.2.4. Marble burying test
+Comparing the results in each silence group, there was not a
+signiﬁcant difference in any parameter among the four groups of
+hormonal treatments. There was a signiﬁcant difference among
+the three acoustic groups in SHAM (H = 7.080,p < 0.05), OVX/E
+(H = 10.976,p < 0.01), and OVX/P (H = 7.524,p < 0.05) mice. In
+SHAM (p < 0.05) and OVX/E (p < 0.01) mice, the music group
+buried signiﬁcantly fewer marbles as compared to the white-
+noise and silence groups ( Fig. 5). The music group in OVX/P
+mice also buried fewer marbles than the silence group (p < 0.01).
+However, OVX/Placebo mice had no differences among the
+three groups.
+Fig. 4. Music reduced anxiety levels in SHAM and OVX/P mice in the light–dark
+transition. SHAM and OVX/P mice exposed to music showed more time spent
+in the light area (A) and shorter latency to move from the dark into the light area
+(B).
+*p < 0.05, **p < 0.01 vs. silence group; #p < 0.05, ##p < 0.01, ###p < 0.001
+vs. white-noise group. Sample numbers were from 12 to 17 per column. Data
+are expressed as mean± S.E.M.
+3.2.5. Measurement of uterine weight and plasma levels of
+17β-estradiol and progesterone
+Efﬁcacy of the ovariectomy procedure was conﬁrmed by
+measurement of plasma hormone levels and uterine weight.
+There were clear differences in the uterine weight [ F(3,
+137) = 147.405, p < 0.001], 17 /H9252-estradiol plasma levels [ F(3,
+28) = 9.424, p < 0.001], and progesterone plasma levels [ F(3,
+20) = 7.011, p < 0.01]. Uterine weight was reduced in the
+OVX/Placebo and OVX/P mice compared to SHAM and OVX/E
+mice (p < 0.001,Fig. 6A). Plasma 17/H9252-estradiol levels were also
+reduced in OVX/Placebo and OVX/P mice compared to OVX/E
+mice ( p < 0.01, Fig. 6B). Both uterine weight ( p < 0.001) and
+17/H9252-estradiol levels ( p < 0.01) in OVX/E mice were increased
+in comparison to SHAM mice. Progesterone replacement sig-
+niﬁcantly increased plasma progesterone levels in OVX/P mice
+in comparison to OVX/Placebo and OVX/E mice ( p < 0.01,
+Fig. 6C).
+Fig. 5. Anxiolytic effect of music in SHAM, OVX/E and OVX/P mice in the
+marble burying test.*p < 0.05, **p < 0.01 vs. silence group;#p < 0.05, ##p < 0.01
+vs. white-noise group. Sample numbers were from 12 to 16 per column. Data
+are expressed as mean± S.E.M.\n[p.6] S. Chikahisa et al. / Behavioural Brain Research 179 (2007) 50–59 55
+Fig. 6. (A) Uterine weight of each ovarian treatment. Uterine weight was reduced in OVX/Placebo and OVX/P mice. ***p < 0.001 vs. SHAM mice; ###p < 0.001 vs.
+OVX/E mice. Sample numbers were from 27 to 38 per column. Plasma concentrations of 17/H9252-estradiol (B) and progesterone (C). Implantation of 17/H9252-estradiol and
+progesterone hormone pellets increased plasma hormone levels in ovariectomized female mice. **p < 0.01 vs. SHAM mice; ##p < 0.01 vs. OVX/E mice; §§p < 0.01
+vs. OVX/P mice. Sample numbers were from 6 to 9 per column. Data are expressed as mean± S.E.M.
+3.3. Experiment 2: effects of a progesterone metabolism
+inhibitor and a PR blocker on the anxiolytic effect of music
+In order to investigate a mechanism of progesterone involved
+in the anxiolytic effect of music, ﬁnasteride, a progesterone
+metabolism inhibitor, or mifepristone, a PR antagonist, was
+administered to the normal female mice, and the same behavioral
+tests were performed with these mice.
+3.3.1. Open ﬁeld
+Total distance in the central and peripheral areas was not
+different among the three acoustic groups for any drug treat-
+ment ( Fig. 7 A). There was a signiﬁcant difference in time
+spent in the central area among the three acoustic groups
+in ﬁnasteride-treated mice ( H = 6.639, p < 0.05) while no sig-
+niﬁcant differences in both vehicle and mifepristone-treated
+mice were observed. In ﬁnasteride-treated mice, the white-noise
+Fig. 7. Comparison of sound conditions in the open ﬁeld test in female mice
+pretreated with vehicle, ﬁnasteride (Fin) or mifepristone (Mif). Total running
+distance in the central and peripheral areas did not differ among the three sound
+groups (A). White noise reduced time spent in the central area compared with
+that of the silence and music groups only in mice pretreated with ﬁnasteride (B).
+*p < 0.05 vs. silence group; §p < 0.05 vs. music group. Sample numbers were
+from 12 to 14 per column. Data are expressed as mean± S.E.M.
+group spent less time in the central area compared to the silence
+and music groups (p < 0.05, Fig. 7B).
+3.3.2. Elevated plus maze
+In the elevated plus maze, total distance traveled was not dif-
+ferent among the three groups for any drug treatment (Fig. 8A).
+Mifepristone-treated mice showed a signiﬁcant difference in
+time spent in the open arms among the three acoustic groups
+(H = 7.082, p < 0.05). The music group treated with mifepris-
+tone spent signiﬁcantly more time in the open arms compared to
+the silence and white-noise groups ( p < 0.05, Fig. 8C). In mice
+treated with vehicle or ﬁnasteride, there were no signiﬁcant dif-
+ferences among the acoustic groups for these parameters in the
+elevated plus maze.
+3.3.3. Light–dark transition
+In vehicle-treated mice, there were signiﬁcant differences in
+the time spent in the light compartment ( H = 8.219, p < 0.05)
+and latency to move from the dark into the light compart-
+ment ( H = 14.124, p < 0.001) among the acoustic groups. The
+mifepristone-treated mice showed the same tendency in time
+spent in the light area although it did not reach signiﬁcance
+(H = 5.819, p = 0.0545). The music group treated with vehicle
+spent more time in the light compartment compared to the silence
+and white-noise groups ( p < 0.05, Fig. 9 A) and had a shorter
+latency to move from the dark to the light compartment than the
+silence (p < 0.001) and white-noise (p < 0.01) groups (Fig. 9B).
+Furthermore, mice treated with mifepristone exhibited a sig-
+niﬁcant change in the number of transitions from the dark to
+the light compartment ( H = 6.214, p < 0.05). The music group
+in mifepristone-treated mice had an increased number of transi-
+tions from the dark to the light area compared to the silence group
+(p < 0.05,Fig. 9C). Finasteride-treated mice showed a signiﬁcant
+change in the latency to move from the dark to the light com-
+partment (H = 6.345,p < 0.05). Finasteride-treated mice exposed
+to music had a greater latency from the dark to the light com-
+partment in comparison to the silence and white-noise groups
+(p < 0.05, Fig. 9B).
+3.3.4. Marble burying test
+In the marble burying test, there were signiﬁcant differences
+among the three acoustic groups in mice treated with vehicle\n[p.7] 56 S. Chikahisa et al. / Behavioural Brain Research 179 (2007) 50–59
+Fig. 8. Effect of drug treatment with vehicle, ﬁnasteride (Fin) or mifepristone (Mif) on the anxiolytic effect of music in the elevated plus maze. Total distance in the
+open and closed arms (A) and running distance in the open arms (B) did not differ for either drug treatment. The anxiolytic effect of music remained in mifepristone
+but not ﬁnasteride-treated mice in time spent in the open arms (C) although there were no changes in the number of entries into the open arms (D). *p < 0.05 vs.
+silence group; #p < 0.05 vs. white-noise group. Sample numbers were from 13 to 14 per column. Data are expressed as mean± S.E.M.
+Fig. 9. Effect of pretreatment with vehicle, ﬁnasteride (Fin) or mifepristone
+(Mif) in the light–dark transition. Finasteride abolished the anxiolytic effect of
+music in the time spent in the light compartment (A), latency to move from
+the dark into the light compartment (B), and the number of transitions (C).
+*p < 0.05, ***p < 0.001 vs. silence group; #p < 0.05, ##p < 0.01 vs. white-noise
+group. Sample numbers were from 13 to 14 per column. Data are expressed as
+mean ± S.E.M.
+Fig. 10. Finasteride (Fin) inhibition of the anxiolytic effect of music in the
+marble burying test. Mice treated with mifepristone (Mif) retained the anxiolytic
+effect of music as observed in vehicle-treated mice.
+*p < 0.05, **p < 0.01 vs.
+silence group; ##p < 0.01 vs. white-noise group. Sample numbers were from 13
+to 14 per column. Data are expressed as mean± S.E.M.
+(H = 10.366, p < 0.01) and mifepristone ( H = 8.311, p < 0.05).
+In vehicle-treated mice, the music group buried signiﬁcantly
+fewer marbles as compared to the silence and white-noise groups
+(p < 0.01,Fig. 10). The music group in mifepristone-treated mice
+also buried fewer marbles than the silence (p < 0.05) and white-
+noise (p < 0.01) groups (Fig. 10). The ﬁnasteride-treated mice
+showed no differences among the three acoustic groups.
+4. Discussion
+This study investigated whether exposure to music alters anx-
+iety levels in mice and attempted to clarify its mechanism. An
+anxiolytic effect of music in the elevated plus maze was shown in
+female but not male mice. We, therefore, investigated the possi-
+bility that music and ovarian steroid hormones interact to reduce
+anxiety. Exposure to music reduced anxiety levels in mice with
+intact ovaries. SHAM mice exposed to music increased time
+spent in the open arms of the elevated plus maze, time in the light\n[p.8] S. Chikahisa et al. / Behavioural Brain Research 179 (2007) 50–59 57
+compartment of the light–dark transition, and buried fewer mar-
+bles, although total activity in both the open ﬁeld and the elevated
+plus maze was not altered. These effects of music were abolished
+by ovariectomy. However, when a pellet of progesterone was
+implanted, the anxiolytic effect of music was recovered, while
+implantation of a 17/H9252-estradiol pellet was not able to compen-
+sate. These data suggest that progesterone may be involved in
+the anxiolytic effect of music in female mice.
+Progesterone affects the function of the central nervous sys-
+tem via two fundamentally different ways; one is mediated
+through its metabolites, the other through the PR [3]. In this
+study, mice treated with mifepristone, a PR antagonist, contin-
+ued to show the anxiolytic effect of music in the behavioral
+tests. In contrast, ﬁnasteride, a 5/H9251-reductase inhibitor that blocks
+the conversion of progesterone to allopregnanolone, completely
+prevented the progesterone-mediated anxiolytic effect of music.
+Allopregnanolone, which is a neurosteroid and a metabolite of
+progesterone, does not interact with PRs and can rapidly inﬂu-
+ence brain excitability as a result of its activity as a potent
+positive allosteric modulator of the GABA
+A receptor [23,36].
+Studies in various animal models of anxiety have demon-
+strated that allopregnanolone has anxiolytic activity. Proestrus
+rats, which have high progesterone levels, that were adminis-
+tered ﬁnasteride showed signiﬁcantly increased anxiety levels
+compared to rats administered vehicle [13]. In ovariectomized
+rats, 5 /H9251-reductase inhibitors, such as ﬁnasteride, were potent
+in preventing the anxiolytic effect observed after progesterone
+administration, which was accompanied by increased GABA-
+stimulated Cl
+− uptake [5]. Furthermore, allopregnanolone levels
+change with behavioral and/or environmental stimuli, and the
+sensitivity of the biosynthesis of allopregnanolone in response
+to these stimuli is greater in females than males [12].I n
+studies of environmental stimuli and anxiety, an enriched envi-
+ronment decreases anxiety and attenuates stress responses in
+mice [2]. An enriched environment is deﬁned as the combi-
+nation of complex inanimate and social stimulation and the
+interaction of multiple environmental factors, rather than any
+single element, that contributes to various brain function in
+rodents [42]. Sound is thought to be one of the environmen-
+tal factors, and music can also be a signiﬁcant element for
+an “enriched” environment in comparison to silence and white
+noise. It is considered that complex sound, such as music, alters
+the metabolism of progesterone in the brain, which may work
+as an anxiolytic factor. In other words, it is possible that the
+exposure to music may stimulate the metabolic pathway of
+progesterone, which is inhibited by ﬁnasteride, and, thus, acti-
+vate the GABA
+A receptor in mice with adequate progesterone
+levels.
+In this study, the stage of the estrus cycle differed in the
+SHAM mice tested in experiment 1. Plasma progesterone is
+higher during proestrus and from metestrus to diestrus peri-
+ods in rodents [7,38,41]. Musical stimulation may, therefore,
+affect the SHAM mice mainly during the proestrus, metestrus,
+or diestrus periods. All responses caused by exposure to the
+three types of acoustic conditions observed in the OVX/P mice
+were almost the same as that of the SHAM mice in experiment
+1. Therefore, we used intact mice in experiment 2. However,
+it also remains to be resolved whether an uncontrolled estrus
+cycle in the intact mice may have effects on these results. For
+example, vehicle-treated mice unexpectedly did not match the
+results in the SHAM mice in the elevated plus maze. In the ele-
+vated plus maze, an anxiolytic effect of music was observed
+in SHAM mice in experiment 1; however, no effect of music
+was observed in vehicle-treated mice as well as ﬁnasteride-
+treated mice in experiment 2. This discrepancy may be due to
+the mixed estrus cycle in addition to stress induced by injec-
+tion in experiment 2. Although we failed to extract an effect of
+ﬁnasteride in the elevated plus maze, mifepristone-treated mice
+clearly showed an anxiolytic effect of music. It could be, at least
+in part, considered that music reduces anxiety level through
+a mechanism other than the PR in female mice with intact
+ovaries in the elevated plus maze. In a future study, the rela-
+tionship between environmental conditions and anxiety levels
+in female mice should be investigated under a controlled estrus
+cycle.
+In the present study, progesterone treatment reduced anxiety
+level only in the open ﬁeld test compared with other ovar-
+ian treatments in the silence condition. Most previous studies
+have demonstrated anxiolytic effects of bolus injection of pro-
+gesterone [4,5,14,33]. There have also been a few studies on
+the chronic injection of progesterone that showed clear anxi-
+olytic effects when compared to vehicle [37]. Different effects
+between chronic and acute administration of progesterone on
+anxiety levels have been shown[10]. In this study, mice received
+chronic administration using pellet implantation in experiment
+1 to remove stress caused by multiple injections. It might be
+possible that the change in administration conditions from pre-
+vious studies may account for the lack of anxiolytic effects of
+progesterone in the behavioral tests except for the open ﬁeld
+when comparing the silence groups for each surgical and pellet
+treatment. However, there were signiﬁcant differences in plasma
+levels of progesterone among the four ovarian treatment groups,
+which indicates the efﬁcacy of the ovariectomy procedure and
+pellet implantation in this study.
+In the marble burying test, an anxiolytic effect of music was
+observed in OVX/E mice as well as SHAM and OVX/P mice
+in experiment 1. Therefore, estradiol may also be involved in
+the anxiolytic effect of music to some extent. In experiment 2,
+however, this anxiolytic activity caused by music observed in
+the marble burying test was completely abolished by ﬁnasteride
+in intact mice that were considered to have normal 17/H9252-estradiol
+level. In experiment 1, 17 /H9252-estradiol replacement in OVX/E
+mice restored 17/H9252-estradiol level to physiologically relevant lev-
+els during the proestrus period in female [7,16,38]. In contrast,
+the estrus cycle of intact mice used in experiment 2 was mixed as
+mentioned above. There is a possibility that a high 17/H9252-estradiol
+level is needed as much as the proestrus period to show effects
+of music in the marble burying test.
+White noise has been reported to be able to evoke a
+stress response when it is supplied loudly. Acute exposure
+to white noise (20 min of 95 dB) was shown to be a mild
+stressor in a behavioral test [34]. Furthermore, plasma corti-
+costerone responses to white-noise stimulus (10 min of 114 dB)
+in chronically progesterone-treated rats were greater compared\n[p.9] 58 S. Chikahisa et al. / Behavioural Brain Research 179 (2007) 50–59
+to progesterone-withdrawn rats [43]. The sound level of white
+noise used in the present study was not as loud as these pre-
+vious studies but instead supplied at approximately the same
+level as that of music. Nevertheless, relative to silence or music,
+white noise elicited a signiﬁcant decrease in the percent of time
+in the central area of the open ﬁeld in OVX/P (experiment 1).
+Similarly, the white-noise group treated with ﬁnasteride spent
+less time in the central area of the open ﬁeld compared to
+the silence and music groups (experiment 2). Hence, there is
+a possibility that quieter white noise could be a stressor hav-
+ing no relationship to the metabolism of progesterone in the
+open ﬁeld test. In other words, music with ﬂuctuating sound
+levels, frequency, and tempo could be less stressful than white
+noise.
+In the behavioral tests, several factors such as locomotion and
+arousal level, may have affected the results. A marked variation
+of motor activity and sleep during the course of the estrus cycle
+in rodents has been previously observed[40]. Furthermore, sys-
+temic administration of progesterone in rats decreased both the
+amount of wakefulness and the latency of slow-wave sleep[24].
+While it is possible that exposure to music may alter arousal
+levels in mice undergoing ovarian hormone treatments in the
+present study, OVX/P mice showed no difference among the
+three acoustic conditions in the total distance in the central and
+peripheral areas in the open ﬁeld and in the total distance in the
+open and closed arm in the elevated plus maze; these results sug-
+gested that the observed effect of music was not due to changes
+in arousal level and basic locomotion.
+At the present time, it remains to be clariﬁed whether the
+response of mice to music depends on auditory systems or
+air oscillations. If the response is mediated by auditory sys-
+tems, the sounds from 800 Hz to 20 kHz included in music
+are considered to be involved in the anxiolytic effect of music
+observed in this study because mice can hear only the portion
+of music with frequencies greater than 800 Hz [11]. There is
+also a possibility that the effect of music on mice is mediated
+not by the auditory system but by air oscillations created by
+sound. Environmental stimuli, including somatosensory input,
+are reported to be related to anxiety levels in rodents. For exam-
+ple, handled animals, especially those that experienced handling
+during the postnatal period, were found to be less anxious
+than controls in several behavioral tests [9]. Additionally, gen-
+der differences in response to these environmental conditions
+have been observed. Individually housed females demonstrated
+lower exploration and a higher level of anxiety compared to
+group-housed females while individually housed males tended
+to show the opposite proﬁle [30,31]. In the present study, there-
+fore, it is possible that air oscillations produced by sound
+may affect anxiety via the somatosensory system in female
+mice. We are planning to investigate this problem using deaf
+mice.
+In summary, exposure to music reduced anxiety levels only in
+female mice, which depended on ovarian steroids, mainly pro-
+gesterone and its metabolites. This anxiolytic effect of music
+mediated by progesterone may also be useful in the treatment
+of anxiety during the gestational period or luteal phase, both
+of which are times when women have high progesterone lev-
+els. Future studies will address the molecular substances that
+mediate the anxiolytic effect of music and ovarian steroid.
+Acknowledgement
+This work was supported by a Grant-in-Aid for Scientiﬁc
+Research from the 21st Century COE Program, Human Nutri-
+tional Science on Stress Control, Tokushima, Japan.
+References
+[1] Allen K, Golden LH, Izzo Jr JL, Ching MI, Forrest A, Niles CR, et al.
+Normalization of hypertensive responses during ambulatory surgical stress
+by perioperative music. Psychosom Med 2001;63:487–92.
+[2] Benaroya-Milshtein N, Hollander N, Apter A, Kukulansky T, Raz N, Wilf
+A, et al. Environmental enrichment in mice decreases anxiety, attenuates
+stress responses and enhances natural killer cell activity. Eur J Neurosci
+2004;20:1341–7.
+[3] Birzniece V , Backstrom T, Johansson IM, Lindblad C, Lundgren P, Lof-
+gren M, et al. Neuroactive steroid effects on cognitive functions with a
+focus on the serotonin and GABA systems. Brain Res Brain Res Rev
+2006;51:212–39.
+[4] Bitran D, Klibansky DA, Martin GA. The neurosteroid pregnanolone
+prevents the anxiogenic-like effect of inescapable shock in the rat. Psy-
+chopharmacology (Berlin) 2000;151:31–7.
+[5] Bitran D, Shiekh M, McLeod M. Anxiolytic effect of progesterone is medi-
+ated by the neurosteroid allopregnanolone at brain GABAA receptors. J
+Neuroendocrinol 1995;7:171–7.
+[6] Bourin M, Hascoet M. The mouse light/dark box test. Eur J Pharmacol
+2003;463:55–65.
+[7] Butcher RL, Collins WE, Fugo NW. Plasma concentration of LH, FSH,
+prolactin, progesterone and estradiol-17beta throughout the 4-day estrous
+cycle of the rat. Endocrinology 1974;94:1704–8.
+[8] Chan YM, Lee PW, Ng TY , Ngan HY , Wong LC. The use of music to reduce
+anxiety for patients undergoing colposcopy: a randomized trial. Gynecol
+Oncol 2003;91:213–7.
+[9] Chapillon P, Patin V , Roy V , Vincent A, Caston J. Effects of pre- and
+postnatal stimulation on developmental, emotional, and cognitive aspects
+in rodents: a review. Dev Psychobiol 2002;41:373–87.
+[10] Cutler SM, VanLandingham JW, Murphy AZ, Stein DG. Slow-release and
+injected progesterone treatments enhance acute recovery after traumatic
+brain injury. Pharmacol Biochem Behav 2006;84:420–8.
+[11] Ehret G. Masked auditory thresholds, critical ratios, and scales of the
+basilar membrane of the housemouse ( Mus musculs ). J Comp Physiol
+1975;103:329–41.
+[12] Frye CA, Rhodes ME, Petralia SM, Walf AA, Sumida K, Edinger KL.
+3Alpha-hydroxy-5alpha-pregnan-20-one in the midbrain ventral segmen-
+tal area mediates social, sexual, and affective behaviors. Neuroscience
+2006;138:1007–14.
+[13] Frye CA, Walf AA. Changes in progesterone metabolites in the hippocam-
+pus can modulate open ﬁeld and forced swim test behavior of proestrous
+rats. Horm Behav 2002;41:306–15.
+[14] Frye CA, Walf AA, Rhodes ME, Harney JP. Progesterone enhances
+motor, anxiolytic, analgesic, and antidepressive behavior of wild-type
+mice, but not those deﬁcient in typ e 1 5 alpha-reductase. Brain Res
+2004;1004:116–24.
+[15] Gallo MA, Smith SS. Progesterone withdrawal decreases latency to and
+increases duration of electriﬁed prod burial: a possible rat model of PMS
+anxiety. Pharmacol Biochem Behav 1993;46:897–904.
+[16] Grasso P, Reichert Jr LE. In vivo effects of follicle-stimulating hormone-
+related synthetic peptides on the mouse estrous cycle. Endocrinology
+1996;137:5370–5.
+[17] Gulinello M, Orman R, Smith SS. Sex differences in anxiety, sensorimotor
+gating and expression of the alpha4 subunit of the GABAA receptor in the
+amygdala after progesterone withdrawal. Eur J Neurosci 2003;17:641–8.\n[p.10] S. Chikahisa et al. / Behavioural Brain Research 179 (2007) 50–59 59
+[18] Joffe H, Cohen LS. Estrogen, serotonin, and mood disturbance: where is
+the therapeutic bridge? Biol Psychiatry 1998;44:798–811.
+[19] Johnston AL, File SE. Sex differences in animal tests of anxiety. Physiol
+Behav 1991;49:245–50.
+[20] Kenntner-Mabiala R, Gorges S, Alpers GW, Lehmann AC, Pauli P. Musi-
+cally induced arousal affects pain perception in females but not in males:
+a psychophysiological examination. Biol Psychol 2006.
+[21] Koss W A, Gehlert DR, Shekhar A. Different effects of subchronic doses
+of 17-beta estradiol in two ethologically based models of anxiety utilizing
+female rats. Horm Behav 2004;46:158–64.
+[22] Krezel W, Dupont S, Krust A, Chambon P, Chapman PF. Increased anxiety
+and synaptic plasticity in estrogen receptor beta-deﬁcient mice. Proc Natl
+Acad Sci USA 2001;98:12278–82.
+[23] Lambert JJ, Belelli D, Peden DR, Vardy AW, Peters JA. Neurosteroid
+modulation of GABAA receptors. Prog Neurobiol 2003;71:67–80.
+[24] Lancel M, Faulhaber J, Holsboer F, Rupprecht R. Progesterone induces
+changes in sleep comparable to those of agonistic GABAA receptor mod-
+ulators. Am J Physiol 1996;271:E763–72.
+[25] Lister RG. The use of a plus-maze to measure anxiety in the mouse. Psy-
+chopharmacology (Berlin) 1987;92:180–5.
+[26] Mani SK, Blaustein JD, O’Malley BW. Progesterone receptor function
+from a behavioral perspective. Horm Behav 1997;31:244–55.
+[27] Marcondes FK, Miguel KJ, Melo LL, Spadari-Bratﬁsch RC. Estrous cycle
+inﬂuences the response of female rats in the elevated plus-maze test. Physiol
+Behav 2001;74:435–40.
+[28] Nater UM, Abbruzzese E, Krebs M, Ehlert U. Sex differences in emotional
+and psychophysiological responses to musical stimuli. Int J Psychophysiol
+2006;62:300–8.
+[29] Njung’e K, Handley SL. Evaluation of marble-burying behavior as a model
+of anxiety. Pharmacol Biochem Behav 1991;38:63–7.
+[30] Palanza P. Animal models of anxiety and depression: how are females
+different? Neurosci Biobehav Rev 2001;25:219–33.
+[31] Palanza P, Gioiosa L, Parmigiani S. Social stress in mice: gender differ-
+ences and effects of estrous cycle and social dominance. Physiol Behav
+2001;73:411–20.
+[32] Prut L, Belzung C. The open ﬁeld as a paradigm to measure the effects of
+drugs on anxiety-like behaviors: a review. Eur J Pharmacol 2003;463:3–33.
+[33] Reddy DS, O’Malley BW, Rogawski MA. Anxiolytic activity of pro-
+gesterone in progesterone receptor knockout mice. Neuropharmacology
+2005;48:14–24.
+[34] Rex A, V oigt JP, Fink H. Anxiety but not arousal increases 5-
+hydroxytryptamine release in the rat ventral hippocampus in vivo. Eur J
+Neurosci 2005;22:1185–9.
+[35] Rhodes ME, Rubin RT. Functional sex differences (‘sexual dier-
+gism’) of central nervous system cholinergic systems, vasopressin, and
+hypothalamic–pituitary–adrenal axis activity in mammals: a selective
+review. Brain Res Brain Res Rev 1999;30:135–52.
+[36] Rupprecht R. Neuroactive steroids: mechanisms of action and neuropsy-
+chopharmacological properties. Psychoneuroendocrinology 2003;28:139–
+68.
+[37] Saavedra M, Contreras CM, Azamar-Arizmendi G, Hernandez-Lozano M.
+Differential progesterone effects on defensive burying and forced swim-
+ming tests depending upon a gradual decrease or an abrupt suppression
+schedules. Pharmacol Biochem Behav 2006;83:130–5.
+[38] Savoy-Moore RT, Schwartz NB, Duncan JA, Marshall JC. Pituitary
+gonadotropin-releasing hormone receptors during the rat estrous cycle.
+Science 1980;209:942–4.
+[39] Schmidt PJ, Nieman L, Danaceau MA, Tobin MB, Roca CA, Murphy
+JH, et al. Estrogen replacement in perimenopause-related depression: a
+preliminary report. Am J Obstet Gynecol 2000;183:414–20.
+[40] Schwierin B, Borbely AA, Tobler I. Sleep homeostasis in the female rat
+during the estrous cycle. Brain Res 1998;811:96–104.
+[41] Tejada F, Cremades A, Aviles M, Castells MT, Penaﬁel R. Hypokalemia
+alters sex hormone and gonadotropin levels: evidence that FSH may be
+required for luteinization. Am J Physiol 1998;275:E1037–45.
+[42] van Praag H, Kempermann G, Gage FH. Neural consequences of environ-
+mental enrichment. Nat Rev Neurosci 2000;1:191–8.
+[43] Windle RJ, Gamble LE, Kershaw YM, Wood SA, Lightman SL,
+Ingram CD. Gonadal steroid modulation of stress-induced hypothalamo–
+pituitary–adrenal activity and anxiety behavior: role of central oxytocin.
+Endocrinology 2006;147:2423–31.
+[44] Zatorre R, McGill J. Music, the food of neuroscience? Nature
+2005;434:312–5.

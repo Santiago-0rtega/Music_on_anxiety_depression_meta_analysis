@@ -133,6 +133,9 @@ A codebook often needs a second file with general calibration rules. This file s
 
 Good calibration rules describe how to interpret the rubric, for example:
 
+- define the appraisal scope before item scoring starts, especially when the
+  paper includes secondary molecular, biochemical, histological, hormonal, or
+  mechanistic experiments that are outside the target extraction;
 - randomization alone does not prove baseline balance,
 - group size reporting is not a sample-size calculation,
 - separate rooms can introduce a room confound,
@@ -141,7 +144,8 @@ Good calibration rules describe how to interpret the rubric, for example:
 - future-directions language is not the same as acknowledging a limitation.
 - unclear manual or live outcome assessment should not be scored as unblinded unless the paper supports that inference,
 - attrition judgments should compare allocated animals with analyzed animals across methods, results, figures, legends, and denominators,
-- limitation judgments should search Discussion and Conclusion sections for concrete caveats even when there is no formal limitations heading.
+- limitation judgments should search Discussion and Conclusion sections for concrete caveats even when there is no formal limitations heading,
+- for scoped appraisals, limitations should count only when they affect the target domain, such as behavioral assays, acoustic/music delivery, exposure/control conditions, or interpretation of behavioral outcomes.
 
 Calibration rules should be generic and portable. They should not say how a named target study should be scored.
 

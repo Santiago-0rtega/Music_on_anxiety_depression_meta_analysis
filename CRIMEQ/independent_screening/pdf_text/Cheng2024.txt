@@ -1,0 +1,577 @@
+[p.1] Heliyon 10 (2024) e34196
+Available online 5 July 2024
+2405-8440/© 2024 The Authors. Published by Elsevier Ltd. This is an open access article under the CC BY-NC license
+(http://creativecommons.org/licenses/by-nc/4.0/).
+Research article 
+Light and classical music therapies attenuate chronic 
+unpredictable mild stress-induced depression via BDNF signaling 
+pathway in mice 
+Hong-Yu Cheng
+a
+, Hao-Xue Xie
+b
+, Qian-Lan Tang
+a
+, Li-Tao Yi
+b , *
+, Ji-Xiao Zhu
+c , ** 
+a
+Department of Music Therapy (Musicology), College of Humanities, Jiangxi University of Chinese Medicine, Nanchang, Jiangxi, 330004, PR China 
+b
+Department of Chemical and Pharmaceutical Engineering, College of Chemical Engineering, Huaqiao University, Xiamen, 361021, Fujian Province, 
+PR China 
+c
+Research Center of Traditional Chinese Medicine Resources and Ethnic Medicine, Jiangxi University of Chinese Medicine, Nanchang, Jiangxi, 
+330004, PR China   
+ARTICLE INFO  
+Keywords: 
+Music 
+Depression 
+Behavioral tests 
+BDNF 
+Neurogenesis 
+ABSTRACT  
+Depression, a pervasive mental health issue, often necessitates innovative therapeutic in -
+terventions. This study explores the efficacy of music therapy, a non-pharmacological approach, 
+in ameliorating depression symptoms in a murine model. Employing a chronic unpredictable mild 
+stress (CUMS) model to induce depressionlike behaviors in mice, we investigated the therapeutic 
+potential of four distinct music genres: light, classical, atonal composition, and rock music. 
+Behavioral assessments, including sucrose preference and immobility time, were conducted to 
+evaluate the impact of music therapy. Additionally, we measured the levels of brain-derived 
+neurotrophic factor (BDNF), synaptic proteins and neurogenesis to elucidate the underlying 
+biological mechanisms. Our findings indicated that light and classical music significantly alle -
+viated depression-like behaviors in mice, evidenced by increased sucrose preference and reduced 
+immobility time. Conversely, atonal composition and rock music did not yield similar therapeutic 
+benefits. Biochemically, light and classical music were associated with decreased levels of 
+corticosterone and increased levels of glucocorticoid receptor, alongside enhanced BDNF 
+signaling, synaptic proteins and neurogenesis. In conclusion, the study demonstrates that specific 
+genres of music, notably light and classical music, may contribute to alleviating depression-like 
+symptoms, potentially through mechanisms associated with BDNF signaling and neurogenesis. 
+These results highlight the potential of targeted music therapy as a complementary approach in 
+treating depression, with implications for its incorporation into broader therapeutic regimes. 
+Further re-search is warranted to translate these findings into clinical practice.   
+1. Introduction 
+Depression is a pervasive mental health disorder that significantly impacts the lives of millions worldwide. Characterized by 
+* Corresponding author. 
+** Corresponding author. 
+E-mail addresses: 20081036@jxutcm.edu.cn (H.-Y. Cheng), haoxue_xxxie@163.com (H.-X. Xie), tangqianlan1994@gmail.com (Q.-L. Tang), 
+litaoyi@hqu.edu.cn (L.-T. Yi), zhujx81@sina.com (J.-X. Zhu).  
+Contents lists available at ScienceDirect 
+Heliyon 
+journal homepag e: www.cell.co m/heliyon 
+https://doi.org/10.1016/j.heliyon.2024.e34196 
+Received 8 January 2024; Received in revised form 17 June 2024; Accepted 4 July 2024\n[p.2] Heliyon 10 (2024) e34196
+2
+persistent sadness, loss of interest in enjoyable activities, and a range of physical and psychological impairments, it ’ s a leading cause of 
+disability. The complexity of its symptoms, which can vary widely among individuals, makes it a challenging condition to treat 
+effectively. Currently, the primary treatments for depression include pharmacotherapy, notably antidepressants, and various forms of 
+psychotherapy [ 1 ]. Antidepressants, such as selective serotonin reuptake inhibitors and tricyclic antidepressants, work by altering the 
+brain ’ s chemical neurotransmitters. While effective for some, these medications are not without their drawbacks. A significant pro -
+portion of patients do not respond adequately to first-line antidepressant treatments, leading to a condition known as 
+treatment-resistant depression. Moreover, the onset of the therapeutic effect of these drugs is typically delayed, often taking several 
+weeks to manifest [ 2 ]. Additionally, the side effects of antidepressants can be substantial, deterring adherence to treatment regimes 
+[ 3 ]. Given these challenges, there is a growing interest in alternative and complementary treatments for depression. These alternatives 
+seek to address the shortcomings of conventional treatments, offering options that might be more effective for certain individuals or 
+have fewer side effects. 
+As the quest for effective depression treatments continues, music therapy emerges as a promising non-pharmacological inter -
+vention. Music therapy, an established health profession, utilizes music within a therapeutic relationship to address physical, 
+emotional, cognitive, and social needs of individuals [ 4 ]. It involves a range of activities such as listening to music, singing, and playing 
+musical instruments. The American Music Therapy Association highlights its efficacy in promoting wellness, managing stress, alle -
+viating pain, and enhancing memory. The therapeutic potential of music for mental health is rooted in its ability to evoke emotional 
+responses and facilitate communication and expression, often transcending the barriers posed by traditional verbal communication. 
+Research indicates that music can directly influence brain chemistry and structure [ 5 ]. It affects the limbic system, notably the 
+amygdala, which is involved in emotional processing, and can modulate neurotransmitters like dopamine and serotonin, closely linked 
+to mood regulation [ 6 ]. More importantly, several previous clinical studies indicated that the effectiveness of music as a 
+non-pharmacologic approach for depression. For example, chronic kidney disease patients who listened to music exhibited alleviated 
+depression than those who did not during hemodialysis [ 7 , 8 ]. Music therapy attenuated depressive symptoms in older patients with 
+mild cognitive impairment [ 9 ]. Music therapy showed positive neurophysiological and psychological effects against depressive 
+symptoms in for in attention-deficit hyperactivity disorder children and adolescents [ 10 ]. However, there is little study demonstrating 
+the mechanism of music therapy. 
+A recent preclinical study showed that listening to music alleviated depressive symptoms in chronic unpredictable mild stress 
+(CUMS)-induced mice [ 11 ]. The study also indicated that music therapy inhibited hypothalamus-pituitary-adrenal axis hyperactivity 
+and alleviated inflammation in the CUMS-induced depression mice. However, the study used a mixed music collection including light 
+music, classical, atonal composition, flute and so on. It is still unclear which type of music is effective in response to depression 
+treatment. In the present study, we evaluated the effects of four different music including light music, classical, atonal composition, 
+and rock in CUMS-induced depressive mice. Furthermore, the effects of music therapy on brain-derived neurotrophic factor (BDNF) 
+signaling related neurogenesis were also investigated. 
+2. Materials and methods 
+2.1. Animals 
+Male ICR mice aged 8 weeks, each weighing approximately 25 ± 1 g, were procured from Shanghai Slac Animal Center (Shanghai, 
+China). The animals were accommodated in an environment with stringent regulation of both temperature (22 ± 2 
+◦
+C) and humidity 
+(55 ± 5 %). During the entire duration of the study, we ensured that the mice had unrestricted access to water and a standard diet 
+formulated for rodents. Prior to commencing any experimental protocols, there was a crucial acclimatization period of one week. This 
+phase involved habituating the mice to their new surroundings and gradually introducing human contact to reduce stress and facilitate 
+their adjustment. The experimental protocol received approval from the Animal Ethics Committee of the Jiangxi University of Chinese 
+Medicine (JZLLSC20230462, approval on 03/24/2023). Furthermore, our methodology adhered rigorously to the protocols and 
+ethical guidelines set forth by this committee, ensuring compliance with regulations governing the treatment and management of 
+laboratory animals used in experimental settings. 
+2.2. Biological reagents 
+Rabbit BDNF antibody (47808 for immunofluorescence), Mouse PSD95 antibody (36233), Rabbit synaptophysin antibody (36406) 
+and Rabbit DCX antibody (4604) were purchased from Cell signaling Technology (Danvers, USA). Corticosterone (501320) kit was 
+purchased from Cayman Chemical (Ann Arbor, USA). Fluoxetine hydrochloride (F844356) was purchased from Macklin (Shanghai, 
+China). HRP-conjugated Alpha Tubulin antibody (HRP-66031) and Rabbit BDNF antibody (25699-1-AP for Western blot) were pur -
+chased from Proteintech (Wuhan, China). 
+2.3. Therapies 
+Mice were randomly divided into seven groups (n = 11): Normal-vehicle, CUMS-vehicle, CUMS-classical music, CUMS-light music, 
+CUMS-atonal composition music, CUMS-rock music, CUMS-fluoxetine. In our experimental setup, the mice were exposed to their 
+respective genres of music for a duration of 2 h every evening, specifically between 21:00 and 23:00, coinciding with their dark cycle 
+from Week 5-Week 8 ( Fig. 1 A). The sound system used for playing the music was strategically positioned at a distance of approximately 
+H.-Y. Cheng et al.\n[p.3] Heliyon 10 (2024) e34196
+3
+2 m from the mice ’ s enclosure. This setup was designed to replicate a natural listening environment. The playback of the music pieces 
+was randomized, mirroring the typical listening habits of the general population. As for the music selection, a meticulously curated 
+playlist was developed for each genre under investigation. This compilation comprised 20 distinct musical pieces per genre, as detailed 
+in Tables 1, 2, 3 and 4 . This diverse selection was employed to provide auditory stimulation in our murine subjects, ensuring a broad 
+representation of each musical style under consideration. Fluoxetine was orally administrated at 20 mg/kg once a day for 4 weeks. 
+Open-field test, sucrose preference test and forced swimming test were performed after the last music therapy, respectively. 
+Our selection was strategically designed to cover a broad spectrum of musical characteristics, including rhythm, melody, harmony, 
+and tonality, which are believed to differentially influence psychological and neurobiological processes. (1) Light Music: Often 
+characterized by its simple melodies, easy listening quality, and soothing nature, light music was chosen to investigate its potential 
+calming and stress-reducing effects. (2) Classical Music: Known for its complex structure and emotional depth, classical music has been 
+widely studied for its effects on cognitive function, stress reduction, and emotional regulation. Its inclusion in our study was aimed at 
+examining whether these well-documented cognitive and emotional benefits could translate into therapeutic effects in a murine model 
+of depression. (3) Atonal Music: Atonal music, which lacks a clear key or tonal center, presents a unique auditory experience that can 
+be dissonant and challenging to interpret. We included atonal music to explore whether its less predictable structure and potential to 
+induce stress or cognitive dissonance would have different effects on depressive behaviors compared to more harmonious and 
+structured musical forms. (4) Rock Music: With its high energy, strong beat, and often loud dynamics, rock music was selected to assess 
+whether stimulation of this intensity could have a positive or negative impact on depressive symptoms. Rock music ’ s potential to evoke 
+strong emotional and physiological responses made it a compelling genre to study in the context of depression and stress. Therefore, 
+the diversity of these music genres allowed us to investigate the spectrum of emotional and neurophysiological responses they may 
+elicit and to determine their varying therapeutic potentials in the context of depression-like behaviors in mice. 
+Fig. 1. The effects of different music on the behaviors in mice exposed to CUMS. (A) Timeline of the present study. (B) Sucrose preference in sucrose 
+preference test. (C) Immobility time in forced swimming test. (D) Crossing number in open-field test. (E) Rearing number in open-field test. N = 11 
+in each group. #p < 0.05 and ##p < 0.01 vs Normal group. *p < 0.05 and **p < 0.01 vs CUMS group. 
+H.-Y. Cheng et al.\n[p.4] Heliyon 10 (2024) e34196
+4
+2.4. CUMS 
+To induce a state mimicking depression in mice, we utilized the CUMS model. This model is widely recognized and extensively 
+employed in research to mimic the effects of depression, as it closely replicates the unpredictable and prolonged nature of stress factors 
+often observed in human depressive conditions [12]. The CUMS regimen involved a varied array of stress-inducing factors to facilitate 
+chronic stress in our animal subjects. These factors included alternating periods of food and water deprivation, disruptions of the 
+light/dark cycle, exposure to wet bedding, strobe lighting, inversion of the light cycle, exposure to loud noise, reduction of living space, 
+and tilting of the cage. The implementation of the CUMS protocol spanned an eight-week duration. At the end of CUMS, open-field test, 
+sucrose preference test, and forced swimming test were performed. 
+2.5. Sucrose preference test 
+Prior to initiating the experimental phase, we conducted a sucrose adaptation process over a period of three days to familiarize the 
+mice with the sucrose solution. Initially, the mice’s cages were equipped with two bottles, each containing a 1 % sucrose solution, for a 
+full day (24 h). Subsequently, for the next 24 h, one bottle of the 1 % sucrose solution was replaced with a bottle of pure water. To 
+ensure a balanced exposure, the positions of these bottles were alternated every 12 h. During the formal experiment, each cage was 
+outfitted with one bottle of 1 % sucrose solution and one bottle of water. Similar to the adaptation phase, we rotated the position of 
+Table 1 
+Light music list.  
+No. Composition Composer Time (s) 
+1. Heaven On Earth Bandari 250 
+2. Moonglow Bandari 229 
+3. Xixing Peach Blossom Garden Li zhihui 313 
+4. Ink Orchid Pavilion Li zhihui 336 
+5. The Truth That You Leave Pianoboy 223 
+6. Windy Street Yukiko Isomura 286 
+7. Komorebi M-taku 212 
+8. Summer Joe Hisaishi 199 
+9. Melody of The Night Shi Jin 217 
+10. Through the Arbor Kevin Kern 225 
+11. Canon in D Major The O’Neill Brothers 300 
+12. Theme From Limelight Gheorghe Zamfir 204 
+13. Be Still My Soul Kevin Kern 225 
+14. Souvenirs D’Enfance Paul De Senneville 174 
+15. Mariage D’Amour Paul De Senneville 175 
+16. Ballade Pour Adeline Paul De Senneville 157 
+17. Le Cygne Saint-Saens 185 
+18. Bamboo Y⋅Watanabe 257 
+19. Por Una Cabeza Carlos Gardel 134 
+20. Playing Love from The Legend of 1900 Ennio Morricone 109  
+Table 2 
+Classical music list.  
+No. Composition Composer Time (s) 
+1. Mass in B Minor Johann Sebastian Bach 322 
+2. Symphony No.9 in D Minor, Op.125 Ludwig Van Beethoven 899 
+3. Messiah, Hwv 56 George Frideric Handel 217 
+4. Piano Sonata No.8 in C minor: 2 Ludwig Van Beethoven 343 
+5. Piano Concerto No.2 in B-flat Major, Op.83 Johannes Brahms 1067 
+6. Piano Concerto in A Minor, Op.54 Robert Schumann 304 
+7. String Quintet in C Major, Posth.163 Franz Schubert 863 
+8. The Nutcracker, Op.71 Pyotr Llyich Techaikovsky 248 
+9. The Nutcracker: Dance of the Sugar Plum Fairy Pyotr Llyich Techaikovsky 134 
+10. A Midsummer Night’s Dream Overture, Op.21 Felix Mendelssohn 778 
+11. Prelude to The Afternoon of a Faun Claude Debussy 377 
+12. In A-flat major, Hob.XVI:46 Franz Joseph Haydn 341 
+13. Appalachian Spring Aaron Copland 335 
+14. Sonata no. 3 in C major Franz Joseph Haydn 151 
+15. Peer Gynt Suite No.1, Op.23 Edvard Grieg 168 
+16. Guantanamera Joseito Fernandez 188 
+17. II. Andante cantabile Wolfgang Amadeus Mozart 614 
+18. Traumerei Robert Schumann 156 
+19. 24 Studies in African Rhythms Fred Onovwerosuoke 160 
+20. Spanish Romance Anonymous 137  
+H.-Y. Cheng et al.\n[p.5] Heliyon 10 (2024) e34196
+5
+these bottles at 12-h intervals. The consumption of both the sucrose solution and the water was meticulously measured over a 24-h 
+period. Based on these measurements, we calculated the sucrose preference of each mouse, which served as an indicator of anhe -
+donic behavior, a key symptom of depression. 
+2.6. Open-field test 
+In our experimental protocol, each mouse was individually positioned at the center of an open-field apparatus, which was a square 
+box measuring 40 cm × 40 cm x 30 cm, divided into 25 equal squares. We observed and recorded two key behavioral parameters: the 
+number of squares traversed by the mice (indicative of their locomotor activity) and the frequency of rearing, which involved the mice 
+standing on their hind limbs. To ensure the integrity of each test session and avoid any olfactory biases, the open-field apparatus was 
+thoroughly cleansed with ethanol following each mouse ’ s session. 
+2.7. Forced swimming test 
+In the forced swimming test component of our study, we used a transparent cylindrical container measuring 32 cm in height and 10 
+cm in diameter. This container was filled with water to a depth of 15 cm, and the water was maintained at a constant temperature of 
+25 
+◦
+C. Each mouse was individually placed in this container and required to swim for a total duration of 6 min. We specifically focused 
+Table 3 
+Atonal composition music list.  
+No. Composition Composer Time (s) 
+1. Clusters (1 – 3) Johanna Beyer 311 
+2. At the still Point Chester Biscardi 397 
+3. Ghost Nets Henry Brant 1482 
+4. Synchronisms.No 7 Mario Davidovsky 596 
+5. The Clothed Woman Duck Ellington 175 
+6. Time Cycle Lukas Foss 1235 
+7. The Hound of Heaven Miriam Gideon 435 
+8. Music for Twelve Leon Kirchner 876 
+9. Wozzeck Alban Berg 321 
+10. Piano Study in Mixed Accents Ruth Crawford Seeger 78 
+11. Caract `eres Henri Pousseur 17 
+12. Three Melodies Dane Rudhyar 637 
+13. Angles Carl Ruggles 184 
+14. Pierrot Lunaire Arnold Schoenberg 100 
+15. Peripetie Arnold Schoenberg 129 
+16. The Rite of Spring Igor Stravinsky 2079 
+17. Thirteen Ways of Looking at a Blackbird Louise Talma 522 
+18. Density 21.5 Edgard Var `ese 258 
+19. Six Bagatelles Anton Webern 694 
+20. Enactments Stefan Wolpe 1905  
+Table 4 
+Rock music list.  
+No. Composition Composer Time (s) 
+1. Welcome To The Jungle Guns N ’ Roses 273 
+2. Back ln Black Brian Johnson 255 
+3. Whole Lotta Love James Oden 334 
+4. Kashmir Robert Plant 508 
+5. Enter Sandman Kirk Hammett 331 
+6. Crazy Train Ozzy Osbourne 291 
+7. Smells Like Teen Spirit Krist Novoselic 301 
+8. In-A-Gadda-Da-Vida Doug Ingle 1022 
+9. Runnin ’ with the Devil Roth, David Lee 214 
+10. Ace of Spades Eddie Clarke 166 
+11. Blitzkrieg Bop Colvin Douglas 131 
+12. Breaking the Law Kenneth Downing 153 
+13. Everlong Dave Grohl 251 
+14. Run to the Hills Steve Harris 234 
+15. Dr. Feelgood Nikki Sixx 291 
+16. Bad Reputation Joan Jett 169 
+17. Dirty Deeds Done Dirt Cheap Bon Scott 231 
+18. Rock You Like a Hurricane Rudolf Schenker 253 
+19. Cat Scratch Fever Ted Nugent 219 
+20. You Give Love a Bad Name Jon Bon Jovi 223  
+H.-Y. Cheng et al.\n[p.6] Heliyon 10 (2024) e34196
+6
+on observing and recording the duration of immobility during the final 4 min of the test. Immobility in this context was characterized 
+by the mouse passively floating in the water, with minimal movement necessary to keep its head above the surface for breathing. In this 
+state, the forelimbs of the mice remained largely stationary, while the hind limbs executed minimal movements, just enough to 
+maintain buoyancy. This behavior was considered indicative of a despair-like state, an important measure in assessing the efficacy of 
+our interventions on depression-like symptoms in mice. 
+2.8. Enzyme-linked immunosorbent assays (ELISA) measurement 
+Post the forced swimming test, the animals were humanely euthanized for sample collection. We extracted blood samples, which 
+were then left to coagulate at ambient temperature for a duration of 30 min. Following coagulation, these samples underwent 
+centrifugation at 3000 g for a period of 15 min. The supernatant, which constitutes the serum, was carefully extracted and deposited 
+into microcentrifuge tubes. To preserve the integrity of the samples and prevent any biochemical degradation, the serum samples were 
+stored in a deep freeze at  80 
+◦
+C until the time of analysis. For the purpose of measuring the levels of serum corticosterone, we 
+employed the ELISA technique. This quantification was carried out strictly in accordance with the procedural guidelines provided by 
+the ELISA kit manufacturer. 
+2.9. Real-time PCR 
+Hippocampal tissues were carefully harvested and processed to extract total RNA. The extracted RNA was then reverse-transcribed 
+using reverse transcriptase enzymes to generate cDNA. The synthesized cDNA served as a template for the ensuing process of PCR 
+amplification. The real-time PCR reaction was executed in a thermal cycler, proceeding through a series of cycles consisting of 
+denaturation (95 
+◦
+C for 30 s), annealing (53 
+◦
+C for 60 s), and extension (72 
+◦
+C for 60 s). For relative gene expression analysis, the 
+expression levels of target genes including glucocorticoid receptor (Forward primer: 5 ′ -CAAAGCCGTTTCACTGTCC-3 ′ and Reverse 
+primer: 5 ′ -ACAATTTCACACTGCCACC-3 ′ ), BDNF (Forward primer: 5 ′ -TTATTTCATACTTCGGTTGC-3 ′ ; Reverse primer: 5 ′ -TGTCAGC -
+CAGTGATGTCG-3 ′ ), synaptophysin (Forward primer: 5 ′ -CCACCTCCTTCTCCAATCAG-3 ′ ; Reverse primer: 5 ′ -CAGCAAAGA -
+CAGGGTCTCCT-3 ′ ) and PSD95 (Forward primer: 5 ′ -CGCTACCAAGATGAAGACACG-3 ′ ; Reverse primer: 5 ′ - 
+CAATCACAGGGGGAGAATTG-3 ′ ) were normalized against the housekeeping gene GAPDH (Forward primer: 5 ′ -TGAGGCCGGTGCT -
+GAGTATGT-3 ′ ; Reverse primer: 5 ′ -CAGTCTTCTGGGTGGCAGTGAT-3 ′ ). The 2- ΔΔ CT method was subsequently employed, utilizing the 
+Ct values to calculate the gene expression levels quantitatively. 
+2.10. Western blot 
+Hippocampal protein samples were first extracted and quantified by BCA method, followed by mixing with loading buffer. Sub -
+sequently, the protein samples were subjected to SDS-PAGE gel electrophoresis to separate proteins based on molecular weight, fol -
+lowed by transferring the electrophoresed proteins from the gel to a PVDF membrane. The portion of the membrane not occupied by 
+proteins was blocked for 1 h using 5 % BSA to reduce non-specific binding. The membrane was then incubated overnight with primary 
+antibodies against the target proteins (BDNF: 1:1000; synaptophysin: 1:1000; PSD95: 1:1000; α -tubulin: 1:5000). Afterwards, unbound 
+primary antibody was removed using TBST and the membrane bound to the primary antibody was incubated with secondary antibody 
+labeled with HRP for 1 h (1:2500 except to α -tubulin). The unbound secondary antibody was washed again with TBST. Finally, the 
+signal on the membrane was detected using the ECL kit. 
+2.11. Immunofluorescence 
+Post-collection, the whole brain tissues were thoroughly fixed in a 4 % solution of paraformaldehyde for a 24-h period at a 
+controlled temperature of 4 
+◦
+C. Following fixation, these tissues were carefully prepared for preservation by embedding them in OCT. 
+The OCT-embedded tissues were then rapidly frozen by exposure to liquid nitrogen and subsequently stored at a temperature of  80 
+◦
+C 
+to ensure preservation until the time of sectioning. The process of sectioning involved slicing the frozen brain tissue blocks into sections 
+of 15 μ m thickness. The obtained tissue sections were then mounted on slides coated with poly- L -lysine and stored at  20 
+◦
+C for further 
+processing. During the formal experiment, the sections were immersed in a 4 % paraformaldehyde solution for a duration of 10 min at 
+ambient temperature. Post-fixation, the sections underwent a washing process using TBST-Triton solution to eliminate any remnants of 
+the fixative. The sections were then subjected to a blocking procedure for 1 h at room temperature. The next phase involved the in -
+cubation of the sections with primary antibodies targeting BDNF (1:100) and DCX (1:200). This incubation occurred overnight at 4 
+◦
+C 
+within a humidified chamber. Following the primary antibody incubation, the sections were incubated with secondary antibodies that 
+were fluorophore-conjugated and compatible with the primary antibodies. After the secondary antibody incubation, the final stage 
+involved the visualization of nuclei, achieved through a brief staining process using DAPI-based antifade mounting medium. The 
+completed sections were then analyzed and imaged using a confocal microscope (Leica TCS SP8). To ensure comparability across all 
+samples, the microscope ’ s acquisition settings were kept consistent throughout the imaging process. 
+2.12. Statistical analysis 
+The statistical representation of our data is provided as mean values accompanied by the SEM. For the purpose of comparing 
+H.-Y. Cheng et al.\n[p.7] Heliyon 10 (2024) e34196
+7
+between groups, we applied a one-way ANOVA. In instances where the ANOVA revealed significant disparities, we further conducted 
+pairwise comparisons using Tukey ’ s post hoc test to delineate these differences more clearly. We established the threshold for sta -
+tistical significance at a p-value of less than 0.05. 
+3. Results 
+3.1. Light music and classical music therapy alleviated the depression-like symptoms in CUMS 
+Following a four-week period of music therapy in mice subjected to CUMS, we assessed indicators of depression-like behaviors such 
+as anhedonia and despair. Additionally, assessments of locomotor activity were conducted. As shown in Fig. 1 B, exposure to CUMS 
+resulted in a notable reduction in sucrose preference among the mice. This change, indicative of anhedonia, was significantly coun -
+teracted by exposure to light music and classical music, as these genres markedly increased sucrose preference in the CUMS-exposed 
+mice. Conversely, neither atonal composition nor rock music showed any significant impact on sucrose preference. Regarding despair- 
+like behavior, as measured by immobility time in the forced swimming test, an increase was observed in CUMS-exposed mice ( Fig. 1 C). 
+Notably, this immobility time was substantially reduced in mice that were treated with light music and classical music, in contrast to 
+the CUMS-only group. However, this effect was not observed in groups exposed to atonal composition and rock music, as these genres 
+did not influence immobility time. Furthermore, we evaluated locomotor activity through the open-field test, which was performed 
+before the forced swimming test. The results from this test revealed no significant differences in the number of crossing or rearing 
+among the various groups ( Fig. 1 D and E), suggesting that locomotor activity was not affected by the different music therapies. 
+3.2. Light music and classical music therapy attenuated the hyperactivity of hypothalamus-pituitary-adrenal axis 
+Subsequent to the behavioral analyses, we measured the levels of serum corticosterone and assess the expression of glucocorticoid 
+receptor in the hippocampus of the mice undergoing music therapy. The results indicate that exposure to CUMS led to a significant 
+elevation in serum corticosterone levels ( Fig. 2 A). However, this increase was notably attenuated in mice that were treated with light 
+music and classical music, as these genres effectively reduced corticosterone levels in the CUMS-exposed mice. In contrast, exposure to 
+atonal composition and rock music did not yield a similar reduction in corticosterone levels. Additionally, the investigation into 
+hippocampal glucocorticoid receptor revealed that light music and classical music therapies had a reversing effect on their down -
+regulation in CUMS-exposed mice ( Fig. 2 B). This suggests a restorative impact of light music and classical music on stress-induced 
+alterations in hypothalamus-pituitary-adrenal axis. 
+3.3. Light music and classical music therapy enhanced BDNF signaling in the hippocampus 
+In our exploration of the neurobiological underpinnings of depression-like symptoms in mice, we specifically examined the 
+expression of BDNF, in the hippocampus. Our data revealed that exposure to CUMS led to a significant reduction in the expression of 
+both BDNF, indicating a potential disruption in neurotrophic support and signaling pathways critical for neuronal health and synaptic 
+plasticity. Interestingly, upon assessing the impact of music therapies, we observed a remarkable shift. Mice subjected to four weeks of 
+listening to either light or classical music exhibited a notable attenuation of BDNF declines by immunofluorescence ( Fig. 3 A and B), 
+PCR ( Fig. 3 C) and Western blot ( Fig. 3 D, Fig. S1 ) assays. Specifically, light music appeared to restore the levels of BDNF in the hip -
+pocampus closer to those observed in non-stressed Normal. This suggests that the therapeutic effects of light music and classical music 
+may, in part, be mediated through the modulation of neurotrophic factor and the activation of BDNF signaling. 
+Fig. 2. The effects of different music on serum corticosterone levels and hippocampal glucocorticoid receptor expression in mice exposed to CUMS. 
+(A) Serum corticosterone levels. (B) Hippocampal glucocorticoid receptor mRNA expression. N = 6 or 11 in each group. #p < 0.05 and ##p < 0.01 
+vs Normal group. *p < 0.05 and **p < 0.01 vs CUMS group. 
+H.-Y. Cheng et al.\n[p.8] Heliyon 10 (2024) e34196
+8
+3.4. Light music and classical music therapy increased synaptic proteins in the hippocampus 
+In addition to assessing BDNF signaling, our study also evaluated the expression of synaptic proteins in the hippocampus. This 
+investigation was particularly relevant given the known modulation of synaptic proteins by BDNF signaling pathway. As shown in 
+Fig. 4 , the results indicated a notable impact of CUMS on synaptic integrity. In detail, CUMS was found to significantly reduce the 
+mRNA expression of the presynaptic protein synaptophysin ( Fig. 4 A) and the postsynaptic protein PSD95 ( Fig. 4 B) in the hippocampus, 
+in comparison to the mice in the Normal-vehicle group. This reduction is indicative of synaptic degradation and potential disturbances 
+in neural communication and plasticity, which are critical factors in the pathophysiology of depression. In contrast, our findings 
+revealed that both light music therapy significantly increased both synaptophysin and PSD95 expression at gene levels. Classical music 
+therapy only effectively reversed the reduction in PSD95 mRNA expression. Moreover, the protein levels of synaptophysin and PSD95 
+were significantly decreased by CUMS ( Fig. 4 C – E, Fig. S2 ), while mice exposed to light music therapy showed the attenuations in the 
+loss of both synaptophysin and PSD95. In addition, mice exposed to classical music therapy showed an increase of synaptophysin levels 
+in the hippocampus. 
+3.5. Light music and classical music therapy increased hippocampal neurogenesis in CUMS mice 
+In the final phase of our analysis, we focused on examining neurogenesis ( Fig. 5 A), particularly in response to the light music and 
+classical music therapies. Our observations revealed that exposure to CUMS led to a marked reduction in the number of DCX positive 
+cells within the dentate gyrus region of the hippocampus ( Fig. 5 B). However, in a notable contrast, exposure to both light music 
+therapy resulted in a significant increase in DCX positive cells. And the classical music exerted a tendency to increase DCX positive cells 
+Fig. 3. The effects of light music and classical music on hippocampal BDNF signaling pathway in mice exposed to CUMS. (A) Representative BDNF 
+immunofluorescence image. (B) Histogram of hippocampal BDNF intensity. (C) BDNF mRNA expression. (D) BDNF protein levels. N = 4 – 6 in each 
+group. #p < 0.05 vs Normal group. *p < 0.05 and **p < 0.01 vs CUMS group. 
+H.-Y. Cheng et al.\n[p.9] Heliyon 10 (2024) e34196
+9
+in CUMS mice. This finding suggests an enhancement of neurogenesis attributable to the specific genres of music therapy. 
+4. Discussion 
+Our study, for the first time, evaluated the effects of four different music on the depressive symptoms in animals, which has yielded 
+significant insights into the potential of music therapy as a treatment for depression-like behaviors in mice. Specifically, we observed 
+that exposure to light music and classical music over a four-week period led to a reduction in symptoms commonly associated with 
+depression. This was evidenced by a marked increase in sucrose preference, indicating a decrease in anhedonia, and a reduction in 
+immobility time during the forced swimming test, suggesting a decrease in despair-like behavior. These behavioral changes are critical 
+indicators in the study of depression, as they closely mimic symptoms observed in human depressive disorders. Conversely, our 
+findings highlighted a stark contrast in the effects of atonal composition and rock music on the same depression-like behaviors in mice. 
+Unlike light music and classical music, atonal composition and rock did not demonstrate a significant therapeutic effect. These genres 
+neither improved sucrose preference nor reduced immobility time, suggesting their limited efficacy in alleviating the symptoms of 
+depression. The differential impact of these music genres underscores the complexity of music therapy as a treatment modality. While 
+light music and classical music showed promise in alleviating depressive symptoms, the lack of effect from atonal composition and rock 
+music suggests that not all types of music are equally beneficial. This could be attributed to various factors, such as the rhythmic 
+structure, melodic content, or the emotional resonance of different genres, which may play crucial roles in their therapeutic potential 
+[ 13 – 15 ]. 
+Corticosterone, a primary glucocorticoid in rodents, plays a pivotal role in the body ’ s response to stress [ 16 ]. It ’ s analogous to 
+Fig. 4. The effects of light music and classical music on hippocampal presynaptic protein synaptophysin and postsynaptic protein PSD95 expression 
+in mice exposed to CUMS. (A) Synaptophysin mRNA expression. (B) PSD95 mRNA expression. (C) Representative blots. (D) Synaptophysin protein 
+levels. (E) PSD95 protein levels. N = 4 or 6 in each group. #p < 0.05 and ##p < 0.01 vs Normal group. *p < 0.05 and **p < 0.01 vs CUMS group. 
+H.-Y. Cheng et al.\n[p.10] Heliyon 10 (2024) e34196
+10
+cortisol in humans. Typically, in response to stress, the hypothalamic-pituitary-adrenal axis is activated, leading to increased secretion 
+of corticosterone [ 17 ]. This hormone helps mobilize energy reserves and modulate stress responses but, when elevated chronically, can 
+contribute to the pathophysiology of depression. Chronic elevation of corticosterone is linked to neuronal damage, particularly in the 
+hippocampus – a region critical for mood regulation and cognitive function [ 18 ]. Elevated corticosterone levels have been associated 
+with several core symptoms of depression, including anhedonia, fatigue, and cognitive dysfunction [ 19 ]. In our present study, the 
+reduction of corticosterone levels in mice subjected to light music and classical music suggests an inhibition of the HPA axis hyper -
+activity typically observed in stress. This finding indicates that these music genres might be capable of modulating the body ’ s 
+physiological stress response, thus contributing to their antidepressant-like effects. The role of glucocorticoid receptor in depression 
+and stress resilience is equally significant. Glucocorticoid receptor, when activated by glucocorticoids like corticosterone, regulate 
+gene transcription and modulate a wide range of physiological processes, including immune response, metabolism, and brain function 
+[ 20 , 21 ]. In the context of depression, the density and sensitivity of glucocorticoid receptors in the brain, particularly in the hippo -
+campus, play a critical role in regulating the HPA axis and mediating the effects of stress. An increase in glucocorticoid receptor levels, 
+as observed in our study following light music and classical music exposure, suggests enhanced feedback regulation on the HPA axis 
+[ 22 , 23 ]. This could lead to a more controlled and balanced stress response, reducing the likelihood of developing stress-related pa -
+thologies like depression. Generally, music can evoke powerful emotional responses and induce relaxation. In addition, the rhythm of 
+music can synchronize with physiological processes, such as heart rate and breathing. This emotional engagement and relaxation could 
+lead to a reduction in perceived stress, thereby diminishing HPA axis activation and subsequent corticosterone release [ 24 ]. 
+BDNF, a key neurotrophin in the central nervous system, plays a crucial role in neuronal survival, differentiation, and synaptic 
+plasticity, and its activity through the TrkB receptor is essential for maintaining neuronal health and function [ 25 ]. Enhanced BDNF 
+Fig. 5. The effects of light music and classical music on hippocampal neurogenesis in mice exposed to CUMS. (A) Representative DCX positive cells 
+immunofluorescence image. (B) Histogram of hippocampal DCX positive cells. N = 5 in each group. ##p < 0.01 vs Normal group. *p < 0.05 and 
+**p < 0.01 vs CUMS group. Yellow bar: 50 μ m; Red bar: 3 μ m. 
+H.-Y. Cheng et al.\n[p.11] Heliyon 10 (2024) e34196
+11
+signaling, as indicated by the findings, suggests that music therapy can positively influence this critical pathway, akin to the effects 
+observed with other neurotrophic interventions like exercise, environmental enrichment, and certain pharmacotherapies [26,27]. This 
+enhancement could be attributed to the multi-sensory stimulation provided by music, which engages various brain regions and 
+potentially upregulates BDNF expression, thereby promoting synaptic health and neuronal growth [28]. The increase in synaptic 
+proteins, such as synaptophysin and PSD95, further supports this notion, as these proteins are integral to synaptic structure and 
+function, and their expression is often modulated by BDNF. Synaptic health is critical for effective neural communication and plas -
+ticity, processes that are often impaired in depression. Therefore, the restoration or enhancement of synaptic protein levels through 
+music therapy could signify a reversal of these impairments, contributing to improved mood and cognitive function. Similarly, the 
+observed promotion of neurogenesis, particularly in the hippocampus, a region heavily implicated in mood regulation and cognitive 
+processes, underscores the potential of music therapy as a neurogenic agent. The generation of new neurons in the adult brain, a 
+process once thought impossible, is now recognized as an important aspect of brain plasticity and is believed to be beneficial in the 
+treatment of depression [29]. Enhanced neurogenesis, possibly driven by increased BDNF signaling, could lead to improved hippo -
+campal function and resilience against stress-induced neuronal damage [30]. The parallels between the effects of music therapy and 
+other neurotrophic interventions are striking. For instance, physical exercise, known for its ability to boost BDNF levels, similarly 
+promotes synaptic protein expression and neurogenesis, leading to improved mood and cognitive function in depressive disorders. 
+Environmental enrichment, which provides sensory and cognitive stimulation, has also been shown to enhance neurogenesis and 
+synaptic plasticity, potentially through mechanisms similar to those activated by music therapy [31]. These parallels suggest that like 
+exercise and environmental enrichment, music therapy may exert its therapeutic effects through a holistic engagement of the brain’s 
+neurotrophic, synaptic, and neurogenic processes. This comprehensive stimulation likely contributes to the overall improvement in 
+brain health and function, which is crucial for combating depression. In conclusion, the enhanced BDNF signaling, synaptic protein 
+expression, and neurogenesis observed in response to light music and classical music therapy highlight the significant potential of 
+music as a neurotrophic intervention. 
+It should be noted that there are also several limitations in our present study. Firstly, the method of music exposure in our study, 
+through auditory means in a controlled laboratory setting, might not completely mimic how humans typically experience music in a 
+naturalistic environment, which could affect the generalizability of our results. Secondly, although we selected four distinct music 
+genres to cover a broad range of auditory stimuli, this selection is not exhaustive. Other genres or specific pieces of music may elicit 
+different responses, and our study’s findings might not be applicable to all types of music. 
+5. Conclusion 
+In conclusion, our study underscores the potential of light and classical music therapies in mitigating depression-like behaviors in 
+mice subjected to CUMS, with these therapies modulating the hypothalamus-pituitary-adrenal axis and enhancing BDNF-mediated 
+synaptic plasticity and neurogenesis. The lack of a therapeutic effect observed with atonal and rock music emphasizes the critical 
+role of music genre in determining the efficacy of music therapy. These findings not only corroborate the significance of music’s 
+specific characteristics in eliciting therapeutic outcomes but also open avenues for integrating music therapy into existing mental 
+health treatment paradigms. Expanding upon these results, future research could explore the customization of music therapy to align 
+with individual patient preferences and specific depressive symptoms, enhancing therapeutic efficacy and patient engagement. The 
+potential for personalized music therapy could be systematically investigated, considering factors such as musical genre, tempo, and 
+rhythm in relation to patient-specific emotional, cognitive, and neurophysiological profiles. The integration of music therapy into 
+clinical practice requires a multidisciplinary approach, combining insights from psychology, neurobiology, and musicology, to develop 
+evidence-based, patient-centered therapeutic strategies. Further longitudinal studies are needed to understand the long-term effects of 
+music therapy on depression and its potential to be used alongside traditional pharmacological and psychotherapeutic treatments, 
+thereby enriching the therapeutic arsenal available for combating depression. 
+Ethics statement 
+The experimental protocol received approval from the Animal Ethics Committee of the Jiangxi University of Chinese Medicine 
+(JZLLSC20230462, approval on 03/24/2023). 
+Data availability 
+Data is not available to access in a data repository; however, it will be made available by the corresponding author upon request. 
+CRediT authorship contribution statement 
+Hong-Yu Cheng: Writing – original draft, Project administration, Methodology, Investigation, Formal analysis, Data curation, 
+Conceptualization. Hao-Xue Xie: Investigation, Formal analysis, Data curation. Qian-Lan Tang: Methodology. Li-Tao Yi: Writing – 
+review & editing, Supervision, Project administration, Funding acquisition, Conceptualization. Ji-Xiao Zhu: Conceptualization. 
+H.-Y. Cheng et al.\n[p.12] Heliyon 10 (2024) e34196
+12
+Declaration of competing interest 
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared to 
+influence the work reported in this paper. 
+Acknowledgement 
+This research was funded by grants from the Science and Technology Plan Project of Jiangxi Provincial Administration of Tradi -
+tional Chinese Medicine (No. 2019A258), Horizontal Project Funding (20220368), and the Natural Science Foundation of Fujian 
+Province (2022J01315). We would like to thank Instrumental Analysis Center of Huaqiao University for the help of confocal testing. 
+Appendix A. Supplementary data 
+Supplementary data to this article can be found online at https://doi.org/10.1016/j.heliyon.2024.e34196. 
+References 
+[1] R. Karrouri, Z. Hammani, R. Benjelloun, Y. Otheman, Major depressive disorder: validated treatments and future challenges, World J Clin Cases 9 (31) (2021) 
+9350–9367, https://doi.org/10.12998/wjcc.v9.i31.9350. 
+[2] D. Voineskos, Z.J. Daskalakis, D.M. Blumberger, Management of treatment-resistant depression: challenges and strategies, Neuropsychiatric Dis. Treat. 16 
+(2020) 221–234, https://doi.org/10.2147/NDT.S198774. 
+[3] N.R. Marasine, S. Sankhi, Factors associated with antidepressant medication non-adherence, Turk J Pharm Sci 18 (2) (2021) 242–249, https://doi.org/10.4274/ 
+tjps.galenos.2020.49799. 
+[4] Q. Tang, Z. Huang, H. Zhou, P. Ye, Effects of music therapy on depression: a meta-analysis of randomized controlled trials, PLoS One 15 (11) (2020) e0240862, 
+https://doi.org/10.1371/journal.pone.0240862. 
+[5] L. Rebecchini, Music, mental health, and immunity, Brain Behav Immun Health 18 (2021) 100374, https://doi.org/10.1016/j.bbih.2021.100374. 
+[6] L.W. Wesseldijk, F. Ullen, M.A. Mosing, The effects of playing music on mental health outcomes, Sci. Rep. 9 (1) (2019) 12606, https://doi.org/10.1038/s41598- 
+019-49099-9. 
+[7] P.M.S. Hagemann, L.C. Martin, C.M.B. Neme, The effect of music therapy on hemodialysis patients’ quality of life and depression symptoms, J Bras Nefrol 41 (1) 
+(2019) 74–82, https://doi.org/10.1590/2175-8239-jbn-2018-0023. 
+[8] N. Aghakhani, Z.G. Metin, M. Akbari, Selected music serves as a non-pharmacologic approach for anxiety and depression relief in patients receiving 
+hemodialysis, Iran. J. Public Health 52 (11) (2023) 2474–2475, https://doi.org/10.18502/ijph.v52i11.14047. 
+[9] B. Xue, X. Meng, Q. Liu, X. Luo, The effect of receptive music therapy on older adults with mild cognitive impairment and depression: a randomized controlled 
+trial, Sci. Rep. 13 (1) (2023) 22159, https://doi.org/10.1038/s41598-023-49162-6. 
+[10] J.I. Park, I.H. Lee, S.J. Lee, R.W. Kwon, E.A. Choo, H.W. Nam, J.B. Lee, Effects of music therapy as an alternative treatment on depression in children and 
+adolescents with ADHD by activating serotonin and improving stress coping ability, BMC Complement Med Ther 23 (1) (2023) 73, https://doi.org/10.1186/ 
+s12906-022-03832-6. 
+[11] Q. Fu, R. Qiu, L. Chen, Y. Chen, W. Qi, Y. Cheng, Music prevents stress-induced depression and anxiety-like behavior in mice, Transl. Psychiatry 13 (1) (2023) 
+317, https://doi.org/10.1038/s41398-023-02606-z. 
+[12] M.M. Zhang, M.X. Guo, Q.P. Zhang, X.Q. Chen, N.Z. Li, Q. Liu, J. Cheng, S.L. Wang, G.H. Xu, C.F. Li, J.X. Zhu, L.T. Yi, IL-1R/C3aR signaling regulates synaptic 
+pruning in the prefrontal cortex of depression, Cell Biosci. 12 (1) (2022) 90, https://doi.org/10.1186/s13578-022-00832-4. 
+[13] M. Trimble, D. Hesdorffer, Music and the brain: the neuroscience of music and musical appreciation, BJPsych Int. 14 (2) (2017) 28–31, https://doi.org/ 
+10.1192/s2056474000001720. 
+[14] D.E. Gustavson, P.L. Coleman, J.R. Iversen, H.H. Maes, R.L. Gordon, M.D. Lense, Mental health and music engagement: review, framework, and guidelines for 
+future studies, Transl. Psychiatry 11 (1) (2021) 370, https://doi.org/10.1038/s41398-021-01483-8. 
+[15] J.T. W, C. Labbe, D. Grandjean, Rhythmic entrainment as a musical affect induction mechanism, Neuropsychologia 96 (2017) 96–110, https://doi.org/10.1016/ 
+j.neuropsychologia.2017.01.004. 
+[16] M. Botia, D. Escribano, S. Martinez-Subiela, A. Tvarijonaviciute, F. Tecles, M. Lopez-Arjona, J.J. Ceron, Different types of glucocorticoids to evaluate stress and 
+welfare in animals and humans: general concepts and examples of combined use, Metabolites 13 (1) (2023), https://doi.org/10.3390/metabo13010106. 
+[17] C. Leistner, A. Menke, Hypothalamic-pituitary-adrenal axis and stress, Handb. Clin. Neurol. 175 (2020) 55–64, https://doi.org/10.1016/B978-0-444-64123- 
+6.00004-7. 
+[18] S. Zhao, X. Xu, G. Xie, T. Zhang, Chronic corticosterone exposure impairs emotional regulation and cognitive function through disturbing neural oscillations in 
+mice, Behav. Brain Res. 434 (2022) 114030, https://doi.org/10.1016/j.bbr.2022.114030. 
+[19] S.H. Kennedy, Core symptoms of major depressive disorder: relevance to diagnosis and treatment, Dialogues Clin. Neurosci. 10 (3) (2008) 271–277, https://doi. 
+org/10.31887/DCNS.2008.10.3/shkennedy. 
+[20] D.W. Cain, J.A. Cidlowski, Immune regulation by glucocorticoids, Nat. Rev. Immunol. 17 (4) (2017) 233–247, https://doi.org/10.1038/nri.2017.1. 
+[21] O.C. Meijer, J.C. Buurstede, M.J.M. Schaaf, Corticosteroid receptors in the brain: transcriptional mechanisms for specificity and context-dependent effects, Cell. 
+Mol. Neurobiol. 39 (4) (2019) 539–549, https://doi.org/10.1007/s10571-018-0625-2. 
+[22] C. Finsterwald, C.M. Alberini, Stress and glucocorticoid receptor-dependent mechanisms in long-term memory: from adaptive responses to psychopathologies, 
+Neurobiol. Learn. Mem. 112 (2014) 17–29, https://doi.org/10.1016/j.nlm.2013.09.017. 
+[23] J.D. Gray, J.F. Kogan, J. Marrocco, B.S. McEwen, Genomic and epigenomic mechanisms of glucocorticoids in the brain, Nat. Rev. Endocrinol. 13 (11) (2017) 
+661–673, https://doi.org/10.1038/nrendo.2017.97. 
+[24] R. Billar, P. Kappen, S. Mohammadian, C. van den Berg, Y. de Rijke, E. van den Akker, J. van Rosmalen, J.M. Schnater, A. Vincent, C. Dirven, M. Klimek, 
+R. Wijnen, J. Jeekel, F. Huygen, J. Tiemensma, The effect of recorded music on pain endurance (CRESCENDo) - a randomized controlled trial, Compl. Ther. 
+Med. 77 (2023) 102969, https://doi.org/10.1016/j.ctim.2023.102969. 
+[25] M. Di Donato, P. Giovannelli, A. Migliaccio, G. Castoria, The nerve growth factor-delivered signals in prostate cancer and its associated microenvironment: when 
+the dialogue replaces the monologue, Cell Biosci. 13 (1) (2023) 60, https://doi.org/10.1186/s13578-023-01008-4. 
+[26] J. Wang, J. Wang, Y. Wang, Y. Chai, H. Li, D. Miao, H. Liu, J. Li, J. Bao, Music with different tones affects the development of brain nerves in mice in early life 
+through BDNF and its downstream pathways, Int. J. Mol. Sci. 24 (9) (2023), https://doi.org/10.3390/ijms24098119. 
+[27] W. Chen, J. Zheng, G. Shen, X. Ji, L. Sun, X. Li, F. Xu, J.H. Gu, Music therapy alleviates motor dysfunction in rats with focal cerebral ischemia-reperfusion injury 
+by regulating BDNF expression, Front. Neurol. 12 (2021) 666311, https://doi.org/10.3389/fneur.2021.666311. 
+H.-Y. Cheng et al.\n[p.13] Heliyon 10 (2024) e34196
+13
+[28] A. Minutillo, G. Panza, M.C. Mauri, Musical practice and BDNF plasma levels as a potential marker of synaptic plasticity: an instrument of rehabilitative 
+processes, Neurol. Sci. 42 (5) (2021) 1861–1867, https://doi.org/10.1007/s10072-020-04715-9. 
+[29] P. Leal-Galicia, M.E. Chavez-Hernandez, F. Mata, J. Mata-Luevanos, L.M. Rodriguez-Serrano, A. Tapia-de-Jesus, M.H. Buenrostro-Jauregui, Adult neurogenesis: 
+a story ranging from controversial new neurogenic areas and human adult neurogenesis to molecular regulation, Int. J. Mol. Sci. 22 (21) (2021), https://doi. 
+org/10.3390/ijms222111489. 
+[30] T. Numakawa, H. Odaka, N. Adachi, Actions of brain-derived neurotrophic factor and glucocorticoid stress in neurogenesis, Int. J. Mol. Sci. 18 (11) (2017), 
+https://doi.org/10.3390/ijms18112312. 
+[31] J. Nithianantharajah, A.J. Hannan, Enriched environments, experience-dependent plasticity and disorders of the nervous system, Nat. Rev. Neurosci. 7 (9) 
+(2006) 697–709, https://doi.org/10.1038/nrn1970. 
+H.-Y. Cheng et al.
