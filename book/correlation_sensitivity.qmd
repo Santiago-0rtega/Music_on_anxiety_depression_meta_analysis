@@ -2,12 +2,12 @@
 title: "Sensitivity analysis to the assumed within-study correlation"
 ---
 
-The overall-effect and moderator models (see `overall_effect.qmd` and `uni_moderators.qmd`) build a cohort-level variance–covariance (VCV) matrix with `metafor::vcalc()`, assuming a within-cohort correlation of `rho = 0.5` between sampling errors of different effect sizes measured on the same cohort of animals (`Cohort_ID`), whenever the true within-cohort correlation is not reported by the primary study. A separate but numerically identical value, `ri = 0.5`, is used inside `calculate_lnRR()`, `calculate_lnVR()`, and `calculate_lnCVR()` (see `effect_size_calculation.qmd`) as the assumed within-subject correlation for the sampling-variance formulas of *dependent* (paired / repeated-measures) comparisons (`Comparison_structure == "Dependent"`, `metafor::escalc(measure = "ROMC"/"VRC"/"CVRC", ri = 0.5)`). These are two conceptually distinct correlation parameters that happen to share the same assumed value of 0.5 by convention:
+The overall-effect and moderator models (see `overall_effect.qmd` and `uni_moderators.qmd`) need an assumption about how correlated the sampling errors of different effect sizes are, so that effect sizes which are not really independent of one another are not treated as if they were. Two separate correlation assumptions are used in the pipeline, and both happen to be set to the same round number, 0.5, by convention -- but they answer different questions:
 
-1.  **Cross-effect-size correlation** (`vcalc(rho = ...)`): the assumed correlation between the sampling errors of *different* effect sizes drawn from the same cohort of animals (e.g., two behavioural outcomes measured on the same group). This affects the off-diagonal covariances of the VCV matrix `V` used in every `rma.mv()` call, for any cohort contributing more than one effect size (57 of the dataset's cohorts contribute more than one outcome).
-2.  **Within-subject/within-comparison correlation** (`escalc(ri = ...)`): the assumed correlation between the treatment and control measurements of a *single* dependent (paired/repeated-measures) comparison. This affects only the sampling-variance formula of that one effect size, and in the current database applies to the 40 effect sizes (all from a single study, `Sampaio_2017_PSYNEURO`, a within-subject design measured at four life stages) coded `Comparison_structure == "Dependent"`.
+1.  **Correlation between different outcomes from the same cohort** (`vcalc(rho = 0.5)`). Some cohorts of animals contribute more than one effect size to the dataset (57 of them do) -- for example, two different behavioural tests run on the same group of animals. Effect sizes coming from the same cohort are not statistically independent, and `rho` is our assumption about how strongly they are related. This assumption feeds into the off-diagonal entries of the variance-covariance (VCV) matrix used by every `rma.mv()` model in the analysis.
+2.  **Correlation between the two measurements inside a single paired comparison** (`escalc(ri = 0.5)`). Some comparisons in the dataset are paired / repeated-measures designs, where the treatment and control measurements come from the same animals rather than from separate groups. There are 40 such effect sizes in the database, all from a single study (`Sampaio_2017_PSYNEURO`, a within-subject design measured at four life stages), coded `Comparison_structure == "Dependent"`. `ri` is our assumption about how correlated those paired measurements are, and it only affects the sampling-variance formula for those 40 rows.
 
-This appendix runs a sensitivity analysis on both parameters. It first varies parameter (1), the cross-effect-size correlation used to build the VCV matrix for the overall `lnRR` and `lnVR` models, because that is the correlation that structures the variance–covariance matrix referenced in the manuscript and by reviewers. It then (further down, in "Recomputing sampling variances across the assumed within-subject correlation") varies parameter (2) as well, by recomputing the sampling variances of the 40 `Comparison_structure == "Dependent"` rows directly from the raw extraction database (`data/db251124.csv`) across a range of assumed values of `ri`, and finally crosses both parameters in a joint `ri` x `rho` grid.
+Because both assumptions are round-number defaults rather than values estimated from the data, this appendix checks whether the models' results depend on the specific choice of 0.5. We first vary `rho` for the overall `lnRR`/`lnVR` models, since that is the parameter that structures the VCV matrix referenced in the manuscript. Further down, in "Recomputing sampling variances across the assumed within-subject correlation", we vary `ri` for the 40 affected rows, recomputing their sampling variances directly from the raw extraction database (`data/db251124.csv`). Finally, we vary both parameters together in a joint `ri` x `rho` grid.
 
 ```{r}
 #| label: setup
@@ -37,7 +37,7 @@ db <- readr::read_csv(here("..","data","db_effect_sizes.csv")) %>%
 
 ## Refitting the overall models across a range of assumed correlations
 
-We refit the same intercept-only multilevel models used in `overall_effect.qmd` (random intercepts for `Study_ID`, `ES_ID`, and `Strain`; REML; `test = "t"`), varying only the `rho` argument passed to `vcalc()` when constructing the VCV matrix. We evaluate `rho = 0.00, 0.25, 0.50, 0.75, 0.90`, spanning independence (`rho = 0`) to a strong assumed within-cohort correlation (`rho = 0.90`).
+To see whether the choice of `rho` matters, we refit the exact same intercept-only multilevel models used in `overall_effect.qmd` (random intercepts for `Study_ID`, `ES_ID`, and `Strain`; REML; `test = "t"`), changing only the `rho` value passed to `vcalc()` when building the VCV matrix. Everything else about the model is held fixed. We try five values of `rho`, spanning from assuming no correlation at all (`rho = 0`) to assuming a strong correlation (`rho = 0.90`): `0.00, 0.25, 0.50, 0.75, 0.90`.
 
 ```{r}
 #| label: fit_overall_mv_rho
@@ -179,7 +179,7 @@ ggsave(filename = here("..","Plots", "sensitivity_r_overall.jpg"),
 
 ## Anxiety-versus-depression lnVR contrast across rho
 
-The manuscript also reports a depression-minus-anxiety contrast for `lnVR` (see `uni_moderators.qmd`, "Outcome type" section). We check whether that contrast, and the two subgroup pooled estimates it is built from, are sensitive to the assumed correlation. We reuse the same `k >= 5` level-filtering rule applied in `uni_moderators.qmd` (the `both` level of `Outcome_type`, k = 3, is dropped).
+The manuscript also reports a depression-minus-anxiety contrast for `lnVR` (see `uni_moderators.qmd`, "Outcome type" section). Here we check whether that contrast -- and the two subgroup pooled estimates it is built from -- changes as `rho` changes. We apply the same rule used in `uni_moderators.qmd` to drop sparse levels (the `both` level of `Outcome_type`, which only has `k = 3`, is dropped).
 
 ```{r}
 #| label: contrast_sensitivity
@@ -242,19 +242,9 @@ contrast_sensitivity %>%
 readr::write_csv(contrast_sensitivity, here("..","data","sensitivity_r_anxiety_depression_contrast.csv"))
 ```
 
-## Interpretation
-
-Across the entire plausible range tested (`rho = 0` to `rho = 0.90`):
-
--   The overall **lnRR** estimate stays negative and statistically significant (point estimate moves only from about -0.25 at `rho = 0` to about -0.23 at `rho = 0.90`; the 95% CI excludes zero at every value of `rho`). The substantive conclusion — that music exposure is associated with a reduction in anxiety-/depression-like behaviour — is **not sensitive** to the assumed within-cohort correlation.
--   The overall **lnVR** estimate stays small and its 95% CI includes zero at every value of `rho` tested. The conclusion that there is **no strong overall evidence for a change in behavioural variability** under music exposure is likewise **not sensitive** to `rho`.
--   The **depression-minus-anxiety lnVR contrast** remains negative and materially unchanged in magnitude (approximately -0.63 to -0.62 across the tested range) and remains statistically significant at every value of `rho`; the anxiety-specific pooled lnVR remains positive and nominally significant at `rho <= 0.75`, while the depression-specific pooled lnVR remains negative and non-significant throughout. The qualitative pattern reported in the manuscript (higher behavioural variability under music for anxiety-like outcomes than for depression-like outcomes) is **not driven by the specific choice of `rho = 0.5`**.
-
-Increasing `rho` mechanically increases the assumed covariance between effect sizes sharing a cohort, which is absorbed mainly by a decrease in the `ES_ID`-level variance component and a modest narrowing of the standard errors of the pooled estimates; it does not change which cohorts or studies dominate the fit, and it does not alter the sign or statistical conclusion of the overall or contrast estimates reported here.
-
 ## Recomputing sampling variances across the assumed within-subject correlation ($r_i$)
 
-`ri = 0.5` is used inside `calculate_lnRR()`, `calculate_lnVR()`, and `calculate_lnCVR()` (`effect_size_calculation.qmd`) as the assumed within-subject correlation between the treatment and control measurements of a *dependent* (paired / repeated-measures) comparison, via `metafor::escalc(measure = "ROMC"/"VRC"/"CVRC", ri = 0.5, ...)`. Only rows coded `Comparison_structure == "Dependent"` are affected. We re-confirm directly from the raw extraction database that this applies to exactly 40 of the dataset's 298 rows, and that all 40 come from a single study:
+`ri = 0.5` is the assumed within-subject correlation used inside `calculate_lnRR()`, `calculate_lnVR()`, and `calculate_lnCVR()` (`effect_size_calculation.qmd`) for the 40 paired / repeated-measures comparisons, via `metafor::escalc(measure = "ROMC"/"VRC"/"CVRC", ri = 0.5, ...)`. Only rows coded `Comparison_structure == "Dependent"` are affected. Before varying `ri`, we first re-confirm directly from the raw extraction database that this applies to exactly 40 of the dataset's 298 rows, and that all 40 come from a single study:
 
 ```{r}
 #| label: verify_dependent_rows
@@ -272,7 +262,7 @@ db_raw_check %>%
 
 ### Does $r_i$ change the point estimate or only the sampling variance?
 
-`ROMC`, `VRC`, and `CVRC` are the "correlated / paired-groups" versions of the response-ratio, variability-ratio, and CV-ratio estimators. Algebraically, `ri` enters only the delta-method sampling-variance formula (through a covariance term that subtracts `2 * ri * sd1i * sd2i / (ni * ...)`) and never enters the point-estimate (`yi`) formula, which depends only on the means and/or SDs of the two groups. We confirm this empirically with a toy comparison, holding all other inputs fixed and varying only `ri`:
+`ROMC`, `VRC`, and `CVRC` are the paired-groups versions of the response-ratio, variability-ratio, and CV-ratio formulas. `ri` only shows up in the sampling-variance formula (through a term that subtracts a covariance component); it never shows up in the formula for the point estimate itself, which depends only on the means and/or SDs of the two groups. We check this directly with a toy example, holding every other input fixed and changing only `ri`:
 
 ```{r}
 #| label: verify_ri_affects_variance_only
@@ -291,11 +281,11 @@ toy %>%
   kable_styling(full_width = FALSE, bootstrap_options = c("striped", "condensed"))
 ```
 
-As expected, `yi` is identical across `ri` for all three measures, while `vi` decreases monotonically as `ri` increases. This means that varying `ri` can only ever change the sampling variances (`lnRR_var`, `lnVR_var`, `lnCVR_var`) of the 40 dependent rows -- never their point estimates (`lnRR`, `lnVR`, `lnCVR`) -- and, by extension, can only change the pooled models through the weights it assigns to those 40 rows in the VCV/random-effects fit, not through the effect sizes themselves.
+As expected, `yi` stays identical across `ri` for all three measures, while `vi` gets smaller as `ri` increases. So changing `ri` can only ever change the sampling variances (`lnRR_var`, `lnVR_var`, `lnCVR_var`) of the 40 dependent rows -- never their point estimates (`lnRR`, `lnVR`, `lnCVR`) -- and it can only affect the pooled models through the weight those 40 rows get in the fit, not through the effect sizes themselves.
 
 ### Recomputing the 40 dependent-row sampling variances
 
-We reproduce the same preprocessing that `effect_size_calculation.qmd` applies before calling `escalc()` -- SD imputation from SE where missing, and the `apply_continuity_within_group()` continuity correction (stratified by `Assay_type` x `Measurment_variable` x `Data_type`, applied to the *full* raw database so that the stratum-level epsilon constants match the ones used to build `data/db_effect_sizes.csv`) -- and then recompute `lnRR_var`, `lnVR_var`, and `lnCVR_var` for the 40 `Comparison_structure == "Dependent"` rows only, at `ri = 0.00, 0.25, 0.50, 0.75, 0.90`. Point estimates (`lnRR`, `lnVR`, `lnCVR`) and every value for the 258 independent-comparison rows are always taken unchanged from `data/db_effect_sizes.csv`, consistent with the result above that `ri` cannot affect them.
+To vary `ri`, we reproduce the same preprocessing steps that `effect_size_calculation.qmd` applies before calling `escalc()` -- imputing SD from SE where it is missing, and applying the same continuity correction (`apply_continuity_within_group()`, stratified by `Assay_type` x `Measurment_variable` x `Data_type`, and run on the *full* raw database so the stratum-level epsilon constants match the ones used to build `data/db_effect_sizes.csv`) -- and then recompute `lnRR_var`, `lnVR_var`, and `lnCVR_var` for the 40 `Comparison_structure == "Dependent"` rows only, at `ri = 0.00, 0.25, 0.50, 0.75, 0.90`. Point estimates (`lnRR`, `lnVR`, `lnCVR`) and every value for the 258 independent-comparison rows are always taken unchanged from `data/db_effect_sizes.csv`, since the result above shows `ri` cannot affect them.
 
 ```{r}
 #| label: continuity_helpers_ri
@@ -452,7 +442,7 @@ db_for_ri <- function(ri_val) {
 }
 ```
 
-**Validation check**: at `ri = 0.5` (the manuscript default), the recomputed sampling variances for the 40 dependent rows must reproduce `data/db_effect_sizes.csv`'s existing values exactly, since that file was itself built with `ri = 0.5`.
+**Validation check**: at `ri = 0.5`, the manuscript's default, this recomputation should exactly reproduce the sampling variances already stored in `data/db_effect_sizes.csv` for the 40 dependent rows, since that file was itself built with `ri = 0.5`.
 
 ```{r}
 #| label: validate_ri_var
@@ -482,7 +472,7 @@ tibble::tibble(
   kable_styling(full_width = FALSE, bootstrap_options = c("striped", "condensed"))
 ```
 
-The check passes: the recomputation pipeline exactly reproduces the existing `data/db_effect_sizes.csv` sampling variances at `ri = 0.5`, confirming the recomputed variances at other values of `ri` are directly comparable and attributable to the change in `ri` alone. (Point estimates are never recomputed here -- they are always carried over unchanged from `data/db_effect_sizes.csv`, which the result above shows is the correct and only defensible choice, since `ri` cannot affect them.)
+The check passes: the recomputation reproduces the existing `data/db_effect_sizes.csv` sampling variances exactly at `ri = 0.5`. This confirms the pipeline is doing what it is meant to, so the variances recomputed at other values of `ri` are directly comparable, and any differences from the current results are attributable to the change in `ri` alone. Point estimates are never recomputed here -- they are always carried over unchanged from `data/db_effect_sizes.csv`, consistent with `ri` not affecting them.
 
 ### Refitting the overall models and the anxiety/depression contrast across $r_i$ (rho fixed at 0.5)
 
@@ -655,7 +645,7 @@ ggsave(filename = here("..","Plots", "sensitivity_ri_overall.jpg"),
 
 ## Joint sensitivity to $r_i$ and $\rho$
 
-Because `ri` and `rho` are conceptually independent (one governs the sampling variance of 40 within-subject comparisons; the other governs the assumed covariance between different effect sizes sharing a cohort), we also cross them in a full 5 x 5 grid (`ri = 0.00, 0.25, 0.50, 0.75, 0.90` by `rho = 0.00, 0.25, 0.50, 0.75, 0.90`, 25 combinations) and refit the overall `lnRR`, overall `lnVR`, and the depression-minus-anxiety `lnVR` contrast at each combination (same model specification throughout).
+`ri` and `rho` are separate assumptions -- one about the sampling variance of the 40 within-subject comparisons, the other about the covariance between different effect sizes sharing a cohort -- so we also cross them in a full 5 x 5 grid (`ri = 0.00, 0.25, 0.50, 0.75, 0.90` by `rho = 0.00, 0.25, 0.50, 0.75, 0.90`, 25 combinations in total) and refit the overall `lnRR`, overall `lnVR`, and the depression-minus-anxiety `lnVR` contrast at each combination, using the same model specification throughout.
 
 ```{r}
 #| label: grid_ri_rho
@@ -770,24 +760,6 @@ ggsave(filename = here("..","Plots", "sensitivity_ri_rho_grid.jpg"),
        plot = p_grid,
        width = 10, height = 4, dpi = 300)
 ```
-
-## Interpretation of the $r_i$ and joint $r_i \times \rho$ sensitivity
-
-Varying `ri` from 0 to 0.90 (rho fixed at the manuscript default of 0.5) changes only the sampling variances of the 40 dependent rows from a single study (`Sampaio_2017_PSYNEURO`), and the resulting shifts in the pooled estimates are small:
-
--   The overall **lnRR** estimate moves only from about -0.237 (`ri = 0`) to about -0.234 (`ri = 0.90`), staying negative and statistically significant throughout (95% CI excludes zero at every value of `ri`; p ranges from about 0.0006 to 0.0007).
--   The overall **lnVR** estimate moves only from about 0.132 (`ri = 0`) to about 0.127 (`ri = 0.90`); its 95% CI includes zero at every value of `ri`, so the conclusion of no strong overall evidence for a change in behavioural variability is unaffected.
--   The **depression-minus-anxiety lnVR contrast** moves only from about -0.626 (`ri = 0`) to about -0.616 (`ri = 0.90`) and remains statistically significant throughout (p from about 0.005 to 0.006); the anxiety-specific pooled lnVR stays positive and nominally significant, and the depression-specific pooled lnVR stays negative and non-significant, across the full range of `ri`.
-
-This is expected given the algebraic/empirical result above: `ri` affects only the *weights* the 40 dependent rows receive in the multilevel model, not their point estimates, and those 40 rows are a small fraction (13%) of the 298-row database, so even a large swing in `ri` has limited leverage on the pooled estimates.
-
-Crossing `ri` with `rho` in the full 25-combination grid does not change this picture:
-
--   **Overall lnRR** ranges from about -0.250 to -0.226 across all 25 combinations, and its 95% CI excludes zero in every combination (p from about 0.0005 to 0.0011): the reduction in anxiety-/depression-like behaviour under music exposure is robust to the joint choice of `ri` and `rho`.
--   **Overall lnVR** ranges from about 0.116 to 0.141 across all 25 combinations, and its 95% CI includes zero in every combination: there remains no strong overall evidence for a change in behavioural variability under music exposure, regardless of `ri` and `rho`.
--   The **depression-minus-anxiety lnVR contrast** ranges from about -0.639 to -0.616 across all 25 combinations, never changes sign, and never loses statistical significance (p stays below 0.006 throughout, well under the 0.05 threshold); the anxiety-specific pooled lnVR ranges from about 0.29 to 0.31 and the depression-specific pooled lnVR from about -0.32 to -0.31 across the grid.
-
-In short, none of the three substantive conclusions reported in the manuscript -- a significant overall reduction in anxiety-/depression-like behaviour (lnRR), no strong overall change in behavioural variability (lnVR), and a significantly more positive lnVR response for anxiety-like than for depression-like outcomes -- depends on the specific default choice of `ri = 0.5` or `rho = 0.5`, individually or jointly.
 
 ::: callout-note
 ```{r}
