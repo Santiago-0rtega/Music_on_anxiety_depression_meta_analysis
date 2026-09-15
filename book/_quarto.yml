@@ -40,6 +40,9 @@ book:
     - main_figures.qmd
     - Alluvial.qmd
 
+  appendices:
+    - correlation_sensitivity.qmd
+
 
 number-sections: false
 bibliography: references.bib
