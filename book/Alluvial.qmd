@@ -265,9 +265,9 @@ plot1<-(Out_spp_strain/assay_plot)+ plot_annotation(
 # handled by geom_text_repel() pushing labels apart with leader lines, so
 # the canvas no longer needs to be oversized just to make room for them.
 #ggsave(filename = here("..","Plots", "alluvial_raw.pdf"),
-       plot = plot1,
-       dpi = 300, device = cairo_pdf, width = 11,
-       height = 13)
+      # plot = plot1,
+       #dpi = 300, device = cairo_pdf, width = 11,
+       #height = 13)
 
 
 #ggsave(filename = here("..","Plots", "alluvial_raw.jpg"),
