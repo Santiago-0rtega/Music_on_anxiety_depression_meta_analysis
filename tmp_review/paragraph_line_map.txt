@@ -1,0 +1,116 @@
+000 (1084, 10, 1)        (1085, 10, 1)        Music exposure reduces anxiety- and depression-like behavior in rodents: a systematic review an
+001 (5, 7, 1)            (5, 7, 1)            Santiago Ortega¹* (ORCID: 0000-0002-3518-276X)
+002 (6, 7, 1)            (6, 7, 1)            Anna Lenz¹ (ORCID: 0009-0002-5706-7815)
+003 (7, 7, 1)            (7, 7, 1)            Erick Lundgren¹ (ORCID: 0000-0001-9893-3324)
+004 (8, 7, 1)            (8, 7, 1)            Ayumi Mizuno¹ (ORCID: 0000-0003-0822-5637)
+005 (9, 8, 1)            (9, 8, 1)            Sergio Poo Hernandez¹ (ORCID: 0000-0003-0155-645X)
+006 (10, 8, 1)           (10, 8, 1)           Shinichi Nakagawa¹,²† (ORCID: 0000-0002-7765-5182)
+007 (11, 8, 1)           (11, 8, 1)           Malgorzata Lagisz¹,²† (ORCID: 0000-0002-3993-6127)
+008 (12, 7, 1)           (12, 7, 1)           Running title: Music and affect in rodents
+009 (13, 10, 1)          (14, 10, 1)          ¹ Collaboration for Open Science and Synthesis in Ecology and Evolution (COSSEE), Department of
+010 (15, 10, 1)          (16, 10, 1)          ² School of Biological, Earth and Environmental Sciences, University of New South Wales, Sydney
+011 (17, 8, 1)           (17, 8, 1)           * Corresponding author: Santiago Ortega (santiago.ortega@ualberta.ca)
+012 (18, 8, 1)           (18, 8, 1)           † Co-senior authors: Shinichi Nakagawa and Malgorzata Lagisz
+015 (21, 10, 1)          (34, 10, 1)          Music exposure may influence affect-related behavior in rodents, but results vary across studie
+016 (35, 10, 1)          (36, 10, 1)          Keywords— anxiety; depression; rodent models; auditory enrichment; behavioral variability; mult
+018 (38, 10, 1)          (39, 10, 1)          A synthesis of 20 rodent studies finds lower anxiety- and depression-like behaviors after music
+021 (42, 10, 1)          (61, 10, 1)          Anxiety and depressive disorders are among the most prevalent and disabling psychiatric conditi
+022 (62, 10, 1)          (78, 10, 1)          Although the neural mechanisms through which music engages affective and stress-related systems
+023 (79, 10, 1)          (100, 10, 1)         Within this experimental framework, a growing literature has examined how music exposure affect
+024 (101, 10, 1)         (110, 10, 1)         Recent advances in meta-analytic methodology allow a more rigorous synthesis of this evidence. 
+025 (111, 10, 1)         (122, 10, 1)         Here, we present a preregistered systematic review and multilevel meta-analysis of experimental
+028 (125, 10, 1)         (152, 10, 1)         Twenty studies met the predefined inclusion criteria (Flores-Gutiérrez et al., 2018; Fu et al.,
+030 (154, 10, 1)         (155, 10, 1)         Table 1. Moderators included in the meta-analysis and their definitions and coding categories.
+032 (157, 7, 1)          (157, 7, 1)          3.2	Overall effects of music exposure
+033 (158, 10, 1)         (172, 10, 1)         Across all outcomes, music exposure was associated with a significant improvement in average be
+034 (173, 10, 1)         (173, 10, 1)         3.3	Outcome type: anxiety-like vs. depression-like behaviors
+035 (174, 10, 1)         None                 Outcome type did not significantly moderate the average effects of music exposure (Fig. 4A). Mu
+036 (184, 9, 1)          (184, 9, 1)          3.4	Univariate moderator analyses of average behavioral effects ()
+037 (184, 4, 4)          (211, 9, 1)          Univariate moderator analyses of  included anxiety- and depression-like effect sizes together i
+038 (213, 8, 1)          (213, 8, 1)          3.5	Univariate moderator analyses of behavioral variability ()
+039 (184, 4, 4)          (225, 10, 1)         Univariate moderator analyses of  examined how music exposure influenced behavioral variability
+040 (227, 10, 1)         (386, 6, 1)          Life stage at exposure explained 4.0% of heterogeneity (Fig. 6B). Outcomes from rodents tested 
+041 (238, 10, 1)         (245, 10, 1)         Experimental design explained 6.5% of heterogeneity (Fig. 6D). Posttest-only designs showed gre
+043 (247, 10, 1)         (247, 10, 1)         3.6	Small-study effects, time-lag patterns, and sensitivity analyzes 
+044 (248, 10, 1)         (261, 6, 1)          We found no evidence of small-study effects or time-lag bias. Funnel plots based on model resid
+045 (262, 8, 1)          (262, 8, 1)          3.7	Risk of bias and reporting transparency
+046 (263, 10, 1)         (283, 10, 1)         We critically appraised 20 reports at the study level using the finalized CRIME-Q assessment (F
+047 (284, 10, 1)         (293, 10, 1)         Some domains were better reported. Outcome assessment followed a fixed or pre-specified rule in
+049 (295, 10, 1)         (326, 10, 1)         Music exposure reduced anxiety- and depression-like behaviors by about 20% relative to control 
+050 (327, 10, 1)         (327, 10, 1)         4.1	Music exposure in the context of environmental enrichment
+051 (328, 10, 1)         (344, 10, 1)         The direction of these average effects aligns with findings from other non-pharmacological inte
+052 (345, 10, 1)         (363, 10, 1)         Exposure timing was also associated with effect magnitude. Studies that delivered music prior t
+053 (364, 8, 1)          (364, 8, 1)          4.2	Assay-, stimulus-, and design-specific variability
+054 (365, 10, 1)         (377, 10, 1)         Behavioral assays were associated with marked differences in variability responses. Relative to
+055 (378, 10, 1)         (384, 10, 1)         These findings carry practical implications. Researchers who prioritize reproducibility and pre
+056 (385, 10, 1)         (394, 10, 1)         Music meta-genre was also associated with differences in variability. Studies using popular con
+057 (395, 10, 1)         (404, 10, 1)         Experimental design was also associated with variability. Posttest-only designs were associated
+058 (405, 10, 1)         (412, 10, 1)         Design architecture may therefore affect both the estimated average effect and the apparent dis
+059 (413, 7, 1)          (413, 7, 1)          4.3	Heterogeneity, reporting practices, and robustness
+060 None                 (420, 10, 1)         The combined  and  results indicate substantial heterogeneity in how music exposure was impleme
+061 (421, 10, 1)         (431, 10, 1)         The CRIME-Q assessment (Fig. 7) is most informative not as an inventory of missing information,
+062 (432, 10, 1)         (448, 10, 1)         Similarly, unclear ratings for baseline balance, allocation, housing, and blinding do not demon
+063 (449, 10, 1)         (460, 10, 1)         Despite these limitations, multiple diagnostics support the robustness of the overall average e
+064 (461, 10, 1)         (467, 10, 1)         Other design features also remain insufficiently characterized. Reporting of the light–dark pha
+065 (468, 10, 1)         (469, 10, 1)         4.4	Study-specific limitations and recommendations for future research
+066 (470, 10, 1)         (490, 10, 1)         The CRIME-Q assessment identifies several priorities for future research on music exposure and 
+068 (492, 10, 1)         (499, 10, 1)         This meta-analysis shows that music exposure is associated, on average, with an approximately 2
+071 (502, 10, 1)         (511, 10, 1)         We used the PECO (Population, Exposure, Comparator, Outcome; Table S5) framework (Foo et al., 2
+072 (512, 10, 1)         (518, 10, 1)         To enhance coverage and identify gray literature, we additionally searched Google Scholar and t
+074 (520, 6, 1)          (520, 6, 1)          5.2	Eligibility criteria and screening
+075 (521, 10, 1)         (538, 10, 1)         Study eligibility criteria followed the preregistered protocol and PECO (Population, Exposure, 
+077 (540, 10, 1)         (569, 10, 1)         We extracted four categories of data from each eligible study. Data extraction was conducted by
+078 (570, 7, 1)          (570, 7, 1)          5.4	Deviations from the preregistered protocol
+079 (571, 10, 1)         (575, 10, 1)         We implemented six refinements to our protocol after preregistration. To accommodate heterogene
+080 (576, 10, 1)         (580, 10, 1)         First, to model statistical dependence among effect sizes, we coded the comparison structure of
+081 (581, 10, 1)         (585, 10, 1)         Second, to harmonize heterogeneous reporting, we classified exposure durations (acute, short-te
+082 (586, 10, 1)         (589, 10, 1)         Third, we recorded whether studies explicitly reported key stimulus parameters, such as loudnes
+083 (590, 10, 1)         (594, 10, 1)         Fourth, we introduced a post hoc critical appraisal of the included evidence using the Critical
+084 (595, 10, 1)         (601, 10, 1)         Fifth, following concerns about the level of treatment replication, we conducted a post hoc tar
+085 (602, 10, 1)         (608, 4, 1)           Sixth, we conducted an additional post hoc sensitivity analysis to assess the robustness of th
+086 (609, 5, 1)          (609, 5, 1)          5.5	Effect size calculation
+087 (610, 10, 1)         (612, 10, 2)         We quantified the effects of music exposure using effect size metrics that capture both differe
+088 (613, 6, 1)          (613, 6, 1)          5.5.1	Log Response Ratio ()
+089 (614, 10, 1)         (620, 5, 1)          Differences in average behavioral responses were quantified using the natural logarithm of the 
+090 (621, 10, 1)         None                 To reduce small-sample bias arising from sampling error in group averages, we used the bias-cor
+092 (625, 10, 1)         (627, 10, 1)         where  and  denote the sample averages,  and  the sample standard deviations, and  and  the sam
+093 None                 None                 5.5.1.1	Transformation of proportional outcomes
+094 (629, 10, 1)         (633, 10, 1)         Some behavioral outcomes were proportions bounded between 0 and 1 (e.g., sucrose preference, pr
+097 (636, 10, 1)         (637, 4, 1)          The transformed average () and standard deviation () were then substituted for  and  in subsequ
+098 None                 (638, 4, 1)          5.5.1.2	Sampling variance and dependence structure
+099 (639, 4, 1)          None                 The sampling variance of  was calculated as
+101 (641, 10, 1)         (647, 10, 1)         where  and  are the sample standard deviations,  and  denote the sample means, and  and  are th
+102 (648, 6, 1)          (648, 6, 1)          5.5.2	Log Variability Ratio ()
+103 (649, 10, 1)         (658, 10, 1)         Differences in behavioral variability were quantified using the (bias-corrected) log variabilit
+104 (659, 10, 1)         (660, 10, 1)         For continuous outcomes, the log variability ratio was calculated using the bias-corrected esti
+106 (662, 10, 1)         (663, 10, 1)         where  and  are the sample sizes, and  and  are the standard deviations of the treatment (music
+107 (664, 7, 1)          (664, 7, 1)          The corresponding sampling variance was approximated as
+109 (666, 10, 1)         (670, 10, 1)         where  and  denote the treatment and control sample sizes. A positive  indicates greater behavi
+111 (672, 10, 1)         (676, 10, 1)         where  denotes the number of paired observations contributing to both treatment and control con
+112 None                 (681, 10, 1)         We prioritized  over the log coefficient of variation ratio () to assess absolute rather than r
+113 (682, 5, 1)          (682, 5, 1)          5.6	Meta-analytic models
+114 (683, 8, 1)          (706, 10, 1)         We fitted multilevel meta-analytic models separately for  and  using restricted maximum likelih
+116 (708, 8, 1)          (712, 10, 1)         Heterogeneity in effect sizes was quantified using the  statistic, which represents the proport
+118 None                 (717, 10, 1)         where  denotes the between-study variance component,  denotes the within-study (effect-size-lev
+119 (718, 10, 1)         (719, 10, 1)         This decomposition further allows heterogeneity to be partitioned into between-study and within
+122 None                 (725, 10, 1)         These component-specific  values indicate whether heterogeneity is driven primarily by differen
+123 (726, 10, 1)         (726, 10, 1)         5.8	Small-study effects, time-lag patterns, and sensitivity analyzes
+124 (727, 10, 1)         (739, 10, 1)         We assessed potential small-study effects and time-lag patterns using complementary visual and 
+126 (741, 10, 1)         (753, 10, 1)         where  and  are the treatment and control sample sizes, respectively. This term was included as
+127 (754, 10, 1)         (755, 10, 1)         5.9	Critical appraisal of reporting, methodological quality, and risk of bias
+128 (756, 10, 1)         (762, 10, 1)         After the primary analyses, we conducted a post hoc critical appraisal using an adapted version
+129 (763, 10, 1)         (774, 10, 1)         QoR items evaluated whether reports provided sufficient detail for replication and appraisal, i
+130 (775, 10, 1)         None                 Each item was scored using its prespecified CRIME-Q response options. Reporting and methodologi
+131 (797, 7, 1)          (797, 7, 1)          5.10	Statistical computing environment and software
+132 (798, 10, 1)         (810, 10, 1)         All analyzes and visualizations were conducted in R (R Core Team, 2025) (version 4.5.2) using R
+134 (812, 10, 1)         (815, 10, 1)         Conceptualization: S.O., S.N., & M.L.; Methodology: M.L., S.N., & S.O.; Validation: A.L, S.N., 
+136 (817, 6, 1)          (817, 6, 1)          The authors declare no competing interests.
+138 (819, 10, 1)         (819, 10, 1)         Canada Excellence Research Chairs, Government of Canada (CERC-2022-00074).
+139 None                 (9, 4, 1)            9	Data and resource availability
+140 (821, 10, 1)         (825, 10, 1)         All data, analysis code, metadata, and supporting materials required to reproduce the analyses 
+143 (828, 6, 1)          (828, 6, 1)          Figure 1. PRISMA, 2020 Flow Diagram
+145 (830, 10, 1)         (846, 10, 1)         Figure 2.  Alluvial plots summarizing the distribution of study characteristics and experimenta
+147 (848, 10, 1)         (860, 10, 1)          Figure 3. Overall effects of music exposure on behavioral outcomes in rodents. Shown are the p
+149 (862, 10, 1)         None                 Figure 4. Outcome-type–specific effects of music exposure on rodent behavior based on uni-moder
+151 (872, 10, 1)         (882, 10, 2)         Figure 5. Uni-moderator analyzes of average behavioral effects of music exposure (). Orchard pl
+153 (884, 10, 1)         (882, 10, 2)         Figure 6. Uni-moderator analyzes of behavioral variability under music exposure (). Orchard plo
